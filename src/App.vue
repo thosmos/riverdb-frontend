@@ -8,5 +8,13 @@
   </div>
 </template>
 
-<style lang="less">
+<style lang="scss">
+#app {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background: #eee;
+  background-image: url("./assets/background-tiles/waves-0.1.png");
+  background-repeat: repeat;
+}
 </style>
