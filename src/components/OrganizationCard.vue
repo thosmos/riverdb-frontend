@@ -43,7 +43,6 @@ export default {
 .organization-card {
   // equal height cards!
   height: 100%;
-
   .card-abbr {
     background: rgba(0, 0, 0, 0.03) !important;
     max-height: 3.5rem;

@@ -18,7 +18,8 @@ export default {
   name: "home",
   components: {
     OrganizationsList,
-    OrganizationsMap: () => import("../components/OrganizationsMap.vue")
+    OrganizationsMap: () =>
+      import(/* webpackChunkName: 'org-map' */ "../components/OrganizationsMap.vue")
   },
   data: function() {
     return {
