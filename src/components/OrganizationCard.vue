@@ -17,9 +17,11 @@
     </sui-card-content>
     <div class="spacer">
       <sui-card-content extra>
-        <sui-button basic
-                    fluid
-                    primary>Visit Organization</sui-button>
+        <router-link :to="`/${org.abbreviation}`">
+          <sui-button basic
+                      fluid
+                      primary>Visit Organization</sui-button>
+        </router-link>
       </sui-card-content>
     </div>
   </sui-card>

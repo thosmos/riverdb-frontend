@@ -2,7 +2,8 @@
   <sui-grid :columns="3"
             centered
             stackable>
-    <sui-grid-column v-for="org in organizations">
+    <sui-grid-column v-for="org in organizations"
+                     :key="org.abbreviation">
       <organization-card :org="org"></organization-card>
     </sui-grid-column>
   </sui-grid>

@@ -6,8 +6,10 @@ import "./registerServiceWorker";
 
 import SuiVue from "semantic-ui-vue";
 // TODO: semantic theming
-import "../node_modules/semantic-ui/dist/semantic.css";
+// import "../node_modules/semantic-ui/dist/semantic.css";
+import "./style/semantic/semantic.min.css";
 import "./style/style.scss";
+import "../node_modules/leaflet/dist/leaflet.css";
 
 Vue.use(SuiVue);
 
