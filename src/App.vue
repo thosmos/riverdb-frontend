@@ -18,6 +18,19 @@ export default {
   components: {
     NavBar,
     PageLayout
+  },
+  metaInfo: {
+    title: "Home",
+    titleTemplate: "%s | RiverDB database",
+    meta: [
+      { charset: "utf-8" },
+      {
+        vmid: "description",
+        name: "description",
+        content:
+          "RiverDB lets organizations save their data into a database compliant with CEDEN regulations and view the data in multiple ways, including charts & tables."
+      }
+    ]
   }
 };
 </script>

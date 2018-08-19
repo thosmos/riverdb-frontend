@@ -16,6 +16,7 @@
     "sass-loader": "^7.1.0",
     "semantic-ui-vue": "^0.3.3",
     "vue": "^2.5.17",
+    "vue-meta": "^1.5.2",
     "vue-router": "^3.0.1",
     "vue2-leaflet": "^1.0.2",
     "vuex": "^3.0.1"

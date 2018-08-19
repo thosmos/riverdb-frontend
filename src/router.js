@@ -4,6 +4,12 @@ import Home from "./views/Home.vue";
 
 Vue.use(Router);
 
+/**
+ * Vue-meta for meta tags
+ */
+import Meta from "vue-meta";
+Vue.use(Meta);
+
 export default new Router({
   mode: "history",
   base: process.env.BASE_URL,
