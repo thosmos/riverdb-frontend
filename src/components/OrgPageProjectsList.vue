@@ -1,5 +1,8 @@
 <template>
   <div>
+    <h2 is="sui-header"
+        class="ui center aligned"
+        s>Projects:</h2>
     <div v-for="project in info.projects"
          :key="project.title">
       <div class="m-b-sm project-segment">
@@ -44,37 +47,38 @@ export default {
 };
 </script>
 
-  <style lang="scss">
+<style lang="scss">
 @import "../style/style.scss";
-
-.project-segment {
-  position: relative;
-  .ui.segment {
-    transition: all 0.3s ease-in-out;
-  }
-  h5 {
-    text-decoration: underline;
-  }
-  .inner {
-    transition: opacity 0.5s ease;
-    opacity: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: white;
-    background: rgba(0, 0, 0, 0.6);
-    padding: 1rem;
-    border-radius: 0.5rem;
-  }
-  &:hover {
+#organization-page {
+  .project-segment {
+    position: relative;
     .ui.segment {
-      background: $midWhite;
+      transition: all 0.3s ease-in-out;
     }
-  }
-  &:hover .inner {
-    opacity: 1;
+    h5 {
+      text-decoration: underline;
+    }
+    .inner {
+      transition: opacity 0.5s ease;
+      opacity: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: white;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 1rem;
+      border-radius: 0.5rem;
+    }
+    &:hover {
+      .ui.segment {
+        background: $midWhite;
+      }
+    }
+    &:hover .inner {
+      opacity: 1;
+    }
   }
 }
 </style>

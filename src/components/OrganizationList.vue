@@ -1,12 +1,11 @@
 <template>
-  <sui-grid :columns="3"
-            centered
-            stackable>
-    <sui-grid-column v-for="org in organizations"
-                     :key="org.abbreviation">
+  <div class="ui centered grid">
+    <div v-for="org in organizations"
+         :key="org.abbreviation"
+         class="five wide computer eight wide tablet sixteen wide mobile column">
       <organization-card :org="org"></organization-card>
-    </sui-grid-column>
-  </sui-grid>
+    </div>
+  </div>
 </template>
 
 <script>

@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "surge": "vue-cli-service build && cd dist && surge -d riverdb.surge.sh"
   },
   "dependencies": {
     "axios": "^0.18.0",
