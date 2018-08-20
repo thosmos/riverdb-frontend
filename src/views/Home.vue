@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div id="home">
     <sui-container>
       <sui-header size="huge"
                   textAlign="center">Participating Organizations:</sui-header>

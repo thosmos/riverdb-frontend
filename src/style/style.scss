@@ -1,2 +1,9 @@
 @import "./_variables.scss";
 @import "./_spacing.scss";
+
+html {
+  font-size: 18px;
+  p {
+    font-size: 18px;
+  }
+}
