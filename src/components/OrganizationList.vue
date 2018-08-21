@@ -1,8 +1,8 @@
 <template>
-  <div class="ui centered grid">
+  <div class="ui centered grid stackable">
     <div v-for="org in organizations"
          :key="org.abbreviation"
-         class="five wide computer eight wide tablet sixteen wide mobile column">
+         class="four wide computer six wide tablet  column">
       <organization-card :org="org"></organization-card>
     </div>
   </div>

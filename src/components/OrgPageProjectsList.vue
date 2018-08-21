@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h2 is="sui-header"
+    <h3 is="sui-header"
         class="ui center aligned"
-        s>Projects:</h2>
+        s>Projects:</h3>
     <div v-for="project in info.projects"
          :key="project.title">
       <div class="m-b-sm project-segment">

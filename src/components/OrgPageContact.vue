@@ -1,6 +1,9 @@
 <template>
   <div class="m-b-lg">
     <sui-divider></sui-divider>
+    <h3 is="sui-header"
+        class="ui center aligned"
+        s>Contact:</h3>
     <sui-grid :columns="2"
               stackable>
       <sui-grid-column>

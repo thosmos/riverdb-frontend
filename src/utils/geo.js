@@ -19,26 +19,26 @@ function _flattenGeoJson(geoJson) {
   return arr;
 }
 
-/**
- * calculates bounds ready for leaflet from GeoJson
- * returned Object is {"_southWest": {"lat": Number, "lng": Number}, "_northEast": { "lat...."} }
- *
- * @export calculateBounds
- * @param {Object} geoJson
- * @returns {Object} bounds
- */
-export function calculateBounds(geoJson) {
-  return L.latLngBounds(_flattenGeoJson(geoJson));
-}
+// /**
+//  * calculates bounds ready for leaflet from GeoJson
+//  * returned Object is {"_southWest": {"lat": Number, "lng": Number}, "_northEast": { "lat...."} }
+//  *
+//  * @export calculateBounds
+//  * @param {Object} geoJson
+//  * @returns {Object} bounds
+//  */
+// export function calculateBounds(geoJson) {
+//   return L.latLngBounds(_flattenGeoJson(geoJson));
+// }
 
-/**
- * calculates center of GeoJson ready for leaflet
- *
- * @export calculateCenterOfGeoJson
- * @param {Object} geoJson
- * @returns {Object} {lat: Number, lng: Number}
- */
-export function calculateCenterOfGeoJson(geoJson) {
-  let center = geolib.getCenterOfBounds(_flattenGeoJson(geoJson));
-  return L.latLng(center.longitude, center.latitude);
-}
+// /**
+//  * calculates center of GeoJson ready for leaflet
+//  *
+//  * @export calculateCenterOfGeoJson
+//  * @param {Object} geoJson
+//  * @returns {Object} {lat: Number, lng: Number}
+//  */
+// export function calculateCenterOfGeoJson(geoJson) {
+//   let center = geolib.getCenterOfBounds(_flattenGeoJson(geoJson));
+//   return L.latLng(center.longitude, center.latitude);
+// }
