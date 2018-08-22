@@ -52,6 +52,8 @@ export default {
     let orgs = organizations.map(o => {
       return axios.get(`http://localhost:3010/outline?river=${o.abbreviation}`);
     });
+    // FIXME: Map doesn't show when returning to '/' because it's already mounted but bounds = null again?
+    console.log(`MOUNTED`);
     axios
       .all(orgs)
       .then(res => {

@@ -27,7 +27,6 @@ const organization = {
      * @param {Object} ws
      */
     setWatershed(state, ws) {
-      console.log("ws", ws);
       state.watershed = ws;
     }
   },
@@ -39,7 +38,6 @@ const organization = {
      * @param {String} abbreviation organization abbreviation (SYRCL,SSI etc)
      */
     fetchOrganizationWatershed({ commit, state }, abbreviation) {
-      console.log("abbreviation", abbreviation);
       commit("loadingWatershed", true);
       let url =
         process.env.NODE_ENV === "development"
@@ -49,12 +47,9 @@ const organization = {
         .get(url)
         .then(result => {
           commit("loadingWatershed", false);
-          console.log("result.data.info", result.data.info);
           commit("setWatershed", result.data.info);
         })
-        .catch(err => {
-          console.error("Error fetching watershed ", err);
-        });
+        .catch(err => {});
     }
   }
 };
