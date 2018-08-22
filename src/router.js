@@ -36,6 +36,18 @@ export default new Router({
       name: "OrganiziationPage",
       component: () =>
         import(/* webpackChunkName: "org-page" */ "./views/OrganizationPage.vue")
+    },
+    {
+      path: "/:org/projects",
+      name: "ProjectsPage",
+      component: () =>
+        import(/* webpackChunkName: "project-page" */ "./views/ProjectsPage.vue")
+    },
+    {
+      path: "/:org/RM",
+      name: "RMPage",
+      component: () =>
+        import(/* webpackChunkName: "rm-page" */ "./views/RMPage.vue")
     }
   ]
 });
