@@ -14,16 +14,19 @@
 import OrgPageIntro from "../components/OrgPageIntro";
 import OrgPageFooter from "../components/OrgPageContact";
 import OrgPageProjectsList from "../components/OrgPageProjectsList";
-import OrgPageOverviewMap from '../components/OrgPageOverviewMap';
+import OrgPageOverviewMap from "../components/OrgPageOverviewMap";
 
 import organizations from "../assets/organizations.js";
 import find from "lodash/find";
 
-import { mapActions} from 'vuex'
-
 export default {
   name: "OrganizationPage",
-  components: { OrgPageIntro, OrgPageFooter, OrgPageProjectsList, OrgPageOverviewMap },
+  components: {
+    OrgPageIntro,
+    OrgPageFooter,
+    OrgPageProjectsList,
+    OrgPageOverviewMap
+  },
   data() {
     return {
       info: null

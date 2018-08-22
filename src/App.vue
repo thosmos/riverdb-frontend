@@ -31,6 +31,15 @@ export default {
           "RiverDB lets organizations save their data into a database compliant with CEDEN regulations and view the data in multiple ways, including charts & tables."
       }
     ]
+  },
+
+  watch: {
+    $route: function() {
+      this.$store.commit(
+        "organization/SET_ACTIVE_ORGANIZATION",
+        this.$route.params.org
+      );
+    }
   }
 };
 </script>

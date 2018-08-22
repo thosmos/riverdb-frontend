@@ -1,0 +1,7 @@
+/**
+ * Organization VUEX
+ */
+
+export const LOADING_WATERSHED = "LOADING_WATERSHED";
+export const SET_ACTIVE_ORGANIZATION = `SET_ACTIVE_ORGANIZATION`;
+export const SET_WATERSHED = `SET_WATERSHED`;

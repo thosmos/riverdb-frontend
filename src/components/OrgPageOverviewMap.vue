@@ -44,7 +44,7 @@ export default {
   mounted() {
     // Fetch organizations watershed
     this.$store.dispatch(
-      "organization/fetchOrganizationWatershed",
+      "organization/FETCH_ORGANIZATION_WATERSHED",
       this.$route.params.org
     );
   },
