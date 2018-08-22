@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
-import { organization } from "./index.js";
+import { organization, selection } from "./index.js";
 
 Vue.use(Vuex);
 
@@ -10,6 +10,7 @@ export default new Vuex.Store({
   // mutations: {},
   // actions: {},
   modules: {
-    organization
+    organization,
+    selection
   }
 });
