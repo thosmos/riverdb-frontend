@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>SlectionWrapper</h1>
+    <h1>{{stations && stations.length}}</h1>
   </div>
 </template>
 
@@ -12,7 +12,7 @@ export default {
   },
   watch: {
     stations: function() {
-      this.$store.commit("selection/SET_ALL_STATIONS", this.stations);
+      this.$store.dispatch("selection/SET_ALL_STATIONS", this.stations);
     }
   }
 };
