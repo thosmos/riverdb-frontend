@@ -6,20 +6,27 @@
       <div v-if="$apollo.loading">
         <Loader/>
       </div>
-      <r-m-selection-wrapper :stations="stations"></r-m-selection-wrapper>
+      <div v-else>
+        <sui-grid>
+          <sui-grid-column>
+            <selection-wrapper :stations="stations">
+            </selection-wrapper>
+          </sui-grid-column>
+        </sui-grid>
+      </div>
     </sui-container>
   </div>
 </template>
 
 <script>
-import RMSelectionWrapper from "../components/RMSelectionWrapper";
+import SelectionWrapper from "../components/SelectionWrapper";
 import Loader from "../components/Loader";
 
 import { GET_STATIONS } from "../apollo/queries";
 
 export default {
   name: "RMPage",
-  components: { Loader, RMSelectionWrapper },
+  components: { Loader, SelectionWrapper },
   apollo: {
     stations: {
       query: GET_STATIONS, // Initial data fetch of all stations...
