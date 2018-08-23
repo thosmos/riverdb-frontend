@@ -1,12 +1,13 @@
 <template>
   <div>
     <h1>{{stations && stations.length}}</h1>
+    <p v-if="ui.errorMsg">{{ui.errorMsg}}</p>
     <div class="ui two column centered grid">
       <div class="column">
-
         <v-select :options="stationOption"
                   placeholder="select a station"
                   @input="fetchStationData"
+                  ref="station"
                   v-model="selected"></v-select>
       </div>
     </div>
@@ -16,6 +17,8 @@
 <script>
 import vSelect from "vue-select";
 import { GET_STATION_DATA } from "../apollo/queries.js";
+
+import { mapState } from "vuex";
 
 export default {
   name: "SelectionWrapper",
@@ -29,6 +32,9 @@ export default {
     };
   },
   computed: {
+    ...mapState({
+      ui: state => state.ui
+    }),
     stationOption: function() {
       if (this.stations) {
         return this.stations.map(s => {
@@ -55,8 +61,9 @@ export default {
           }
         })
         .then(res => {
-          this.selected = null; //NOTE: resets selection, throws error though I do it like in one of the offical codepen example!
+          // this.selected = ""; //NOTE: resets selection, throws error though I do it like in one of the offical codepen example!
           console.log("res", res.data.sitevisits);
+          // TODO: reset select field somehow, throws error for this.selected = null
           // if (
           //   find(
           //     this.loadedStations,
@@ -76,7 +83,7 @@ export default {
           // }
         })
         .catch(err => {
-          console.log("err", err);
+          this.$store.commit("ui/SET_ERROR_MSG", `Couldn't fetch station data`);
         });
     }
   }
