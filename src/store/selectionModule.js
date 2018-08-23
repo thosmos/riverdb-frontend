@@ -7,7 +7,6 @@ import {
 } from "./mutationTypes";
 
 import {
-  getLocalWatersheds,
   getRiverForks,
   getLocalWaterbodies,
   getStationNames
@@ -20,7 +19,7 @@ const selection = {
     onlyActiveStations: false, // takes all stations no matter if active or not
     allForks: null,
     allWaterbodies: null,
-    allWatersheds: null,
+    // allWatersheds: null,
     allStationNames: null
   },
   /**
@@ -49,14 +48,13 @@ const selection = {
      * @param {Object} { stations, onlyActive }
      */
     [SET_ALL_STATIONS]({ commit, state }, stations) {
-      console.log("state", state);
       if (state.onlyActiveStations) {
         state.allStations = stations.filter(s => s.Active);
       } else {
         state.allStations = stations;
       }
       commit("ALL_RIVER_FORKS", getRiverForks(stations));
-      commit("ALL_LOCAL_WATERSHEDS", getLocalWatersheds(stations));
+      // commit("ALL_LOCAL_WATERSHEDS", getLocalWatersheds(stations));
       commit("ALL_LOCAL_WATERBODIES", getLocalWaterbodies(stations));
       commit("ALL_STATION_NAMES", getStationNames(stations));
     }

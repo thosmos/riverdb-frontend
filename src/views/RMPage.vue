@@ -32,8 +32,11 @@ export default {
       query: GET_STATIONS, // Initial data fetch of all stations...
       // TODO: add organization variables once it becomes available from Thomas
       error(err) {
-        console.log("ERROR");
         console.log("err", err);
+        this.$store.commit(
+          "ui/SET_ERROR_MSG",
+          `Couldn't fetch intial stations`
+        );
       }
     }
   }
