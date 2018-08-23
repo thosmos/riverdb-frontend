@@ -29,6 +29,7 @@
     "vue": "^2.5.17",
     "vue-apollo": "^3.0.0-beta.19",
     "vue-meta": "^1.5.2",
+    "vue-multiselect": "^2.1.0",
     "vue-router": "^3.0.1",
     "vue-select": "^2.4.0",
     "vue2-leaflet": "^1.0.2",

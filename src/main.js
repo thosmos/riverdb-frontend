@@ -12,6 +12,7 @@ import SuiVue from "semantic-ui-vue";
 import "./style/semantic/semantic.min.css";
 import "./style/style.scss";
 import "../node_modules/leaflet/dist/leaflet.css";
+import "../node_modules/vue-multiselect/dist/vue-multiselect.min.css";
 
 Vue.use(SuiVue);
 

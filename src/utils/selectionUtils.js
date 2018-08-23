@@ -9,7 +9,7 @@ export function getLocalWaterbodies(stations) {
 }
 
 export function getRiverForks(stations) {
-  return uniq(stations.map(s => s.RiverFork)).sort();
+  return uniq(stations.map(s => s.ForkTribGroup)).sort();
 }
 
 export function getStationNames(stations) {
