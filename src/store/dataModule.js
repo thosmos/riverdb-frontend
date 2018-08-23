@@ -1,12 +1,18 @@
-import { SET_ERROR_MSG, CLEAR_ERROR_MSG, CLEAR_ALL_MSG } from "./mutationTypes";
+import { ADD_STATION_DATA } from "./actionTypes";
 
 const data = {
   namespaced: true,
   state: {
-    stations: []
+    loadedStations: []
   },
   mutations: {},
-  actions: {}
+  actions: {
+    [ADD_STATION_DATA]({ commit, state }, { id, data }) {
+      console.log("station", station);
+      console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+      state.loadedStations.push({ id, data });
+    }
+  }
 };
 
 export default data;

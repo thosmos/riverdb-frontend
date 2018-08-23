@@ -28,23 +28,12 @@ export const GET_STATION_DATA = gql`
       id
       date
       notes
-      results {
-        H2O_Cond {
-          mean
-        }
-        H2O_pH {
-          mean
-        }
-        H2O_DO {
-          mean
-        }
-        H2O_Turbidity {
-          mean
-        }
-        # Water Temp
-        H2O_Temp {
-          mean
-        }
+      resultsv {
+        analyte
+        is_valid
+        matrix
+        mean
+        unit
       }
     }
   }

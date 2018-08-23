@@ -23,29 +23,33 @@
                        v-model="selectedStation"></multiselect>
         </div>
       </div>
+      <div v-if="ui.isLoading">
+        <Loader />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import vSelect from "vue-select";
 import Multiselect from "vue-multiselect";
+import Loader from "./Loader";
+
 import {
   calculateForksForSelection,
-  calculateStreamsForSelection,
   calculateStationsForSelection
 } from "../utils/selectionUtils.js";
 
 import { GET_STATION_DATA } from "../apollo/queries.js";
 
 import { mapState } from "vuex";
+import find from "lodash/find";
 
 export default {
   name: "SelectionWrapper",
   props: {
     stations: Array
   },
-  components: { vSelect, Multiselect },
+  components: { Multiselect, Loader },
   data() {
     return {
       selectedStation: null,
@@ -57,7 +61,8 @@ export default {
   computed: {
     ...mapState({
       ui: state => state.ui,
-      selection: state => state.selection
+      selection: state => state.selection,
+      data: state => state.data
     })
   },
   mounted() {
@@ -91,6 +96,7 @@ export default {
 
     fetchStationData: function(station) {
       const id = station.value.StationID;
+      this.$store.commit("ui/IS_LOADING", true);
       console.log("id", id);
       // if (!this.loadedStations[id]) {
       this.$apollo
@@ -101,9 +107,9 @@ export default {
           }
         })
         .then(res => {
-          // this.selected = ""; //NOTE: resets selection, throws error though I do it like in one of the offical codepen example!
+          this.$store.commit("ui/IS_LOADING", false);
           console.log("res", res.data.sitevisits);
-          // TODO: reset select field somehow, throws error for this.selected = null
+          console.log("this.data", this.data);
           // if (
           //   find(
           //     this.loadedStations,
@@ -121,6 +127,13 @@ export default {
           //   });
           //   this.$store.commit("setStation", station.value);
           // }
+          if (find(this.data.loadedStations, o => id === o.id)) {
+            console.log(`ALREADY EXISTSKKKKKKKKKKKKKKKKKKKKKKKKKKKKK`);
+          }
+          this.$store.dispatch("data/ADD_STATION_DATA", {
+            station: id,
+            data: res.data.sitevisits
+          });
         })
         .catch(err => {
           this.$store.commit("ui/SET_ERROR_MSG", `Couldn't fetch station data`);
