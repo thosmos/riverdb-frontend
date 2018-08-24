@@ -12,14 +12,16 @@
                        label="label"
                        placeholder="Select a Fork"
                        @input="forkUpdated"
+                       track-by="label"
                        :options="forkOptions"></multiselect>
         </div>
 
         <div class="column">
-          <multiselect :options="stationOptions"
+          <multiselect :options="sortedStationOptions"
                        placeholder="select a station"
                        label="label"
                        @input="fetchStationData"
+                       track-by="label"
                        v-model="selectedStation"></multiselect>
         </div>
       </div>
@@ -43,6 +45,7 @@ import { GET_STATION_DATA } from "../apollo/queries.js";
 
 import { mapState } from "vuex";
 import find from "lodash/find";
+import sortBy from "lodash/sortBy";
 
 export default {
   name: "SelectionWrapper",
@@ -63,7 +66,10 @@ export default {
       ui: state => state.ui,
       selection: state => state.selection,
       data: state => state.data
-    })
+    }),
+    sortedStationOptions: function() {
+      return sortBy(this.stationOptions, o => o.label);
+    }
   },
   mounted() {
     // Sets allStations in selection vuex but also parses allForks, allWaterbodies etc
@@ -107,35 +113,22 @@ export default {
           }
         })
         .then(res => {
+          this.$store.commit("ui/CLEAR_ERROR_MSG");
           this.$store.commit("ui/IS_LOADING", false);
-          console.log("res", res.data.sitevisits);
-          console.log("this.data", this.data);
-          // if (
-          //   find(
-          //     this.loadedStations,
-          //     o => station.value.StationID === o.station.StationID
-          //   )
-          // ) {
-          //   this.$store.commit("addError", {
-          //     type: "selection",
-          //     msg: `${station.value.StationName} already selected`
-          //   });
-          // } else {
-          //   this.$store.commit("addStationData", {
-          //     station: station.value,
-          //     data: res.data.sitevisits
-          //   });
-          //   this.$store.commit("setStation", station.value);
-          // }
           if (find(this.data.loadedStations, o => id === o.id)) {
-            console.log(`ALREADY EXISTSKKKKKKKKKKKKKKKKKKKKKKKKKKKKK`);
+            this.$store.commit(
+              "ui/SET_ERROR_MSG",
+              `Station is already selected`
+            );
+          } else {
+            this.$store.dispatch("data/ADD_STATION_DATA", {
+              info: station.value,
+              data: res.data.sitevisits
+            });
           }
-          this.$store.dispatch("data/ADD_STATION_DATA", {
-            station: id,
-            data: res.data.sitevisits
-          });
         })
         .catch(err => {
+          console.log("err", err);
           this.$store.commit("ui/SET_ERROR_MSG", `Couldn't fetch station data`);
         });
     }
