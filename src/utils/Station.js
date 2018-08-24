@@ -1,5 +1,5 @@
-import * as utils from "./dataUtils";
-import { getYear, getMonth } from "date-fns";
+import * as utils from "./stationUtils";
+import { getYear } from "date-fns";
 import { quantile } from "simple-statistics";
 import json2csv from "json2csv";
 /**
@@ -18,9 +18,7 @@ export default class Station {
     this.info = info;
     this.data = this.initData(data);
     this.meta = this.initMeta();
-    this.processed = {
-      // raw: [...this.data]
-    };
+    this.processed = {};
   }
   /**
    * Validates and simplifies server response from **sitevisits** query
@@ -30,25 +28,20 @@ export default class Station {
    * @memberof Station
    */
   initData(data) {
-    // NOTE: Do rounding etc?
-    let { results } = data;
-    return data.map(d => {
-      const r = d.results;
-      return {
-        id: d.id,
-        date: d.date,
-        notes: d.notes,
-        results: {
-          H2O_Temp: r.H2O_Temp && r.H2O_Temp.mean ? r.H2O_Temp.mean : null,
-          H2O_Cond: r.H2O_Cond && r.H2O_Cond.mean ? r.H2O_Cond.mean : null,
-          H2O_pH: r.H2O_pH && r.H2O_pH.mean ? r.H2O_pH.mean : null,
-          H2O_DO: r.H2O_DO && r.H2O_DO ? r.H2O_DO.mean : null,
-          H2O_Turbidity:
-            r.H2O_Turbidty && r.H2O_Turbidity ? H2O_Turbidity : null,
-          Air_Temp: r.Air_Temp && r.Air_Temp.mean ? r.Air_Temp.mean : null
-        }
-      };
+    let processedData = [];
+    data.sitevisits.map(d => {
+      const r = d.resultsv;
+      let temp = {};
+      r.map(p => {
+        temp[`${p.matrix}_${p.analyte}`] = {
+          isValid: p.is_valid,
+          mean: p.mean,
+          unit: p.unit
+        };
+      });
+      processedData.push({ date: d.date, id: d.id, results: temp });
     });
+    return processedData;
   }
   /**
    * sets meta data like totalYearRange, params etc
@@ -89,7 +82,7 @@ export default class Station {
     return this; // Necessary for chaining
   }
   /**
-   * fills this.process.data with csv result.
+   * fills this.processed.data with csv result.
    * By default doesn't include notes but with (true) can be included
    *
    * @param {boolean} [notes=false]
@@ -121,7 +114,10 @@ export default class Station {
    */
   setParam(param) {
     let byParam = this.processed.data.map(d => {
-      return [d.date, d.results[param]];
+      // console.log("d", d);
+      let mean =
+        (d.results && d.results[param] && d.results[param].mean) || null;
+      return [d.date, mean];
     });
     this.processed = {
       ...this.processed,
@@ -219,6 +215,7 @@ export default class Station {
    */
   linePlotByMonth() {
     // NOTE: this might be better as a scatter plot
+    // TODO: Double check how it works!!!! Not sure it's good.
     let byMonth = utils.splitByMonth(this.processed.data);
     this.processed.data = byMonth.map(m => {
       m.map = m.map(d => {

@@ -1,5 +1,5 @@
 import { getYear, getMonth } from "date-fns";
-import { uniq, cloneDeep, sortBy } from "lodash";
+import { uniq, sortBy } from "lodash";
 
 /**
  * returns startYear and endYear of stationvisits []
