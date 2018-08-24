@@ -28,7 +28,8 @@
       <div v-if="ui.isLoading">
         <Loader />
       </div>
-      <selection-stations :loadedStations="data.loadedStations"></selection-stations>
+      <selection-stations :loadedStations="data.loadedStations"
+                          :selectedStation="data.selectedStation"></selection-stations>
     </div>
   </div>
 </template>

@@ -5,12 +5,13 @@
            :key="station.info.StationID">
 
         <div class="m-t-md">
-          <div class="ui  segment">
+          <div @click="onSegmentClick(station.info)"
+               class="ui segment"
+               :class="{active: station.info.StationID === selectedStation.info.StationID}">
             <span>{{station.info.StationName}}</span>
             <sui-icon class="space-left"
                       name="window close"
                       @click="onCloseClick(station.info)" />
-
           </div>
         </div>
       </div>
@@ -22,12 +23,16 @@
 export default {
   name: "SelectionStations",
   props: {
-    loadedStations: Array
+    loadedStations: Array,
+    selectedStation: Object
   },
   methods: {
     onCloseClick(station) {
       // console.log("station.StationID", station.StationID);
       this.$store.commit("data/REMOVE_STATION", station.StationID);
+    },
+    onSegmentClick(station) {
+      this.$store.commit("data/SELECT_STATION", station.StationID);
     }
   }
 };
@@ -36,5 +41,9 @@ export default {
 <style scoped>
 .space-left {
   margin-left: 0.5rem;
+}
+.active {
+  background: #33bb8b;
+  color: white;
 }
 </style>

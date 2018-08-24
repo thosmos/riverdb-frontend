@@ -29,3 +29,4 @@ export const IS_LOADING = "IS_LOADING";
  */
 
 export const REMOVE_STATION = "REMOVE_STATION";
+export const SELECT_STATION = "SELECT_STATION";
