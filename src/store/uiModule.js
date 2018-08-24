@@ -8,16 +8,16 @@ import {
 const ui = {
   namespaced: true,
   state: {
-    errorMsg: null,
+    errorMsg: {},
     infoMsg: null,
     isLoading: false
   },
   mutations: {
-    [SET_ERROR_MSG](state, msg) {
-      state.errorMsg = msg;
+    [SET_ERROR_MSG](state, { section, msg }) {
+      state.errorMsg[section] = msg;
     },
-    [CLEAR_ERROR_MSG](state) {
-      state.errorMsg = null;
+    [CLEAR_ERROR_MSG](state, section) {
+      state.errorMsg[section] = null;
     },
     [CLEAR_ALL_MSG](state) {
       state.errorMsg = null;

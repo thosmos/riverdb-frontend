@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="ui container">
-      <sui-message v-if="ui.errorMsg"
+      <sui-message v-if="ui.errorMsg.selection"
                    color="red">
-        <p>{{ui.errorMsg}}</p>
+        <p>{{ui.errorMsg.selection}}</p>
       </sui-message>
 
       <div class="ui two column centered grid">
@@ -28,12 +28,14 @@
       <div v-if="ui.isLoading">
         <Loader />
       </div>
+      <selection-stations :loadedStations="data.loadedStations"></selection-stations>
     </div>
   </div>
 </template>
 
 <script>
 import Multiselect from "vue-multiselect";
+import SelectionStations from "./SelectionStations";
 import Loader from "./Loader";
 
 import {
@@ -52,7 +54,7 @@ export default {
   props: {
     stations: Array
   },
-  components: { Multiselect, Loader },
+  components: { Multiselect, Loader, SelectionStations },
   data() {
     return {
       selectedStation: null,
@@ -113,23 +115,26 @@ export default {
           }
         })
         .then(res => {
-          this.$store.commit("ui/CLEAR_ERROR_MSG");
+          this.$store.commit("ui/CLEAR_ERROR_MSG", "selection");
           this.$store.commit("ui/IS_LOADING", false);
-          if (find(this.data.loadedStations, o => id === o.id)) {
-            this.$store.commit(
-              "ui/SET_ERROR_MSG",
-              `Station is already selected`
-            );
+          if (find(this.data.loadedStations, o => id === o.info.StationID)) {
+            this.$store.commit("ui/SET_ERROR_MSG", {
+              section: "selection",
+              msg: `Station is already selected`
+            });
           } else {
             this.$store.dispatch("data/ADD_STATION_DATA", {
               info: station.value,
-              data: res.data.sitevisits
+              data: res.data
             });
           }
         })
         .catch(err => {
           console.log("err", err);
-          this.$store.commit("ui/SET_ERROR_MSG", `Couldn't fetch station data`);
+          this.$store.commit("ui/SET_ERROR_MSG", {
+            section: "selection",
+            msg: `Couldn't fetch station data`
+          });
         });
     }
   }

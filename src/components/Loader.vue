@@ -29,6 +29,7 @@ $spinner-width: $spinner-radius * 4;
   margin: 50px auto;
   transform: translate(-50%, -50%) rotate(90deg);
   width: $spinner-width;
+  z-index: 100;
 }
 
 .spinner,
