@@ -11,7 +11,7 @@
             <span>{{station.info.StationName}}</span>
             <sui-icon class="space-left"
                       name="window close"
-                      @click="onCloseClick(station.info)" />
+                      @click="onCloseClick(station.info, $event)" />
           </div>
         </div>
       </div>
@@ -27,9 +27,10 @@ export default {
     selectedStation: Object
   },
   methods: {
-    onCloseClick(station) {
+    onCloseClick: function(station, event) {
+      event.stopPropagation();
       // console.log("station.StationID", station.StationID);
-      this.$store.commit("data/REMOVE_STATION", station.StationID);
+      this.$store.dispatch("data/REMOVE_STATION", station.StationID);
     },
     onSegmentClick(station) {
       this.$store.commit("data/SELECT_STATION", station.StationID);

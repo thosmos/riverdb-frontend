@@ -3,6 +3,7 @@ import { REMOVE_STATION, SELECT_STATION } from "./mutationTypes";
 
 import Station from "../utils/Station";
 import findIndex from "lodash/findIndex";
+import find from "lodash/find";
 
 const data = {
   namespaced: true,
@@ -11,13 +12,6 @@ const data = {
     selectedStation: null
   },
   mutations: {
-    [REMOVE_STATION](state, StationID) {
-      let index = findIndex(
-        state.loadedStations,
-        o => o.info.StationID === StationID
-      );
-      state.loadedStations.splice(index, 1);
-    },
     [SELECT_STATION](state, StationID) {
       let index = findIndex(
         state.loadedStations,
@@ -27,8 +21,29 @@ const data = {
     }
   },
   actions: {
+    [REMOVE_STATION]({ state }, StationID) {
+      let index = findIndex(
+        state.loadedStations,
+        o => o.info.StationID === StationID
+      );
+      let toBeRemovedStation = find(
+        state.loadedStations,
+        o => o.info.StationID === StationID
+      );
+      // Check if to be removed station is also selectedStation
+      let selectedStationID = state.selectedStation.info.StationID;
+      state.loadedStations.splice(index, 1);
+      if (toBeRemovedStation.info.StationID === selectedStationID) {
+        if (state.loadedStations.length !== 0) {
+          // Not the last loadedStation
+          state.selectedStation = state.loadedStations[0];
+        } else {
+          // last loadedStation, set selectedStation to null.
+          state.selectedStation = null;
+        }
+      }
+    },
     [ADD_STATION_DATA]({ commit, state }, { info, data }) {
-      // console.log("station", station);
       let newStation = new Station(info, data);
       state.loadedStations.push(newStation);
       // Select newly added Station

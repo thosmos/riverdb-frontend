@@ -106,7 +106,6 @@ export default {
     fetchStationData: function(station) {
       const id = station.value.StationID;
       this.$store.commit("ui/IS_LOADING", true);
-      console.log("id", id);
       // if (!this.loadedStations[id]) {
       this.$apollo
         .query({
