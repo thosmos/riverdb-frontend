@@ -67,7 +67,6 @@ const data = {
         years.push(s.meta.totalYearRange.startYear);
         years.push(s.meta.totalYearRange.endYear);
       });
-      console.log("years", years);
       state.startYear = Math.min(...years);
       state.endYear = Math.max(...years);
       // set new year range with updated value in selection Vuex

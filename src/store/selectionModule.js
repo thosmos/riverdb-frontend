@@ -24,7 +24,8 @@ const selection = {
     // allWatersheds: null,
     allStationNames: null,
     activeParam: "H2O_Temp",
-    selectionRange: null
+    selectionRange: null,
+    singleYearSelection: false
   },
   /**
    * Mutations

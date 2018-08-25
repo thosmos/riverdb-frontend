@@ -30,9 +30,16 @@
       </div>
       <selection-stations :loadedStations="data.loadedStations"
                           :selectedStation="data.selectedStation"></selection-stations>
-      <selection-years-range v-if="selection.selectionRange"
-                             :data="data"
-                             :selection="selection"></selection-years-range>
+      <div v-if="!selection.singleYearSelection">
+
+        <selection-years-range v-if="selection.selectionRange"
+                               :data="data"
+                               :selection="selection"></selection-years-range>
+      </div>
+      <div v-else>
+        <selection-year-single :data="data"
+                               :selection="selection"></selection-year-single>
+      </div>
       <selection-params></selection-params>
     </div>
   </div>
@@ -42,6 +49,7 @@
 import Multiselect from "vue-multiselect";
 import SelectionStations from "./SelectionStations";
 import SelectionYearsRange from "./SelectionYearsRange";
+import SelectionYearSingle from "./SelectionYearSingle";
 import SelectionParams from "./SelectionParams";
 import Loader from "./Loader";
 
@@ -66,7 +74,8 @@ export default {
     Loader,
     SelectionStations,
     SelectionParams,
-    SelectionYearsRange
+    SelectionYearsRange,
+    SelectionYearSingle
   },
   data() {
     return {

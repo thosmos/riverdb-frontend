@@ -56,9 +56,9 @@ export function precisionRound(number, precision) {
  * @param {Array} data
  * @returns {Array} array of StationVisits
  */
-export function nullBuffer(data) {
-  let startYear = getYear(data[0][0]);
-  let endYear = getYear(data[data.length - 1][0]);
+export function nullBuffer(data, startYear, endYear) {
+  // let startYear = getYear(data[0][0]);
+  // let endYear = getYear(data[data.length - 1][0]);
   for (let year = startYear; year <= endYear; year++) {
     for (let month = 0; month <= 11; month++) {
       let valueExists = data.some((e, index) => {

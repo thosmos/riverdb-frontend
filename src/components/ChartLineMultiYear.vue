@@ -11,7 +11,6 @@ export default {
   props: { data: Object, selection: Object },
   computed: {
     plotData: function() {
-      console.log("this.data.selectedStation", this.data.selectedStation);
       if (this.data.loadedStations) {
         let data = [];
         this.data.loadedStations.map(s => {
@@ -22,7 +21,10 @@ export default {
             })
             .setParam("H2O_Temp")
             .roundTo(1)
-            .bufferData()
+            .bufferData(
+              this.selection.selectionRange[0],
+              this.selection.selectionRange[1]
+            )
             .linePlot();
           data.push({
             name: s.info.StationName,

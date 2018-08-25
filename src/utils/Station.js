@@ -146,8 +146,12 @@ export default class Station {
    * @returns {Object} this
    * @memberof Station
    */
-  bufferData() {
-    this.processed.data = utils.nullBuffer(this.processed.data);
+  bufferData(startYear, endYear) {
+    this.processed.data = utils.nullBuffer(
+      this.processed.data,
+      startYear,
+      endYear
+    );
     return this;
   }
   /**

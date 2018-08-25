@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="org-page-projects-list">
     <h3 is="sui-header"
         class="ui center aligned"
         s>Projects:</h3>
@@ -47,8 +47,16 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "../style/style.scss";
+
+#org-page-projects-list {
+  div > h5,
+  p,
+  small {
+    color: black;
+  }
+}
 #organization-page {
   .project-segment {
     position: relative;
