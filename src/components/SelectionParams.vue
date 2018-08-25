@@ -1,6 +1,6 @@
 <template>
   <div id="selection-params"
-       class="m-t-lg">
+       class="m-t-xl">
     <!-- <sui-divider></sui-divider> -->
     <div class="ui centered grid stackable ">
       <div v-for="p in allParams"

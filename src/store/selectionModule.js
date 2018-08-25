@@ -4,7 +4,8 @@ import {
   ALL_LOCAL_WATERBODIES,
   ALL_LOCAL_WATERSHEDS,
   ALL_STATION_NAMES,
-  SELECT_ACTIVE_PARAM
+  SELECT_ACTIVE_PARAM,
+  SET_YEAR_RANGE
 } from "./mutationTypes";
 
 import {
@@ -22,7 +23,8 @@ const selection = {
     allWaterbodies: null,
     // allWatersheds: null,
     allStationNames: null,
-    activeParam: "H2O_Temp"
+    activeParam: "H2O_Temp",
+    selectionRange: null
   },
   /**
    * Mutations
@@ -42,6 +44,9 @@ const selection = {
     },
     [SELECT_ACTIVE_PARAM](state, param) {
       state.activeParam = param;
+    },
+    [SET_YEAR_RANGE](state, range) {
+      state.selectionRange = range;
     }
   },
   actions: {

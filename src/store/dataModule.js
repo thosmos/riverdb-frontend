@@ -70,6 +70,10 @@ const data = {
       console.log("years", years);
       state.startYear = Math.min(...years);
       state.endYear = Math.max(...years);
+      // set new year range with updated value in selection Vuex
+      commit("selection/SET_YEAR_RANGE", [state.startYear, state.endYear], {
+        root: true
+      });
     }
   }
 };
