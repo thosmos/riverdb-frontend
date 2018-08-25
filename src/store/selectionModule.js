@@ -3,7 +3,8 @@ import {
   ALL_RIVER_FORKS,
   ALL_LOCAL_WATERBODIES,
   ALL_LOCAL_WATERSHEDS,
-  ALL_STATION_NAMES
+  ALL_STATION_NAMES,
+  SELECT_ACTIVE_PARAM
 } from "./mutationTypes";
 
 import {
@@ -20,7 +21,8 @@ const selection = {
     allForks: null,
     allWaterbodies: null,
     // allWatersheds: null,
-    allStationNames: null
+    allStationNames: null,
+    activeParam: "H2O_Temp"
   },
   /**
    * Mutations
@@ -37,6 +39,9 @@ const selection = {
     },
     [ALL_STATION_NAMES](state, names) {
       state.allStationNames = names;
+    },
+    [SELECT_ACTIVE_PARAM](state, param) {
+      state.activeParam = param;
     }
   },
   actions: {

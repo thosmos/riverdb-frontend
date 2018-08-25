@@ -7,15 +7,11 @@
         <div class="m-t-md">
           <div @click="onSegmentClick(station.info)"
                class="ui segment"
-               :class="{active: station.info.StationID === selectedStation.info.StationID}"
-        
-               :style="{border: `2px ${palette[index]} solid` }">
+               :class="{active: station.info.StationID === selectedStation.info.StationID}">
+
             <span>{{station.info.StationName}}</span>
-            <sui-icon class="space-left
-               "
-                      name="window
-               close
-               "
+            <sui-icon class="space-left"
+                      name="window close"
                       @click="onCloseClick(station.info,
                $event)
                " />

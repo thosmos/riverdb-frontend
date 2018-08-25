@@ -30,6 +30,7 @@
       </div>
       <selection-stations :loadedStations="data.loadedStations"
                           :selectedStation="data.selectedStation"></selection-stations>
+      <selection-params></selection-params>
     </div>
   </div>
 </template>
@@ -37,6 +38,7 @@
 <script>
 import Multiselect from "vue-multiselect";
 import SelectionStations from "./SelectionStations";
+import SelectionParams from "./SelectionParams";
 import Loader from "./Loader";
 
 import {
@@ -55,7 +57,7 @@ export default {
   props: {
     stations: Array
   },
-  components: { Multiselect, Loader, SelectionStations },
+  components: { Multiselect, Loader, SelectionStations, SelectionParams },
   data() {
     return {
       selectedStation: null,
