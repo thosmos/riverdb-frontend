@@ -55,8 +55,7 @@ export default {
   margin-left: 0.5rem;
 }
 .active {
-  text-decoration: underline;
   font-weight: bold;
-  background: $offWhite;
+  border: 2px $primaryColor solid;
 }
 </style>

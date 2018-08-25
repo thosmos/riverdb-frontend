@@ -9,7 +9,9 @@ const data = {
   namespaced: true,
   state: {
     loadedStations: [],
-    selectedStation: null
+    selectedStation: null,
+    startYear: null,
+    endYear: null
   },
   mutations: {
     [SELECT_STATION](state, StationID) {
@@ -37,9 +39,20 @@ const data = {
         if (state.loadedStations.length !== 0) {
           // Not the last loadedStation
           state.selectedStation = state.loadedStations[0];
+          // Calculate minmax year
+          let years = [];
+          state.loadedStations.map(s => {
+            years.push(s.meta.totalYearRange.startYear);
+            years.push(s.meta.totalYearRange.endYear);
+          });
+          console.log("years", years);
+          state.startYear = Math.min(...years);
+          state.endYear = Math.max(...years);
         } else {
           // last loadedStation, set selectedStation to null.
           state.selectedStation = null;
+          state.startYear = null;
+          state.endYear = null;
         }
       }
     },
@@ -48,6 +61,15 @@ const data = {
       state.loadedStations.push(newStation);
       // Select newly added Station
       commit("SELECT_STATION", info.StationID);
+      // Get minYear and maxYear
+      let years = [];
+      state.loadedStations.map(s => {
+        years.push(s.meta.totalYearRange.startYear);
+        years.push(s.meta.totalYearRange.endYear);
+      });
+      console.log("years", years);
+      state.startYear = Math.min(...years);
+      state.endYear = Math.max(...years);
     }
   }
 };

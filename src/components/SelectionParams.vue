@@ -50,7 +50,7 @@ export default {
 @import "../style/_variables.scss";
 .active {
   font-weight: bold;
-  border: 2px $lightBlack solid;
+  border: 2px $primaryColor solid;
 }
 #selection-params div.ui.segment {
   transition: all 0.2s ease-in;
