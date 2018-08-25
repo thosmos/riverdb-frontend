@@ -5,7 +5,8 @@
     <div class="ui grid">
       <div class="ui row">
         <div class="ui column">
-          <chart-line-multi-year :data="data"></chart-line-multi-year>
+          <chart-line-multi-year :data="data"
+                                 :selection="selection"></chart-line-multi-year>
         </div>
       </div>
     </div>

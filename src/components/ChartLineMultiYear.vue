@@ -8,7 +8,7 @@ import { palette } from "../assets/charts.js";
 
 export default {
   name: "ChartLineMultiYear",
-  props: ["data"],
+  props: { data: Object, selection: Object },
   computed: {
     plotData: function() {
       console.log("this.data.selectedStation", this.data.selectedStation);
@@ -16,7 +16,10 @@ export default {
         let data = [];
         this.data.loadedStations.map(s => {
           let temp = s
-            .setYearRange({ startYear: 2001, endYear: 2017 })
+            .setYearRange({
+              startYear: this.selection.selectionRange[0],
+              endYear: this.selection.selectionRange[1]
+            })
             .setParam("H2O_Temp")
             .roundTo(1)
             .bufferData()
