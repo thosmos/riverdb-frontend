@@ -5,7 +5,8 @@ import {
   ALL_LOCAL_WATERSHEDS,
   ALL_STATION_NAMES,
   SELECT_ACTIVE_PARAM,
-  SET_YEAR_RANGE
+  SET_YEAR_RANGE,
+  SELECT_SINGLE_YEAR
 } from "./mutationTypes";
 
 import {
@@ -48,6 +49,9 @@ const selection = {
     },
     [SET_YEAR_RANGE](state, range) {
       state.selectionRange = range;
+    },
+    [SELECT_SINGLE_YEAR](state, value) {
+      state.singleYearSelection = value;
     }
   },
   actions: {
