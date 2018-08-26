@@ -2,15 +2,15 @@
   <div id="selection-params"
        class="m-t-xl">
     <!-- <sui-divider></sui-divider> -->
-    <div class="ui centered grid stackable ">
-      <div v-for="p in allParams"
-           :key="p">
-        <div @click="selectParam(p)"
-             class="ui segment"
-             :class="{active: p === selection.activeParam}">
-          <span>{{p}}</span>
-        </div>
-      </div>
+    <div class="centered-buttons">
+      <sui-button-group v-for="p in allParams"
+                        :key="p">
+        <sui-button @click="selectParam(p)"
+                    class="ui segment"
+                    :class="{active: p === selection.activeParam}">
+          {{p}}
+        </sui-button>
+      </sui-button-group>
     </div>
   </div>
 </template>
@@ -48,14 +48,19 @@ export default {
 
 <style lang="scss" scoped>
 @import "../style/_variables.scss";
-.active {
-  font-weight: bold;
-  border: 2px $primaryColor solid;
+
+.centered-buttons {
+  display: flex;
+  justify-content: center;
 }
-#selection-params div.ui.segment {
-  transition: all 0.2s ease-in;
-  &:hover {
-    background: $darkWhite;
-  }
-}
+// .active {
+//   font-weight: bold;
+//   border: 2px $primaryColor solid;
+// }
+// #selection-params div.ui.segment {
+//   transition: all 0.2s ease-in;
+//   &:hover {
+//     background: $darkWhite;
+//   }
+// }
 </style>
