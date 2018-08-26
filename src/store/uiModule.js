@@ -2,7 +2,8 @@ import {
   SET_ERROR_MSG,
   CLEAR_ERROR_MSG,
   CLEAR_ALL_MSG,
-  IS_LOADING
+  IS_LOADING,
+  SHOW_YEAR_SELECTION
 } from "./mutationTypes";
 
 const ui = {
@@ -10,7 +11,8 @@ const ui = {
   state: {
     errorMsg: {},
     infoMsg: null,
-    isLoading: false
+    isLoading: false,
+    showYearSelection: true
   },
   mutations: {
     [SET_ERROR_MSG](state, { section, msg }) {
@@ -25,6 +27,9 @@ const ui = {
     },
     [IS_LOADING](state, value) {
       state.isLoading = value;
+    },
+    [SHOW_YEAR_SELECTION](state, value) {
+      state.showYearSelection = value;
     }
   },
   actions: {}

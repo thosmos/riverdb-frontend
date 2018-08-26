@@ -30,17 +30,21 @@
       </div>
       <selection-stations :loadedStations="data.loadedStations"
                           :selectedStation="data.selectedStation"></selection-stations>
-      <div v-if="!selection.singleYearSelection">
-
-        <selection-years-range v-if="selection.selectionRange"
-                               :data="data"
-                               :selection="selection"></selection-years-range>
+      <div v-if="data.loadedStations.length > 0">
+        <selection-params></selection-params>
       </div>
-      <div v-else>
-        <selection-year-single :data="data"
-                               :selection="selection"></selection-year-single>
+      <div v-if="ui.showYearSelection">
+        <!-- only show year selection for line graphs etc not for boxplots -->
+        <div v-if="!selection.singleYearSelection">
+          <selection-years-range v-if="selection.selectionRange"
+                                 :data="data"
+                                 :selection="selection"></selection-years-range>
+        </div>
+        <div v-else>
+          <selection-year-single :data="data"
+                                 :selection="selection"></selection-year-single>
+        </div>
       </div>
-      <selection-params></selection-params>
     </div>
   </div>
 </template>

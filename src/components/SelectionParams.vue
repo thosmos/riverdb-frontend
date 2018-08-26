@@ -2,7 +2,7 @@
   <div id="selection-params"
        class="m-t-xl">
     <!-- <sui-divider></sui-divider> -->
-    <div class="centered-buttons">
+    <div class="centered-buttons ui segment ">
       <sui-button-group v-for="p in allParams"
                         :key="p">
         <sui-button @click="selectParam(p)"
@@ -49,18 +49,20 @@ export default {
 <style lang="scss" scoped>
 @import "../style/_variables.scss";
 
-.centered-buttons {
-  display: flex;
-  justify-content: center;
+#selection-params {
+  .centered-buttons {
+    display: flex;
+    justify-content: center;
+  }
+  .ui.segment {
+    background: $darkWhite;
+  }
+  .ui.buttons > button {
+    background: white;
+    &.active {
+      background: lighten($lightGrey, 5%);
+      box-shadow: inset 0 0 3px #000000;
+    }
+  }
 }
-// .active {
-//   font-weight: bold;
-//   border: 2px $primaryColor solid;
-// }
-// #selection-params div.ui.segment {
-//   transition: all 0.2s ease-in;
-//   &:hover {
-//     background: $darkWhite;
-//   }
-// }
 </style>

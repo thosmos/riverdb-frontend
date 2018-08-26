@@ -32,17 +32,26 @@ export default {
   methods: {
     handleChange: function(e, activePane, index) {
       if (index === 0) {
+        // multi year line
         this.$store.commit("selection/SELECT_SINGLE_YEAR", false);
         this.$store.commit("selection/SET_YEAR_RANGE", [
           this.data.startYear,
           this.data.endYear
         ]);
-      } else {
+        this.$store.commit("ui/SHOW_YEAR_SELECTION", true);
+      }
+      if (index === 1) {
+        // single year line
         this.$store.commit("selection/SELECT_SINGLE_YEAR", true);
         this.$store.commit("selection/SET_YEAR_RANGE", [
           this.data.endYear,
           this.data.endYear
         ]);
+        this.$store.commit("ui/SHOW_YEAR_SELECTION", true);
+      }
+      if (index === 2 || index === 3) {
+        // for boxplots don't show year selection
+        this.$store.commit("ui/SHOW_YEAR_SELECTION", false);
       }
     }
   }
