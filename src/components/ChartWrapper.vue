@@ -1,6 +1,6 @@
 <template>
   <div v-if="data && data.selectedStation"
-       class="ui container fluid">
+       class="ui container ">
     <sui-divider></sui-divider>
     <div class="ui grid">
       <div class="ui row">

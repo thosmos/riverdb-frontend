@@ -19,7 +19,14 @@
             </sui-grid-column>
           </sui-grid-row>
           <sui-grid-row>
-            <chart-wrapper></chart-wrapper>
+            <sui-grid-column>
+              <chart-wrapper></chart-wrapper>
+            </sui-grid-column>
+          </sui-grid-row>
+          <sui-grid-row>
+            <sui-grid-column>
+              <data-table></data-table>
+            </sui-grid-column>
           </sui-grid-row>
         </sui-grid>
       </div>
@@ -31,13 +38,14 @@
 import SelectionWrapper from "../components/SelectionWrapper";
 import ChartWrapper from "../components/ChartWrapper";
 import Loader from "../components/Loader";
+import DataTable from "../components/DataTable";
 
 import { GET_STATIONS } from "../apollo/queries";
 import { mapState } from "vuex";
 
 export default {
   name: "RMPage",
-  components: { Loader, SelectionWrapper, ChartWrapper },
+  components: { Loader, SelectionWrapper, ChartWrapper, DataTable },
   computed: {
     ...mapState({
       ui: state => state.ui

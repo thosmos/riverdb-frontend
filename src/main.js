@@ -25,6 +25,9 @@ import highchartsMore from "highcharts-more";
 highchartsMore(highcharts);
 Vue.use(HighchartsVue, { highcharts });
 
+import { ClientTable } from "vue-tables-2";
+Vue.use(ClientTable, {}, false, "bootstrap4", "default");
+
 Vue.config.productionTip = false;
 
 new Vue({

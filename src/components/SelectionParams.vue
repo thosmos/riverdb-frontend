@@ -2,11 +2,12 @@
   <div id="selection-params"
        class="m-t-xl">
     <!-- <sui-divider></sui-divider> -->
-    <div class="centered-buttons ui segment ">
-      <sui-button-group v-for="p in allParams"
+    <div class="centered-buttons ui segment  ">
+      <sui-button-group basic
+                        v-for="p in allParams"
                         :key="p">
         <sui-button @click="selectParam(p)"
-                    class="ui segment"
+                    compact
                     :class="{active: p === selection.activeParam}">
           {{p}}
         </sui-button>
@@ -53,15 +54,16 @@ export default {
   .centered-buttons {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
   }
-  .ui.segment {
-    background: $darkWhite;
-  }
+  // .ui.button {
+  //   background: $darkWhite;
+  // }
   .ui.buttons > button {
-    background: white;
+    // background: $offWhite;
     &.active {
       background: lighten($lightGrey, 5%);
-      box-shadow: inset 0 0 3px #000000;
+      box-shadow: inset 3 0 3px #000000;
     }
   }
 }
