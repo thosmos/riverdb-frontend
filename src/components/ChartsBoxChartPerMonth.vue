@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import { palette1 } from "../assets/chart/palettes.js";
 import { singleStation, monthsOnXAxis } from "../assets/chart/graphConfig.js";
+import { getUnit } from "../utils/charts.js";
 
 import get from "lodash/get";
 
@@ -19,7 +19,6 @@ export default {
   },
   computed: {
     plotData: function() {
-      let data = [];
       let temp = this.data.selectedStation
         .setYearRange({
           startYear: this.data.startYear,
@@ -29,10 +28,6 @@ export default {
         .roundTo(1)
         .bufferData(this.data.startYear, this.data.endYear)
         .boxPlotPerMonth();
-      // data.push({
-      //   name: s.info.StationName,
-      //   data: [temp.processed.data]
-      // });
       return [
         {
           name: get(this.data, "selectedStation.info.StationName", "aaaa"),
@@ -50,29 +45,17 @@ export default {
           this.selection.activeParam
         ),
         ...monthsOnXAxis,
+        yAxis: {
+          title: {
+            text:
+              this.selection.activeParam + getUnit(this.selection.activeParam)
+          }
+        },
         // tooltip: {
         //   headerFormat: "<b>{series.name}</b><br>",
         //   pointFormat: "{point.x:%e. %b}: {point.y:.2f} m"
         // },
-        tooltip: {
-          shared: false
-        },
-
-        // colors: palette[0],
         series: this.plotData
-        // series: [
-        //   {
-        //     name: "Observations",
-        //     data: [
-        //       [760, 801, 848, 895, 965],
-        //       [733, 853, 939, 980, 1080],
-        //       [714, 762, 817, 870, 918]
-        //     ],
-        //     tooltip: {
-        //       headerFormat: "<em>Station {point.key}</em><br/>"
-        //     }
-        //   }
-        // ]
       };
     }
   }

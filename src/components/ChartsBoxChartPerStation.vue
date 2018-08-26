@@ -5,36 +5,40 @@
 </template>
 
 <script>
+import { multiStation, graphConfig } from "../assets/chart/graphConfig.js";
 import { palette1 } from "../assets/chart/palettes.js";
+import { getUnit } from "../utils/charts.js";
 
 export default {
-  name: "ChartsBoxChart",
+  name: "ChartsBoxChartPerStation",
   props: {
     selection: Object,
     data: Object
   },
   computed: {
+    // joinedNames: function() {
+    //   return (
+    //     (this.loadedStations && this.loadedStations.map(s => s.StationName)) ||
+    //     []
+    //   );
+    // },
     plotData: function() {
       if (this.data.loadedStations) {
         let data = [];
         this.data.loadedStations.map(s => {
-          try {
-            let temp = s
-              .setYearRange({
-                startYear: this.data.startYear,
-                endYear: this.data.endYear
-              })
-              .setParam(this.selection.activeParam)
-              .roundTo(1)
-              .bufferData(this.data.startYear, this.data.endYear)
-              .boxPlot();
-            data.push({
-              name: s.info.StationName,
-              data: [temp.processed.data]
-            });
-          } catch (err) {
-            console.log("err", err);
-          }
+          let temp = s
+            .setYearRange({
+              startYear: this.data.startYear,
+              endYear: this.data.endYear
+            })
+            .setParam(this.selection.activeParam)
+            .roundTo(1)
+            .bufferData(this.data.startYear, this.data.endYear)
+            .boxPlot();
+          data.push({
+            name: s.info.StationName,
+            data: [temp.processed.data]
+          });
         });
         return data;
       } else {
@@ -46,62 +50,30 @@ export default {
         chart: {
           type: "boxplot"
         },
-        title: {
-          text:
-            (this.data.selectedStation &&
-              this.data.selectedStation.info.StationName) ||
-            ""
-        },
-        subtitle: {
-          text: `from ${
-            this.data.selectedStation.meta.totalYearRange.startYear
-          } till ${this.data.selectedStation.meta.totalYearRange.endYear}`
-        },
+        ...graphConfig,
+        ...multiStation(this.data.loadedStations, this.selection.activeParam),
         xAxis: {
-          // dateTimeLabelFormats: {
-          //   // don't display the dummy year
-          //   month: "%e. %b",
-          //   year: "%b"
+          // categories:
+          //   this.data.loadedStations &&
+          //   this.data.loadedStations.map(s => s.info.StationName)
+          labels: { enabled: false }
         },
         yAxis: {
           title: {
-            text: this.selection.activeParam
+            text:
+              this.selection.activeParam + getUnit(this.selection.activeParam)
           }
         },
-        // tooltip: {
-        //   headerFormat: "<b>{series.name}</b><br>",
-        //   pointFormat: "{point.x:%e. %b}: {point.y:.2f} m"
-        // },
         tooltip: {
-          shared: false
+          // shared: false
         },
         plotOptions: {
-          // spline: {
-          //   marker: {
-          //     enabled: true,
-          //     radius: 4
-          //   }
-          // },
           series: {
             animation: false
           }
         },
-
         colors: palette1,
         series: this.plotData
-        // series: [
-        //   {
-        //     name: "Observations",
-        //     data: [
-        //       [760, 801, 848, 895, 965],
-        //       [733, 853, 939, 980, 1080],
-        //       [714, 762, 817, 870, 918]
-        //     ],
-        //     tooltip: {
-        //       headerFormat: "<em>Station {point.key}</em><br/>"
-        //     }
-        //   }
-        // ]
       };
     }
   }

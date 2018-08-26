@@ -1,4 +1,5 @@
 import { palette1 } from "./palettes.js";
+import { getUnit } from "../../utils/charts.js";
 
 const graphConfig = {
   legend: {
@@ -47,25 +48,17 @@ export const monthsOnXAxis = {
   }
 };
 
-const yAxis = label => {
-  return {
-    yAxis: {
-      title: {
-        text: label
-      }
-    }
-  };
-};
-
-const splinePlotOptions = {
-  plotOptions: {
-    spline: {
-      marker: {
-        enabled: true,
-        radius: 3
-      }
+export const splinePlotOptions = {
+  spline: {
+    marker: {
+      enabled: true,
+      radius: 2.5,
+      symbol: "circle"
     },
-    series: { animation: false }
+    lineWidth: 1.5
+  },
+  series: {
+    animation: false
   }
 };
 
@@ -83,3 +76,13 @@ export const singleStation = (stationName, param) => {
     }
   };
 };
+
+export const multiStation = (loadedStations, param) => {
+  return {
+    title: {
+      text: param + getUnit(param)
+    }
+  };
+};
+
+export const boxPlotOptions = {};

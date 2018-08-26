@@ -35,6 +35,9 @@ export default {
       // Remove stupid null_null value
       const nullRegex = RegExp("null");
       temp = temp.filter(t => !nullRegex.test(t));
+      // remove date
+      const dateRegex = RegExp("date");
+      temp = temp.filter(t => !dateRegex.test(t));
       // return alphabetically sorted
       return temp.sort();
     }

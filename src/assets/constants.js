@@ -23,3 +23,12 @@ export const selectedStreamStyle = {
   color: "#ffcc00",
   weight: 4
 };
+
+export const unitsForParams = {
+  H2O_Temp: "℃",
+  Air_Temp: "℃",
+  H2O_Cond: "µS/cm",
+  H2O_DO: "mg/L",
+  H2O_Turbidity: "NTU",
+  H2O_pH: ""
+};

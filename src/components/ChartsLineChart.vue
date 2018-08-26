@@ -6,6 +6,9 @@
 
 <script>
 import { palette1 } from "../assets/chart/palettes.js";
+import { multiStation, graphConfig } from "../assets/chart/graphConfig.js";
+import { getUnit } from "../utils/charts.js";
+
 export default {
   name: "ChartsLineChart",
   props: {
@@ -45,37 +48,20 @@ export default {
           type: "spline",
           zoomType: 'xy"'
         },
-        title: {
-          text:
-            (this.data.selectedStation &&
-              this.data.selectedStation.info.StationName) ||
-            ""
-        },
-        subtitle: {
-          text: `from ${
-            this.data.selectedStation.meta.totalYearRange.startYear
-          } till ${this.data.selectedStation.meta.totalYearRange.endYear}`
-        },
+        ...graphConfig,
+        ...multiStation(this.data.loadedStations, this.selection.activeParam),
         xAxis: {
           type: "datetime",
-          // dateTimeLabelFormats: {
-          //   // don't display the dummy year
-          //   month: "%e. %b",
-          //   year: "%b"
-          // },
           title: {
             text: "Date"
           }
         },
         yAxis: {
           title: {
-            text: this.selection.activeParam
+            text:
+              this.selection.activeParam + getUnit(this.selection.activeParam)
           }
         },
-        // tooltip: {
-        //   headerFormat: "<b>{series.name}</b><br>",
-        //   pointFormat: "{point.x:%e. %b}: {point.y:.2f} m"
-        // },
         tooltip: {
           shared: true
         },
@@ -83,8 +69,10 @@ export default {
           spline: {
             marker: {
               enabled: true,
-              radius: 4
-            }
+              radius: 2.5,
+              symbol: "circle"
+            },
+            lineWidth: 1.5
           },
           series: {
             animation: false
