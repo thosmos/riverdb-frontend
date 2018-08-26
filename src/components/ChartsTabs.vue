@@ -17,6 +17,11 @@
                                       :selection="selection"
                                       :data="data"></charts-box-chart-per-station>
       </sui-tab-pane>
+      <sui-tab-pane title="box plot per month">
+        <charts-box-chart-per-month class="chart chart-spacer"
+                                    :selection="selection"
+                                    :data="data"></charts-box-chart-per-month>
+      </sui-tab-pane>
     </sui-tab>
   </sui-container>
 </template>
@@ -24,10 +29,15 @@
 <script>
 import ChartsLineChart from "./ChartsLineChart";
 import ChartsBoxChartPerStation from "./ChartsBoxChartPerStation";
+import ChartsBoxChartPerMonth from "./ChartsBoxChartPerMonth";
 
 export default {
   name: "ChartTabs",
-  components: { ChartsLineChart, ChartsBoxChartPerStation },
+  components: {
+    ChartsLineChart,
+    ChartsBoxChartPerStation,
+    ChartsBoxChartPerMonth
+  },
   props: { data: Object, selection: Object },
   methods: {
     handleChange: function(e, activePane, index) {

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { palette } from "../assets/charts.js";
+import { palette1 } from "../assets/chart/palettes.js";
 export default {
   name: "ChartsLineChart",
   props: {
@@ -91,7 +91,7 @@ export default {
           }
         },
 
-        colors: palette,
+        colors: palette1,
         series: this.plotData
       };
     }

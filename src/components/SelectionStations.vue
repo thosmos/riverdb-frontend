@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { palette } from "../assets/charts.js";
+import { palette1 } from "../assets/chart/palettes.js";
 
 export default {
   name: "SelectionStations",
@@ -33,7 +33,7 @@ export default {
   },
   data() {
     return {
-      palette
+      palette1
     };
   },
   methods: {
