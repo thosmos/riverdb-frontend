@@ -30,6 +30,12 @@ Vue.use(HighchartsVue, { highcharts });
 import { ClientTable } from "vue-tables-2";
 Vue.use(ClientTable, {}, false, "bootstrap4", "default");
 
+import VueAnalytics from "vue-analytics";
+
+Vue.use(VueAnalytics, {
+  id: "UA-124577086-1",
+  router
+});
 Vue.config.productionTip = false;
 
 new Vue({

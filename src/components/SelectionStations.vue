@@ -41,9 +41,11 @@ export default {
       event.stopPropagation();
       // console.log("station.StationID", station.StationID);
       this.$store.dispatch("data/REMOVE_STATION", station.StationID);
+      this.$ga.event("Remove", "Station", station.StationName);
     },
     onSegmentClick(station) {
       this.$store.commit("data/SELECT_STATION", station.StationID);
+      this.$ga.event("Select", "Station", station.StationName);
     }
   }
 };

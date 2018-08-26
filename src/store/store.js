@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import { analyticsMiddleware } from "vue-analytics";
 
 import { organization, selection, ui, data } from "./index.js";
 
@@ -14,5 +15,6 @@ export default new Vuex.Store({
     selection,
     ui,
     data
-  }
+  },
+  plugins: [analyticsMiddleware]
 });

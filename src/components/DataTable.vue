@@ -4,8 +4,8 @@
        id="table">
     <div class="ui segment"
          s>
-      <h2 is="sui-header"
-          textAlign="center">{{data.selectedStation.info.StationName}}</h2>
+      <h3 is="sui-header"
+          textAlign="center">{{data.selectedStation.info.StationName}}</h3>
 
       <v-client-table :data="tableData"
                       :columns="columns"

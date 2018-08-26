@@ -49,6 +49,7 @@ export default {
           this.data.endYear
         ]);
         this.$store.commit("ui/SHOW_YEAR_SELECTION", true);
+        this.$ga.event("Select", "Chart-Type", "mutli-year line");
       }
       if (index === 1) {
         // single year line
@@ -58,10 +59,17 @@ export default {
           this.data.endYear
         ]);
         this.$store.commit("ui/SHOW_YEAR_SELECTION", true);
+        this.$ga.event("Select", "Chart-Type", "single-year line");
       }
-      if (index === 2 || index === 3) {
+      if (index === 2) {
         // for boxplots don't show year selection
         this.$store.commit("ui/SHOW_YEAR_SELECTION", false);
+        this.$ga.event("Select", "Chart-Type", "box plot per station");
+      }
+      if (index === 3) {
+        // for boxplots don't show year selection
+        this.$store.commit("ui/SHOW_YEAR_SELECTION", false);
+        this.$ga.event("Select", "Chart-Type", "box plot per month");
       }
     }
   }
