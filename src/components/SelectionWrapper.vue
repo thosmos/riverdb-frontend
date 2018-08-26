@@ -5,8 +5,8 @@
                    color="red">
         <p>{{ui.errorMsg.selection}}</p>
       </sui-message>
-
-      <div class="ui two column centered grid">
+      <div class="ui two column centered grid"
+           id="selection-boxes">
         <div class="column">
           <multiselect v-model="selectedFork"
                        label="label"
@@ -23,6 +23,12 @@
                        @input="fetchStationData"
                        track-by="label"
                        v-model="selectedStation"></multiselect>
+        </div>
+      </div>
+      <div class="ui grid">
+        <div class="column">
+          <selection-station-map v-if="stationOptions"
+                                 :stations="stationOptions"></selection-station-map>
         </div>
       </div>
       <div v-if="ui.isLoading">
@@ -55,6 +61,7 @@ import SelectionStations from "./SelectionStations";
 import SelectionYearsRange from "./SelectionYearsRange";
 import SelectionYearSingle from "./SelectionYearSingle";
 import SelectionParams from "./SelectionParams";
+import SelectionStationMap from "./SelectionStationMap";
 import Loader from "./Loader";
 
 import {
@@ -79,7 +86,8 @@ export default {
     SelectionStations,
     SelectionParams,
     SelectionYearsRange,
-    SelectionYearSingle
+    SelectionYearSingle,
+    SelectionStationMap
   },
   data() {
     return {
@@ -167,4 +175,17 @@ export default {
 </script>
 
 <style>
+#RM
+  > div
+  > div:nth-child(2)
+  > div
+  > div:nth-child(1)
+  > div
+  > div
+  > div
+  > div.ui.two.column.centered.grid
+  > div
+  > div {
+  z-index: 100000;
+}
 </style>
