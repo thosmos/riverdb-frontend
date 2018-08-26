@@ -47,7 +47,7 @@ export default {
               startYear: this.selection.selectionRange[0],
               endYear: this.selection.selectionRange[1]
             })
-            .setParam("H2O_Temp")
+            .setParam(this.selection.activeParam)
             .roundTo(1)
             .bufferData(
               this.selection.selectionRange[0],
@@ -94,7 +94,7 @@ export default {
         },
         yAxis: {
           title: {
-            text: "Temp in C"
+            text: this.selection.activeParam
           }
         },
         // tooltip: {

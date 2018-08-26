@@ -5,8 +5,8 @@
     <div class="ui grid">
       <div class="ui row">
         <div class="ui column">
-          <chart-line-multi-year :data="data"
-                                 :selection="selection"></chart-line-multi-year>
+          <chart-line :data="data"
+                      :selection="selection"></chart-line>
         </div>
       </div>
     </div>
@@ -14,13 +14,13 @@
 </template>
 
 <script>
-import ChartLineMultiYear from "./ChartLineMultiYear";
+import ChartLine from "./ChartLine";
 
 import { mapState } from "vuex";
 
 export default {
   name: "ChartWrapper",
-  components: { ChartLineMultiYear },
+  components: { ChartLine },
   computed: {
     ...mapState({
       ui: state => state.ui,
