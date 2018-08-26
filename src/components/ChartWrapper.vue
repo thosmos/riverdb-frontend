@@ -1,15 +1,9 @@
 <template>
   <div v-if="data && data.selectedStation"
-       class="ui container ">
+       class=" ">
     <sui-divider></sui-divider>
-    <div class="ui grid">
-      <div class="ui row">
-        <div class="ui column">
-          <chart-tabs :data="data"
-                      :selection="selection"></chart-tabs>
-        </div>
-      </div>
-    </div>
+    <chart-tabs :data="data"
+                :selection="selection"></chart-tabs>
   </div>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-  <sui-container id="chart-line">
+  <div id="chart-tabs">
 
     <sui-tab @change="handleChange">
       <sui-tab-pane title="multi year line">
@@ -23,7 +23,7 @@
                                     :data="data"></charts-box-chart-per-month>
       </sui-tab-pane>
     </sui-tab>
-  </sui-container>
+  </div>
 </template>
 
 <script>
@@ -78,8 +78,10 @@ export default {
 
 <style lang="scss" scoped>
 @import "../style/style.scss";
-
-#chart-line > div > div.ui.tab.segment.attached.active {
+#chart-tabs {
+  margin-left: 2rem;
+}
+#chart-tabs > div > div.ui.tab.segment.attached.active {
   background: $darkWhite;
 }
 </style>
