@@ -5,8 +5,8 @@
     <div class="ui grid">
       <div class="ui row">
         <div class="ui column">
-          <chart-line :data="data"
-                      :selection="selection"></chart-line>
+          <chart-tabs :data="data"
+                      :selection="selection"></chart-tabs>
         </div>
       </div>
     </div>
@@ -14,13 +14,13 @@
 </template>
 
 <script>
-import ChartLine from "./ChartLine";
+import ChartTabs from "./ChartsTabs";
 
 import { mapState } from "vuex";
 
 export default {
   name: "ChartWrapper",
-  components: { ChartLine },
+  components: { ChartTabs },
   computed: {
     ...mapState({
       ui: state => state.ui,

@@ -5,17 +5,19 @@
         s>Projects:</h3>
     <div v-for="project in info.projects"
          :key="project.title">
-      <div class="m-b-sm project-segment">
-        <div is="sui-segment">
-          <h5 class="m-b-sm">{{project.title}}</h5>
-          <small>{{project.hasData | hasData}}</small>
-          <p class="m-t-sm">From {{project.dataBegins}} up to {{project.dataEnds}}</p>
-          <p>{{description}}</p>
-          <div class="inner">
-            <h1>Explore the Project</h1>
+      <router-link to="SYRCL/RM">
+        <div class="m-b-sm project-segment">
+          <div is="sui-segment">
+            <h5 class="m-b-sm">{{project.title}}</h5>
+            <small>{{project.hasData | hasData}}</small>
+            <p class="m-t-sm">From {{project.dataBegins}} up to {{project.dataEnds}}</p>
+            <p>{{description}}</p>
+            <div class="inner">
+              <h1>Explore the Project</h1>
+            </div>
           </div>
         </div>
-      </div>
+      </router-link>
     </div>
   </div>
 </template>

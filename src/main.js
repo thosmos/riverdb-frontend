@@ -18,9 +18,12 @@ Vue.use(SuiVue);
 
 import apolloProvider from "./apollo";
 
+import highcharts from "highcharts";
 import HighchartsVue from "highcharts-vue";
+import highchartsMore from "highcharts-more";
 
-Vue.use(HighchartsVue);
+highchartsMore(highcharts);
+Vue.use(HighchartsVue, { highcharts });
 
 Vue.config.productionTip = false;
 
