@@ -20,6 +20,12 @@
           </sui-grid-row>
           <sui-grid-row>
             <sui-grid-column>
+              <download-wrapper>
+              </download-wrapper>
+            </sui-grid-column>
+          </sui-grid-row>
+          <sui-grid-row>
+            <sui-grid-column>
               <chart-wrapper></chart-wrapper>
             </sui-grid-column>
           </sui-grid-row>
@@ -36,6 +42,7 @@
 
 <script>
 import SelectionWrapper from "../components/SelectionWrapper";
+import DownloadWrapper from "../components/DownloadWrapper";
 import ChartWrapper from "../components/ChartWrapper";
 import Loader from "../components/Loader";
 import DataTable from "../components/DataTable";
@@ -45,7 +52,13 @@ import { mapState } from "vuex";
 
 export default {
   name: "RMPage",
-  components: { Loader, SelectionWrapper, ChartWrapper, DataTable },
+  components: {
+    Loader,
+    SelectionWrapper,
+    ChartWrapper,
+    DataTable,
+    DownloadWrapper
+  },
   computed: {
     ...mapState({
       ui: state => state.ui

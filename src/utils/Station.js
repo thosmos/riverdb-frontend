@@ -91,8 +91,15 @@ export default class Station {
    */
   getCSV(notes = false) {
     let data = [];
-    this.processed.data.map(d => {
-      let temp = { date: d.date, ...d.results };
+    console.log("this", this);
+    this.data.map(d => {
+      console.log("d", d);
+      let temp = { date: d.date };
+      Object.keys(d.results).map(k => {
+        console.log("k", k);
+        temp[k] = d.results[k].mean;
+      });
+      console.log("temp", temp);
       if (notes) {
         temp.notes = d.notes ? d.notes : "";
       }
@@ -102,8 +109,9 @@ export default class Station {
     if (notes) {
       fields.push("notes");
     }
-    this.processed.data = json2csv.parse(data, fields);
-    return this;
+    console.log("data", data);
+    console.log("fields", fields);
+    return json2csv.parse(data, fields);
   }
   /**
    * Only returns data from the **param** paramater |
