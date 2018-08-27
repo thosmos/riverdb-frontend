@@ -6,18 +6,23 @@
     <page-layout>
       <router-view/>
     </page-layout>
+    <cookie-msg v-if="ui.showCookieMsg"></cookie-msg>
   </div>
 </template>
 
 <script>
 import NavBar from "./components/NavBar.vue";
 import PageLayout from "./components/PageLayout";
+import CookieMsg from "./components/CookieMsg";
+
+import { mapState } from "vuex";
 
 export default {
   name: "App",
   components: {
     NavBar,
-    PageLayout
+    PageLayout,
+    CookieMsg
   },
   metaInfo: {
     title: "Home",
@@ -32,7 +37,18 @@ export default {
       }
     ]
   },
-
+  mounted() {
+    let cookiesOK = localStorage.getItem("cookiesOK");
+    console.log("cookieOK", cookiesOK);
+    if (cookiesOK) {
+      this.$store.commit("ui/CLEAR_COOKIE_MSG");
+    }
+  },
+  computed: {
+    ...mapState({
+      ui: state => state.ui
+    })
+  },
   watch: {
     $route: function() {
       this.$store.commit(

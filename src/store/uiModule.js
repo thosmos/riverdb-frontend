@@ -3,7 +3,8 @@ import {
   CLEAR_ERROR_MSG,
   CLEAR_ALL_MSG,
   IS_LOADING,
-  SHOW_YEAR_SELECTION
+  SHOW_YEAR_SELECTION,
+  CLEAR_COOKIE_MSG
 } from "./mutationTypes";
 
 const ui = {
@@ -12,7 +13,8 @@ const ui = {
     errorMsg: {},
     infoMsg: null,
     isLoading: false,
-    showYearSelection: true
+    showYearSelection: true,
+    showCookieMsg: true
   },
   mutations: {
     [SET_ERROR_MSG](state, { section, msg }) {
@@ -30,6 +32,9 @@ const ui = {
     },
     [SHOW_YEAR_SELECTION](state, value) {
       state.showYearSelection = value;
+    },
+    [CLEAR_COOKIE_MSG](state) {
+      state.showCookieMsg = false;
     }
   },
   actions: {}

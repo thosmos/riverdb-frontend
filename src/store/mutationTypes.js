@@ -27,6 +27,7 @@ export const CLEAR_ERROR_MSG = "CLEAR_ERROR_MSG";
 export const CLEAR_ALL_MSG = "CLEAR_ALL_MSG";
 export const IS_LOADING = "IS_LOADING";
 export const SHOW_YEAR_SELECTION = "SHOW_YEAR_SELECTION";
+export const CLEAR_COOKIE_MSG = "CLEAR_COOKIE_MSG";
 
 /**
  * DATA VUEX
