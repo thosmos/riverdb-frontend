@@ -58,7 +58,7 @@ const organization = {
       let url =
         process.env.NODE_ENV === "development"
           ? `http://localhost:${WS_API_PORT}/?river=${abbreviation}`
-          : `${WS_API_IP}/?river=${abbreviation}`;
+          : `http://${WS_API_IP}:${WS_API_PORT}/?river=${abbreviation}`;
       axios
         .get(url)
         .then(result => {

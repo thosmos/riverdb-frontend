@@ -1,4 +1,4 @@
-export const WS_API_IP = "localhost";
+export const WS_API_IP = "178.128.190.35";
 export const WS_API_PORT = 3010;
 
 export const tribStyleWithName = {

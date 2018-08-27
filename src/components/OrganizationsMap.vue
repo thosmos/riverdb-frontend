@@ -24,6 +24,7 @@ import L from "leaflet";
 import axios from "axios";
 import find from "lodash/find";
 import geolib from "geolib";
+import { WS_API_IP, WS_API_PORT } from "../assets/constants";
 
 function onEachFeature(feature, layer) {
   let popupContent = Vue.extend(Popup);
@@ -49,8 +50,12 @@ export default {
     };
   },
   mounted() {
+    let url =
+      process.env.NODE_ENV === "development"
+        ? `http://localhost:${WS_API_PORT}`
+        : `http://${WS_API_IP}:${WS_API_PORT}`;
     let orgs = organizations.map(o => {
-      return axios.get(`http://localhost:3010/outline?river=${o.abbreviation}`);
+      return axios.get(`${url}/outline?river=${o.abbreviation}`);
     });
     // FIXME: Map doesn't show when returning to '/' because it's already mounted but bounds = null again?
     console.log(`MOUNTED`);
