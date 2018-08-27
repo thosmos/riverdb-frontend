@@ -16,13 +16,13 @@
       <p>{{org.missionStatement}}</p>
     </sui-card-content>
     <div class="spacer">
-      <sui-card-content extra>
-        <router-link :to="`/${org.abbreviation}`">
-          <sui-button basic
-                      fluid
-                      primary>Visit Organization</sui-button>
-        </router-link>
-      </sui-card-content>
+      <!-- <sui-card-content extra> -->
+      <router-link :to="`/${org.abbreviation}`">
+        <sui-button fluid
+                    size="big"
+                    primary>Visit Organization</sui-button>
+      </router-link>
+      <!-- </sui-card-content> -->
     </div>
   </sui-card>
   <!-- </div> -->
@@ -43,8 +43,11 @@ export default {
 .organization-card {
   // equal height cards!
   height: 100%;
-  .card-abbr {
-    background: rgba(0, 0, 0, 0.03) !important;
+  div.card-abbr {
+    // background: rgba(0, 0, 0, 0.03) !important;
+    background: $primaryColor !important;
+    color: $offWhite;
+    border-bottom: 3px solid $secondaryColor;
     max-height: 3.5rem;
     h3 {
       font-weight: normal;
@@ -73,5 +76,13 @@ export default {
   .spacer {
     padding: 10px 15px;
   }
+  // div.spacer > a > button {
+  //   background: $darkPrimaryColor;
+  //   color: $secondaryColor;
+  //   &:hover {
+  //     color: $offWhite;
+  //     background: lighten($darkPrimaryColor, 3%);
+  //   }
+  // }
 }
 </style>

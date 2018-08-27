@@ -14,8 +14,15 @@ export default {
 @import "../style/style.scss";
 
 #nav {
-  height: 48px;
-  background: $primaryColor;
+  height: 60px;
+  // background: $primaryColor;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 132, 203, 1) 0%,
+    rgba(25, 100, 126, 1) 100%
+  );
+  border-bottom: 3px solid $secondaryColor;
   color: $offWhite;
   display: flex;
   align-items: center;
