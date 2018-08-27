@@ -20,7 +20,8 @@ import apolloProvider from "./apollo";
 
 import highcharts from "highcharts";
 import HighchartsVue from "highcharts-vue";
-import highchartsMore from "highcharts-more";
+import highchartsMore from "highcharts/highcharts-more";
+
 require("highcharts/modules/exporting")(highcharts);
 require("highcharts/modules/heatmap")(highcharts);
 
