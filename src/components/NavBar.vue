@@ -20,7 +20,7 @@ export default {
   background: linear-gradient(
     90deg,
     rgba(0, 132, 203, 1) 0%,
-    rgba(25, 100, 126, 1) 100%
+    $lightPrimaryColor 100%
   );
   border-bottom: 3px solid $secondaryColor;
   color: $offWhite;
