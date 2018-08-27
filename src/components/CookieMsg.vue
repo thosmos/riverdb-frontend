@@ -1,15 +1,11 @@
 <template>
   <div id="cookie-msg">
     <sui-message color="red">
-      <sui-message-header>We're using cookies</sui-message-header>
-      <p>
-        In order to understand how people are using our site we're using cookies
-      </p>
+      <sui-message-header>We're using cookies in order to understand how people are using our site</sui-message-header>
       <div class="m-t-md d-flex flex-row justify-content-center">
         <sui-button circular
                     fluid
-                    secondary
-                    basic
+                    color="red"
                     @click="cookiesOKClick">Thanks, I'm OK with that.</sui-button>
       </div>
     </sui-message>
@@ -32,8 +28,12 @@ export default {
 #cookie-msg {
   position: fixed;
   bottom: 0;
-  left: 0;
   right: 0;
+  max-width: 33%;
   z-index: 3000;
+  font-size: 0.8rem;
+  button {
+    font-size: 0.8rem;
+  }
 }
 </style>
