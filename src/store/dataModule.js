@@ -70,7 +70,6 @@ const data = {
       state.startYear = Math.min(...years);
       state.endYear = Math.max(...years);
       // set new year range with updated value in selection Vuex
-      console.log("rootState", rootState.selection);
       if (rootState.selection.singleYearSelection) {
         // if singleYearSelection, set year to last
         commit("selection/SET_YEAR_RANGE", [state.endYear, state.endYear], {

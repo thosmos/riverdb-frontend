@@ -39,7 +39,6 @@ export default {
   },
   mounted() {
     let cookiesOK = localStorage.getItem("cookiesOK");
-    console.log("cookieOK", cookiesOK);
     if (cookiesOK) {
       this.$store.commit("ui/CLEAR_COOKIE_MSG");
     }

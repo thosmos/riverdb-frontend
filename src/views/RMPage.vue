@@ -47,8 +47,9 @@ import ChartWrapper from "../components/ChartWrapper";
 import Loader from "../components/Loader";
 import DataTable from "../components/DataTable";
 
-import { GET_STATIONS } from "../apollo/queries";
+import { GET_STATIONS, GET_STATION_DATA } from "../apollo/queries";
 import { mapState } from "vuex";
+import find from "lodash/find";
 
 export default {
   name: "RMPage",
@@ -61,8 +62,55 @@ export default {
   },
   computed: {
     ...mapState({
-      ui: state => state.ui
+      ui: state => state.ui,
+      data: state => state.data
     })
+  },
+  mounted() {
+    let { stations } = this.$route.query;
+    let { param } = this.$route.query;
+    if (stations) {
+      // if ?stations=... fetch those
+      stations.split(",").map(id => {
+        this.$store.commit("ui/IS_LOADING", true);
+        this.$apollo
+          .query({
+            query: GET_STATION_DATA,
+            variables: {
+              station: id
+            }
+          })
+          .then(res => {
+            this.$store.commit("ui/CLEAR_ERROR_MSG", "selection");
+            this.$store.commit("ui/IS_LOADING", false);
+            if (find(this.data.loadedStations, o => id === o.info.StationID)) {
+              this.$store.commit("ui/SET_ERROR_MSG", {
+                section: "selection",
+                msg: `Station is already selected`
+              });
+            } else {
+              let station = find(
+                this.stations,
+                o => o.StationID === parseInt(id)
+              );
+              this.$store.dispatch("data/ADD_STATION_DATA", {
+                info: station,
+                data: res.data
+              });
+            }
+          })
+          .catch(err => {
+            console.log("err", err);
+            this.$store.commit("ui/SET_ERROR_MSG", {
+              section: "selection",
+              msg: `Couldn't fetch station data`
+            });
+          });
+      });
+    }
+    if (param) {
+      this.$store.commit("selection/SELECT_ACTIVE_PARAM", param);
+    }
   },
   apollo: {
     stations: {
