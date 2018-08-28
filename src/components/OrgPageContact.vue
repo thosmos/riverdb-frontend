@@ -8,9 +8,7 @@
               stackable>
       <sui-grid-column>
         <h5>
-          <sui-icon name="user
-           outline
-           " /> {{info.contactPerson}}
+          <sui-icon name="user" /> {{info.contactPerson}}
         </h5>
       </sui-grid-column>
       <sui-grid-column>

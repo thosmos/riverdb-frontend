@@ -3,21 +3,30 @@
     <h3 is="sui-header"
         class="ui center aligned"
         s>Projects:</h3>
-    <div v-for="project in info.projects"
-         :key="project.title">
-      <router-link to="SYRCL/RM">
-        <div class="m-b-sm project-segment">
-          <div is="sui-segment">
-            <h5 class="m-b-sm">{{project.title}}</h5>
-            <small>{{project.hasData | hasData}}</small>
-            <p class="m-t-sm">From {{project.dataBegins}} up to {{project.dataEnds}}</p>
-            <p>{{description}}</p>
-            <div class="inner">
-              <h1>Explore the Project</h1>
-            </div>
-          </div>
-        </div>
-      </router-link>
+    <div class="ui centered grid stackable">
+
+      <div v-for="project in info.projects"
+           :key="project.title"
+           class="six wide tablet four wide computer column">
+        <router-link to="SYRCL/RM">
+          <sui-card class="fluid project-card eq-card project-segment">
+            <sui-card-content class="m-b-sm ">
+
+              <div>
+                <h5 class="m-b-sm">{{project.title}}</h5>
+                <small>
+                  <b>{{project.hasData | hasData}}</b>
+                </small>
+                <p class="m-t-sm">From {{project.dataBegins}} up to {{project.dataEnds}}</p>
+                <p>{{description}}</p>
+                <div class="inner">
+                  <h1>Explore the Project</h1>
+                </div>
+              </div>
+            </sui-card-content>
+          </sui-card>
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -62,7 +71,7 @@ export default {
 #organization-page {
   .project-segment {
     position: relative;
-    .ui.segment {
+    div {
       transition: all 0.3s ease-in-out;
     }
     h5 {
@@ -82,13 +91,21 @@ export default {
       border-radius: 0.5rem;
     }
     &:hover {
-      .ui.segment {
+      > div {
         background: $midWhite;
       }
     }
     &:hover .inner {
       opacity: 1;
     }
+  }
+  .project-card {
+    height: 100%;
+  }
+  // equal height cards
+  .eq-card.ui.card {
+    flex: 1; /* Shrink and grow according to available height */
+    flex-basis: 0;
   }
 }
 </style>
