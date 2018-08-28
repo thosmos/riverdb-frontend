@@ -69,6 +69,7 @@ export default {
   mounted() {
     let { stations } = this.$route.query;
     let { param } = this.$route.query;
+    let { yearRange } = this.$route.query;
     if (stations) {
       // if ?stations=... fetch those
       stations.split(",").map(id => {
@@ -97,6 +98,17 @@ export default {
                 info: station,
                 data: res.data
               });
+              // yearRange check needs to be after because ADD_STATION_DATA does it's own SET_YEAR_RANGE
+              if (yearRange) {
+                // yearRange query parser
+                let years = yearRange.split(",");
+                let startYear = parseInt(years[0]);
+                let endYear = parseInt(years[1]);
+                this.$store.commit("selection/SET_YEAR_RANGE", [
+                  startYear,
+                  endYear
+                ]);
+              }
             }
           })
           .catch(err => {
@@ -109,6 +121,7 @@ export default {
       });
     }
     if (param) {
+      // param query parser
       this.$store.commit("selection/SELECT_ACTIVE_PARAM", param);
     }
   },
