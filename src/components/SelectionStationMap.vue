@@ -8,7 +8,7 @@
       <l-marker v-for="marker in cleanedStations"
                 :key="marker.value.StationID"
                 :lat-lng="getPosition(marker.value)"
-                :icon=icon>
+                :icon="getIcon(marker.value.StationID)">
         <l-popup class="popup">
           <h6>
             <b>{{marker.value.StationName}}</b>
@@ -27,8 +27,10 @@ import { LMap, LTileLayer, LGeoJson, LMarker, LPopup } from "vue2-leaflet";
 import { calculateBoundsOfStations } from "../utils/geo.js";
 import L from "leaflet";
 import icon from "../assets/GIS/red-map-icon.png";
+import selectedIcon from "../assets/GIS/map-icon.png";
 import { GET_STATION_DATA } from "../apollo/queries.js";
 import { mapState } from "vuex";
+import findIndex from "lodash/findIndex";
 
 export default {
   name: "SelectionStationMap",
@@ -43,6 +45,12 @@ export default {
         iconSize: [36, 36],
         iconAnchor: [18, 36],
         popupAnchor: [0, -20]
+      }),
+      loadedStationIcon: L.icon({
+        iconUrl: selectedIcon,
+        iconSize: [36, 36],
+        iconAnchor: [18, 36],
+        popupAnchor: [0, -20]
       })
     };
   },
@@ -53,8 +61,6 @@ export default {
     }),
     cleanedStations: function() {
       return this.stations.filter(s => {
-        if (!s.value.TargetLat) {
-        }
         return s.value.TargetLat && s.value.TargetLong;
       });
     },
@@ -67,7 +73,19 @@ export default {
       if (m.TargetLat && m.TargetLong) {
         let position = L.latLng(m.TargetLat, m.TargetLong);
         return position;
+      }
+    },
+    getIcon: function(id) {
+      console.log("id", id);
+      let index = findIndex(
+        this.data.loadedStations,
+        o => o.info.StationID === id
+      );
+      console.log("index", index);
+      if (index !== -1) {
+        return this.loadedStationIcon;
       } else {
+        return this.icon;
       }
     },
     addStation: function(station) {
