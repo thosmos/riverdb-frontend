@@ -27,8 +27,12 @@ export default {
 <style lang="scss" scoped>
 @import "../style/style.scss";
 #org-page-intro div.card-header {
-  // background: rgba(0, 0, 0, 0.03) !important;
-  background: $primaryColor !important;
+  background: $primaryColor;
+  background: linear-gradient(
+    45deg,
+    rgba(0, 132, 203, 1) 0%,
+    $lightPrimaryColor 100%
+  );
   border-bottom: 3px solid $secondaryColor;
   h1,
   h2 {
