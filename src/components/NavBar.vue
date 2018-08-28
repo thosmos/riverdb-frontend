@@ -1,6 +1,8 @@
 <template>
   <div id="nav">
-    <h1>RiverDB</h1>
+    <router-link to='/'>
+      <h1>RiverDB</h1>
+    </router-link>
   </div>
 </template>
 
@@ -27,5 +29,12 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  a.router-link-active > h1 {
+    color: $offWhite;
+    &:hover {
+      color: $offWhite;
+      text-decoration-line: none;
+    }
+  }
 }
 </style>

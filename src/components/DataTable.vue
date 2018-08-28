@@ -23,7 +23,8 @@ export default {
   name: "DataTable",
   computed: {
     ...mapState({
-      data: state => state.data
+      data: state => state.data,
+      selection: state => state.selection
     }),
     columns: function() {
       let temp =
@@ -47,6 +48,7 @@ export default {
           this.data.selectedStation.data) ||
         [];
       let data = [];
+      // Build up all years data
       rawData.map(d => {
         let fields = {};
         Object.keys(d.results).map(k => {
@@ -57,18 +59,21 @@ export default {
           data.push(fields);
         }
       });
-      return data;
+      // Reduce by selectionRange
+      let start = this.selection.selectionRange[0];
+      let end = this.selection.selectionRange[1];
+      let selectedYearData = [];
+      data.map(d => {
+        let year = new Date(d.date).getFullYear();
+        if (d.date && year >= start && year <= end) {
+          selectedYearData.push(d);
+        }
+      });
+      return selectedYearData;
     }
   },
   data: function() {
     return {
-      //     tableData: [
-      //       { id: 1, name: "John", age: "20" },
-      //       { id: 2, name: "Jane", age: "24" },
-      //       { id: 3, name: "Susan", age: "16" },
-      //       { id: 4, name: "Chris", age: "55" },
-      //       { id: 5, name: "Dan", age: "40" }
-      //     ],
       options: {
         filterable: false,
         pagination: {
@@ -76,13 +81,7 @@ export default {
         },
         // see the options API
         perPage: 25
-        // sortIcon: {
-        //   base: "glyphicon",
-        //   up: "glyphicon-chevron-up",
-        //   down: "glyphicon-chevron-down",
-        //   is: "glyphicon-sort"
-        // }
-        // sortable: ["date"],
+        // TODO: sort icon
       }
     };
   }
