@@ -18,7 +18,7 @@ export default {
   // background: $primaryColor;
   background: rgb(2, 0, 36);
   background: linear-gradient(
-    90deg,
+    40deg,
     rgba(0, 132, 203, 1) 0%,
     $lightPrimaryColor 100%
   );

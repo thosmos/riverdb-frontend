@@ -72,7 +72,6 @@ export default {
     },
     addStation: function(station) {
       // TODO: Duplicate code from SelectionWrapper fetchStationData, make an action out of it....
-      console.log("station", station);
       const id = station.StationID;
       this.$store.commit("ui/IS_LOADING", true);
       // if (!this.loadedStations[id]) {

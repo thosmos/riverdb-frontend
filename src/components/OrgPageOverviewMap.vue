@@ -1,5 +1,5 @@
 <template>
-  <div class="m-t-lg m-b-lg map-height"
+  <div class="m-t-lg m-b-xl map-height"
        v-if="bounds">
     <l-map :bounds="bounds"
            id="map"
@@ -15,6 +15,11 @@
                   :options="upstreamOptions">
       </l-geo-json>
     </l-map>
+    <p id="inside-map">For a more interactive view of the whole watershed go to
+      <a :href="externalLink"
+         target="_blank
+         ">watershedmap.org</a>
+    </p>
   </div>
 </template>
 
@@ -53,6 +58,9 @@ export default {
       ws: state => state.organization.watershed
     }),
     // Bounds of map from watershed
+    externalLink: function() {
+      return `https://watershedmap.org/${this.$route.params.org}`;
+    },
     bounds: function() {
       if (this.ws && this.ws.bounds) {
         // Calculate new bounds
@@ -112,5 +120,8 @@ export default {
   height: 500px;
   border-radius: 6px;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
+}
+#inside-map {
+  z-index: 100000;
 }
 </style>

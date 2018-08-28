@@ -8,24 +8,30 @@
       <div v-for="project in info.projects"
            :key="project.title"
            class="six wide tablet four wide computer column">
-        <router-link to="SYRCL/RM">
-          <sui-card class="fluid project-card eq-card project-segment">
-            <sui-card-content class="m-b-sm ">
-
-              <div>
-                <h5 class="m-b-sm">{{project.title}}</h5>
-                <small>
-                  <b>{{project.hasData | hasData}}</b>
-                </small>
-                <p class="m-t-sm">From {{project.dataBegins}} up to {{project.dataEnds}}</p>
-                <p>{{description}}</p>
-                <div class="inner">
+        <sui-card class="fluid project-card eq-card project-segment">
+          <sui-card-content class="m-b-sm project-title">
+            <h5 class="m-b-sm">{{project.title}}</h5>
+          </sui-card-content>
+          <sui-card-content>
+            <div>
+              <small>
+                <b>{{project.hasData | hasData}}</b>
+              </small>
+              <p class="m-t-sm">From {{project.dataBegins}} up to {{project.dataEnds}}</p>
+              <p>{{description}}</p>
+              <!-- <div class="inner">
                   <h1>Explore the Project</h1>
-                </div>
+                </div> -->
+              <div v-if="project.hasData">
+                <router-link to="SYRCL/RM">
+                  <sui-button basic
+                              color="blue"
+                              fluid>Explore the data</sui-button>
+                </router-link>
               </div>
-            </sui-card-content>
-          </sui-card>
-        </router-link>
+            </div>
+          </sui-card-content>
+        </sui-card>
       </div>
     </div>
   </div>
@@ -69,6 +75,13 @@ export default {
   }
 }
 #organization-page {
+  .project-title {
+    background: $primaryColor;
+    h5 {
+      color: $offWhite;
+      text-align: center;
+    }
+  }
   .project-segment {
     position: relative;
     div {
@@ -90,14 +103,14 @@ export default {
       padding: 1rem;
       border-radius: 0.5rem;
     }
-    &:hover {
-      > div {
-        background: $midWhite;
-      }
-    }
-    &:hover .inner {
-      opacity: 1;
-    }
+    // &:hover {
+    //   > div {
+    //     background: $midWhite;
+    //   }
+    // }
+    // &:hover .inner {
+    //   opacity: 1;
+    // }
   }
   .project-card {
     height: 100%;
