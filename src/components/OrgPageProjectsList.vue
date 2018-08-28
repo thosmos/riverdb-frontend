@@ -10,7 +10,7 @@
            class="six wide tablet four wide computer column">
         <sui-card class="fluid project-card eq-card project-segment">
           <sui-card-content class="m-b-sm project-title">
-            <h5 class="m-b-sm">{{project.title}}</h5>
+            <h5>{{project.title}}</h5>
           </sui-card-content>
           <sui-card-content>
             <div>

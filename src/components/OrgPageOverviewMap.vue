@@ -43,7 +43,8 @@ export default {
   },
   data() {
     return {
-      url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png"
+      url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
+      map: null
     };
   },
   mounted() {
@@ -52,6 +53,9 @@ export default {
       "organization/FETCH_ORGANIZATION_WATERSHED",
       this.$route.params.org
     );
+    this.$nextTick(() => {
+      this.map = this.$refs.map.mapObject;
+    });
   },
   computed: {
     ...mapState({

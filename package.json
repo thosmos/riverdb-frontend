@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "surge": "vue-cli-service build && cd dist && surge -d riverdb.surge.sh"
+    "surge": "vue-cli-service build && cd dist && mv index.html 200.html && surge -d riverdb.surge.sh"
   },
   "dependencies": {
     "apollo-cache-inmemory": "^1.2.8",
