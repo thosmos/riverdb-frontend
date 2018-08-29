@@ -1,5 +1,6 @@
 <template>
-  <div class="m-b-lg">
+  <div id="org-page-contact"
+       class="m-b-lg">
     <sui-divider></sui-divider>
     <h3 is="sui-header"
         class="ui center aligned"
@@ -26,7 +27,9 @@
       <sui-grid-column>
         <h5>
           <sui-icon name="home
-           " /> {{info.URL}}
+           " />
+          <a :href="info.URL"
+             target="_blank">{{info.URL}}</a>
         </h5>
       </sui-grid-column>
     </sui-grid>
@@ -41,5 +44,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+#org-page-contact h5 a {
+  color: rgba(0, 0, 0, 0.87);
+}
 </style>
