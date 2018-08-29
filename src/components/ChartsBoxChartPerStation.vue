@@ -7,7 +7,7 @@
 <script>
 import { multiStation, graphConfig } from "../assets/chart/graphConfig.js";
 import { palette1 } from "../assets/chart/palettes.js";
-import { getUnit } from "../utils/charts.js";
+import { getUnit, getParamInfoLine } from "../utils/charts.js";
 
 export default {
   name: "ChartsBoxChartPerStation",
@@ -62,7 +62,8 @@ export default {
           title: {
             text:
               this.selection.activeParam + getUnit(this.selection.activeParam)
-          }
+          },
+          plotLines: getParamInfoLine(this.selection.activeParam)
         },
         tooltip: {
           // shared: false

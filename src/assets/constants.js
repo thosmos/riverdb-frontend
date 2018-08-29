@@ -32,3 +32,46 @@ export const unitsForParams = {
   H2O_Turbidity: "NTU",
   H2O_pH: ""
 };
+
+export const parameterInfoObj = {
+  H2O_Temp: [
+    {
+      value: 20,
+      color: "grey",
+      width: 2,
+      label: {
+        text: "too warm for salmonoids",
+        align: "right",
+        style: {
+          color: "red"
+        }
+      }
+    }
+  ],
+  H2O_pH: [
+    {
+      value: 6.5,
+      color: "grey",
+      width: 2,
+      label: {
+        text: "very low ph",
+        align: "right",
+        style: {
+          color: "red"
+        }
+      }
+    },
+    {
+      value: 9,
+      color: "grey",
+      width: 2,
+      label: {
+        text: "very high ph",
+        align: "right",
+        style: {
+          color: "red"
+        }
+      }
+    }
+  ]
+};

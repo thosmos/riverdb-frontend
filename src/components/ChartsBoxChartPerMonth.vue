@@ -7,7 +7,7 @@
 
 <script>
 import { singleStation, monthsOnXAxis } from "../assets/chart/graphConfig.js";
-import { getUnit } from "../utils/charts.js";
+import { getUnit, getParamInfoLine } from "../utils/charts.js";
 
 import get from "lodash/get";
 
@@ -49,7 +49,9 @@ export default {
           title: {
             text:
               this.selection.activeParam + getUnit(this.selection.activeParam)
-          }
+          },
+
+          plotLines: getParamInfoLine(this.selection.activeParam)
         },
         // tooltip: {
         //   headerFormat: "<b>{series.name}</b><br>",

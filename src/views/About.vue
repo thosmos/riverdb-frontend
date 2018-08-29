@@ -1,6 +1,12 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div id="about">
+    <sui-container>
+      <sui-header size="huge"
+                  textAlign="center">About RiverDB</sui-header>
+      <p>RiverDB is a new website helping NGOs and river organizations to display and
+        store scientific data from river monitoring programs etc. </p>
+
+    </sui-container>
   </div>
 </template>
 
