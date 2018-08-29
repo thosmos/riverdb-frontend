@@ -1,6 +1,12 @@
 export const WS_API_IP = "178.128.190.35";
 export const WS_API_PORT = 3010;
 
+export const WP_USERS = {
+  SYRCL: 2,
+  SSI: 3,
+  WCCA: 4
+};
+
 export const tribStyleWithName = {
   color: "#008080",
   weight: 2

@@ -4,32 +4,26 @@
       <sui-header size="huge"
                   textAlign="center">Participating Organizations:</sui-header>
       <organizations-list/>
-      <div v-if="docLoaded">
-        <organizations-map />
-      </div>
+      <organizations-map />
     </sui-container>
   </div>
 </template>
 
 <script>
 import OrganizationsList from "../components/OrganizationList";
+import OrganizationsMap from "../components/OrganizationsMap.vue";
 
 export default {
   name: "home",
   components: {
     OrganizationsList,
-    OrganizationsMap: () =>
-      import(/* webpackChunkName: 'org-map' */ "../components/OrganizationsMap.vue")
+    OrganizationsMap
   },
   data: function() {
     return {
       docLoaded: false
     };
   },
-  mounted() {
-    window.addEventListener("load", () => {
-      this.docLoaded = true;
-    });
-  }
+  mounted() {}
 };
 </script>
