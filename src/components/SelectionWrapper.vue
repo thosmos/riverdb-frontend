@@ -137,38 +137,7 @@ export default {
     },
 
     fetchStationData: function(station) {
-      const id = station.value.StationID;
-      this.$store.commit("ui/IS_LOADING", true);
-      // if (!this.loadedStations[id]) {
-      this.$apollo
-        .query({
-          query: GET_STATION_DATA,
-          variables: {
-            station: id
-          }
-        })
-        .then(res => {
-          this.$store.commit("ui/CLEAR_ERROR_MSG", "selection");
-          this.$store.commit("ui/IS_LOADING", false);
-          if (find(this.data.loadedStations, o => id === o.info.StationID)) {
-            this.$store.commit("ui/SET_ERROR_MSG", {
-              section: "selection",
-              msg: `Station is already selected`
-            });
-          } else {
-            this.$store.dispatch("data/ADD_STATION_DATA", {
-              info: station.value,
-              data: res.data
-            });
-          }
-        })
-        .catch(err => {
-          console.log("err", err);
-          this.$store.commit("ui/SET_ERROR_MSG", {
-            section: "selection",
-            msg: `Couldn't fetch station data`
-          });
-        });
+      this.$store.dispatch("data/FETCH_STATION_DATA", station.value);
     }
   }
 };

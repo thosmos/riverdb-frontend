@@ -76,12 +76,10 @@ export default {
       }
     },
     getIcon: function(id) {
-      console.log("id", id);
       let index = findIndex(
         this.data.loadedStations,
         o => o.info.StationID === id
       );
-      console.log("index", index);
       if (index !== -1) {
         return this.loadedStationIcon;
       } else {
@@ -89,39 +87,7 @@ export default {
       }
     },
     addStation: function(station) {
-      // TODO: Duplicate code from SelectionWrapper fetchStationData, make an action out of it....
-      const id = station.StationID;
-      this.$store.commit("ui/IS_LOADING", true);
-      // if (!this.loadedStations[id]) {
-      this.$apollo
-        .query({
-          query: GET_STATION_DATA,
-          variables: {
-            station: id
-          }
-        })
-        .then(res => {
-          this.$store.commit("ui/CLEAR_ERROR_MSG", "selection");
-          this.$store.commit("ui/IS_LOADING", false);
-          if (find(this.data.loadedStations, o => id === o.info.StationID)) {
-            this.$store.commit("ui/SET_ERROR_MSG", {
-              section: "selection",
-              msg: `Station is already selected`
-            });
-          } else {
-            this.$store.dispatch("data/ADD_STATION_DATA", {
-              info: station,
-              data: res.data
-            });
-          }
-        })
-        .catch(err => {
-          console.log("err", err);
-          this.$store.commit("ui/SET_ERROR_MSG", {
-            section: "selection",
-            msg: `Couldn't fetch station data`
-          });
-        });
+      this.$store.dispatch("data/FETCH_STATION_DATA", station);
     }
   }
 };

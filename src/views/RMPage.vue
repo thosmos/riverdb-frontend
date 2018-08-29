@@ -73,7 +73,7 @@ export default {
     if (stations) {
       // if ?stations=... fetch those
       stations.split(",").map(id => {
-        this.$store.commit("ui/IS_LOADING", true);
+        //  could use this.$store.dispatch("data/FETCH_STATION_DATA", station) but tricky with if (yearRange....)       this.$store.commit("ui/IS_LOADING", true);
         this.$apollo
           .query({
             query: GET_STATION_DATA,

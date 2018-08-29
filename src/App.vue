@@ -42,6 +42,7 @@ export default {
     if (cookiesOK) {
       this.$store.commit("ui/CLEAR_COOKIE_MSG");
     }
+    this.$store.commit("data/PROVIDE_APOLLO", this.$apollo);
   },
   computed: {
     ...mapState({

@@ -1,5 +1,10 @@
-import { ADD_STATION_DATA } from "./actionTypes";
-import { REMOVE_STATION, SELECT_STATION } from "./mutationTypes";
+import { ADD_STATION_DATA, FETCH_STATION_DATA } from "./actionTypes";
+import {
+  REMOVE_STATION,
+  SELECT_STATION,
+  PROVIDE_APOLLO
+} from "./mutationTypes";
+import { GET_STATION_DATA } from "../apollo/queries.js";
 
 import Station from "../utils/Station";
 import findIndex from "lodash/findIndex";
@@ -11,7 +16,8 @@ const data = {
     loadedStations: [],
     selectedStation: null,
     startYear: null,
-    endYear: null
+    endYear: null,
+    apollo: null
   },
   mutations: {
     [SELECT_STATION](state, StationID) {
@@ -20,6 +26,9 @@ const data = {
         o => o.info.StationID === StationID
       );
       state.selectedStation = state.loadedStations[index];
+    },
+    [PROVIDE_APOLLO](state, apollo) {
+      state.apollo = apollo;
     }
   },
   actions: {
@@ -81,6 +90,47 @@ const data = {
           root: true
         });
       }
+    },
+    [FETCH_STATION_DATA]({ commit, dispatch, state, rootState }, station) {
+      const id = station.StationID;
+      commit("ui/IS_LOADING", true, { root: true });
+      // if (!this.loadedStations[id]) {
+      state.apollo
+        .query({
+          query: GET_STATION_DATA,
+          variables: {
+            station: id
+          }
+        })
+        .then(res => {
+          commit("ui/CLEAR_ERROR_MSG", "selection", { root: true });
+          commit("ui/IS_LOADING", false, { root: true });
+          if (find(state.loadedStations, o => id === o.info.StationID)) {
+            commit(
+              "ui/SET_ERROR_MSG",
+              {
+                section: "selection",
+                msg: `Station is already selected`
+              },
+              { root: true }
+            );
+          } else {
+            dispatch("ADD_STATION_DATA", {
+              info: station,
+              data: res.data
+            });
+          }
+        })
+        .catch(err => {
+          commit(
+            "ui/SET_ERROR_MSG",
+            {
+              section: "selection",
+              msg: `Couldn't fetch station data`
+            },
+            { root: true }
+          );
+        });
     }
   }
 };
