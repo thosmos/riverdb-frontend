@@ -1,7 +1,7 @@
 import { palette1 } from "./palettes.js";
 import { getUnit } from "../../utils/charts.js";
 
-const graphConfig = {
+export const graphConfig = {
   legend: {
     enabled: true
   },

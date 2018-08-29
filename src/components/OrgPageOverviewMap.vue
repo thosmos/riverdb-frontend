@@ -30,6 +30,7 @@ import {
   tribStyleWithoutName
 } from "../assets/constants.js";
 import geolib from "geolib";
+import L from "leaflet";
 
 import { mapState } from "vuex";
 

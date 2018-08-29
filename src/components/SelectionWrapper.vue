@@ -69,10 +69,7 @@ import {
   calculateStationsForSelection
 } from "../utils/selectionUtils.js";
 
-import { GET_STATION_DATA } from "../apollo/queries.js";
-
 import { mapState } from "vuex";
-import find from "lodash/find";
 import sortBy from "lodash/sortBy";
 
 export default {

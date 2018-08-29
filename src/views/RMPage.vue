@@ -111,8 +111,7 @@ export default {
               }
             }
           })
-          .catch(err => {
-            console.log("err", err);
+          .catch(() => {
             this.$store.commit("ui/SET_ERROR_MSG", {
               section: "selection",
               msg: `Couldn't fetch station data`
@@ -129,8 +128,7 @@ export default {
     stations: {
       query: GET_STATIONS, // Initial data fetch of all stations...
       // TODO: add organization variables once it becomes available from Thomas
-      error(err) {
-        console.log("err", err);
+      error() {
         this.$store.commit("ui/SET_ERROR_MSG", {
           section: "RM_Datafetch",
           msg: `Couldn't fetch intial stations`

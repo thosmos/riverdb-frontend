@@ -28,7 +28,6 @@ import { calculateBoundsOfStations } from "../utils/geo.js";
 import L from "leaflet";
 import icon from "../assets/GIS/red-map-icon.png";
 import selectedIcon from "../assets/GIS/map-icon.png";
-import { GET_STATION_DATA } from "../apollo/queries.js";
 import { mapState } from "vuex";
 import findIndex from "lodash/findIndex";
 

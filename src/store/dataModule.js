@@ -54,7 +54,6 @@ const data = {
             years.push(s.meta.totalYearRange.startYear);
             years.push(s.meta.totalYearRange.endYear);
           });
-          console.log("years", years);
           state.startYear = Math.min(...years);
           state.endYear = Math.max(...years);
         } else {
@@ -91,7 +90,7 @@ const data = {
         });
       }
     },
-    [FETCH_STATION_DATA]({ commit, dispatch, state, rootState }, station) {
+    [FETCH_STATION_DATA]({ commit, dispatch, state }, station) {
       const id = station.StationID;
       commit("ui/IS_LOADING", true, { root: true });
       // if (!this.loadedStations[id]) {
@@ -121,7 +120,7 @@ const data = {
             });
           }
         })
-        .catch(err => {
+        .catch(() => {
           commit(
             "ui/SET_ERROR_MSG",
             {
