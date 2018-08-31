@@ -3,10 +3,13 @@
     <div v-if="posts && posts.length !== 0">
 
       <div v-for="post in posts"
+           id="blog-posts"
            :key="post.date">
         <router-link :to="`/${organization.activeOrganization}/blog/${post.slug}`">
           <h3>{{post.title.rendered}}</h3>
-          <div v-html="cleanedHtml(post.excerpt.rendered)"></div>
+          <div class="ui segment">
+            <div v-html="cleanedHtml(post.excerpt.rendered)"></div>
+          </div>
         </router-link>
         <hr/>
       </div>
@@ -63,7 +66,8 @@ export default {
 };
 </script>
 
-<style lang="scss" >
+<style lang="scss" scoped >
+@import "../style/style.scss";
 .alignleft {
   display: block;
   float: left;
@@ -85,5 +89,11 @@ img {
 }
 a {
   color: rgba(0, 0, 0, 0.87);
+  &:hover {
+    color: $primaryColor;
+  }
+}
+#blog-posts > a > div {
+  background: $blueBackground;
 }
 </style>
