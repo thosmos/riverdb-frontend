@@ -1,8 +1,11 @@
 <template>
   <div id="org-dates"
-       class="ui segment">
+       class="">
     <div v-if="html"
          v-html="html.content.rendered"></div>
+    <div v-else>
+      <h3>No calendar dates have been posted</h3>
+    </div>
   </div>
 </template>
 
@@ -24,9 +27,6 @@ export default {
     })
   },
   mounted() {
-    // TODO: Make author=2 responsive,see /constants/ WP_USERS
-    // console.log("process.NODE_ENV", process.env.NODE_ENV);
-    // TODO: make responssive
     let baseURL =
       process.env.NODE_ENV === "development"
         ? `http://localhost:8000/wp-json/wp/v2/dates?filter[author]=${
@@ -47,5 +47,5 @@ export default {
 };
 </script>
 
-<style>
+<style >
 </style>

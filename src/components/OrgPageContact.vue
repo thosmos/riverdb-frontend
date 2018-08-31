@@ -8,29 +8,37 @@
     <sui-grid :columns="2"
               stackable>
       <sui-grid-column>
-        <h5>
-          <sui-icon name="user" /> {{info.contactPerson}}
-        </h5>
+        <p>
+          <b>
+            <sui-icon name="user" /> {{info.contactPerson}}
+          </b>
+        </p>
       </sui-grid-column>
       <sui-grid-column>
-        <h5>
-          <sui-icon name="phone
+        <p>
+          <b>
+            <sui-icon name="phone
            " /> {{info.phone}}
-        </h5>
+          </b>
+        </p>
       </sui-grid-column>
       <sui-grid-column>
-        <h5>
-          <sui-icon name="envelope
+        <p>
+          <b>
+            <sui-icon name="envelope
            " /> {{info.email}}
-        </h5>
+          </b>
+        </p>
       </sui-grid-column>
       <sui-grid-column>
-        <h5>
-          <sui-icon name="home
+        <p>
+          <b>
+            <sui-icon name="home
            " />
-          <a :href="info.URL"
-             target="_blank">{{info.URL}}</a>
-        </h5>
+            <a :href="info.URL"
+               target="_blank">{{info.URL}}</a>
+          </b>
+        </p>
       </sui-grid-column>
     </sui-grid>
   </div>
