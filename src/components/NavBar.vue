@@ -1,14 +1,27 @@
 <template>
   <div id="nav">
     <router-link to='/'>
-      <h1>RiverDB</h1>
+      <h1>{{navBarTitle}}</h1>
     </router-link>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
-  name: "NavBar"
+  name: "NavBar",
+  computed: {
+    ...mapState({
+      organization: state => state.organization
+    }),
+    navBarTitle: function() {
+      if (this.organization.activeOrganization) {
+        return this.organization.activeOrganization;
+      } else {
+        return "RiverDB";
+      }
+    }
+  }
 };
 </script>
 
