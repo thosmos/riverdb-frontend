@@ -13,18 +13,18 @@
       <org-page-dates></org-page-dates>
     </div>
     <div v-else>
-      <org-page-blog></org-page-blog>
+      <org-page-blog-excerpt></org-page-blog-excerpt>
     </div>
   </div>
 </template>
 
 <script>
 import OrgPageDates from "./OrgPageDates";
-import OrgPageBlog from "./OrgPageBlog";
+import OrgPageBlogExcerpt from "./OrgPageBlogExcerpt";
 
 export default {
   name: "OrgPageInfo",
-  components: { OrgPageDates, OrgPageBlog },
+  components: { OrgPageDates, OrgPageBlogExcerpt },
   data() {
     return {
       items: ["Blog", "Calendar"],

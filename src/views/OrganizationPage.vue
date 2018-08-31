@@ -3,7 +3,7 @@
        v-if="info">
     <sui-container>
       <org-page-intro :info="info"></org-page-intro>
-      <org-page-overview-map></org-page-overview-map>
+      <!-- <org-page-overview-map></org-page-overview-map> -->
       <org-page-projects-list :info="info"></org-page-projects-list>
       <org-page-info></org-page-info>
       <org-page-footer :info="info"></org-page-footer>

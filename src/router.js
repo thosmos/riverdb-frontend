@@ -48,6 +48,12 @@ export default new Router({
       name: "RMPage",
       component: () =>
         import(/* webpackChunkName: "rm-page" */ "./views/RMPage.vue")
+    },
+    {
+      path: "/:org/blog/:slug",
+      name: "RMPage",
+      component: () =>
+        import(/* webpackChunkName: "blog-post" */ "./views/Blog.vue")
     }
   ]
 });

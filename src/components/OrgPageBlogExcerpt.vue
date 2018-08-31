@@ -1,10 +1,13 @@
 <template>
-  <div id="blog">
-    <div v-if="posts.length !== 0">
+  <div id="blog-excerpts">
+    <div v-if="posts && posts.length !== 0">
+
       <div v-for="post in posts"
            :key="post.date">
-        <h3>{{post.title.rendered}}</h3>
-        <div v-html="post.content.rendered"></div>
+        <router-link :to="`/${organization.activeOrganization}/blog/${post.slug}`">
+          <h3>{{post.title.rendered}}</h3>
+          <div v-html="cleanedHtml(post.excerpt.rendered)"></div>
+        </router-link>
         <hr/>
       </div>
     </div>
@@ -16,6 +19,7 @@
 
 <script>
 import { mapState } from "vuex";
+import striptags from "striptags";
 import axios from "axios";
 import { WS_API_IP, WP_USERS } from "../assets/constants.js";
 
@@ -31,7 +35,6 @@ export default {
       posts: null
     };
   },
-
   mounted() {
     let baseURL =
       process.env.NODE_ENV === "development"
@@ -48,6 +51,13 @@ export default {
       });
     } catch (err) {
       console.log("WP backend call for /posts failed");
+    }
+  },
+  methods: {
+    cleanedHtml: function(dirty) {
+      // remove a tag mainly
+      let clean = striptags(dirty, ["p"]);
+      return clean;
     }
   }
 };
@@ -72,5 +82,8 @@ export default {
 img {
   height: auto; /* Make sure images are scaled correctly. */
   max-width: 100%; /* Adhere to container width. */
+}
+a {
+  color: rgba(0, 0, 0, 0.87);
 }
 </style>
