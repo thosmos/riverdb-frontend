@@ -15,11 +15,16 @@
                   :options="upstreamOptions">
       </l-geo-json>
     </l-map>
-    <p id="inside-map">For a more interactive view of the whole watershed go to
-      <a :href="externalLink"
-         target="_blank
+    <sui-message>
+      <sui-message-header>
+
+        <p id="inside-map">For a more interactive view of the whole watershed go to
+          <a :href="externalLink"
+             target="_blank
          ">watershedmap.org</a>
-    </p>
+        </p>
+      </sui-message-header>
+    </sui-message>
   </div>
 </template>
 
@@ -118,6 +123,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../style/style.scss";
 .map-height {
   height: 500px;
   border-radius: 6px;
@@ -125,5 +131,8 @@ export default {
 }
 #inside-map {
   z-index: 100000;
+}
+#inside-map > a {
+  color: $primaryColor;
 }
 </style>

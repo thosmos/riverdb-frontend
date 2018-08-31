@@ -1,7 +1,7 @@
 <template>
-  <div class="m-t-md ui segment">
-
-    <sui-menu :widths="2">
+  <div id="organization-info"
+       class="m-t-md ui segment">
+    <sui-menu :widths="3">
       <a is="sui-menu-item"
          v-for="item in items"
          :key="item"
@@ -9,11 +9,17 @@
          :content="item"
          @click="select(item)" />
     </sui-menu>
-    <div v-if="active === 'Calendar'">
+    <div v-if="active==='Calendar'
+       ">
       <org-page-dates></org-page-dates>
     </div>
-    <div v-else>
+    <div v-if="active==='Blog'
+       ">
       <org-page-blog-excerpt></org-page-blog-excerpt>
+    </div>
+    <div v-if="active==='Watershed'
+       ">
+      <org-page-overview-map></org-page-overview-map>
     </div>
   </div>
 </template>
@@ -21,13 +27,14 @@
 <script>
 import OrgPageDates from "./OrgPageDates";
 import OrgPageBlogExcerpt from "./OrgPageBlogExcerpt";
+import OrgPageOverviewMap from "./OrgPageOverviewMap";
 
 export default {
   name: "OrgPageInfo",
-  components: { OrgPageDates, OrgPageBlogExcerpt },
+  components: { OrgPageDates, OrgPageBlogExcerpt, OrgPageOverviewMap },
   data() {
     return {
-      items: ["Blog", "Calendar"],
+      items: ["Blog", "Calendar", "Watershed"],
       active: "Blog"
     };
   },
@@ -47,7 +54,7 @@ export default {
 #organization-page
   > div
   > div.m-t-md.ui.segment
-  > div.ui.two.item.menu
+  > div.ui.three.item.menu
   > a.active.item {
   background: $primaryColor;
   color: $offWhite;
