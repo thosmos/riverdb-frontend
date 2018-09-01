@@ -44,6 +44,7 @@ export default {
       if (index === 0) {
         // multi year line
         this.$store.commit("selection/SELECT_SINGLE_YEAR", false);
+        this.$store.commit("selection/SET_CHART_TYPE", "LINE_MULTI");
         this.$store.commit("selection/SET_YEAR_RANGE", [
           this.data.startYear,
           this.data.endYear
@@ -54,6 +55,7 @@ export default {
       if (index === 1) {
         // single year line
         this.$store.commit("selection/SELECT_SINGLE_YEAR", true);
+        this.$store.commit("selection/SET_CHART_TYPE", "LINE_SINGLE");
         this.$store.commit("selection/SET_YEAR_RANGE", [
           this.data.endYear,
           this.data.endYear
@@ -63,11 +65,13 @@ export default {
       }
       if (index === 2) {
         // for boxplots don't show year selection
+        this.$store.commit("selection/SET_CHART_TYPE", "BOX");
         this.$store.commit("ui/SHOW_YEAR_SELECTION", false);
         this.$ga.event("Select", "Chart-Type", "box plot per station");
       }
       if (index === 3) {
         // for boxplots don't show year selection
+        this.$store.commit("selection/SET_CHART_TYPE", "BOX_MONTH");
         this.$store.commit("ui/SHOW_YEAR_SELECTION", false);
         this.$ga.event("Select", "Chart-Type", "box plot per month");
       }

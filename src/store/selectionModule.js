@@ -5,8 +5,10 @@ import {
   ALL_LOCAL_WATERSHEDS,
   ALL_STATION_NAMES,
   SELECT_ACTIVE_PARAM,
+  SELECT_SECONDARY_PARAM,
   SET_YEAR_RANGE,
-  SELECT_SINGLE_YEAR
+  SELECT_SINGLE_YEAR,
+  SET_CHART_TYPE
 } from "./mutationTypes";
 
 import {
@@ -25,8 +27,10 @@ const selection = {
     // allWatersheds: null,
     allStationNames: null,
     activeParam: "H2O_Temp",
+    secondaryParam: null,
     selectionRange: null,
-    singleYearSelection: false
+    singleYearSelection: false,
+    chartType: "LINE_MULTI"
   },
   /**
    * Mutations
@@ -47,11 +51,17 @@ const selection = {
     [SELECT_ACTIVE_PARAM](state, param) {
       state.activeParam = param;
     },
+    [SELECT_SECONDARY_PARAM](state, param) {
+      state.secondaryParam = param;
+    },
     [SET_YEAR_RANGE](state, range) {
       state.selectionRange = range;
     },
     [SELECT_SINGLE_YEAR](state, value) {
       state.singleYearSelection = value;
+    },
+    [SET_CHART_TYPE](state, type) {
+      state.chartType = type;
     }
   },
   actions: {

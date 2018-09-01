@@ -31,7 +31,6 @@ export default {
   },
   methods: {
     isActive(name) {
-      console.log("name", name);
       return this.activeComponent === name;
     },
     select(name) {

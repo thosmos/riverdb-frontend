@@ -6,7 +6,7 @@
       <sui-button-group basic
                         v-for="p in allParams"
                         :key="p">
-        <sui-button @click="selectParam(p)"
+        <sui-button @click="selectParam(p, $event)"
                     compact
                     :class="{active: p === selection.activeParam}">
           {{p}}
@@ -43,9 +43,23 @@ export default {
     }
   },
   methods: {
-    selectParam: function(param) {
-      this.$store.commit("selection/SELECT_ACTIVE_PARAM", param);
-      this.$ga.event("Select", "Param  ", param);
+    selectParam: function(param, $event) {
+      if (!$event.shiftKey) {
+        this.$store.commit("selection/SELECT_ACTIVE_PARAM", param);
+        this.$ga.event("Select", "Param  ", param);
+      } else {
+        // with SHIFT KEY
+        if (
+          // only LINE charts work with secondary param
+          this.selection.chartType === "LINE_MULTI" ||
+          this.selection.chartType === "LINE_SINGLE"
+        ) {
+          // param is different from activeParam
+          if (param !== this.selection.activeParam) {
+            this.$store.commit("selection/SELECT_SECONDARY_PARAM", param);
+          }
+        }
+      }
     }
   }
 };
