@@ -16,7 +16,7 @@ export default {
     }),
     navBarTitle: function() {
       if (this.organization.activeOrganization) {
-        return this.organization.activeOrganization;
+        return "RiverDB ~ " + this.organization.activeOrganization;
       } else {
         return "RiverDB";
       }
