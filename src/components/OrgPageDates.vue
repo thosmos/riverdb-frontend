@@ -32,7 +32,7 @@ export default {
         ? `http://localhost:8000/wp-json/wp/v2/dates?filter[author]=${
             WP_USERS[this.organization.activeOrganization]
           }`
-        : `htttp://${WS_API_IP}:8000/wp-json/wp/v2/dates?filter[author]=${
+        : `http://${WS_API_IP}:8000/wp-json/wp/v2/dates?filter[author]=${
             WP_USERS[this.organization.activeOrganization]
           }`;
 
