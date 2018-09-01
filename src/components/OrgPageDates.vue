@@ -1,15 +1,22 @@
 <template>
   <div id="org-dates"
        class="">
-    <div v-if="html"
-         v-html="html.content.rendered"></div>
+    <div v-if="!loaded">
+      <Loader/>
+    </div>
     <div v-else>
-      <h3>No calendar dates have been posted</h3>
+      <div v-if="html"
+           v-html="html.content.rendered"></div>
+      <div v-else>
+        <h3>No calendar dates have been posted</h3>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import Loader from "./Loader";
+
 import axios from "axios";
 import { mapState } from "vuex";
 import { WS_API_IP, WP_USERS } from "../assets/constants.js";
@@ -18,8 +25,12 @@ export default {
   name: "OrgPageDates",
   data() {
     return {
-      html: null
+      html: null,
+      loaded: false
     };
+  },
+  components: {
+    Loader
   },
   computed: {
     ...mapState({
@@ -39,9 +50,11 @@ export default {
     try {
       axios.get(baseURL).then(res => {
         this.html = res.data[0];
+        this.loaded = true;
       });
     } catch (err) {
       console.log("WP backend call for /dates failed");
+      this.loaded = true;
     }
   }
 };

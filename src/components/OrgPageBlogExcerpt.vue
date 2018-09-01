@@ -1,26 +1,32 @@
 <template>
   <div id="blog-excerpts">
-    <div v-if="posts && posts.length !== 0">
-
-      <div v-for="post in posts"
-           id="blog-posts"
-           :key="post.date">
-        <router-link :to="`/${organization.activeOrganization}/blog/${post.slug}`">
-          <h3>{{post.title.rendered}}</h3>
-          <div class="ui segment">
-            <div v-html="cleanedHtml(post.excerpt.rendered)"></div>
-          </div>
-        </router-link>
-        <hr/>
-      </div>
+    <div v-if="!loaded">
+      <Loader/>
     </div>
     <div v-else>
-      <h3>No blog posts yet...</h3>
+      <div v-if="posts && posts.length !== 0">
+        <div v-for="post in posts"
+             id="blog-posts"
+             :key="post.date">
+          <router-link :to="`/${organization.activeOrganization}/blog/${post.slug}`">
+            <h3>{{post.title.rendered}}</h3>
+            <div class="ui segment">
+              <div v-html="cleanedHtml(post.excerpt.rendered)"></div>
+            </div>
+          </router-link>
+          <hr/>
+        </div>
+      </div>
+      <div v-else>
+        <h3>No blog posts yet...</h3>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import Loader from "./Loader";
+
 import { mapState } from "vuex";
 import striptags from "striptags";
 import axios from "axios";
@@ -35,9 +41,11 @@ export default {
   },
   data() {
     return {
-      posts: null
+      posts: null,
+      loaded: false
     };
   },
+  components: { Loader },
   mounted() {
     let baseURL =
       process.env.NODE_ENV === "development"
@@ -51,9 +59,11 @@ export default {
     try {
       axios.get(baseURL).then(res => {
         this.posts = res.data;
+        this.loaded = true;
       });
     } catch (err) {
       console.log("WP backend call for /posts failed");
+      this.loaded = true;
     }
   },
   methods: {

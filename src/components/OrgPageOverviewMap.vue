@@ -26,10 +26,14 @@
       </sui-message-header>
     </sui-message>
   </div>
+  <div v-else>
+    <Loader/>
+  </div>
 </template>
 
 <script>
 import { LMap, LTileLayer, LGeoJson, LMarker } from "vue2-leaflet";
+import Loader from "./Loader";
 import {
   tribStyleWithName,
   tribStyleWithoutName
@@ -45,7 +49,8 @@ export default {
     LMap,
     LTileLayer,
     LGeoJson,
-    LMarker
+    LMarker,
+    Loader
   },
   data() {
     return {
