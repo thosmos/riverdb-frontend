@@ -1,11 +1,13 @@
 <template>
   <div id="blog">
     <sui-container>
-      <sui-header size="huge"
-                  textAlign="center">{{post && post[0].title.rendered}}</sui-header>
-      <hr/>
-      <div v-if="post"
-           v-html="post[0].content.rendered">
+      <div class="ui segment">
+        <sui-header size="huge"
+                    textAlign="center">{{post && post[0].title.rendered}}</sui-header>
+        <hr/>
+        <div v-if="post"
+             v-html="post[0].content.rendered">
+        </div>
       </div>
     </sui-container>
   </div>

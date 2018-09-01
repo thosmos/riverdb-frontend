@@ -7,14 +7,14 @@
       <div v-if="posts && posts.length !== 0">
         <div v-for="post in posts"
              id="blog-posts"
-             :key="post.date">
+             :key="post.date"
+             class="m-b-md">
           <router-link :to="`/${organization.activeOrganization}/blog/${post.slug}`">
             <h3>{{post.title.rendered}}</h3>
             <div class="ui segment">
               <div v-html="cleanedHtml(post.excerpt.rendered)"></div>
             </div>
           </router-link>
-          <hr/>
         </div>
       </div>
       <div v-else>
@@ -104,6 +104,6 @@ a {
   }
 }
 #blog-posts > a > div {
-  background: $blueBackground;
+  background: lighten($lightGrey, 6%);
 }
 </style>
