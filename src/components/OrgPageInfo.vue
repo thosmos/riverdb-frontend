@@ -9,18 +9,9 @@
          :content="item"
          @click="select(item)" />
     </sui-menu>
-    <div v-if="active==='Calendar'
-       ">
-      <org-page-dates></org-page-dates>
-    </div>
-    <div v-if="active==='Blog'
-       ">
-      <org-page-blog-excerpt></org-page-blog-excerpt>
-    </div>
-    <div v-if="active==='Watershed'
-       ">
-      <org-page-overview-map></org-page-overview-map>
-    </div>
+    <transition name="fade">
+      <component v-bind:is="activeComponent"></component>
+    </transition>
   </div>
 </template>
 
@@ -35,7 +26,7 @@ export default {
   data() {
     return {
       items: ["Blog", "Calendar", "Watershed"],
-      active: "Blog"
+      activeComponent: "OrgPageBlogExcerpt"
     };
   },
   methods: {
@@ -43,13 +34,21 @@ export default {
       return this.active === name;
     },
     select(name) {
-      this.active = name;
+      if (name === "Blog") {
+        this.activeComponent = "OrgPageBlogExcerpt";
+      }
+      if (name === "Calendar") {
+        this.activeComponent = "OrgPageDates";
+      }
+      if (name === "Watershed") {
+        this.activeComponent = "OrgPageOverviewMap";
+      }
     }
   }
 };
 </script>
 
-<style lang="scss" >
+<style lang="scss" scoped >
 @import "../style/style.scss";
 #organization-page
   > div
@@ -58,5 +57,12 @@ export default {
   > a.active.item {
   background: $primaryColor;
   color: $offWhite;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>
