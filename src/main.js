@@ -39,6 +39,11 @@ Vue.use(VueAnalytics, {
 });
 Vue.config.productionTip = false;
 
+import VueTour from "vue-tour";
+import "./style/vue-tour.css";
+
+Vue.use(VueTour);
+
 new Vue({
   router,
   store,

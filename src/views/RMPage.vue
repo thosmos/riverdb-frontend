@@ -3,6 +3,18 @@
     <sui-container fluid>
       <sui-header size="huge"
                   textAlign="center">River Monitoring Data:</sui-header>
+      <div v-if="showTakeTour"
+           class="m-t-lg m-b-lg">
+        <div class="ui grid centered">
+          <sui-button-group>
+            <sui-button @click="takeTour"
+                        positive>Take the Tour</sui-button>
+            <sui-button-or />
+            <sui-button @click="removeTour"
+                        negative>Never show this again</sui-button>
+          </sui-button-group>
+        </div>
+      </div>
       <sui-message v-if="ui.errorMsg.RM_Datafetch"
                    color="red">
         <p>{{ui.errorMsg.RM_Datafetch}}</p>
@@ -20,15 +32,19 @@
           </sui-grid-row>
           <sui-grid-row>
             <sui-grid-column>
-              <download-wrapper>
+              <download-wrapper id="step-7">
               </download-wrapper>
             </sui-grid-column>
           </sui-grid-row>
           <sui-grid-row>
             <sui-grid-column>
-              <chart-wrapper></chart-wrapper>
+              <chart-wrapper id="step-8"></chart-wrapper>
             </sui-grid-column>
           </sui-grid-row>
+          <div class=""
+               id="step-9">
+
+          </div>
           <sui-grid-row>
             <sui-grid-column>
               <data-table></data-table>
@@ -37,6 +53,9 @@
         </sui-grid>
       </div>
     </sui-container>
+    <v-tour name="myTour"
+            :steps="steps"></v-tour>
+
   </div>
 </template>
 
@@ -66,63 +85,160 @@ export default {
       data: state => state.data
     })
   },
-  mounted() {
-    let { stations } = this.$route.query;
-    let { param } = this.$route.query;
-    let { yearRange } = this.$route.query;
-    if (stations) {
-      // if ?stations=... fetch those
-      stations.split(",").map(id => {
-        //  could use this.$store.dispatch("data/FETCH_STATION_DATA", station) but tricky with if (yearRange....)       this.$store.commit("ui/IS_LOADING", true);
-        this.$apollo
-          .query({
-            query: GET_STATION_DATA,
-            variables: {
-              station: id
-            }
-          })
-          .then(res => {
-            this.$store.commit("ui/CLEAR_ERROR_MSG", "selection");
-            this.$store.commit("ui/IS_LOADING", false);
-            if (find(this.data.loadedStations, o => id === o.info.StationID)) {
+  data() {
+    return {
+      showTakeTour: true,
+      name: "my-tour",
+      steps: [
+        {
+          target: "#step-0",
+          content: `Welcome! In this dropdown you can select one of the forks in the area.`,
+          params: {
+            placement: "top"
+          }
+        },
+        {
+          target: "#step-2",
+          content: `Here you can select stations.`,
+          params: {
+            placement: "top"
+          }
+        },
+        {
+          target: "#step-3",
+          content: `On the map you can also select stations, plus, it's always good to have a map ;)`
+        },
+        {
+          target: "#step-4",
+          content: `One of the stations is highlighted. It will matter in certain graphs (box plot per month) and will be the station for downloads and in the data table`
+        },
+        {
+          target: "#step-5",
+          content: `Here you can select the parameter for the graph. If you have one of the line graphs and only one station selected you can also SHIFT-click to have a second parameter on the same graph!`
+        },
+        {
+          target: "#step-6",
+          content: `In some graphs you can restrict the timeframe shown in the graph and in the data table.`
+        },
+        {
+          target: "#step-7",
+          content: `Download the data for the selected station or all stations in .csv format!`
+        },
+        {
+          target: "#step-8",
+          content: `There are different kind of graphs.`,
+          params: {
+            placement: "top"
+          }
+        },
+
+        {
+          target: "#step-9",
+          content: `Finally, all data for the selected timeframe will be displayed in this data table. By clicking on the top row you can sort by parameter as well.`,
+          params: {
+            placement: "top"
+          }
+        }
+      ]
+    };
+  },
+  methods: {
+    removeTour: function() {
+      localStorage.setItem("noTour", true);
+      this.showTakeTour = false;
+    },
+    takeTour: function() {
+      // this.$store.commit("usi/TAKE_TOUR");
+      this.showTakeTour = false;
+      // FIXME: will be messy with other organizations!
+      this.$router.push({
+        path: ``,
+        query: {
+          stations: "19,35",
+          param: "H2O_pH",
+          yearRange: "2014,2017"
+        }
+      });
+      this.$tours["myTour"].start();
+    },
+    adjustToQuery: function() {
+      let { stations } = this.$route.query;
+      let { param } = this.$route.query;
+      let { yearRange } = this.$route.query;
+      if (stations) {
+        // if (this.ui.takeTour) {
+        //   alert("TOUR");
+        // }
+        // if ?stations=... fetch those
+        stations.split(",").map(id => {
+          //  could use this.$store.dispatch("data/FETCH_STATION_DATA", station) but tricky with if (yearRange....)       this.$store.commit("ui/IS_LOADING", true);
+          this.$apollo
+            .query({
+              query: GET_STATION_DATA,
+              variables: {
+                station: id
+              }
+            })
+            .then(res => {
+              this.$store.commit("ui/CLEAR_ERROR_MSG", "selection");
+              this.$store.commit("ui/IS_LOADING", false);
+              if (
+                find(this.data.loadedStations, o => id === o.info.StationID)
+              ) {
+                this.$store.commit("ui/SET_ERROR_MSG", {
+                  section: "selection",
+                  msg: `Station is already selected`
+                });
+              } else {
+                let station = find(
+                  this.stations,
+                  o => o.StationID === parseInt(id)
+                );
+                this.$store.dispatch("data/ADD_STATION_DATA", {
+                  info: station,
+                  data: res.data
+                });
+                // yearRange check needs to be after because ADD_STATION_DATA does it's own SET_YEAR_RANGE
+                if (yearRange) {
+                  // yearRange query parser
+                  let years = yearRange.split(",");
+                  let startYear = parseInt(years[0]);
+                  let endYear = parseInt(years[1]);
+                  this.$store.commit("selection/SET_YEAR_RANGE", [
+                    startYear,
+                    endYear
+                  ]);
+                }
+              }
+            })
+            .catch(() => {
               this.$store.commit("ui/SET_ERROR_MSG", {
                 section: "selection",
-                msg: `Station is already selected`
+                msg: `Couldn't fetch station data`
               });
-            } else {
-              let station = find(
-                this.stations,
-                o => o.StationID === parseInt(id)
-              );
-              this.$store.dispatch("data/ADD_STATION_DATA", {
-                info: station,
-                data: res.data
-              });
-              // yearRange check needs to be after because ADD_STATION_DATA does it's own SET_YEAR_RANGE
-              if (yearRange) {
-                // yearRange query parser
-                let years = yearRange.split(",");
-                let startYear = parseInt(years[0]);
-                let endYear = parseInt(years[1]);
-                this.$store.commit("selection/SET_YEAR_RANGE", [
-                  startYear,
-                  endYear
-                ]);
-              }
-            }
-          })
-          .catch(() => {
-            this.$store.commit("ui/SET_ERROR_MSG", {
-              section: "selection",
-              msg: `Couldn't fetch station data`
             });
-          });
-      });
+        });
+      }
+      if (param) {
+        // param query parser
+        this.$store.commit("selection/SELECT_ACTIVE_PARAM", param);
+      }
     }
-    if (param) {
-      // param query parser
-      this.$store.commit("selection/SELECT_ACTIVE_PARAM", param);
+  },
+  watch: {
+    $route: function() {
+      this.adjustToQuery();
+    },
+    ui: function() {
+      console.log("UI");
     }
+  },
+  mounted() {
+    // Check for tour
+    if (localStorage.getItem("noTour")) {
+      this.showTakeTour = false;
+    }
+    this.adjustToQuery();
   },
   apollo: {
     stations: {

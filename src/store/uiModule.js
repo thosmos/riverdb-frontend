@@ -4,7 +4,8 @@ import {
   CLEAR_ALL_MSG,
   IS_LOADING,
   SHOW_YEAR_SELECTION,
-  CLEAR_COOKIE_MSG
+  CLEAR_COOKIE_MSG,
+  TAKE_TOUR
 } from "./mutationTypes";
 
 const ui = {
@@ -14,7 +15,8 @@ const ui = {
     infoMsg: null,
     isLoading: false,
     showYearSelection: true,
-    showCookieMsg: true
+    showCookieMsg: true,
+    takeTour: false
   },
   mutations: {
     [SET_ERROR_MSG](state, { section, msg }) {
@@ -35,6 +37,9 @@ const ui = {
     },
     [CLEAR_COOKIE_MSG](state) {
       state.showCookieMsg = false;
+    },
+    [TAKE_TOUR](state) {
+      state.takeTour = true;
     }
   },
   actions: {}

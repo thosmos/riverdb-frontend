@@ -30,6 +30,7 @@ export const CLEAR_ALL_MSG = "CLEAR_ALL_MSG";
 export const IS_LOADING = "IS_LOADING";
 export const SHOW_YEAR_SELECTION = "SHOW_YEAR_SELECTION";
 export const CLEAR_COOKIE_MSG = "CLEAR_COOKIE_MSG";
+export const TAKE_TOUR = "TAKE_TOUR";
 
 /**
  * DATA VUEX

@@ -7,7 +7,8 @@
       </sui-message>
       <div class="ui two column centered grid"
            id="selection-boxes">
-        <div class="column">
+        <div class="column"
+             id="step-0">
           <multiselect v-model="selectedFork"
                        label="label"
                        placeholder="Select a Fork"
@@ -15,8 +16,8 @@
                        track-by="label"
                        :options="forkOptions"></multiselect>
         </div>
-
-        <div class="column">
+        <div class="column"
+             id="step-2">
           <multiselect :options="sortedStationOptions"
                        placeholder="select a station"
                        label="label"
@@ -26,7 +27,8 @@
         </div>
       </div>
       <div class="ui grid">
-        <div class="column">
+        <div class="column"
+             id="step-3">
           <selection-station-map v-if="stationOptions"
                                  :stations="stationOptions"></selection-station-map>
         </div>
@@ -34,12 +36,16 @@
       <div v-if="ui.isLoading">
         <Loader />
       </div>
-      <selection-stations :loadedStations="data.loadedStations"
-                          :selectedStation="data.selectedStation"></selection-stations>
-      <div v-if="data.loadedStations.length > 0">
+      <div id="step-4">
+        <selection-stations :loadedStations="data.loadedStations"
+                            :selectedStation="data.selectedStation"></selection-stations>
+      </div>
+      <div id="step-5"
+           v-if="data.loadedStations.length > 0">
         <selection-params></selection-params>
       </div>
-      <div v-if="ui.showYearSelection">
+      <div id="step-6"
+           v-if="ui.showYearSelection">
         <!-- only show year selection for line graphs etc not for boxplots -->
         <div v-if="!selection.singleYearSelection">
           <selection-years-range v-if="selection.selectionRange"
