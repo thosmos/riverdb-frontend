@@ -1,7 +1,7 @@
 <template>
   <div id="selection-stations">
     <div class="ui centered grid stackable ">
-      <div v-for="(station,index) in loadedStations"
+      <div v-for="station in loadedStations"
            :key="station.info.StationID">
 
         <div class="m-t-md">

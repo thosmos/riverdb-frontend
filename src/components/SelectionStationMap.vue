@@ -14,8 +14,14 @@
             <b>{{marker.value.StationName}}</b>
           </h6>
           <p>on {{marker.value.LocalWaterbody}}</p>
-          <sui-button color="blue"
-                      @click="addStation(marker.value)">Add Station</sui-button>
+          <div v-if="isLoaded(marker)">
+            <sui-button color="red"
+                        @click="removeStation(marker.value)">Remove Station</sui-button>
+          </div>
+          <div v-else>
+            <sui-button color="blue"
+                        @click="addStation(marker.value)">Add Station</sui-button>
+          </div>
         </l-popup>
       </l-marker>
     </l-map>
@@ -87,6 +93,15 @@ export default {
     },
     addStation: function(station) {
       this.$store.dispatch("data/FETCH_STATION_DATA", station);
+    },
+    removeStation: function(station) {
+      this.$store.dispatch("data/REMOVE_STATION", station.StationID);
+    },
+    isLoaded: function(station) {
+      let index = findIndex(this.data.loadedStations, o => {
+        return o.info.StationID === station.value.StationID;
+      });
+      return index === -1 ? false : true;
     }
   }
 };
