@@ -8,7 +8,8 @@
                         :key="p">
         <sui-button @click="selectParam(p, $event)"
                     compact
-                    :class="{active: p === selection.activeParam}">
+                    :class="{active: p === selection.activeParam,
+                            secondaryActive: p === selection.secondaryParam}">
           {{p}}
         </sui-button>
       </sui-button-group>
@@ -90,6 +91,11 @@ export default {
     &.active {
       background: lighten($lightGrey, 5%);
       box-shadow: inset 3 0 3px #000000;
+    }
+    &.secondaryActive {
+      background: lighten($lightGrey, 10%) !important;
+      box-shadow: inset 3 0 3px #000000;
+      color: $primaryColor !important;
     }
   }
 }
