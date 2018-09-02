@@ -2,13 +2,15 @@ import { ADD_STATION_DATA, FETCH_STATION_DATA } from "./actionTypes";
 import {
   REMOVE_STATION,
   SELECT_STATION,
-  PROVIDE_APOLLO
+  PROVIDE_APOLLO,
+  GENERATE_KEY
 } from "./mutationTypes";
 import { GET_STATION_DATA } from "../apollo/queries.js";
 
 import Station from "../utils/Station";
 import findIndex from "lodash/findIndex";
 import find from "lodash/find";
+import shortid from "shortid";
 
 const data = {
   namespaced: true,
@@ -17,7 +19,8 @@ const data = {
     selectedStation: null,
     startYear: null,
     endYear: null,
-    apollo: null
+    apollo: null,
+    uniqueKey: "abc"
   },
   mutations: {
     [SELECT_STATION](state, StationID) {
@@ -29,6 +32,9 @@ const data = {
     },
     [PROVIDE_APOLLO](state, apollo) {
       state.apollo = apollo;
+    },
+    [GENERATE_KEY](state) {
+      state.uniqueKey = shortid.generate();
     }
   },
   actions: {

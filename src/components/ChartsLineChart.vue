@@ -1,7 +1,8 @@
 <template>
   <div>
     <highcharts :options="chartOptions"
-                ref="chart"></highcharts>
+                ref="chart"
+                :key="data.uniqueKey"></highcharts>
   </div>
 </template>
 

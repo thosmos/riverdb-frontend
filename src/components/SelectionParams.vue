@@ -44,6 +44,7 @@ export default {
   },
   methods: {
     selectParam: function(param, $event) {
+      this.$store.commit("data/GENERATE_KEY");
       if (!$event.shiftKey) {
         this.$store.commit("selection/SELECT_ACTIVE_PARAM", param);
         this.$ga.event("Select", "Param  ", param);
