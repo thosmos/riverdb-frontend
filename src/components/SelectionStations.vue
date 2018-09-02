@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="selection-stations">
     <div class="ui centered grid stackable ">
       <div v-for="(station,index) in loadedStations"
            :key="station.info.StationID">
@@ -11,7 +11,7 @@
 
             <span>{{station.info.StationName}}</span>
             <sui-icon class="space-left"
-                      name="window close"
+                      name="cancel"
                       @click="onCloseClick(station.info,
                $event)
                " />
@@ -53,11 +53,18 @@ export default {
 
 <style lang="scss" scoped>
 @import "../style/style.scss";
-.space-left {
-  margin-left: 0.5rem;
-}
-.active {
-  font-weight: bold;
-  border: 2px $primaryColor solid;
+
+#selection-stations {
+  .space-left {
+    margin-left: 0.5rem;
+  }
+  .active {
+    font-weight: bold;
+    color: $offWhite;
+    background: $primaryColor;
+  }
+  div.ui.segment {
+    padding: 0.5rem;
+  }
 }
 </style>

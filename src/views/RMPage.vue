@@ -8,10 +8,10 @@
         <div class="ui grid centered">
           <sui-button-group>
             <sui-button @click="takeTour"
-                        positive>Take the Tour</sui-button>
+                        color="blue">Take the Tour</sui-button>
             <sui-button-or />
             <sui-button @click="removeTour"
-                        negative>Never show this again</sui-button>
+                        color="red">Never show this again</sui-button>
           </sui-button-group>
         </div>
       </div>
@@ -99,10 +99,7 @@ export default {
         },
         {
           target: "#step-2",
-          content: `Here you can select stations.`,
-          params: {
-            placement: "top"
-          }
+          content: `Select a station to see data.`
         },
         {
           target: "#step-3",
@@ -126,7 +123,7 @@ export default {
         },
         {
           target: "#step-8",
-          content: `There are different kind of graphs.`,
+          content: `There are different kind of graphs. The button in the right-upper corner lets you download an image of the graph`,
           params: {
             placement: "top"
           }
@@ -228,9 +225,6 @@ export default {
   watch: {
     $route: function() {
       this.adjustToQuery();
-    },
-    ui: function() {
-      console.log("UI");
     }
   },
   mounted() {
