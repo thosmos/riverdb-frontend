@@ -51,11 +51,17 @@ export default {
         // with SHIFT KEY
         if (
           // only LINE charts work with secondary param
-          this.selection.chartType === "LINE_MULTI" ||
-          this.selection.chartType === "LINE_SINGLE"
+          (this.selection.chartType === "LINE_MULTI" ||
+            this.selection.chartType === "LINE_SINGLE") &&
+          // only allows secondaryParam if only one station is selected
+          this.data.loadedStations.length === 1
         ) {
+          // reset to null if shift clicked on secondatyParam again
+          if (param === this.selection.secondaryParam) {
+            this.$store.commit("selection/SELECT_SECONDARY_PARAM", null);
+          }
           // param is different from activeParam
-          if (param !== this.selection.activeParam) {
+          else if (param !== this.selection.activeParam) {
             this.$store.commit("selection/SELECT_SECONDARY_PARAM", param);
           }
         }

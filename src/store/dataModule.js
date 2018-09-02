@@ -77,6 +77,8 @@ const data = {
       });
       state.startYear = Math.min(...years);
       state.endYear = Math.max(...years);
+      // Allways reset secondary param when adding station
+      commit("selection/SELECT_SECONDARY_PARAM", null, { root: true });
       // set new year range with updated value in selection Vuex
       if (rootState.selection.singleYearSelection) {
         // if singleYearSelection, set year to last

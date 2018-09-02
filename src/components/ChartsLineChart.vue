@@ -1,6 +1,7 @@
 <template>
   <div>
-    <highcharts :options="chartOptions"></highcharts>
+    <highcharts :options="chartOptions"
+                ref="chart"></highcharts>
   </div>
 </template>
 
@@ -36,7 +37,9 @@ export default {
             )
             .linePlot();
           data.push({
-            name: s.info.StationName,
+            name: this.selection.secondaryParam
+              ? this.selection.activeParam
+              : s.info.StationName,
             type: "spline",
             data: temp.processed.data
           });
@@ -56,7 +59,7 @@ export default {
               )
               .linePlot();
             data.push({
-              name: s.info.StationName,
+              name: this.selection.secondaryParam,
               data: temp.processed.data,
               type: "spline",
               yAxis: 1
@@ -92,15 +95,7 @@ export default {
             },
             plotLines: getParamInfoLine(this.selection.activeParam)
           },
-          {
-            title: {
-              text:
-                this.selection.secondaryParam +
-                getUnit(this.selection.secondaryParam)
-            },
-            opposite: true
-            // plotLines: getParamInfoLine(this.selection.activeParam)
-          }
+          { ...this.secondaryAxis() }
         ],
         tooltip: {
           shared: true
@@ -122,6 +117,20 @@ export default {
         colors: palette1,
         series: this.plotData
       };
+    }
+  },
+  methods: {
+    secondaryAxis() {
+      if (this.selection.secondaryParam) {
+        return {
+          title: {
+            text:
+              this.selection.secondaryParam +
+              getUnit(this.selection.secondaryParam)
+          },
+          opposite: true
+        };
+      } else return null;
     }
   }
 };
