@@ -64,6 +64,7 @@ export default {
           // param is different from activeParam
           else if (param !== this.selection.activeParam) {
             this.$store.commit("selection/SELECT_SECONDARY_PARAM", param);
+            this.$ga.event("Select", "Secondary Param  ", param);
           }
         }
       }

@@ -41,6 +41,7 @@ export default {
         this.activeComponent = "Calendar";
       }
       if (name === "Watershed") {
+        this.$ga.event("View", "Watershed", this.$route.params.org);
         this.activeComponent = "Watershed";
       }
     }

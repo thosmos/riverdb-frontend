@@ -143,9 +143,10 @@ export default {
     removeTour: function() {
       localStorage.setItem("noTour", true);
       this.showTakeTour = false;
+      this.$ga.event("Tour", "don't show");
     },
     takeTour: function() {
-      // this.$store.commit("usi/TAKE_TOUR");
+      this.$ga.event("Tour", "take");
       this.showTakeTour = false;
       // FIXME: will be messy with other organizations!
       this.$router.push({
