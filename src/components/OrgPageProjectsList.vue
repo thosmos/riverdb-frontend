@@ -23,7 +23,7 @@
                   <h1>Explore the Project</h1>
                 </div> -->
               <div v-if="project.hasData">
-                <router-link to="SYRCL/RM">
+                <router-link :to="{path: `${organization.activeOrganization}/RM`}">
                   <sui-button basic
                               color="blue"
                               fluid>Explore the data</sui-button>
@@ -39,6 +39,7 @@
 
 <script>
 import loremIpsum from "lorem-ipsum";
+import { mapState } from "vuex";
 
 export default {
   props: {
@@ -54,6 +55,9 @@ export default {
     }
   },
   computed: {
+    ...mapState({
+      organization: state => state.organization
+    }),
     description() {
       return loremIpsum({
         count: 5,

@@ -1,6 +1,8 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
+import OrgPageWrapper from "./views/OrgPageWrapper.vue";
+import RMPageWrapper from "./views/RMPageWrapper.vue";
 
 Vue.use(Router);
 
@@ -33,27 +35,45 @@ export default new Router({
     },
     {
       path: "/:org",
-      name: "OrganiziationPage",
-      component: () =>
-        import(/* webpackChunkName: "org-page" */ "./views/OrganizationPage.vue")
-    },
-    {
-      path: "/:org/projects",
-      name: "ProjectsPage",
-      component: () =>
-        import(/* webpackChunkName: "project-page" */ "./views/ProjectsPage.vue")
-    },
-    {
-      path: "/:org/RM",
-      name: "RMPage",
-      component: () =>
-        import(/* webpackChunkName: "rm-page" */ "./views/RMPage.vue")
-    },
-    {
-      path: "/:org/blog/:slug",
-      name: "RMPage",
-      component: () =>
-        import(/* webpackChunkName: "blog-post" */ "./views/Blog.vue")
+      // name: "OrganiziationPage",
+      component: OrgPageWrapper,
+      children: [
+        {
+          path: "",
+          component: () =>
+            import(/* webpackChunkName: "org-page" */ "./views/OrganizationPage.vue")
+        },
+        {
+          path: "projects",
+          name: "ProjectsPage",
+          component: () =>
+            import(/* webpackChunkName: "project-page" */ "./views/ProjectsPage.vue")
+        },
+
+        {
+          path: "RM",
+          name: "RMPageWrapper",
+          component: RMPageWrapper,
+          children: [
+            {
+              path: "",
+              component: () =>
+                import(/* webpackChunkName: "rm-page" */ "./views/RMPage.vue")
+            },
+            {
+              path: "stations",
+              component: () =>
+                import(/* webpackChunkName: 'rm-stations" */ "./views/RMStationsPage.vue")
+            }
+          ]
+        },
+        {
+          path: "blog/:slug",
+          name: "RMPage",
+          component: () =>
+            import(/* webpackChunkName: "blog-post" */ "./views/Blog.vue")
+        }
+      ]
     }
   ]
 });
