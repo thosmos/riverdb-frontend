@@ -24,20 +24,20 @@ Today, SYRCL is the central hub of community activism to protect, restore, and c
         dataBegins: `2001`,
         dataEnds: `present`,
         hasData: true
-      },
-      {
-        title: "Meadow Restoration",
-        dataBegins: `2015`,
-        dataEnds: `present`,
-        hasData: false
-      },
-
-      {
-        title: "Lower Yuba Restoration",
-        dataBegins: `2004`,
-        dataEnds: `present`,
-        hasData: false
       }
+      // {
+      //   title: "Meadow Restoration",
+      //   dataBegins: `2015`,
+      //   dataEnds: `present`,
+      //   hasData: false
+      // },
+
+      // {
+      //   title: "Lower Yuba Restoration",
+      //   dataBegins: `2004`,
+      //   dataEnds: `present`,
+      //   hasData: false
+      // }
     ]
   },
   {
@@ -64,13 +64,13 @@ Today, SYRCL is the central hub of community activism to protect, restore, and c
         dataBegins: `2005`,
         dataEnds: `present`,
         hasData: true
-      },
-      {
-        title: "Benthic Macroinvertebrate Populations",
-        dataBegins: `2007`,
-        dataEnds: `2014`,
-        hasData: false
       }
+      // {
+      //   title: "Benthic Macroinvertebrate Populations",
+      //   dataBegins: `2007`,
+      //   dataEnds: `2014`,
+      //   hasData: false
+      // }
     ]
   },
   {
@@ -97,13 +97,13 @@ Today, SYRCL is the central hub of community activism to protect, restore, and c
         dataBegins: `2007`,
         dataEnds: `2014`,
         hasData: true
-      },
-      {
-        title: "Heavy Metal Testing",
-        dataBegins: `2007`,
-        dataEnds: `2014`,
-        hasData: false
       }
+      // {
+      //   title: "Heavy Metal Testing",
+      //   dataBegins: `2007`,
+      //   dataEnds: `2014`,
+      //   hasData: false
+      // }
     ]
   }
 ];

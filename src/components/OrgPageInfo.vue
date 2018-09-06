@@ -1,7 +1,7 @@
 <template>
   <div id="organization-info"
        class="m-t-md ui segment">
-    <sui-menu :widths="3">
+    <!-- <sui-menu :widths="3">
       <a is="sui-menu-item"
          v-for="item in items"
          :key="item"
@@ -11,7 +11,8 @@
     </sui-menu>
     <transition name="fade">
       <component v-bind:is="activeComponent"></component>
-    </transition>
+    </transition> -->
+    <watershed></watershed>
   </div>
 </template>
 

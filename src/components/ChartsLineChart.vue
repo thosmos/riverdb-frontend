@@ -131,7 +131,14 @@ export default {
           },
           opposite: true
         };
-      } else return null;
+      } else
+        return {
+          // needs to be empty string, otherwise dummy 'values' will be rendered
+          title: {
+            text: ""
+          },
+          opposite: true
+        };
     }
   }
 };

@@ -10,7 +10,7 @@
                     compact
                     :class="{active: p === selection.activeParam,
                             secondaryActive: p === selection.secondaryParam}">
-          {{p}}
+          {{parameterName(p)}}
         </sui-button>
       </sui-button-group>
     </div>
@@ -21,6 +21,7 @@
 import { mapState } from "vuex";
 import flatten from "lodash/flatten";
 import uniq from "lodash/uniq";
+import names from "../assets/parameterNames.js";
 
 export default {
   name: "SelectionParams",
@@ -44,6 +45,9 @@ export default {
     }
   },
   methods: {
+    parameterName: function(p) {
+      return names[p].text;
+    },
     selectParam: function(param, $event) {
       this.$store.commit("data/GENERATE_KEY");
       if (!$event.shiftKey) {

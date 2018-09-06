@@ -2,7 +2,7 @@
   <div id="RM">
     <sui-container fluid>
       <sui-header size="huge"
-                  textAlign="center">River Monitoring Data:</sui-header>
+                  textAlign="center">Water Quality Monitoring Data:</sui-header>
       <div v-if="showTakeTour"
            class="m-t-lg m-b-lg">
         <div class="ui grid centered">

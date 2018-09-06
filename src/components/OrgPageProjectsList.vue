@@ -7,7 +7,7 @@
 
       <div v-for="project in info.projects"
            :key="project.title"
-           class="six wide tablet four wide computer column">
+           class="eight wide computer column">
         <sui-card class="fluid project-card eq-card project-segment">
           <sui-card-content class="m-b-sm project-title">
             <h5>{{project.title}}</h5>

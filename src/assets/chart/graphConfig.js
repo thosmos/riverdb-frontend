@@ -1,5 +1,6 @@
 import { palette1 } from "./palettes.js";
 import { getUnit } from "../../utils/charts.js";
+import names from "../parameterNames";
 
 export const graphConfig = {
   legend: {
@@ -80,7 +81,7 @@ export const singleStation = (stationName, param) => {
 export const multiStation = (loadedStations, param) => {
   return {
     title: {
-      text: param + getUnit(param)
+      text: names[param].text + getUnit(param)
     }
   };
 };

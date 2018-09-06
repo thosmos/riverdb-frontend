@@ -20,7 +20,7 @@
       <router-link :to="`/${org.abbreviation}`">
         <sui-button fluid
                     size="big"
-                    primary>Visit Organization</sui-button>
+                    primary>View Data</sui-button>
       </router-link>
       <!-- </sui-card-content> -->
     </div>
