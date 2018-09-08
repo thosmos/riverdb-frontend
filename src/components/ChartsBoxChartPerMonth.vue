@@ -1,13 +1,15 @@
 
 <template>
   <div>
-    <highcharts :options="chartOptions"></highcharts>
+    <highcharts :options="chartOptions"
+                :key="getNewKey()"></highcharts>
   </div>
 </template>
 
 <script>
 import { singleStation, monthsOnXAxis } from "../assets/chart/graphConfig.js";
 import { getUnit, getParamInfoLine } from "../utils/charts.js";
+import shortid from "shortid";
 
 import get from "lodash/get";
 
@@ -59,6 +61,11 @@ export default {
         // },
         series: this.plotData
       };
+    }
+  },
+  methods: {
+    getNewKey: function() {
+      return shortid.generate();
     }
   }
 };

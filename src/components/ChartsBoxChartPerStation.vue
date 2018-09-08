@@ -1,6 +1,7 @@
 <template>
   <div>
-    <highcharts :options="chartOptions"></highcharts>
+    <highcharts :options="chartOptions"
+                :key="getNewKey()"></highcharts>
   </div>
 </template>
 
@@ -8,6 +9,7 @@
 import { multiStation, graphConfig } from "../assets/chart/graphConfig.js";
 import { palette1 } from "../assets/chart/palettes.js";
 import { getUnit, getParamInfoLine } from "../utils/charts.js";
+import shortid from "shortid";
 
 export default {
   name: "ChartsBoxChartPerStation",
@@ -76,6 +78,11 @@ export default {
         colors: palette1,
         series: this.plotData
       };
+    }
+  },
+  methods: {
+    getNewKey: function() {
+      return shortid.generate();
     }
   }
 };
