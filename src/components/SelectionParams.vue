@@ -62,20 +62,24 @@ export default {
   },
   methods: {
     parameterName: function(p) {
-      return names[p].text;
+      try {
+        return names[p].text;
+      } catch (err) {
+        return "";
+      }
     },
     canHaveSecondaryParam: function() {
       if (
         // only LINE charts work with secondary param
-        (this.selection.chartType === "LINE_MULTI" ||
-          this.selection.chartType === "LINE_SINGLE") &&
-        // only allows secondaryParam if only one station is selected
-        this.data.loadedStations.length === 1
+        this.selection.chartType === "LINE_MULTI" ||
+        this.selection.chartType === "LINE_SINGLE"
       ) {
-        return true;
-      } else {
-        return false;
+        if (this.data.loadedStations.length === 1) {
+          // only allows secondaryParam if only one station is selected
+          return true;
+        }
       }
+      return false;
     },
     selectParam: function(param, $event) {
       this.$store.commit("data/GENERATE_KEY");

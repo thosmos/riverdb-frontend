@@ -4,7 +4,8 @@ const names = {
   H2O_DO: { text: "H2O DO" },
   H2O_Temp: { text: "H2O Temp" },
   H2O_Turbidity: { text: "H2O Turb" },
-  H2O_pH: { text: "H2O pH" }
+  H2O_pH: { text: "H2O pH" },
+  H2O_Velocity: { text: "H2O Velocity" }
 };
 
 export default names;

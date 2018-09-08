@@ -16,5 +16,9 @@ export function getParamInfoLine(param) {
 }
 
 export function getFullParamName(param) {
-  return names[param].text;
+  try {
+    return names[param].text;
+  } catch (err) {
+    return "";
+  }
 }
