@@ -1,4 +1,5 @@
 import { unitsForParams, parameterInfoObj } from "../assets/constants";
+import names from "../assets/parameterNames";
 
 export function getUnit(param) {
   let unit = unitsForParams[param];
@@ -12,4 +13,8 @@ export function getParamInfoLine(param) {
     console.log("err", err);
     return [];
   }
+}
+
+export function getFullParamName(param) {
+  return names[param].text;
 }

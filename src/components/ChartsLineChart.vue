@@ -9,10 +9,13 @@
 <script>
 import { palette1 } from "../assets/chart/palettes.js";
 import { multiStation, graphConfig } from "../assets/chart/graphConfig.js";
-import { getUnit, getParamInfoLine } from "../utils/charts.js";
+import {
+  getUnit,
+  getParamInfoLine,
+  getFullParamName
+} from "../utils/charts.js";
 
 import cloneDeep from "lodash/cloneDeep";
-
 export default {
   name: "ChartsLineChart",
   props: {
@@ -92,7 +95,8 @@ export default {
           {
             title: {
               text:
-                this.selection.activeParam + getUnit(this.selection.activeParam)
+                getFullParamName(this.selection.activeParam) +
+                getUnit(this.selection.activeParam)
             },
             plotLines: getParamInfoLine(this.selection.activeParam)
           },
@@ -126,7 +130,7 @@ export default {
         return {
           title: {
             text:
-              this.selection.secondaryParam +
+              getFullParamName(this.selection.secondaryParam) +
               getUnit(this.selection.secondaryParam)
           },
           opposite: true

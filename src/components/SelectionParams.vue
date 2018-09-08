@@ -8,11 +8,27 @@
                         :key="p">
         <sui-button @click="selectParam(p, $event)"
                     compact
-                    :class="{active: p === selection.activeParam,
-                            secondaryActive: p === selection.secondaryParam}">
+                    :class="{active: p === selection.activeParam}">
           {{parameterName(p)}}
         </sui-button>
       </sui-button-group>
+      <div v-if="canHaveSecondaryParam()"
+           class="p-t-md"
+           ss>
+        <small>
+          <b>Secondary Parameter: </b>
+        </small>
+        <sui-button-group basic
+                          v-for="(p2,index) in allParams"
+                          :key="index">
+          <sui-button v-if="p2 !== selection.activeParam"
+                      @click="selectSecondaryParam(p2, $event) "
+                      compact
+                      :class="{active: p2===selection.secondaryParam}
+            "> {{parameterName(p2)}}
+          </sui-button>
+        </sui-button-group>
+      </div>
     </div>
   </div>
 </template>
@@ -48,30 +64,34 @@ export default {
     parameterName: function(p) {
       return names[p].text;
     },
+    canHaveSecondaryParam: function() {
+      if (
+        // only LINE charts work with secondary param
+        (this.selection.chartType === "LINE_MULTI" ||
+          this.selection.chartType === "LINE_SINGLE") &&
+        // only allows secondaryParam if only one station is selected
+        this.data.loadedStations.length === 1
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     selectParam: function(param, $event) {
       this.$store.commit("data/GENERATE_KEY");
       if (!$event.shiftKey) {
         this.$store.commit("selection/SELECT_ACTIVE_PARAM", param);
         this.$ga.event("Select", "Param  ", param);
-      } else {
-        // with SHIFT KEY
-        if (
-          // only LINE charts work with secondary param
-          (this.selection.chartType === "LINE_MULTI" ||
-            this.selection.chartType === "LINE_SINGLE") &&
-          // only allows secondaryParam if only one station is selected
-          this.data.loadedStations.length === 1
-        ) {
-          // reset to null if shift clicked on secondatyParam again
-          if (param === this.selection.secondaryParam) {
-            this.$store.commit("selection/SELECT_SECONDARY_PARAM", null);
-          }
-          // param is different from activeParam
-          else if (param !== this.selection.activeParam) {
-            this.$store.commit("selection/SELECT_SECONDARY_PARAM", param);
-            this.$ga.event("Select", "Secondary Param  ", param);
-          }
-        }
+      }
+    },
+    selectSecondaryParam: function(param) {
+      if (param === this.selection.secondaryParam) {
+        this.$store.commit("selection/SELECT_SECONDARY_PARAM", null);
+      }
+      // param is different from activeParam
+      else if (param !== this.selection.activeParam) {
+        this.$store.commit("selection/SELECT_SECONDARY_PARAM", param);
+        this.$ga.event("Select", "Secondary Param  ", param);
       }
     }
   }

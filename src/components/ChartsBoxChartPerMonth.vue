@@ -8,7 +8,11 @@
 
 <script>
 import { singleStation, monthsOnXAxis } from "../assets/chart/graphConfig.js";
-import { getUnit, getParamInfoLine } from "../utils/charts.js";
+import {
+  getUnit,
+  getParamInfoLine,
+  getFullParamName
+} from "../utils/charts.js";
 import shortid from "shortid";
 
 import get from "lodash/get";
@@ -50,7 +54,8 @@ export default {
         yAxis: {
           title: {
             text:
-              this.selection.activeParam + getUnit(this.selection.activeParam)
+              getFullParamName(this.selection.activeParam) +
+              getUnit(this.selection.activeParam)
           },
 
           plotLines: getParamInfoLine(this.selection.activeParam)
