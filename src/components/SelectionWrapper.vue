@@ -10,6 +10,7 @@
         <div class="column"
              id="step-0">
           <multiselect v-model="selectedFork"
+                       id="select-1"
                        label="label"
                        placeholder="Select a Fork"
                        @input="forkUpdated"
@@ -19,6 +20,7 @@
         <div class="column"
              id="step-2">
           <multiselect :options="sortedStationOptions"
+                       id="select-2"
                        placeholder="select a station"
                        label="label"
                        @input="fetchStationData"
@@ -147,17 +149,11 @@ export default {
 </script>
 
 <style>
-#RM
-  > div
-  > div:nth-child(2)
-  > div
-  > div:nth-child(1)
-  > div
-  > div
-  > div
-  > div.ui.two.column.centered.grid
-  > div
-  > div {
+#RM > div > div > div > div > div > div > div > div > div > div {
   z-index: 100000;
 }
+
+/* #step-2 > div > div.multiselect__content-wrapper {
+  z-index: 100000;
+} */
 </style>
