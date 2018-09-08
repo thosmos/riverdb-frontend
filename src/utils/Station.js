@@ -194,13 +194,15 @@ export default class Station {
     let byMonth = utils.splitByMonth(this.processed.data, true);
     this.processed.data = byMonth.map(d => {
       let valuesOnly = d.map(v => v[1]);
-      return [
-        Math.min(...valuesOnly),
-        quantile(valuesOnly, 0.25),
-        quantile(valuesOnly, 0.5),
-        quantile(valuesOnly, 0.75),
-        Math.max(...valuesOnly)
-      ];
+      if (valuesOnly.length > 0) {
+        return [
+          Math.min(...valuesOnly),
+          quantile(valuesOnly, 0.25),
+          quantile(valuesOnly, 0.5),
+          quantile(valuesOnly, 0.75),
+          Math.max(...valuesOnly)
+        ];
+      } else return null;
     });
     return this;
   }
