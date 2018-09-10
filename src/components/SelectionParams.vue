@@ -1,8 +1,7 @@
 <template>
   <div id="selection-params"
-       class="m-t-xl">
-    <!-- <sui-divider></sui-divider> -->
-    <div class="centered-buttons ui segment  ">
+       class="m-t-xl ui segment">
+    <div class="centered-buttons ui ">
       <sui-button-group basic
                         v-for="p in allParams"
                         :key="p">
@@ -12,22 +11,26 @@
           {{parameterName(p)}}
         </sui-button>
       </sui-button-group>
-      <div v-if="canHaveSecondaryParam()"
-           class="p-t-md"
-           ss>
-        <small>
-          <b>Secondary Parameter: </b>
-        </small>
-        <sui-button-group basic
-                          v-for="(p2,index) in allParams"
-                          :key="index">
-          <sui-button v-if="p2 !== selection.activeParam"
-                      @click="selectSecondaryParam(p2, $event) "
-                      compact
-                      :class="{active: p2===selection.secondaryParam}
+      <div class="centered-buttons ui">
+        <div v-if="canHaveSecondaryParam()"
+             class="p-t-md">
+          <sui-divider></sui-divider>
+          <small>
+            <b>Secondary Parameter: </b>
+          </small>
+          <br/>
+          <sui-button-group basic
+                            class="secondary-param"
+                            v-for="(p2,index) in allParams"
+                            :key="index">
+            <sui-button v-if="p2 !== selection.activeParam"
+                        @click="selectSecondaryParam(p2, $event) "
+                        compact
+                        :class="{active: p2===selection.secondaryParam}
             "> {{parameterName(p2)}}
-          </sui-button>
-        </sui-button-group>
+            </sui-button>
+          </sui-button-group>
+        </div>
       </div>
     </div>
   </div>
@@ -124,6 +127,11 @@ export default {
       background: lighten($lightGrey, 10%) !important;
       box-shadow: inset 3 0 3px #000000;
       color: $primaryColor !important;
+    }
+  }
+  div.secondary-param {
+    button {
+      font-size: 0.85srem;
     }
   }
 }

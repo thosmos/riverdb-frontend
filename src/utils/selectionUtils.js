@@ -1,4 +1,6 @@
 import uniqBy from "lodash/uniqBy";
+import sortBy from "lodash/sortBy";
+import forkNames from "../assets/riverForkNames";
 
 export function getLocalWaterbodies(stations) {
   return uniqBy(
@@ -40,9 +42,13 @@ export function getStationNames(stations) {
 export function calculateForksForSelection(allForks) {
   let tempForks = allForks
     ? allForks.map(f => {
-        return { label: f.label, value: f.label };
+        return { label: forkNames[f.label], value: f.label };
       })
     : [];
+  // remove null label
+  tempForks = tempForks.filter(f => f.label);
+  // sort
+  tempForks = sortBy(tempForks, o => o.label);
   return [{ label: "All Forks", value: null }].concat(tempForks);
 }
 export function calculateStationsForSelection(allStations, forkSelection) {
