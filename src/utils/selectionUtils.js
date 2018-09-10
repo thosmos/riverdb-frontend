@@ -54,7 +54,7 @@ export function calculateForksForSelection(allForks) {
 export function calculateStationsForSelection(allStations, forkSelection) {
   let tempStations = allStations
     ? allStations.map(s => {
-        return { label: s.StationName, value: s };
+        return { label: `${s.StationName} #${s.StationID} `, value: s };
       })
     : [];
   if (forkSelection) {
