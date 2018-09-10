@@ -3,6 +3,7 @@ import Router from "vue-router";
 import Home from "./views/Home.vue";
 import OrgPageWrapper from "./views/OrgPageWrapper.vue";
 import RMPageWrapper from "./views/RMPageWrapper.vue";
+import FlowPageWrapper from "./views/FlowPageWrapper";
 
 Vue.use(Router);
 
@@ -66,6 +67,12 @@ export default new Router({
                 import(/* webpackChunkName: 'rm-stations" */ "./views/RMStationsPage.vue")
             }
           ]
+        },
+        {
+          path: "Flows",
+          name: "FlowsPage",
+          component: () =>
+            import(/* webpackChunkName: 'flow-page' */ "./views/FlowPageWrapper.vue")
         },
         {
           path: "blog/:slug",
