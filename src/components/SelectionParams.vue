@@ -1,6 +1,10 @@
 <template>
   <div id="selection-params"
-       class="m-t-xl ui segment">
+       class="m-t-xl ui center aligned segment">
+    <small v-if="canHaveSecondaryParam()">
+      <b>Primary Parameter: </b>
+    </small>
+    <br/>
     <div class="centered-buttons ui ">
       <sui-button-group basic
                         v-for="p in allParams"
@@ -11,26 +15,25 @@
           {{parameterName(p)}}
         </sui-button>
       </sui-button-group>
-      <div class="centered-buttons ui">
-        <div v-if="canHaveSecondaryParam()"
-             class="p-t-md">
-          <sui-divider></sui-divider>
-          <small>
-            <b>Secondary Parameter: </b>
-          </small>
-          <br/>
-          <sui-button-group basic
-                            class="secondary-param"
-                            v-for="(p2,index) in allParams"
-                            :key="index">
-            <sui-button v-if="p2 !== selection.activeParam"
-                        @click="selectSecondaryParam(p2, $event) "
-                        compact
-                        :class="{active: p2===selection.secondaryParam}
+    </div>
+    <div class="centered-buttons ui">
+      <div v-if="canHaveSecondaryParam()"
+           class="p-t-md">
+        <small>
+          <b>Secondary Parameter: </b>
+        </small>
+        <br/>
+        <sui-button-group basic
+                          class="secondary-param"
+                          v-for="(p2,index) in allParams"
+                          :key="index">
+          <sui-button v-if="p2 !== selection.activeParam"
+                      @click="selectSecondaryParam(p2, $event) "
+                      compact
+                      :class="{active: p2===selection.secondaryParam}
             "> {{parameterName(p2)}}
-            </sui-button>
-          </sui-button-group>
-        </div>
+          </sui-button>
+        </sui-button-group>
       </div>
     </div>
   </div>
