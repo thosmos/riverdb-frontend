@@ -1,7 +1,7 @@
 <template>
   <div v-if="data.loadedStations.length > 0"
        id="download"
-       class="ui container">
+       class="">
     <sui-grid>
       <sui-grid-row centered
                     stackable>

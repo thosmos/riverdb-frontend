@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="ui container">
+    <div class="">
       <sui-message v-if="ui.errorMsg.selection"
                    color="red">
         <p>{{ui.errorMsg.selection}}</p>
@@ -32,6 +32,7 @@
         <div class="column"
              id="step-3">
           <selection-station-map v-if="stationOptions"
+                                 id='station-map'
                                  :stations="stationOptions"></selection-station-map>
         </div>
       </div>
@@ -42,10 +43,6 @@
            class="m-b-lg">
         <selection-stations :loadedStations="data.loadedStations"
                             :selectedStation="data.selectedStation"></selection-stations>
-      </div>
-      <div id="step-5"
-           v-if="data.loadedStations.length > 0">
-        <selection-params></selection-params>
       </div>
       <div id="step-6"
            v-if="ui.showYearSelection">
@@ -59,6 +56,10 @@
           <selection-year-single :data="data"
                                  :selection="selection"></selection-year-single>
         </div>
+      </div>
+      <div id="step-5"
+           v-if="data.loadedStations.length > 0">
+        <selection-params></selection-params>
       </div>
     </div>
   </div>
@@ -150,11 +151,11 @@ export default {
 </script>
 
 <style>
-#RM > div > div > div > div > div > div > div > div > div > div {
+#selection-boxes > div {
   z-index: 100000;
 }
-
-/* #step-2 > div > div.multiselect__content-wrapper {
-  z-index: 100000;
-} */
+#station-map {
+  width: 70%;
+  margin: 0 auto;
+}
 </style>

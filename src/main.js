@@ -37,6 +37,11 @@ Vue.use(VueAnalytics, {
   id: "UA-124577086-1",
   router
 });
+
+import VTooltip from "v-tooltip";
+
+Vue.use(VTooltip);
+
 Vue.config.productionTip = false;
 
 import VueTour from "vue-tour";

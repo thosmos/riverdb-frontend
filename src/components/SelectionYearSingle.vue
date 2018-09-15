@@ -1,6 +1,6 @@
 <template>
   <div v-if="data.startYear"
-       class="m-t-xl">
+       class="m-t-xl m-b-lg">
     <div class="ui grid centered">
       <span v-if="year > data.startYear"
             @click="moveBackward">

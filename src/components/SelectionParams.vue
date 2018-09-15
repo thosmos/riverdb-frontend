@@ -1,39 +1,32 @@
 <template>
   <div id="selection-params"
-       class="m-t-xl ui center aligned segment">
+       class="">
     <small v-if="canHaveSecondaryParam()">
       <b>Primary Parameter: </b>
     </small>
     <br/>
-    <div class="centered-buttons ui ">
-      <sui-button-group basic
-                        v-for="p in allParams"
-                        :key="p">
+    <div class="flex-row">
+      <div v-for="p in allParams"
+           :key="p">
         <sui-button @click="selectParam(p, $event)"
-                    compact
                     :class="{active: p === selection.activeParam}">
           {{parameterName(p)}}
         </sui-button>
-      </sui-button-group>
+      </div>
     </div>
-    <div class="centered-buttons ui">
-      <div v-if="canHaveSecondaryParam()"
-           class="p-t-md">
-        <small>
-          <b>Secondary Parameter: </b>
-        </small>
-        <br/>
-        <sui-button-group basic
-                          class="secondary-param"
-                          v-for="(p2,index) in allParams"
-                          :key="index">
-          <sui-button v-if="p2 !== selection.activeParam"
-                      @click="selectSecondaryParam(p2, $event) "
-                      compact
-                      :class="{active: p2===selection.secondaryParam}
-            "> {{parameterName(p2)}}
+    <div v-if="canHaveSecondaryParam()"
+         class="">
+      <small>
+        <b>Secondary Parameter: </b>
+      </small>
+      <br/>
+      <div class="flex-row">
+        <div v-for="(p2,index) in allSecondaryParams"
+             :key="index">
+          <sui-button @click="selectSecondaryParam(p2, $event) "
+                      :class="{active: p2===selection.secondaryParam}"> {{parameterName(p2)}}
           </sui-button>
-        </sui-button-group>
+        </div>
       </div>
     </div>
   </div>
@@ -64,6 +57,9 @@ export default {
       temp = temp.filter(t => !dateRegex.test(t));
       // return alphabetically sorted
       return temp.sort();
+    },
+    allSecondaryParams: function() {
+      return this.allParams.filter(p => p !== this.selection.activeParam);
     }
   },
   methods: {
@@ -112,29 +108,23 @@ export default {
 @import "../style/_variables.scss";
 
 #selection-params {
-  .centered-buttons {
+  .flex-row {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     flex-wrap: wrap;
+    > div {
+      flex-grow: 1;
+      > button.button {
+        width: 100%;
+      }
+    }
   }
-  // .ui.button {
-  //   background: $darkWhite;
-  // }
-  .ui.buttons > button {
-    // background: $offWhite;
+  button.ui.button {
+    border: $lightBlack solid 1px;
+    background: $lightGrey;
     &.active {
-      background: lighten($lightGrey, 5%);
-      box-shadow: inset 3 0 3px #000000;
-    }
-    &.secondaryActive {
-      background: lighten($lightGrey, 10%) !important;
-      box-shadow: inset 3 0 3px #000000;
-      color: $primaryColor !important;
-    }
-  }
-  div.secondary-param {
-    button {
-      font-size: 0.85srem;
+      background: $grey;
+      color: $offWhite;
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <div v-if="data.startYear"
-       class="m-t-xl">
+       class="m-t-lg m-b-lg">
 
     <vue-slider v-bind="settings"
                 @drag-end="dragEnd"

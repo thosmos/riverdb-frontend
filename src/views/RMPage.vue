@@ -1,50 +1,53 @@
 <template>
   <div id="RM">
     <sui-container fluid>
-      <sui-header size="huge"
-                  textAlign="center">Water Quality Monitoring Data:</sui-header>
-      <div v-if="showTakeTour"
-           class="m-t-lg m-b-lg">
-        <div class="ui grid centered">
-          <sui-button-group>
-            <sui-button @click="takeTour"
-                        color="blue">Take the Tour</sui-button>
-            <sui-button-or />
-            <sui-button @click="removeTour"
-                        color="red">Never show this again</sui-button>
-          </sui-button-group>
+      <div class="page-spacer">
+
+        <sui-header size="huge"
+                    textAlign="center">Water Quality Monitoring Data:</sui-header>
+        <div v-if="showTakeTour"
+             class="m-t-lg m-b-lg">
+          <div class="ui grid centered">
+            <sui-button-group>
+              <sui-button @click="takeTour"
+                          color="blue">Take the Tour</sui-button>
+              <sui-button-or />
+              <sui-button @click="removeTour"
+                          color="red">Never show this again</sui-button>
+            </sui-button-group>
+          </div>
         </div>
-      </div>
-      <sui-message v-if="ui.errorMsg.RM_Datafetch"
-                   color="red">
-        <p>{{ui.errorMsg.RM_Datafetch}}</p>
-      </sui-message>
-      <div v-if="$apollo.loading">
-        <Loader/>
-      </div>
-      <div v-else>
+        <sui-message v-if="ui.errorMsg.RM_Datafetch"
+                     color="red">
+          <p>{{ui.errorMsg.RM_Datafetch}}</p>
+        </sui-message>
+        <div v-if="$apollo.loading">
+          <Loader/>
+        </div>
+        <div v-else>
+          <sui-grid>
+            <sui-grid-row>
+              <sui-grid-column>
+                <selection-wrapper :stations="stations">
+                </selection-wrapper>
+              </sui-grid-column>
+            </sui-grid-row>
+          </sui-grid>
+        </div>
         <sui-grid>
           <sui-grid-row>
             <sui-grid-column>
-              <selection-wrapper :stations="stations">
-              </selection-wrapper>
+              <chart-wrapper id="step-8"></chart-wrapper>
             </sui-grid-column>
           </sui-grid-row>
+        </sui-grid>
+        <sui-grid>
           <sui-grid-row>
             <sui-grid-column>
               <download-wrapper id="step-7">
               </download-wrapper>
             </sui-grid-column>
           </sui-grid-row>
-          <sui-grid-row>
-            <sui-grid-column>
-              <chart-wrapper id="step-8"></chart-wrapper>
-            </sui-grid-column>
-          </sui-grid-row>
-          <div class=""
-               id="step-9">
-
-          </div>
           <sui-grid-row>
             <sui-grid-column>
               <data-table></data-table>
@@ -250,5 +253,8 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+.page-spacer {
+  margin: 2rem;
+}
 </style>

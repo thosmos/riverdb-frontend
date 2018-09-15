@@ -1,6 +1,5 @@
 <template>
   <div v-if="data.selectedStation"
-       class="container"
        id="table">
     <div class="ui segment"
          s>
