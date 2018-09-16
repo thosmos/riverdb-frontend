@@ -20,7 +20,7 @@
         <b>Secondary Parameter: </b>
       </small>
       <br/>
-      <div class="flex-row">
+      <div class="flex-row seconday-param-row">
         <div v-for="(p2,index) in allSecondaryParams"
              :key="index">
           <sui-button @click="selectSecondaryParam(p2, $event) "
@@ -114,17 +114,20 @@ export default {
     flex-wrap: wrap;
     > div {
       flex-grow: 1;
+      margin: 2px;
       > button.button {
         width: 100%;
       }
     }
+    &.seconday-param-row > div > button.ui.button {
+      font-size: 0.85rem;
+    }
   }
   button.ui.button {
     border: $lightBlack solid 1px;
-    background: $lightGrey;
+    background: $offWhite;
     &.active {
-      background: $grey;
-      color: $offWhite;
+      background: $lightGrey;
     }
   }
 }
