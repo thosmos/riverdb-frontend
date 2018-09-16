@@ -95,7 +95,7 @@ export default {
       steps: [
         {
           target: "#step-0",
-          content: `Welcome! In this dropdown you can select one of the forks in the area.`,
+          content: `Select a river fork to narrow the list of stations`,
           params: {
             placement: "top"
           }
@@ -106,37 +106,39 @@ export default {
         },
         {
           target: "#step-3",
-          content: `On the map you can also select stations, plus, it's always good to have a map ;)`
+          content: `The map shows you the location of stations. selected stations are in black`,
+          params: {
+            placement: "top"
+          }
         },
         {
           target: "#step-4",
-          content: `One of the stations is highlighted. It will matter in certain graphs (box plot per month) and will be the station for downloads and in the data table`
-        },
-        {
-          target: "#step-5",
-          content: `Here you can select the parameter for the graph. If you have one of the line graphs and only one station selected you can also SHIFT-click to have a second parameter on the same graph!`
+          content: `One of the stations is always highlighted in blue. It will matter in certain graphs (box plot per month) and will be the station for downloads and in the data table.`
         },
         {
           target: "#step-6",
           content: `In some graphs you can restrict the timeframe shown in the graph and in the data table.`
         },
         {
-          target: "#step-7",
-          content: `Download the data for the selected station or all stations in .csv format!`
+          target: "#step-5",
+          content: `Choose your parameter for the graph. If you have one of the line graphs and only one station selected you can also visualize a second parameter on the same graph!`
         },
         {
           target: "#step-8",
-          content: `There are different kind of graphs. The button in the right-upper corner lets you download an image of the graph`,
+          content: `There are different kind of graphs. The button in the right-upper corner lets you download an image of the graph.`,
           params: {
             placement: "top"
           }
         },
-
+        {
+          target: "#step-7",
+          content: `Download the data for the selected station or all stations in .csv format!`
+        },
         {
           target: "#step-9",
-          content: `Finally, all data for the selected timeframe will be displayed in this data table. By clicking on the top row you can sort by parameter as well.`,
+          content: `Finally, all data for the selected timeframe and the selected station will be displayed in this data table. By clicking on the top row you can sort by parameter as well.`,
           params: {
-            placement: "top"
+            placement: "bottom"
           }
         }
       ]
