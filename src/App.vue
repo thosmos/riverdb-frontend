@@ -8,6 +8,7 @@
         <router-view/>
       </transition>
     </page-layout>
+    <Footer></Footer>
     <cookie-msg v-if="ui.showCookieMsg"></cookie-msg>
   </div>
 </template>
@@ -16,6 +17,7 @@
 import NavBar from "./components/NavBar.vue";
 import PageLayout from "./components/PageLayout";
 import CookieMsg from "./components/CookieMsg";
+import Footer from "./components/Footer";
 
 import { mapState } from "vuex";
 
@@ -24,7 +26,8 @@ export default {
   components: {
     NavBar,
     PageLayout,
-    CookieMsg
+    CookieMsg,
+    Footer
   },
   metaInfo: {
     title: "Home",
