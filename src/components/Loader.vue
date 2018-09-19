@@ -30,6 +30,7 @@ $spinner-width: $spinner-radius * 4;
   transform: translate(-50%, -50%) rotate(90deg);
   width: $spinner-width;
   z-index: 100;
+  padding-bottom: 15px;
 }
 
 .spinner,

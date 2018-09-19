@@ -1,6 +1,14 @@
 <template>
   <div v-if="data">
-    <highcharts :options="chartOptions"></highcharts>
+    <div v-if="validData">
+      <highcharts :options="chartOptions"></highcharts>
+      <br/>
+    </div>
+    <div v-else
+         class="ui segment">
+      <h5>No valid data for {{this.station.name}}</h5>
+    </div>
+    <br/>
   </div>
 </template>
 
@@ -9,11 +17,21 @@ import { graphConfig } from "../assets/chart/graphConfig.js";
 export default {
   name: "FlowGraph",
   props: {
-    stations: Object,
+    station: Object,
     data: Array,
     code: String
   },
   computed: {
+    validData: function() {
+      let valid = false;
+      for (let i = 0; i < this.data.length; i++) {
+        if (this.data[i].value > 0) {
+          valid = true;
+          break;
+        }
+      }
+      return valid;
+    },
     plotData: function() {
       if (this.data && this.data.length > 0) {
         let graphData = this.data.map(d => {
@@ -27,12 +45,11 @@ export default {
             date.getUTCSeconds()
           );
 
-          console.log("now_utc", now_utc);
           return [now_utc, d.value];
         });
         return [
           {
-            name: "Flow",
+            name: "Flow in cubic feet per second",
             data: graphData,
             type: "spline"
           }
@@ -47,7 +64,7 @@ export default {
         },
         ...graphConfig,
         title: {
-          text: this.code
+          text: this.station.name
         },
         xAxis: [
           {

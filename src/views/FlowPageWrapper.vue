@@ -1,22 +1,27 @@
 <template>
   <div id="flow-page">
     <sui-container>
-      <h1>Flows</h1>
+      <div class="ui center aligned huge header">Flow Information:</div>
       <div class="ui center segment">
         <div class="centered-buttons ui ">
           <div v-for="p in periods"
                :key="p">
             <sui-button @click="selectPeriod(p)"
+                        :class="{active: p === period}"
                         compact>
               {{buttonLabel(p)}}
             </sui-button>
           </div>
         </div>
       </div>
+      <div v-if="loading">
+        <Loader></Loader>
+      </div>
       <div>
         <div v-for="station in stationsCode"
              :key="station">
           <FlowGraph :code="station"
+                     :station="stationInfo(station)"
                      :data="info[station]"></FlowGraph>
         </div>
       </div>
@@ -25,18 +30,22 @@
 
 </template>
 
-<script>
+ <script>
 import FlowGraph from "../components/FlowGraph.vue";
+import Loader from "../components/Loader";
 import axios from "axios";
+import find from "lodash/find";
 import { stations } from "../assets/flowsStations.js";
+
 export default {
   name: "FlowPageWrapper",
-  components: { FlowGraph },
+  components: { FlowGraph, Loader },
   data() {
     return {
       info: {},
-      periods: [7, 30, 365],
-      period: 7
+      periods: [7, 30, 90, 365],
+      period: 7,
+      loading: true
     };
   },
   async mounted() {
@@ -44,8 +53,8 @@ export default {
     axios
       .get(url)
       .then(res => {
-        console.log("res.data", res.data);
         this.info = res.data;
+        this.loading = false;
       })
       .catch(err => {
         console.log("err", err);
@@ -60,17 +69,20 @@ export default {
     }
   },
   methods: {
+    stationInfo: function(abbr) {
+      return find(this.stations, o => o.code === abbr);
+    },
     buttonLabel: function(p) {
       return `${p} days`;
     },
     selectPeriod: function(p) {
-      console.log("p", p);
-
+      this.loading = true;
+      this.period = p;
       let url = `http://localhost:3000/?days=${p}`;
       axios
         .get(url)
         .then(res => {
-          console.log("res.data", res.data);
+          this.loading = false;
           this.info = res.data;
         })
         .catch(err => {
@@ -82,6 +94,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../style/style.scss";
+
 #flow-page {
   .centered-buttons {
     display: flex;
@@ -93,6 +107,11 @@ export default {
         width: 100%;
       }
     }
+  }
+  .active {
+    font-weight: bold;
+    color: $offWhite;
+    background: $primaryColor;
   }
 }
 </style>
