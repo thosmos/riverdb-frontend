@@ -4,28 +4,37 @@
       <h1>Flows</h1>
       <div class="ui center segment">
         <div class="centered-buttons ui ">
-          <sui-button-group basic
-                            v-for="p in periods"
-                            :key="p">
+          <div v-for="p in periods"
+               :key="p">
             <sui-button @click="selectPeriod(p)"
                         compact>
               {{buttonLabel(p)}}
             </sui-button>
-          </sui-button-group>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div v-for="station in stationsCode"
+             :key="station">
+          <FlowGraph :code="station"
+                     :data="info[station]"></FlowGraph>
         </div>
       </div>
     </sui-container>
   </div>
+
 </template>
 
 <script>
+import FlowGraph from "../components/FlowGraph.vue";
 import axios from "axios";
 import { stations } from "../assets/flowsStations.js";
 export default {
   name: "FlowPageWrapper",
+  components: { FlowGraph },
   data() {
     return {
-      info: [],
+      info: {},
       periods: [7, 30, 365],
       period: 7
     };
@@ -36,14 +45,18 @@ export default {
       .get(url)
       .then(res => {
         console.log("res.data", res.data);
+        this.info = res.data;
       })
       .catch(err => {
         console.log("err", err);
       });
   },
   computed: {
-    stationArr: function() {
+    stationsCode: function() {
       return stations.map(s => s.code);
+    },
+    stations: function() {
+      return stations;
     }
   },
   methods: {
@@ -58,6 +71,7 @@ export default {
         .get(url)
         .then(res => {
           console.log("res.data", res.data);
+          this.info = res.data;
         })
         .catch(err => {
           console.log("err", err);
@@ -67,5 +81,18 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+#flow-page {
+  .centered-buttons {
+    display: flex;
+    flex-direction: row;
+    > div {
+      flex-grow: 1;
+      padding: 0.5rem;
+      > button.button {
+        width: 100%;
+      }
+    }
+  }
+}
 </style>
