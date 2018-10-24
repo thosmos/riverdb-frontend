@@ -21,6 +21,7 @@
         <div v-for="station in stationsCode"
              :key="station">
           <FlowGraph :code="station"
+                     :key="`${station}-${key}`"
                      :station="stationInfo(station)"
                      :data="info[station]"></FlowGraph>
         </div>
@@ -44,8 +45,9 @@ export default {
     return {
       info: {},
       periods: [7, 30, 90, 365],
-      period: 7,
-      loading: true
+      period: 90,
+      loading: true,
+      key: 1
     };
   },
   async mounted() {
@@ -84,6 +86,8 @@ export default {
         .then(res => {
           this.loading = false;
           this.info = res.data;
+          // Needs new key for chart refresh!
+          this.key++;
         })
         .catch(err => {
           console.log("err", err);

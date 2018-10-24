@@ -21,11 +21,13 @@ import apolloProvider from "./apollo";
 import highcharts from "highcharts";
 import HighchartsVue from "highcharts-vue";
 import highchartsMore from "highcharts/highcharts-more";
+import stockInit from "highcharts/modules/stock";
 
 require("highcharts/modules/exporting")(highcharts);
 require("highcharts/modules/heatmap")(highcharts);
 
 highchartsMore(highcharts);
+stockInit(highcharts);
 Vue.use(HighchartsVue, { highcharts });
 
 import { ClientTable } from "vue-tables-2";

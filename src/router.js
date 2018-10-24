@@ -64,7 +64,7 @@ export default new Router({
             {
               path: "stations",
               component: () =>
-                import(/* webpackChunkName: 'rm-stations" */ "./views/RMStationsPage.vue")
+                import(/* webpackChunkName: "rm-stations" */ "./views/RMStationsPage.vue")
             }
           ]
         },

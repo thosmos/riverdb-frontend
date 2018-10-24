@@ -1,7 +1,9 @@
 <template>
   <div v-if="data">
     <div v-if="validData">
-      <highcharts :options="chartOptions"></highcharts>
+      <highcharts :constructor-type="'stockChart'"
+                  :options="chartOptions">
+      </highcharts>
       <br/>
     </div>
     <div v-else
@@ -24,7 +26,9 @@ export default {
   computed: {
     validData: function() {
       let valid = false;
+      console.log("this.data", this.data);
       for (let i = 0; i < this.data.length; i++) {
+        // check for -9998 etc
         if (this.data[i].value > 0) {
           valid = true;
           break;
@@ -36,7 +40,7 @@ export default {
       if (this.data && this.data.length > 0) {
         let graphData = this.data.map(d => {
           var date = new Date(d.date);
-          var now_utc = Date.UTC(
+          var utc = Date.UTC(
             date.getUTCFullYear(),
             date.getUTCMonth(),
             date.getUTCDate(),
@@ -44,8 +48,9 @@ export default {
             date.getUTCMinutes(),
             date.getUTCSeconds()
           );
-
-          return [now_utc, d.value];
+          // if (utc && d.value) {
+          return [utc, d.value];
+          // }
         });
         return [
           {
@@ -96,6 +101,10 @@ export default {
           series: {
             animation: false
           }
+        },
+        rangeSelector: {
+          selected: 1,
+          enabled: false
         },
 
         // colors: palette1,

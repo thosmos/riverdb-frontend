@@ -11,10 +11,10 @@
              id="step-0">
           <multiselect v-model="selectedFork"
                        id="select-1"
-                       label="label"
+                       label="fullName"
                        placeholder="Select a Fork"
                        @input="forkUpdated"
-                       track-by="label"
+                       track-by="fullName"
                        :options="forkOptions"></multiselect>
         </div>
         <div class="column"
@@ -127,6 +127,7 @@ export default {
   },
   methods: {
     forkUpdated: function() {
+      console.log("this.selectedFork", this.selectedFork);
       // selected allForks
       if (!this.selectedFork.value) {
         this.stationOptions = calculateStationsForSelection(
