@@ -10,6 +10,7 @@
                     :options="wsOptions(org)"></l-geo-json>
       </div>
     </l-map>
+    <organization-map-color-index :organizations="organizations" />
   </div>
 </template>
 
@@ -17,6 +18,7 @@
 import organizations from "../assets/organizations.js";
 import agencyAreas from "../assets/GIS/agencyAreas.js";
 import Vue from "vue";
+import OrganizationMapColorIndex from "./organizationMapColorIndex";
 
 import { LMap, LTileLayer, LGeoJson, LMarker } from "vue2-leaflet";
 import Popup from "./OrganizationsMapPopup.vue";
@@ -39,7 +41,13 @@ function onEachFeature(feature, layer) {
 
 export default {
   name: "OrganizationsMap",
-  components: { LMap, LTileLayer, LGeoJson, LMarker },
+  components: {
+    LMap,
+    LTileLayer,
+    LGeoJson,
+    LMarker,
+    OrganizationMapColorIndex
+  },
   data: function() {
     return {
       organizations: [],
