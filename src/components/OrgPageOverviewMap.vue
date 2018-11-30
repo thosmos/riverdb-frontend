@@ -2,6 +2,7 @@
   <div class="m-t-lg m-b-xl map-height"
        v-if="bounds">
     <l-map :bounds="bounds"
+           :options="options"
            id="map"
            ref="map">
       <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></l-tile-layer>
@@ -18,7 +19,8 @@
     <sui-message>
       <sui-message-header>
 
-        <p id="inside-map">For a more interactive view of the whole watershed go to
+        <p id="inside-map">For a more interactive view of the whole watershed
+          go to
           <a :href="externalLink"
              target="_blank
          ">watershedmap.org</a>
@@ -27,7 +29,7 @@
     </sui-message>
   </div>
   <div v-else>
-    <Loader/>
+    <Loader />
   </div>
 </template>
 
@@ -55,7 +57,10 @@ export default {
   data() {
     return {
       url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
-      map: null
+      map: null,
+      options: {
+        scrollWheelZoom: false
+      }
     };
   },
   mounted() {

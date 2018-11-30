@@ -3,7 +3,8 @@
        id='selection-map'
        class="m-b-lg">
     <l-map :bounds="bounds"
-           class="map-height">
+           class="map-height"
+           :options="options">
       <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></l-tile-layer>
       <l-marker v-for="marker in cleanedStations"
                 :key="marker.value.StationID"
@@ -56,7 +57,11 @@ export default {
         iconSize: [36, 36],
         iconAnchor: [18, 36],
         popupAnchor: [0, -20]
-      })
+      }),
+      // map options, disables scrolling with mouse wheel
+      options: {
+        scrollWheelZoom: false
+      }
     };
   },
   mounted() {},

@@ -2,7 +2,8 @@
   <div v-if="bounds"
        class="m-t-lg m-b-lg">
     <l-map :bounds="bounds"
-           class="map-height">
+           class="map-height"
+           :options="options">
       <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></l-tile-layer>
       <div v-for="org in organizations"
            :key="org.river">
@@ -54,7 +55,10 @@ export default {
       bounds: null,
       url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
       attribution:
-        '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+      options: {
+        scrollWheelZoom: false
+      }
     };
   },
   mounted() {
