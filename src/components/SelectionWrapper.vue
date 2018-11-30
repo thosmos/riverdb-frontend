@@ -156,7 +156,5 @@ export default {
   z-index: 100000;
 }
 #station-map {
-  width: 70%;
-  margin: 0 auto;
 }
 </style>

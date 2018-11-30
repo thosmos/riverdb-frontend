@@ -22,7 +22,7 @@
           <p>{{ui.errorMsg.RM_Datafetch}}</p>
         </sui-message>
         <div v-if="$apollo.loading">
-          <Loader/>
+          <Loader />
         </div>
         <div v-else>
           <sui-grid>
@@ -257,6 +257,14 @@ export default {
 
 <style lang="scss" scoped>
 .page-spacer {
-  margin: 2rem;
+  /* NOTE: kind of forced way to do it but does the job, out of the box has way to much margin on mobile */
+  @media only screen and (max-width: 1024px) {
+    /* margin-left: 1.5rem; */
+    margin: 2rem -1.5rem 0 0;
+  }
+  @media only screen and (min-width: 1024px) {
+    margin-left: 2rem;
+    /* margin-right: 0.25rem; */
+  }
 }
 </style>

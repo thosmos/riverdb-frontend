@@ -5,7 +5,7 @@
     </div>
     <page-layout>
       <transition name="fade">
-        <router-view/>
+        <router-view />
       </transition>
     </page-layout>
     <Footer></Footer>
