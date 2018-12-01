@@ -23,6 +23,11 @@ export default {
     data: Array,
     code: String
   },
+  methods: {
+    filename: function() {
+      return `${this.station.name} flow graph`;
+    }
+  },
   computed: {
     validData: function() {
       let valid = false;
@@ -67,6 +72,9 @@ export default {
           zoomType: 'xy"'
         },
         ...graphConfig,
+        exporting: {
+          filename: this.filename()
+        },
         title: {
           text: this.station.name
         },

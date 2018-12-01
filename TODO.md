@@ -17,4 +17,9 @@
 - have org name in uppercase in header
 - have http/https in constants so it'll be easier to switch for actual production
 - have loader on / for map
-  -s
+- make cookie warning full width on mobile
+- fix remaining margin isues on some medium widths....
+- make flow server update every hour or so
+- fix footer to bottom
+- give downloaded file a name
+- check box plot for lang's x-ing

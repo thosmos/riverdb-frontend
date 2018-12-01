@@ -23,6 +23,12 @@ export default {
     data: Object
   },
   computed: {
+    getYearRange: function() {
+      let range = this.selection.selectionRange;
+      return range[0] === range[1]
+        ? range[0]
+        : `from ${range[0]} to ${range[1]}`;
+    },
     plotData: function() {
       if (this.data.loadedStations) {
         let data = [];
@@ -120,7 +126,12 @@ export default {
         },
 
         colors: palette1,
-        series: this.plotData
+        series: this.plotData,
+        exporting: {
+          filename: `line chart ${this.selection.activeParam} ${
+            this.getYearRange
+          }`
+        }
       };
     }
   },

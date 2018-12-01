@@ -22,12 +22,6 @@ export default {
     data: Object
   },
   computed: {
-    // joinedNames: function() {
-    //   return (
-    //     (this.loadedStations && this.loadedStations.map(s => s.StationName)) ||
-    //     []
-    //   );
-    // },
     plotData: function() {
       if (this.data.loadedStations) {
         let data = [];
@@ -81,7 +75,10 @@ export default {
           }
         },
         colors: palette1,
-        series: this.plotData
+        series: this.plotData,
+        exporting: {
+          filename: `box plot per station ${this.selection.activeParam}`
+        }
       };
     }
   },

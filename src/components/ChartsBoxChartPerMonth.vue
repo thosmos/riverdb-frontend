@@ -24,6 +24,11 @@ export default {
     data: Object
   },
   computed: {
+    filename: function() {
+      return `${this.plotData[0].name} monthy box plot ${
+        this.selection.activeParam
+      }`;
+    },
     plotData: function() {
       let temp = this.data.selectedStation
         .setYearRange({
@@ -59,6 +64,9 @@ export default {
           },
 
           plotLines: getParamInfoLine(this.selection.activeParam)
+        },
+        exporting: {
+          filename: this.filename
         },
         // tooltip: {
         //   headerFormat: "<b>{series.name}</b><br>",
