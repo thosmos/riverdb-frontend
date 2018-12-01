@@ -37,6 +37,7 @@ import Loader from "../components/Loader";
 import axios from "axios";
 import find from "lodash/find";
 import { stations } from "../assets/flowsStations.js";
+import { FLOW_API_PORT, FLOW_API_IP } from "../assets/constants";
 
 export default {
   name: "FlowPageWrapper",
@@ -45,13 +46,17 @@ export default {
     return {
       info: {},
       periods: [7, 30, 90, 365],
-      period: 90,
+      period: 7,
       loading: true,
       key: 1
     };
   },
-  async mounted() {
-    let url = `http://localhost:3000/?days=${this.period}`;
+  mounted() {
+    let url =
+      process.env.NODE_ENV === "development"
+        ? `http://localhost:3020/?days=${this.period}`
+        : `http://${FLOW_API_IP}:${FLOW_API_PORT}/?days=${this.period}`;
+    console.log("url", url);
     axios
       .get(url)
       .then(res => {
@@ -80,7 +85,10 @@ export default {
     selectPeriod: function(p) {
       this.loading = true;
       this.period = p;
-      let url = `http://localhost:3000/?days=${p}`;
+      let url =
+        process.env.NODE_ENV === "development"
+          ? `http://localhost:3020/?days=${p}`
+          : `http://${FLOW_API_IP}:${FLOW_API_PORT}/?days=${p}`;
       axios
         .get(url)
         .then(res => {

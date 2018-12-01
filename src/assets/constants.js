@@ -1,6 +1,7 @@
 export const WS_API_IP = "104.248.182.227";
 export const WS_API_PORT = 3010;
-export const FLOW_INFO_PORT = 3000;
+export const FLOW_API_IP = WS_API_IP;
+export const FLOW_API_PORT = 3020;
 
 export const WP_USERS = {
   SYRCL: 2,

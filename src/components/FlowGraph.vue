@@ -4,13 +4,13 @@
       <highcharts :constructor-type="'stockChart'"
                   :options="chartOptions">
       </highcharts>
-      <br/>
+      <br />
     </div>
     <div v-else
          class="ui segment">
       <h5>No valid data for {{this.station.name}}</h5>
     </div>
-    <br/>
+    <br />
   </div>
 </template>
 
@@ -26,7 +26,6 @@ export default {
   computed: {
     validData: function() {
       let valid = false;
-      console.log("this.data", this.data);
       for (let i = 0; i < this.data.length; i++) {
         // check for -9998 etc
         if (this.data[i].value > 0) {
