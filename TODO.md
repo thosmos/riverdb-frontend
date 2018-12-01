@@ -15,4 +15,6 @@
 - 404 page
 - sort dates in flow page
 - have org name in uppercase in header
--
+- have http/https in constants so it'll be easier to switch for actual production
+- have loader on / for map
+  -s

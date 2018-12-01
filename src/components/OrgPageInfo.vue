@@ -17,13 +17,13 @@
 </template>
 
 <script>
-import Calendar from "./OrgPageDates";
-import Blog from "./OrgPageBlogExcerpt";
+// import Calendar from "./OrgPageDates";
+// import Blog from "./OrgPageBlogExcerpt";
 import Watershed from "./OrgPageOverviewMap";
 
 export default {
   name: "OrgPageInfo",
-  components: { Calendar, Blog, Watershed },
+  components: { Watershed },
   data() {
     return {
       items: ["Blog", "Calendar", "Watershed"],
