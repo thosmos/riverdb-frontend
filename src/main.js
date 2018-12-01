@@ -4,6 +4,8 @@ import router from "./router";
 import store from "./store/store";
 import "./registerServiceWorker";
 
+Vue.config.performance = true;
+
 /**
  * Semantic and CSS
  */

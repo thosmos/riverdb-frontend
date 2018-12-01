@@ -1,6 +1,6 @@
 <template>
   <div id="organization-info"
-       class="m-t-md ui segment">
+       class="m-t-md ui ">
     <!-- <sui-menu :widths="3">
       <a is="sui-menu-item"
          v-for="item in items"

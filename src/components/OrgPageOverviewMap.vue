@@ -59,7 +59,12 @@ export default {
       url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
       map: null,
       options: {
-        scrollWheelZoom: false
+        scrollWheelZoom: false,
+        touchZoom: true,
+        dragging:
+          !(typeof window.orientation !== "undefined") ||
+          navigator.userAgent.indexOf("IEMobile") !== -1,
+        tap: false
       }
     };
   },

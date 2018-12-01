@@ -3,7 +3,7 @@
     <sui-container>
       <sui-header size="huge"
                   textAlign="center">Participating Organizations:</sui-header>
-      <organizations-list/>
+      <organizations-list />
       <organizations-map />
     </sui-container>
   </div>
@@ -20,9 +20,7 @@ export default {
     OrganizationsMap
   },
   data: function() {
-    return {
-      docLoaded: false
-    };
+    return {};
   },
   mounted() {}
 };

@@ -60,7 +60,12 @@ export default {
       }),
       // map options, disables scrolling with mouse wheel
       options: {
-        scrollWheelZoom: false
+        scrollWheelZoom: false,
+        touchZoom: true,
+        dragging:
+          !(typeof window.orientation !== "undefined") ||
+          navigator.userAgent.indexOf("IEMobile") !== -1,
+        tap: false
       }
     };
   },
