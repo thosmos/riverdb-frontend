@@ -11,5 +11,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped style="scss">
+#page {
+  margin-bottom: 100px;
+}
 </style>

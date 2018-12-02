@@ -1,13 +1,13 @@
 <template>
   <div id="app">
-    <div id="">
+    <div id="aaaa">
       <nav-bar></nav-bar>
+      <page-layout>
+        <transition name="fade">
+          <router-view />
+        </transition>
+      </page-layout>
     </div>
-    <page-layout>
-      <transition name="fade">
-        <router-view />
-      </transition>
-    </page-layout>
     <Footer></Footer>
     <cookie-msg v-if="ui.showCookieMsg"></cookie-msg>
   </div>
@@ -66,7 +66,15 @@ export default {
 </script>
 
 
-<style lang="scss" scoped>
+<style lang="scss" >
+#aaaa {
+  min-height: 100vh;
+  margin-bottom: -50px;
+}
+#footer {
+  height: 50px;
+}
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s ease-in-out;

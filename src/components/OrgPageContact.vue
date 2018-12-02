@@ -51,6 +51,9 @@ export default {
 @import "../style/style.scss";
 
 #org-page-contact {
+  > h3 {
+    padding: 0.5rem 1rem 1.25rem;
+  }
   @extend .m-b-lg;
   padding: 1.5rem 2rem 2rem;
   background: $offWhite;

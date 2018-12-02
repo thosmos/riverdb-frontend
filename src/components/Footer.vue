@@ -31,7 +31,7 @@ export default {
 #footer {
   background: $blue;
   color: $offWhite;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1rem;
   a {
     color: $offWhite;
   }

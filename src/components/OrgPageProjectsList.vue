@@ -76,6 +76,9 @@ export default {
 @import "../style/style.scss";
 
 #org-page-projects-list {
+  > h3 {
+    margin: 1rem 1rem 1.75rem;
+  }
   div > h5,
   p,
   small {
