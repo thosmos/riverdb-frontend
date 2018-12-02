@@ -1,6 +1,5 @@
 <template>
-  <sui-card id="org-page-intro"
-            class="fluid">
+  <div id="org-page-intro">
     <sui-card-content class="card-header">
       <h1 class="ui center aligned icon header">{{info.name}}</h1>
       <h2 class="ui center aligned icon header">{{info.tagLine}}</h2>
@@ -13,7 +12,7 @@
       <sui-divider></sui-divider>
       <p>{{info.about}}</p>
     </div>
-  </sui-card>
+  </div>
 </template>
 
 <script>
@@ -27,6 +26,7 @@ export default {
 <style lang="scss" scoped>
 @import "../style/style.scss";
 #org-page-intro div.card-header {
+  padding: 1rem;
   background: $primaryColor;
   background: linear-gradient(
     45deg,

@@ -1,9 +1,10 @@
 <template>
-  <div class="m-t-lg m-b-xl map-height"
+  <div class="m-t-md m-b-md "
        v-if="bounds">
     <l-map :bounds="bounds"
            :options="options"
            id="map"
+           class="map-height"
            ref="map">
       <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></l-tile-layer>
       <!-- Catchment outline -->
@@ -16,17 +17,14 @@
                   :options="upstreamOptions">
       </l-geo-json>
     </l-map>
-    <sui-message>
-      <sui-message-header>
-
-        <p id="inside-map">For a more interactive view of the whole watershed
-          go to
-          <a :href="externalLink"
-             target="_blank
+    <div class="wsm-info">
+      <p id="inside-map">For a more interactive view of the whole watershed
+        go to
+        <a :href="externalLink"
+           target="_blank
          ">watershedmap.org</a>
-        </p>
-      </sui-message-header>
-    </sui-message>
+      </p>
+    </div>
   </div>
   <div v-else>
     <Loader />
@@ -137,17 +135,27 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "../style/style.scss";
-.map-height {
+#map {
   height: 500px;
   border-radius: 6px;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
 }
 #inside-map {
-  z-index: 100000;
+  /* z-index: 100000; */
 }
 #inside-map > a {
   color: $primaryColor;
+}
+.wsm-info {
+  margin: 1.5rem 1rem;
+  display: flex;
+  justify-content: center;
+  p {
+    font-size: 1.1rem;
+    text-decoration: underline;
+    text-align: center;
+  }
 }
 </style>

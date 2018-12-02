@@ -1,17 +1,17 @@
 <template>
-  <div id="flow-button"
-       class="ui center aligned grid">
-    <div class="row">
+  <div id="flow-button">
+    <!-- <div class="row">
 
-      <div class="column">
-        <sui-button basic
-                    primary
-                    centered>
+      <div class="column"> -->
+    <sui-button basic
+                primary
+                circular
+                centered>
 
-          <router-link :to="flowRoute()">View the river flows in the area</router-link>
-        </sui-button>
-      </div>
-    </div>
+      <router-link :to="flowRoute()">View the river flows in the area</router-link>
+    </sui-button>
+    <!-- </div>
+    </div> -->
   </div>
 </template>
 
@@ -28,7 +28,16 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "../style/style.scss";
 #flow-button {
-  margin: 1rem 0;
+  padding: 0.75rem 0;
+  background: $offWhite;
+  border-top: 1px solid rgba(34, 36, 38, 0.15);
+  border-bottom: 1px solid rgba(34, 36, 38, 0.15);
+  margin-bottom: 1rem;
+  > button {
+    margin: 1rem auto;
+    display: block;
+  }
 }
 </style>

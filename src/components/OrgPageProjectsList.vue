@@ -17,16 +17,20 @@
               <small>
                 <b>{{project.hasData | hasData}}</b>
               </small>
-              <p class="m-t-sm">From {{project.dataBegins}} up to {{project.dataEnds}}</p>
+              <p class="m-t-sm">From {{project.dataBegins}} up to
+                {{project.dataEnds}}</p>
+              <sui-divider></sui-divider>
               <p>{{description}}</p>
               <!-- <div class="inner">
                   <h1>Explore the Project</h1>
                 </div> -->
-              <div v-if="project.hasData">
+              <div v-if="project.hasData"
+                   class="m-t-md center-button">
                 <router-link :to="{path: `${organization.activeOrganization}/RM`}">
                   <sui-button basic
                               color="blue"
-                              fluid>Explore the data</sui-button>
+                              circular
+                              centered>Explore the data</sui-button>
                 </router-link>
               </div>
             </div>
@@ -88,6 +92,7 @@ export default {
   }
   .project-segment {
     position: relative;
+    background: $darkWhite;
     div {
       transition: all 0.3s ease-in-out;
     }
@@ -123,6 +128,12 @@ export default {
   .eq-card.ui.card {
     flex: 1; /* Shrink and grow according to available height */
     flex-basis: 0;
+  }
+  .center-button {
+    /* display: block;
+    margin: 0 auto; */
+    display: flex;
+    justify-content: center;
   }
 }
 </style>

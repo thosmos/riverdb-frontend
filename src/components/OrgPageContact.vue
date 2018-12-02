@@ -1,7 +1,5 @@
 <template>
-  <div id="org-page-contact"
-       class="m-b-lg">
-    <sui-divider></sui-divider>
+  <div id="org-page-contact">
     <h3 is="sui-header"
         class="ui center aligned"
         s>Contact:</h3>
@@ -23,12 +21,9 @@
         </p>
       </sui-grid-column>
       <sui-grid-column>
-        <p>
-          <b>
-            <sui-icon name="envelope
-           " /> {{info.email}}
-          </b>
-        </p>
+        <sui-icon name="envelope
+           " />
+        <b><a :href="`mailto:${info.email}`">{{info.email}} </a></b>
       </sui-grid-column>
       <sui-grid-column>
         <p>
@@ -52,8 +47,20 @@ export default {
 };
 </script>
 
-<style scoped>
-#org-page-contact h5 a {
-  color: rgba(0, 0, 0, 0.87);
+<style scoped lang="scss">
+@import "../style/style.scss";
+
+#org-page-contact {
+  @extend .m-b-lg;
+  padding: 1.5rem 2rem 2rem;
+  background: $offWhite;
+  border-top: 1px solid rgba(34, 36, 38, 0.15);
+  border-bottom: 1px solid rgba(34, 36, 38, 0.15);
+  a {
+    color: $primaryColor;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 </style>

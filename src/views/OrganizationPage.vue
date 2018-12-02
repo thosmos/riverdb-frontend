@@ -2,11 +2,13 @@
   <div id="organization-page"
        v-if="info">
     <sui-container>
-      <org-page-intro :info="info"></org-page-intro>
-      <org-page-flow-button></org-page-flow-button>
-      <org-page-projects-list :info="info"></org-page-projects-list>
-      <org-page-info></org-page-info>
-      <org-page-footer :info="info"></org-page-footer>
+      <sui-card class="fluid">
+        <org-page-intro :info="info"></org-page-intro>
+        <org-page-flow-button></org-page-flow-button>
+        <org-page-projects-list :info="info"></org-page-projects-list>
+        <org-page-info></org-page-info>
+        <org-page-footer :info="info"></org-page-footer>
+      </sui-card>
     </sui-container>
   </div>
 </template>

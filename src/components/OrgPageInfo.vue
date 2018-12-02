@@ -52,11 +52,11 @@ export default {
 
 <style lang="scss"  >
 @import "../style/style.scss";
-#organization-info > div.ui.three.item.menu > a.active.item {
+/* #organization-info > div.ui.three.item.menu > a.active.item {
   background: $primaryColor;
   color: $offWhite;
   font-weight: bold;
-}
+} */
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.2s;
