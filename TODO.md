@@ -14,14 +14,15 @@
 - play around with window.addEventListener('load', () => {....})
 - 404 page
 - sort dates in flow page
+- use correct dates in flow pages
 - have org name in uppercase in header
 - have http/https in constants so it'll be easier to switch for actual production
 - have loader on / for map
 - make cookie warning full width on mobile
 - fix remaining margin isues on some medium widths....
 - make flow server update every hour or so
-- fix footer to bottom
-- give downloaded file a name
+  X fix footer to bottom
+  X give downloaded file a name
 - check box plot for lang's x-ing
 - have all UI elements in /SYRCL etc in the main box on top not the break up in different boxes....
 - fix router-link hover underline color.

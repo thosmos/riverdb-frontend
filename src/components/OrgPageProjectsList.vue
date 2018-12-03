@@ -95,7 +95,8 @@ export default {
   }
   .project-segment {
     position: relative;
-    background: $darkWhite;
+    background: $offWhite;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.15);
     div {
       transition: all 0.3s ease-in-out;
     }
