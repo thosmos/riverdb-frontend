@@ -24,7 +24,7 @@
   X fix footer to bottom
   X give downloaded file a name
 - check box plot for lang's x-ing
-- have all UI elements in /SYRCL etc in the main box on top not the break up in different boxes....
+  X have all UI elements in /SYRCL etc in the main box on top not the break up in different boxes....
 - fix router-link hover underline color.
-- Message of flow server is down
+- display message of flow server is down
 -

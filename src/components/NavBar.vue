@@ -42,11 +42,11 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  a.router-link-active > h1 {
+  > a.router-link-active > h1 {
     color: $offWhite;
     &:hover {
+      text-decoration: underline $offWhite;
       color: $offWhite;
-      text-decoration-line: none;
     }
   }
 }
