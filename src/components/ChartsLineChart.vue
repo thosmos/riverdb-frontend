@@ -12,7 +12,8 @@ import { multiStation, graphConfig } from "../assets/chart/graphConfig.js";
 import {
   getUnit,
   getParamInfoLine,
-  getFullParamName
+  getFullParamName,
+  getMinMaxValue
 } from "../utils/charts.js";
 
 import cloneDeep from "lodash/cloneDeep";
@@ -82,6 +83,7 @@ export default {
       }
     },
     chartOptions: function() {
+      let minMax = getMinMaxValue(this.plotData);
       return {
         chart: {
           type: "spline",
@@ -104,7 +106,9 @@ export default {
                 getFullParamName(this.selection.activeParam) +
                 getUnit(this.selection.activeParam)
             },
-            plotLines: getParamInfoLine(this.selection.activeParam)
+            plotLines: getParamInfoLine(this.selection.activeParam),
+            min: minMax[0],
+            max: minMax[1]
           },
           { ...this.secondaryAxis() }
         ],

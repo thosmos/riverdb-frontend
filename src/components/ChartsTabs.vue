@@ -80,16 +80,14 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 @import "../style/style.scss";
-#chart-tabs {
-  // @media screen and (max-width: 768px) {
-  //   body {
-  //     margin-left: 2rem;
-  //   }
-  // }
-}
 #chart-tabs > div > div.ui.tab.segment.attached.active {
   background: $darkWhite;
+}
+#chart-tabs {
+  a.item {
+    font-size: 0.75rem;
+  }
 }
 </style>

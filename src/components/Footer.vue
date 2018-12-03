@@ -33,8 +33,8 @@ export default {
   color: $offWhite;
   padding: 0.75rem 1rem;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  /* align-items: center; */
   h4 {
     font-size: 1rem;
   }

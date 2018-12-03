@@ -22,3 +22,23 @@ export function getFullParamName(param) {
     return "";
   }
 }
+
+export function getMinMaxValue(plotData) {
+  const onlyValues = plotData.map(p => {
+    let temp = [];
+    p.data.forEach(d => {
+      // If linegraph only return actual value not date
+      if (d.length === 2 && d[1]) {
+        temp.push(d[1]);
+        //  if boxgraph return min and max value
+      } else if (d.length === 5) {
+        temp.push(d[0]);
+        temp.push(d[4]);
+      }
+    });
+    return temp;
+  });
+  let min = onlyValues.map(p => Math.min(...p));
+  let max = onlyValues.map(p => Math.max(...p));
+  return [Math.min(...min), Math.max(...max)];
+}

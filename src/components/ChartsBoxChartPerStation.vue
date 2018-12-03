@@ -11,7 +11,8 @@ import { palette1 } from "../assets/chart/palettes.js";
 import {
   getUnit,
   getParamInfoLine,
-  getFullParamName
+  getFullParamName,
+  getMinMaxValue
 } from "../utils/charts.js";
 import shortid from "shortid";
 
@@ -46,6 +47,7 @@ export default {
       }
     },
     chartOptions: function() {
+      let minMax = getMinMaxValue(this.plotData);
       return {
         chart: {
           type: "boxplot"
@@ -64,7 +66,9 @@ export default {
               getFullParamName(this.selection.activeParam) +
               getUnit(this.selection.activeParam)
           },
-          plotLines: getParamInfoLine(this.selection.activeParam)
+          plotLines: getParamInfoLine(this.selection.activeParam),
+          min: minMax[0],
+          max: minMax[1]
         },
         tooltip: {
           // shared: false

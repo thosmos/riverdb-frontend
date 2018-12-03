@@ -16,6 +16,7 @@
 
 <script>
 import { graphConfig } from "../assets/chart/graphConfig.js";
+import { subHours } from "date-fns";
 export default {
   name: "FlowGraph",
   props: {
@@ -43,7 +44,7 @@ export default {
     plotData: function() {
       if (this.data && this.data.length > 0) {
         let graphData = this.data.map(d => {
-          var date = new Date(d.date);
+          var date = subHours(new Date(d.date), 8); //NOTE: adjusts UTC to PST
           var utc = Date.UTC(
             date.getUTCFullYear(),
             date.getUTCMonth(),
