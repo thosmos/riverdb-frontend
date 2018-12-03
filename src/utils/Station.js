@@ -216,7 +216,7 @@ export default class Station {
   linePlot() {
     this.processed.data = this.processed.data.map(d => {
       let dateArr = d[0].split("-");
-      d[0] = Date.UTC(dateArr[0], dateArr[1], dateArr[2]);
+      d[0] = Date.UTC(dateArr[0], dateArr[1] - 1, dateArr[2]);
       return d;
     });
     return this;
