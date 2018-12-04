@@ -25,3 +25,9 @@ export default {
   mounted() {}
 };
 </script>
+
+<style>
+#home {
+  margin-bottom: 100px;
+}
+</style>

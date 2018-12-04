@@ -12,7 +12,4 @@ export default {
 </script>
 
 <style scoped style="scss">
-#page {
-  margin-bottom: 100px;
-}
 </style>

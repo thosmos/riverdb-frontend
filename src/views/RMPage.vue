@@ -267,4 +267,7 @@ export default {
     /* margin-right: 0.25rem; */
   }
 }
+#RM {
+  margin-bottom: 50px;
+}
 </style>

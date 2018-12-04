@@ -125,5 +125,6 @@ export default {
     color: $offWhite;
     background: $primaryColor;
   }
+  margin-bottom: 50px;
 }
 </style>

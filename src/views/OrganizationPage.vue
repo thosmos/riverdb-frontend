@@ -45,9 +45,16 @@ export default {
       organizations,
       o => o.abbreviation === this.$route.params.org
     );
+    // NOTE: in case of invalid organzition redirect to 404, i.e. riverdb.org/SYRCLa
+    if (!this.info) {
+      this.$router.push("/404");
+    }
   }
 };
 </script>
 
 <style lang="scss">
+#organization-page {
+  margin-bottom: 75px;
+}
 </style>

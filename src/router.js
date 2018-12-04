@@ -4,6 +4,7 @@ import Home from "./views/Home.vue";
 import OrgPageWrapper from "./views/OrgPageWrapper.vue";
 import RMPageWrapper from "./views/RMPageWrapper.vue";
 import FlowPageWrapper from "./views/FlowPageWrapper";
+import NotFound from "./views/NotFound";
 
 Vue.use(Router);
 
@@ -34,7 +35,10 @@ export default new Router({
       component: () =>
         import(/* webpackChunkName: "about" */ "./views/About.vue")
     },
+    // TODO: 404 handling still needs to be better, i.e. .../SYRCLa gets redirect to 404 but .../SYRCLa/RM does not....
+    { path: "/404", component: NotFound },
     {
+      // FIXME: bad to have toplevel param as it's hard to catch 404.
       path: "/:org",
       // name: "OrganiziationPage",
       component: OrgPageWrapper,
@@ -81,6 +85,7 @@ export default new Router({
             import(/* webpackChunkName: "blog-post" */ "./views/Blog.vue")
         }
       ]
-    }
+    },
+    { path: "*", edirect: "/404" }
   ]
 });
