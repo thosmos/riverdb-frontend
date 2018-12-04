@@ -15,7 +15,10 @@
         </div>
       </div>
       <div v-if="loading">
-        <Loader></Loader>
+        <div v-for="i in 7"
+             :key="i">
+          <skeleton class="graph-skeleton"></skeleton>
+        </div>
       </div>
       <div>
         <div v-for="station in stationsCode"
@@ -33,7 +36,7 @@
 
  <script>
 import FlowGraph from "../components/FlowGraph.vue";
-import Loader from "../components/Loader";
+import Skeleton from "../components/Skeleton";
 import axios from "axios";
 import find from "lodash/find";
 import { stations } from "../assets/flowsStations.js";
@@ -41,7 +44,7 @@ import { FLOW_API_PORT, FLOW_API_IP } from "../assets/constants";
 
 export default {
   name: "FlowPageWrapper",
-  components: { FlowGraph, Loader },
+  components: { FlowGraph, Skeleton },
   data() {
     return {
       info: {},
@@ -84,6 +87,7 @@ export default {
     },
     selectPeriod: function(p) {
       this.loading = true;
+      this.info = {};
       this.period = p;
       let url =
         process.env.NODE_ENV === "development"
@@ -105,7 +109,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 @import "../style/style.scss";
 
 #flow-page {
@@ -126,5 +130,9 @@ export default {
     background: $primaryColor;
   }
   margin-bottom: 50px;
+  .graph-skeleton {
+    height: 400px;
+    margin-bottom: 50px;
+  }
 }
 </style>

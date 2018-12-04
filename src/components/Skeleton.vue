@@ -17,8 +17,6 @@ $color-highlight: lighten($color-base, 7%);
 .skeleton {
   position: relative;
   overflow: hidden;
-  /* width: 50%;
-  height: 400px; */
   background: $color-base;
 
   &::after {
