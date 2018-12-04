@@ -13,6 +13,9 @@
     </l-map>
     <organization-map-color-index :organizations="organizations" />
   </div>
+  <div v-else>
+    <Skeleton class="map-height m-t-lg m-b-lg"></Skeleton>
+  </div>
 </template>
 
 <script>
@@ -20,6 +23,7 @@ import organizations from "../assets/organizations.js";
 import agencyAreas from "../assets/GIS/agencyAreas.js";
 import Vue from "vue";
 import OrganizationMapColorIndex from "./organizationMapColorIndex";
+import Skeleton from "./Skeleton";
 
 import { LMap, LTileLayer, LGeoJson, LMarker } from "vue2-leaflet";
 import Popup from "./OrganizationsMapPopup.vue";
@@ -47,7 +51,8 @@ export default {
     LTileLayer,
     LGeoJson,
     LMarker,
-    OrganizationMapColorIndex
+    OrganizationMapColorIndex,
+    Skeleton
   },
   data: function() {
     return {

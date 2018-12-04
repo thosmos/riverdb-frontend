@@ -27,13 +27,15 @@
     </div>
   </div>
   <div v-else>
-    <Loader />
+    <!-- <Loader /> -->
+    <Skeleton id="map" />
   </div>
 </template>
 
 <script>
 import { LMap, LTileLayer, LGeoJson, LMarker } from "vue2-leaflet";
 import Loader from "./Loader";
+import Skeleton from "./Skeleton";
 import {
   tribStyleWithName,
   tribStyleWithoutName
@@ -50,7 +52,8 @@ export default {
     LTileLayer,
     LGeoJson,
     LMarker,
-    Loader
+    Loader,
+    Skeleton
   },
   data() {
     return {

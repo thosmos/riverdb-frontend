@@ -20,5 +20,9 @@ export default {
   justify-content: center;
   align-items: center;
   min-height: 50vh;
+  h1,
+  h3 {
+    text-align: center;
+  }
 }
 </style>
