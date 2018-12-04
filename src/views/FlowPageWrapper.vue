@@ -1,7 +1,7 @@
 <template>
   <div id="flow-page">
     <sui-container>
-      <div class="ui center aligned huge header">Flow Information:</div>
+      <div class="ui center aligned large header">Flow Information:</div>
       <div class="ui center segment">
         <div class="centered-buttons ui ">
           <div v-for="p in periods"

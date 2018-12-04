@@ -1,6 +1,11 @@
 <template>
   <div id="nav">
-    <router-link to='/'>
+    <router-link to="/">
+      <h1>RiverDB</h1>
+    </router-link>
+    <h1 v-if="navBarTitle">~</h1>
+    <router-link v-if="navBarTitle"
+                 :to="`/${navBarTitle}`">
       <h1>{{navBarTitle}}</h1>
     </router-link>
   </div>
@@ -16,9 +21,9 @@ export default {
     }),
     navBarTitle: function() {
       if (this.organization.activeOrganization) {
-        return "RiverDB ~ " + this.organization.activeOrganization;
+        return this.organization.activeOrganization;
       } else {
-        return "RiverDB";
+        return null;
       }
     }
   }
@@ -42,6 +47,9 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  h1 {
+    padding: 0 0.5rem;
+  }
   > a.router-link-active > h1 {
     color: $offWhite;
     &:hover {
