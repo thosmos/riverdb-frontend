@@ -2,6 +2,8 @@ export const WS_API_IP = "178.128.68.123";
 export const WS_API_PORT = 3010;
 export const FLOW_API_IP = WS_API_IP;
 export const FLOW_API_PORT = 3020;
+export const IMAGE_SIZE = "w_640";
+export const CLOUDINARY_URL = `https://res.cloudinary.com/riverdb/image/upload/${IMAGE_SIZE}/v1543968545`;
 
 export const WP_USERS = {
   SYRCL: 2,

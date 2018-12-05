@@ -5,7 +5,8 @@ import {
   IS_LOADING,
   SHOW_YEAR_SELECTION,
   CLEAR_COOKIE_MSG,
-  TAKE_TOUR
+  TAKE_TOUR,
+  TOGGLE_STATION_INFO_MODAL
 } from "./mutationTypes";
 
 const ui = {
@@ -16,7 +17,9 @@ const ui = {
     isLoading: false,
     showYearSelection: true,
     showCookieMsg: true,
-    takeTour: false
+    takeTour: false,
+    showInfoModal: false,
+    showInfoModalStation: null
   },
   mutations: {
     [SET_ERROR_MSG](state, { section, msg }) {
@@ -40,6 +43,14 @@ const ui = {
     },
     [TAKE_TOUR](state) {
       state.takeTour = true;
+    },
+    [TOGGLE_STATION_INFO_MODAL](state, station) {
+      state.showInfoModal = !state.showInfoModal;
+      if (!state.showInfoModal) {
+        state.showInfoModalStation = null;
+      } else {
+        state.showInfoModalStation = station;
+      }
     }
   },
   actions: {}

@@ -6,6 +6,7 @@
         <p>{{ui.errorMsg.selection}}</p>
       </sui-message>
       <div class="ui two column centered grid"
+           :class="[ui.showInfoModal ? 'hide-multiselect' : '']"
            id="selection-boxes">
         <div class="column"
              id="step-0">
@@ -153,7 +154,10 @@ export default {
 
 <style>
 #selection-boxes > div {
-  z-index: 100000;
+  z-index: 2000;
+}
+.hide-multiselect {
+  opacity: 0;
 }
 #station-map {
 }

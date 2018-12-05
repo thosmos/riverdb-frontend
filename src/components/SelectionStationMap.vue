@@ -15,12 +15,18 @@
             <b>{{marker.value.StationName}}</b>
           </h6>
           <p>on {{marker.value.LocalWaterbody}}</p>
+          <sui-button color="blue"
+                      basic
+                      fluid
+                      @click="stationInfo(marker.value)">Station Info</sui-button>
           <div v-if="isLoaded(marker)">
             <sui-button color="red"
+                        fluid
                         @click="removeStation(marker.value)">Remove Station</sui-button>
           </div>
           <div v-else>
             <sui-button color="blue"
+                        fluid
                         @click="addStation(marker.value)">Add Station</sui-button>
           </div>
         </l-popup>
@@ -107,6 +113,9 @@ export default {
     removeStation: function(station) {
       this.$store.dispatch("data/REMOVE_STATION", station.StationID);
     },
+    stationInfo: function(station) {
+      this.$store.commit("ui/TOGGLE_STATION_INFO_MODAL", station);
+    },
     isLoaded: function(station) {
       let index = findIndex(this.data.loadedStations, o => {
         return o.info.StationID === station.value.StationID;
@@ -143,7 +152,7 @@ export default {
   button {
     font-size: 0.8rem;
     display: block;
-    margin: 0 auto;
+    margin: 10px auto;
   }
 }
 </style>

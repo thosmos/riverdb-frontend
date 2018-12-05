@@ -46,6 +46,10 @@ import VTooltip from "v-tooltip";
 
 Vue.use(VTooltip);
 
+import VModal from "vue-js-modal";
+
+Vue.use(VModal);
+
 Vue.config.productionTip = false;
 
 import VueTour from "vue-tour";

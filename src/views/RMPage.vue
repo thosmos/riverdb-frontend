@@ -48,7 +48,7 @@
               </download-wrapper>
             </sui-grid-column>
           </sui-grid-row>
-          <sui-grid-row>
+          <sui-grid-row class="m-b-lg">
             <sui-grid-column>
               <data-table></data-table>
             </sui-grid-column>
@@ -58,7 +58,7 @@
     </sui-container>
     <v-tour name="myTour"
             :steps="steps"></v-tour>
-
+    <station-info-modal v-if="ui.showInfoModalStation"></station-info-modal>
   </div>
 </template>
 
@@ -68,6 +68,7 @@ import DownloadWrapper from "../components/DownloadWrapper";
 import ChartWrapper from "../components/ChartWrapper";
 import Loader from "../components/Loader";
 import DataTable from "../components/DataTable";
+import StationInfoModal from "../components/StationInfoModal";
 
 import { GET_STATIONS, GET_STATION_DATA } from "../apollo/queries";
 import { mapState } from "vuex";
@@ -80,7 +81,8 @@ export default {
     SelectionWrapper,
     ChartWrapper,
     DataTable,
-    DownloadWrapper
+    DownloadWrapper,
+    StationInfoModal
   },
   computed: {
     ...mapState({
@@ -255,19 +257,16 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.page-spacer {
-  /* NOTE: kind of forced way to do it but does the job, out of the box has way to much margin on mobile */
-  @media only screen and (max-width: 1024px) {
-    /* margin-left: 1.5rem; */
-    margin: 2rem -1.5rem 0 0;
-  }
-  @media only screen and (min-width: 1024px) {
-    margin-left: 2rem;
-    /* margin-right: 0.25rem; */
-  }
-}
+<style lang="scss">
 #RM {
-  margin-bottom: 50px;
+  .page-spacer {
+    /* NOTE: kind of forced way to do it but does the job, out of the box has way to much margin on mobile */
+    @media only screen and (max-width: 1024px) {
+      margin: 2rem -1.5rem 0 0;
+    }
+    @media only screen and (min-width: 1024px) {
+      margin-left: 2rem;
+    }
+  }
 }
 </style>
