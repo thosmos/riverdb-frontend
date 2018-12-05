@@ -159,6 +159,9 @@ export default {
 .hide-multiselect {
   opacity: 0;
 }
+.ui.two.column.centered.grid {
+  transition: all 0.3s ease;
+}
 #station-map {
 }
 </style>

@@ -34,12 +34,23 @@
             <span>{{ui.showInfoModalStation.TargetLong}}</span>
           </sui-grid-column>
         </sui-grid-row>
+        <!-- <sui-grid-row> -->
+        <!-- <sui-grid-column centered> -->
 
         <img id="station-image" />
         <skeleton v-if="imgLoading"
                   id="img-placeholder"></skeleton>
+        <!-- </sui-grid-column> -->
+        <!-- </sui-grid-row> -->
+
         <!-- <sui-image :src="imageURL"
                  fluid /> -->
+        <sui-grid-row>
+          <sui-grid-column>
+            <station-info-map v-if="stationWatershed"
+                              :watershed="stationWatershed"></station-info-map>
+          </sui-grid-column>
+        </sui-grid-row>
       </sui-grid>
       <div v-if="imgError"
            class="img-error-msg"> <b>No image available for the site</b></div>
@@ -49,6 +60,7 @@
 
 <script>
 import Skeleton from "./Skeleton";
+import StationInfoMap from "./StationInfoMap";
 import forkNames from "../assets/riverForkNames.js";
 import { CLOUDINARY_URL } from "../assets/constants.js";
 import { mapState } from "vuex";
@@ -57,7 +69,8 @@ import axios from "axios";
 export default {
   name: "StationInfoModal",
   components: {
-    Skeleton
+    Skeleton,
+    StationInfoMap
   },
   props: {
     station: Object
@@ -65,7 +78,8 @@ export default {
   data() {
     return {
       imgLoading: true,
-      imgError: false
+      imgError: false,
+      stationWatershed: null
     };
   },
   mounted() {
@@ -92,6 +106,19 @@ export default {
       .catch(err => {
         this.imgLoading = false;
         this.imgError = true;
+      });
+    axios
+      .get(
+        `http://localhost:3010/stationInfo?StationCode=${
+          this.ui.showInfoModalStation.StationCode
+        }`
+      )
+      .then(res => {
+        console.log(res.data);
+        this.stationWatershed = res.data.info;
+      })
+      .catch(err => {
+        console.log("err", err);
       });
   },
   computed: {
@@ -168,5 +195,9 @@ export default {
 .img-error-msg {
   text-align: center;
   margin-top: 1rem;
+}
+.v--modal-box.v--modal {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 </style>
