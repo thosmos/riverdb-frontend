@@ -9,6 +9,7 @@
       <l-marker v-for="marker in cleanedStations"
                 :key="marker.value.StationID"
                 :lat-lng="getPosition(marker.value)"
+                :options="markerOptions(marker)"
                 :icon="getIcon(marker.value.StationID)">
         <l-popup class="popup">
           <h6>
@@ -39,7 +40,8 @@
 import { LMap, LTileLayer, LGeoJson, LMarker, LPopup } from "vue2-leaflet";
 import { calculateBoundsOfStations } from "../utils/geo.js";
 import L from "leaflet";
-import icon from "../assets/GIS/red-map-icon.png";
+// import icon from "../assets/GIS/red-map-icon.png";
+import icon from "../assets/GIS/map-marker-2-64.png";
 import selectedIcon from "../assets/GIS/map-icon.png";
 import { mapState } from "vuex";
 import findIndex from "lodash/findIndex";
@@ -90,6 +92,13 @@ export default {
     }
   },
   methods: {
+    markerOptions: function(station) {
+      return {
+        opacity: station.value.Active ? 1 : 0.5,
+        riseOnHover: true,
+        title: station.value.StationName
+      };
+    },
     getPosition: function(m) {
       if (m.TargetLat && m.TargetLong) {
         let position = L.latLng(m.TargetLat, m.TargetLong);
