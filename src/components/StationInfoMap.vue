@@ -9,13 +9,13 @@
       <!-- Catchment outline -->
       <l-geo-json v-if="watershed"
                   ref='outline'
-                  :geojson="watershed.catchmentInfo"></l-geo-json>
-      <!-- <l-geo-json v-for="(ut,index) in ws.upstreamInfo.paths"
+                  :geojson="watershed.catchmentInfo.shape"></l-geo-json>
+      <l-geo-json v-for="(ut,index) in watershed.upstreamInfo.paths"
                   :key="index"
                   :geojson="ut.shape"
                   ref="upstreamRef"
                   :options="upstreamOptions">
-      </l-geo-json> -->
+      </l-geo-json>
     </l-map>
   </div>
 </template>
@@ -53,16 +53,12 @@ export default {
   },
   mounted() {
     console.log("this.watershed", this.watershed);
-    console.log(
-      "getNewBounds(this.watershed()",
-      this.getNewBounds(this.watershed)
-    );
     this.bounds = this.getNewBounds(this.watershed);
   },
   methods: {
     getNewBounds: function(watershed) {
       if (watershed) {
-        let shape = watershed.catchmentInfo.coordinates[0];
+        let shape = watershed.catchmentInfo.shape.coordinates[0];
         let nb = geolib.getBounds(shape);
         return L.latLngBounds(
           L.latLng(nb.maxLat, nb.maxLng),
