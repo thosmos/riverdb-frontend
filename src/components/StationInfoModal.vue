@@ -2,7 +2,7 @@
   <modal name="station-info-modal"
          scrollable
          height="auto"
-         width="50%"
+         width="80%"
          @closed="modalClosed">
     <div id="station-info-modal">
       <h3 is="sui-header"
@@ -47,8 +47,10 @@
                  fluid /> -->
         <sui-grid-row>
           <sui-grid-column>
-            <station-info-map v-if="stationWatershed"
-                              :watershed="stationWatershed"></station-info-map>
+            <div v-if="stationWatershed">
+              <station-info-map v-if="stationWatershed"
+                                :watershed="stationWatershed"></station-info-map>
+            </div>
           </sui-grid-column>
         </sui-grid-row>
       </sui-grid>
@@ -61,16 +63,19 @@
 <script>
 import Skeleton from "./Skeleton";
 import StationInfoMap from "./StationInfoMap";
+import OrgPageOverviewMap from "./OrgPageOverviewMap";
 import forkNames from "../assets/riverForkNames.js";
 import { CLOUDINARY_URL } from "../assets/constants.js";
 import { mapState } from "vuex";
 import axios from "axios";
+import { WS_API_IP, WS_API_PORT } from "../assets/constants";
 
 export default {
   name: "StationInfoModal",
   components: {
     Skeleton,
-    StationInfoMap
+    StationInfoMap,
+    OrgPageOverviewMap
   },
   props: {
     station: Object
@@ -109,7 +114,7 @@ export default {
       });
     axios
       .get(
-        `http://localhost:3010/stationInfo?StationCode=${
+        `http://${WS_API_IP}:${WS_API_PORT}?river=${
           this.ui.showInfoModalStation.StationCode
         }`
       )

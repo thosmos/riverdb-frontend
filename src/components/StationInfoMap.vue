@@ -16,6 +16,10 @@
                   ref="upstreamRef"
                   :options="upstreamOptions">
       </l-geo-json>
+      <l-geo-json v-for="(dt,index) in watershed.downstreamInfo.paths"
+                  :key="index+10000"
+                  :geojson="dt.shape">
+      </l-geo-json>
     </l-map>
   </div>
 </template>
@@ -24,6 +28,10 @@
 import { LMap, LTileLayer, LGeoJson, LMarker } from "vue2-leaflet";
 import geolib from "geolib";
 import L from "leaflet";
+import {
+  tribStyleWithName,
+  tribStyleWithoutName
+} from "../assets/constants.js";
 
 export default {
   name: "StationInfoMap",
@@ -52,8 +60,45 @@ export default {
     };
   },
   mounted() {
-    console.log("this.watershed", this.watershed);
     this.bounds = this.getNewBounds(this.watershed);
+  },
+  computed: {
+    upstreamOptions: function() {
+      let oef = {
+        onEachFeature: (feature, layer) => {
+          layer.on({
+            mouseover: e => {
+              var layer = e.target;
+              if (e.target.feature.geometry.properties.name) {
+                layer
+                  .bindTooltip(`${e.target.feature.geometry.properties.name}`, {
+                    sticky: true
+                  })
+                  .openTooltip();
+              } else {
+                layer
+                  .bindTooltip(
+                    `comid: ${e.target.feature.geometry.properties.comid}`,
+                    { sticky: true }
+                  )
+                  .openTooltip();
+              }
+            },
+            mouseout: e => {
+              e.target.closePopup();
+            }
+          });
+        },
+        style: feature => {
+          if (feature.geometry.properties.name) {
+            return tribStyleWithName;
+          } else {
+            return tribStyleWithoutName;
+          }
+        }
+      };
+      return { ...oef };
+    }
   },
   methods: {
     getNewBounds: function(watershed) {
