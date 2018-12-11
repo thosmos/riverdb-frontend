@@ -17,7 +17,7 @@
   X use correct dates in flow pages
   X have org name in uppercase in header
 - have http/https in constants so it'll be easier to switch for actual production
-- have loader on / for map
+  X have loader on / for map
   X make cookie warning full width on mobile
 - fix remaining margin isues on some medium widths....
   X make flow server update every hour or so
@@ -26,4 +26,4 @@
   X have all UI elements in /SYRCL etc in the main box on top not the break up in different boxes....
   X fix router-link hover underline color.
 - display message of flow server is down
--
+- remove tile info on modal shown

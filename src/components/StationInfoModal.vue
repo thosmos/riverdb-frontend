@@ -40,12 +40,7 @@
         <img id="station-image" />
         <skeleton v-if="imgLoading"
                   id="img-placeholder"></skeleton>
-        <!-- </sui-grid-column> -->
-        <!-- </sui-grid-row> -->
-
-        <!-- <sui-image :src="imageURL"
-                 fluid /> -->
-        <sui-grid-row>
+        <sui-grid-row :columns="1">
           <sui-grid-column>
             <div v-if="stationWatershed">
               <station-info-map v-if="stationWatershed"
@@ -175,8 +170,9 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "../style/style.scss";
+
 #station-info-modal {
   margin: 2rem;
   z-index: 3000;

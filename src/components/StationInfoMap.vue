@@ -5,6 +5,14 @@
            id="map"
            class="map-height"
            ref="map">
+      <l-control-layers position="topright" />
+      <l-tile-layer v-for="tileProvider in tileProviders"
+                    layerType="base"
+                    :name="tileProvider.name"
+                    :url="tileProvider.url"
+                    :attribution="tileProvider.attribution"
+                    :visible="tileProvider.visible"
+                    :key="tileProvider.name" />
       <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></l-tile-layer>
       <!-- Catchment outline -->
       <l-geo-json v-if="watershed"
@@ -25,19 +33,27 @@
 </template>
 
 <script>
-import { LMap, LTileLayer, LGeoJson, LMarker } from "vue2-leaflet";
+import {
+  LMap,
+  LTileLayer,
+  LControlLayers,
+  LGeoJson,
+  LMarker
+} from "vue2-leaflet";
 import geolib from "geolib";
 import L from "leaflet";
 import {
   tribStyleWithName,
   tribStyleWithoutName
 } from "../assets/constants.js";
+import { tileProviders } from "../assets/tileProviders.js";
 
 export default {
   name: "StationInfoMap",
   components: {
     LMap,
     LTileLayer,
+    LControlLayers,
     LGeoJson,
     LMarker
   },
@@ -56,6 +72,7 @@ export default {
         //   navigator.userAgent.indexOf("IEMobile") !== -1,
         // tap: false
       },
+      tileProviders,
       bounds: null
     };
   },

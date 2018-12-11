@@ -4,7 +4,15 @@
     <l-map :bounds="bounds"
            class="map-height"
            :options="options">
-      <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></l-tile-layer>
+      <l-control-layers position="topright" />
+      <l-tile-layer v-for="tileProvider in tileProviders"
+                    layerType="base"
+                    :name="tileProvider.name"
+                    :url="tileProvider.url"
+                    :attribution="tileProvider.attribution"
+                    :visible="tileProvider.visible"
+                    :key="tileProvider.name" />
+      <!-- <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></l-tile-layer> -->
       <div v-for="org in organizations"
            :key="org.river">
         <l-geo-json :geojson="org.outline"
@@ -25,13 +33,20 @@ import Vue from "vue";
 import OrganizationMapColorIndex from "./organizationMapColorIndex";
 import Skeleton from "./Skeleton";
 
-import { LMap, LTileLayer, LGeoJson, LMarker } from "vue2-leaflet";
+import {
+  LMap,
+  LTileLayer,
+  LControlLayers,
+  LGeoJson,
+  LMarker
+} from "vue2-leaflet";
 import Popup from "./OrganizationsMapPopup.vue";
 import L from "leaflet";
 import axios from "axios";
 import find from "lodash/find";
 import geolib from "geolib";
 import { WS_API_IP, WS_API_PORT } from "../assets/constants";
+import { tileProviders } from "../assets/tileProviders";
 
 function onEachFeature(feature, layer) {
   let popupContent = Vue.extend(Popup);
@@ -49,6 +64,7 @@ export default {
   components: {
     LMap,
     LTileLayer,
+    LControlLayers,
     LGeoJson,
     LMarker,
     OrganizationMapColorIndex,
@@ -68,7 +84,8 @@ export default {
           !(typeof window.orientation !== "undefined") ||
           navigator.userAgent.indexOf("IEMobile") !== -1,
         tap: false
-      }
+      },
+      tileProviders
     };
   },
   mounted() {

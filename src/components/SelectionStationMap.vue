@@ -1,11 +1,18 @@
 <template>
-  <div v-if="bounds"
+  <div v-if="bounds && !ui.showInfoModal"
        id='selection-map'
        class="m-b-lg">
     <l-map :bounds="bounds"
            class="map-height"
            :options="options">
-      <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></l-tile-layer>
+      <l-control-layers position="topright" />
+      <l-tile-layer v-for="tileProvider in tileProviders"
+                    layerType="base"
+                    :name="tileProvider.name"
+                    :url="tileProvider.url"
+                    :visible="tileProvider.visible"
+                    :attribution="tileProvider.attribution"
+                    :key="tileProvider.name" />
       <l-marker v-for="marker in cleanedStations"
                 :key="marker.value.StationID"
                 :lat-lng="getPosition(marker.value)"
@@ -37,12 +44,20 @@
 </template>
 
 <script>
-import { LMap, LTileLayer, LGeoJson, LMarker, LPopup } from "vue2-leaflet";
+import {
+  LMap,
+  LTileLayer,
+  LControlLayers,
+  LGeoJson,
+  LMarker,
+  LPopup
+} from "vue2-leaflet";
 import { calculateBoundsOfStations } from "../utils/geo.js";
 import L from "leaflet";
 // import icon from "../assets/GIS/red-map-icon.png";
 import icon from "../assets/GIS/map-marker-2-64.png";
 import selectedIcon from "../assets/GIS/map-icon.png";
+import { tileProviders } from "../assets/tileProviders.js";
 import { mapState } from "vuex";
 import findIndex from "lodash/findIndex";
 
@@ -51,7 +66,7 @@ export default {
   props: {
     stations: Array
   },
-  components: { LMap, LTileLayer, LGeoJson, LMarker, LPopup },
+  components: { LMap, LTileLayer, LControlLayers, LGeoJson, LMarker, LPopup },
   data() {
     return {
       icon: L.icon({
@@ -66,6 +81,7 @@ export default {
         iconAnchor: [18, 36],
         popupAnchor: [0, -20]
       }),
+      tileProviders,
       // map options, disables scrolling with mouse wheel
       options: {
         scrollWheelZoom: false,
@@ -80,7 +96,8 @@ export default {
   mounted() {},
   computed: {
     ...mapState({
-      data: state => state.data
+      data: state => state.data,
+      ui: state => state.ui
     }),
     cleanedStations: function() {
       return this.stations.filter(s => {
@@ -141,6 +158,7 @@ export default {
   border-radius: 6px;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
+
 #selection-map
   > div
   > div.leaflet-control-container

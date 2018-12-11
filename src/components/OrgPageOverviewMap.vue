@@ -6,7 +6,14 @@
            id="map"
            class="map-height"
            ref="map">
-      <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></l-tile-layer>
+      <l-control-layers position="topright" />
+      <l-tile-layer v-for="tileProvider in tileProviders"
+                    layerType="base"
+                    :name="tileProvider.name"
+                    :url="tileProvider.url"
+                    :attribution="tileProvider.attribution"
+                    :visible="tileProvider.visible"
+                    :key="tileProvider.name" />
       <!-- Catchment outline -->
       <l-geo-json ref='outline'
                   :geojson="ws.catchmentInfo.shape"></l-geo-json>
@@ -33,13 +40,20 @@
 </template>
 
 <script>
-import { LMap, LTileLayer, LGeoJson, LMarker } from "vue2-leaflet";
+import {
+  LMap,
+  LTileLayer,
+  LControlLayers,
+  LGeoJson,
+  LMarker
+} from "vue2-leaflet";
 import Loader from "./Loader";
 import Skeleton from "./Skeleton";
 import {
   tribStyleWithName,
   tribStyleWithoutName
 } from "../assets/constants.js";
+import { tileProviders } from "../assets/tileProviders.js";
 import geolib from "geolib";
 import L from "leaflet";
 
@@ -50,6 +64,7 @@ export default {
   components: {
     LMap,
     LTileLayer,
+    LControlLayers,
     LGeoJson,
     LMarker,
     Loader,
@@ -66,7 +81,8 @@ export default {
           !(typeof window.orientation !== "undefined") ||
           navigator.userAgent.indexOf("IEMobile") !== -1,
         tap: false
-      }
+      },
+      tileProviders
     };
   },
   mounted() {
