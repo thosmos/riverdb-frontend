@@ -30,6 +30,7 @@
       </l-geo-json>
       <l-marker v-if="watershed"
                 :icon="icon"
+                :options="markerOptions(station)"
                 :lat-lng="getPosition(station)"></l-marker>
     </l-map>
   </div>
@@ -144,6 +145,11 @@ export default {
         let position = L.latLng(m.TargetLat, m.TargetLong);
         return position;
       }
+    },
+    markerOptions: function(station) {
+      return {
+        title: `${station.StationName} monitoring station`
+      };
     }
   }
 };

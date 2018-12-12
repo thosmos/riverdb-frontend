@@ -5,6 +5,7 @@ import OrgPageWrapper from "./views/OrgPageWrapper.vue";
 import RMPageWrapper from "./views/RMPageWrapper.vue";
 import FlowPageWrapper from "./views/FlowPageWrapper";
 import NotFound from "./views/NotFound";
+import store from "./store/store.js";
 
 Vue.use(Router);
 
@@ -91,8 +92,10 @@ const appRouter = new Router({
 });
 
 appRouter.beforeEach((to, from, next) => {
-  console.log("to", to);
-  console.log("from", from);
+  // Reset stations if changing from one organization to another....
+  if (to.params.org !== from.params.org) {
+    store.commit("data/RESET_STATIONS");
+  }
   next();
   // ...
 });

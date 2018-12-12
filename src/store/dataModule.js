@@ -3,7 +3,8 @@ import {
   REMOVE_STATION,
   SELECT_STATION,
   PROVIDE_APOLLO,
-  GENERATE_KEY
+  GENERATE_KEY,
+  RESET_STATIONS
 } from "./mutationTypes";
 import { GET_STATION_DATA } from "../apollo/queries.js";
 
@@ -35,6 +36,12 @@ const data = {
     },
     [GENERATE_KEY](state) {
       state.uniqueKey = shortid.generate();
+    },
+    [RESET_STATIONS](state) {
+      state.endYear = null;
+      state.startYear = null;
+      state.selectedStation = null;
+      state.loadedStations = [];
     }
   },
   actions: {
