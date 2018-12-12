@@ -87,13 +87,15 @@ export default {
   computed: {
     ...mapState({
       ui: state => state.ui,
-      data: state => state.data
+      data: state => state.data,
+      organization: state => state.organization
     })
   },
   data() {
     return {
       showTakeTour: true,
       name: "my-tour",
+      SYRCL: "SYRCL",
       steps: [
         {
           target: "#step-0",
@@ -236,6 +238,7 @@ export default {
     }
   },
   mounted() {
+    console.log("this.organization", this.organization);
     // Check for tour
     if (localStorage.getItem("noTour")) {
       this.showTakeTour = false;
@@ -246,6 +249,9 @@ export default {
     stations: {
       query: GET_STATIONS, // Initial data fetch of all stations...
       // TODO: add organization variables once it becomes available from Thomas
+      variables() {
+        return { agency: this.organization.activeOrganization };
+      },
       error() {
         this.$store.commit("ui/SET_ERROR_MSG", {
           section: "RM_Datafetch",
