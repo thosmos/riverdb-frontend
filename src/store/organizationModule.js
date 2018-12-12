@@ -34,8 +34,6 @@ const organization = {
      * @param {String} org
      */
     [SET_ACTIVE_ORGANIZATION](state, org) {
-      console.log("state.activeOrganization", state.activeOrganization);
-      console.log("org", org);
       state.activeOrganization = org;
       // Resets watershed data so there is no remnant of old watershed on hew organization page
       if (state.activeOrganization !== org) {

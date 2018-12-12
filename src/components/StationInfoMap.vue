@@ -28,6 +28,9 @@
                   :key="index+10000"
                   :geojson="dt.shape">
       </l-geo-json>
+      <l-marker v-if="watershed"
+                :icon="icon"
+                :lat-lng="getPosition(station)"></l-marker>
     </l-map>
   </div>
 </template>
@@ -42,6 +45,7 @@ import {
 } from "vue2-leaflet";
 import geolib from "geolib";
 import L from "leaflet";
+import icon from "../assets/GIS/map-marker-2-64.png";
 import {
   tribStyleWithName,
   tribStyleWithoutName
@@ -58,7 +62,8 @@ export default {
     LMarker
   },
   props: {
-    watershed: Object
+    watershed: Object,
+    station: Object
   },
   data() {
     return {
@@ -73,6 +78,12 @@ export default {
         // tap: false
       },
       tileProviders,
+      icon: L.icon({
+        iconUrl: icon,
+        iconSize: [36, 36],
+        iconAnchor: [18, 36],
+        popupAnchor: [0, -20]
+      }),
       bounds: null
     };
   },
@@ -127,6 +138,12 @@ export default {
           L.latLng(nb.minLat, nb.minLng)
         );
       } else return null;
+    },
+    getPosition: function(m) {
+      if (m.TargetLat && m.TargetLong) {
+        let position = L.latLng(m.TargetLat, m.TargetLong);
+        return position;
+      }
     }
   }
 };

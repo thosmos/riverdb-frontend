@@ -14,7 +14,7 @@ Vue.use(Router);
 import Meta from "vue-meta";
 Vue.use(Meta);
 
-export default new Router({
+const appRouter = new Router({
   mode: "history",
   base: process.env.BASE_URL,
   scrollBehavior(to, from, savedPosition) {
@@ -74,7 +74,7 @@ export default new Router({
         },
         {
           path: "Flows",
-          name: "FlowsPage",
+          name: "FlowsPageWrapper",
           component: () =>
             import(/* webpackChunkName: 'flow-page' */ "./views/FlowPageWrapper.vue")
         },
@@ -89,3 +89,12 @@ export default new Router({
     { path: "*", edirect: "/404" }
   ]
 });
+
+appRouter.beforeEach((to, from, next) => {
+  console.log("to", to);
+  console.log("from", from);
+  next();
+  // ...
+});
+
+export default appRouter;

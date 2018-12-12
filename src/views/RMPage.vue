@@ -248,7 +248,6 @@ export default {
   apollo: {
     stations: {
       query: GET_STATIONS, // Initial data fetch of all stations...
-      // TODO: add organization variables once it becomes available from Thomas
       variables() {
         return { agency: this.organization.activeOrganization };
       },

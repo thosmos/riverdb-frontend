@@ -44,6 +44,7 @@
           <sui-grid-column>
             <div v-if="stationWatershed">
               <station-info-map v-if="stationWatershed"
+                                :station="ui.showInfoModalStation"
                                 :watershed="stationWatershed"></station-info-map>
             </div>
           </sui-grid-column>
@@ -114,7 +115,6 @@ export default {
         }`
       )
       .then(res => {
-        console.log(res.data);
         this.stationWatershed = res.data.info;
       })
       .catch(err => {
