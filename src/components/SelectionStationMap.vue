@@ -14,10 +14,10 @@
                     :attribution="tileProvider.attribution"
                     :key="tileProvider.name" />
       <l-marker v-for="marker in cleanedStations"
-                :key="marker.value.StationID"
+                :key="marker.value.StationCode"
                 :lat-lng="getPosition(marker.value)"
                 :options="markerOptions(marker)"
-                :icon="getIcon(marker.value.StationID)">
+                :icon="getIcon(marker.value.StationCode)">
         <l-popup class="popup">
           <h6>
             <b>{{marker.value.StationName}}</b>
@@ -125,7 +125,7 @@ export default {
     getIcon: function(id) {
       let index = findIndex(
         this.data.loadedStations,
-        o => o.info.StationID === id
+        o => o.info.StationCode === id
       );
       if (index !== -1) {
         return this.loadedStationIcon;
