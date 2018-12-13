@@ -238,7 +238,6 @@ export default {
     }
   },
   mounted() {
-    console.log("this.organization", this.organization);
     // Check for tour
     if (localStorage.getItem("noTour")) {
       this.showTakeTour = false;
@@ -249,7 +248,15 @@ export default {
     stations: {
       query: GET_STATIONS, // Initial data fetch of all stations...
       variables() {
-        return { agency: this.organization.activeOrganization };
+        console.log("this.organization", this.organization);
+        if (
+          this.organization &&
+          this.organization.activeOrganization &&
+          this.organization.activeOrganization !== "all"
+        ) {
+          return { agency: this.organization.activeOrganization };
+        }
+        return {};
       },
       error() {
         this.$store.commit("ui/SET_ERROR_MSG", {
