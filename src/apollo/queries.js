@@ -23,8 +23,8 @@ export const GET_STATIONS = gql`
 `;
 
 export const GET_STATION_DATA = gql`
-  query getStationData($station: Int!) {
-    sitevisits(station: $station) {
+  query getStationData($stationCode: String) {
+    sitevisits(stationCode: $stationCode) {
       id
       date
       notes

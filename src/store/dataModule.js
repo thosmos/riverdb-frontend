@@ -106,14 +106,15 @@ const data = {
       }
     },
     [FETCH_STATION_DATA]({ commit, dispatch, state }, station) {
-      const id = station.StationID;
+      const id = station.StationCode;
+      console.log("id", id);
       commit("ui/IS_LOADING", true, { root: true });
       // if (!this.loadedStations[id]) {
       state.apollo
         .query({
           query: GET_STATION_DATA,
           variables: {
-            station: id
+            stationCode: id
           }
         })
         .then(res => {
