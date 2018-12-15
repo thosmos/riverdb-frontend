@@ -137,6 +137,7 @@ const data = {
           }
         })
         .catch(() => {
+          console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXxx");
           commit(
             "ui/SET_ERROR_MSG",
             {

@@ -17,10 +17,16 @@
             </sui-button-group>
           </div>
         </div>
-        <sui-message v-if="ui.errorMsg.RM_Datafetch"
-                     color="red">
-          <p>{{ui.errorMsg.RM_Datafetch}}</p>
-        </sui-message>
+        <sui-grid>
+          <sui-grid-row>
+            <sui-grid-column>
+              <sui-message v-if="ui.errorMsg.RM_Datafetch"
+                           color="red">
+                <p>{{ui.errorMsg.RM_Datafetch}}</p>
+              </sui-message>
+            </sui-grid-column>
+          </sui-grid-row>
+        </sui-grid>
         <div v-if="$apollo.loading">
           <Loader />
         </div>

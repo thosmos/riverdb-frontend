@@ -131,7 +131,8 @@ export default {
       return this.organization.activeOrganization;
     },
     imageURL: function() {
-      let str = `${CLOUDINARY_URL}/${this.organizationName}/${
+      // TODO _1 is for RM project, will have to be flexible in the end
+      let str = `${CLOUDINARY_URL}/${this.organizationName}_1/${
         this.ui.showInfoModalStation.StationID
       }.jpg`;
       return str;

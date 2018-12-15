@@ -8,7 +8,8 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import VueApollo from "vue-apollo";
 
 const httpLink = new HttpLink({
-  uri: "https://graphql.riverdb.org/graphql"
+  uri: "https://gql.riverdb.org/graphql"
+  // uri: "https://graphql.riverdb.org/graphql"
 });
 
 // Create the apollo client
