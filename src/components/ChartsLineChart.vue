@@ -101,6 +101,8 @@ export default {
         ],
         yAxis: [
           {
+            // endOnTick: false,
+            // startOnTick: false,
             title: {
               text:
                 getFullParamName(this.selection.activeParam) +
