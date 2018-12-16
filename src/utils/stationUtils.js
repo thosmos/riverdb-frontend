@@ -91,7 +91,7 @@ export function nullBuffer(data, startYear, endYear) {
 export function splitByMonth(data, removeNulls = false) {
   let arr = new Array(12).fill([]);
   data.map(d => {
-    if ((removeNulls && d[1]) || !removeNulls) {
+    if ((removeNulls && d[1]) || (removeNulls && d[1] === 0) || !removeNulls) {
       let month = getMonth(d[0]);
       arr[month] = arr[month].concat([d]);
     }

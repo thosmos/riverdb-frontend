@@ -171,7 +171,7 @@ export default class Station {
   boxPlot() {
     let valuesOnly = [];
     this.processed.data.map(d => {
-      if (d[1]) {
+      if (d[1] || d[1] === 0) {
         valuesOnly.push(d[1]);
       }
     });
@@ -193,7 +193,11 @@ export default class Station {
   boxPlotPerMonth() {
     let byMonth = utils.splitByMonth(this.processed.data, true);
     this.processed.data = byMonth.map(d => {
-      let valuesOnly = d.map(v => v[1]);
+      let valuesOnly = d.map(v => {
+        if (v[1] || v[1] === 0) {
+          return v[1];
+        }
+      });
       if (valuesOnly.length > 0) {
         return [
           Math.min(...valuesOnly),
