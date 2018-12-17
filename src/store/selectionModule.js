@@ -8,7 +8,8 @@ import {
   SELECT_SECONDARY_PARAM,
   SET_YEAR_RANGE,
   SELECT_SINGLE_YEAR,
-  SET_CHART_TYPE
+  SET_CHART_TYPE,
+  RESET_PARAMS
 } from "./mutationTypes";
 
 import {
@@ -62,6 +63,9 @@ const selection = {
     },
     [SET_CHART_TYPE](state, type) {
       state.chartType = type;
+    },
+    [RESET_PARAMS](state) {
+      state.activeParam = "H2O_Temp";
     }
   },
   actions: {

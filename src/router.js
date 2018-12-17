@@ -95,6 +95,7 @@ appRouter.beforeEach((to, from, next) => {
   // Reset stations if changing from one organization to another....
   if (to.params.org !== from.params.org) {
     store.commit("data/RESET_STATIONS");
+    store.commit("selection/RESET_PARAMS");
   }
   next();
   // ...

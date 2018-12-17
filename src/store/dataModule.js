@@ -4,7 +4,8 @@ import {
   SELECT_STATION,
   PROVIDE_APOLLO,
   GENERATE_KEY,
-  RESET_STATIONS
+  RESET_STATIONS,
+  RESET_PARAMS
 } from "./mutationTypes";
 import { GET_STATION_DATA } from "../apollo/queries.js";
 
