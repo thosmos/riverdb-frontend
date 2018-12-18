@@ -4,7 +4,7 @@
     <small v-if="canHaveSecondaryParam()">
       <b>Primary Parameter: </b>
     </small>
-    <br/>
+    <br />
     <div class="flex-row">
       <div v-for="p in allParams"
            :key="p">
@@ -19,12 +19,13 @@
       <small>
         <b>Secondary Parameter: </b>
       </small>
-      <br/>
+      <br />
       <div class="flex-row seconday-param-row">
         <div v-for="(p2,index) in allSecondaryParams"
              :key="index">
           <sui-button @click="selectSecondaryParam(p2, $event) "
-                      :class="{active: p2===selection.secondaryParam}"> {{parameterName(p2)}}
+                      :class="{active: p2===selection.secondaryParam}">
+            {{parameterName(p2)}}
           </sui-button>
         </div>
       </div>
@@ -106,6 +107,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "../style/_variables.scss";
+@import "../style/style.scss";
 
 #selection-params {
   .flex-row {
@@ -128,6 +130,9 @@ export default {
     background: $offWhite;
     &.active {
       background: $lightGrey;
+    }
+    &:hover {
+      @extend %button-darken-hover;
     }
   }
 }

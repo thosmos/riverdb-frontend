@@ -139,5 +139,8 @@ export default {
     display: flex;
     justify-content: center;
   }
+  button:hover {
+    @extend %button-darken-hover;
+  }
 }
 </style>

@@ -1,0 +1,10 @@
+#home button.ui.fluid.primary.big.button {
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    background: darken($primaryColor, 5%);
+  }
+}
+
+%button-darken-hover {
+  background: darken($offWhite, 3%) !important;
+}

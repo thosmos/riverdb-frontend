@@ -35,9 +35,12 @@ export default {
   border-top: 1px solid rgba(34, 36, 38, 0.15);
   border-bottom: 1px solid rgba(34, 36, 38, 0.15);
   margin-bottom: 1rem;
-  > button {
+  > button.ui.basic.circular.primary.button {
     margin: 1rem auto;
     display: block;
+  }
+  button:hover {
+    @extend %button-darken-hover;
   }
 }
 </style>
