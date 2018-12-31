@@ -167,7 +167,7 @@ export default {
       this.$router.push({
         path: ``,
         query: {
-          stations: "19,35",
+          stations: "999SY19,999SY35",
           param: "H2O_pH",
           yearRange: "2014,2017"
         }
@@ -179,9 +179,6 @@ export default {
       let { param } = this.$route.query;
       let { yearRange } = this.$route.query;
       if (stations) {
-        // if (this.ui.takeTour) {
-        //   alert("TOUR");
-        // }
         // if ?stations=... fetch those
         stations.split(",").map(id => {
           //  could use this.$store.dispatch("data/FETCH_STATION_DATA", station) but tricky with if (yearRange....)       this.$store.commit("ui/IS_LOADING", true);
@@ -189,7 +186,7 @@ export default {
             .query({
               query: GET_STATION_DATA,
               variables: {
-                station: id
+                stationCode: id
               }
             })
             .then(res => {
@@ -203,10 +200,7 @@ export default {
                   msg: `Station is already selected`
                 });
               } else {
-                let station = find(
-                  this.stations,
-                  o => o.StationID === parseInt(id)
-                );
+                let station = find(this.stations, o => o.StationCode === id);
                 this.$store.dispatch("data/ADD_STATION_DATA", {
                   info: station,
                   data: res.data
