@@ -11,8 +11,11 @@ import { GET_STATION_DATA } from "../apollo/queries.js";
 
 import Station from "../utils/Station";
 import findIndex from "lodash/findIndex";
+import uniq from "lodash/uniq";
 import find from "lodash/find";
 import shortid from "shortid";
+
+import router from "../router";
 
 const data = {
   namespaced: true,
@@ -25,12 +28,33 @@ const data = {
     uniqueKey: "abc"
   },
   mutations: {
-    [SELECT_STATION](state, StationID) {
+    [SELECT_STATION](state, StationCode) {
+      if (StationCode === null) {
+        // No stations loaded
+        state.selectedStation = null;
+        let current = { ...router.history.current };
+        router.replace({
+          ...current,
+          query: {
+            ...current.query,
+            selectedStation: ""
+          }
+        });
+        return;
+      }
       let index = findIndex(
         state.loadedStations,
-        o => o.info.StationID === StationID
+        o => o.info.StationCode === StationCode
       );
       state.selectedStation = state.loadedStations[index];
+      let current = { ...router.history.current };
+      router.replace({
+        ...current,
+        query: {
+          ...current.query,
+          selectedStation: StationCode
+        }
+      });
     },
     [PROVIDE_APOLLO](state, apollo) {
       state.apollo = apollo;
@@ -46,22 +70,32 @@ const data = {
     }
   },
   actions: {
-    [REMOVE_STATION]({ state }, StationID) {
+    [REMOVE_STATION]({ commit, state }, StationCode) {
+      console.log("StationCode", StationCode);
       let index = findIndex(
         state.loadedStations,
-        o => o.info.StationID === StationID
+        o => o.info.StationCode === StationCode
       );
       let toBeRemovedStation = find(
         state.loadedStations,
-        o => o.info.StationID === StationID
+        o => o.info.StationCode === StationCode
       );
       // Check if to be removed station is also selectedStation
-      let selectedStationID = state.selectedStation.info.StationID;
+      let selectedStationCode = state.selectedStation.info.StationCode;
       state.loadedStations.splice(index, 1);
-      if (toBeRemovedStation.info.StationID === selectedStationID) {
+      const loadedStationsStr = state.loadedStations
+        .map(s => s.info.StationCode)
+        .join(",");
+      let current = router.history.current;
+      router.replace({
+        ...current,
+        query: { ...current.query, stations: loadedStationsStr }
+      });
+      if (toBeRemovedStation.info.StationCode === selectedStationCode) {
         if (state.loadedStations.length !== 0) {
           // Not the last loadedStation
           state.selectedStation = state.loadedStations[0];
+          console.log("state.selectedStation", state.selectedStation);
           // Calculate minmax year
           let years = [];
           state.loadedStations.map(s => {
@@ -70,19 +104,43 @@ const data = {
           });
           state.startYear = Math.min(...years);
           state.endYear = Math.max(...years);
+          commit("selection/SET_YEAR_RANGE", [state.startYear, state.endYear], {
+            root: true
+          });
+          commit("SELECT_STATION", state.selectedStation.info.StationCode);
         } else {
-          // last loadedStation, set selectedStation to null.
+          //  no more station loaded, set yearRange && selectedStation to null,
           state.selectedStation = null;
           state.startYear = null;
           state.endYear = null;
+          commit("selection/SET_YEAR_RANGE", [state.startYear, state.endYear], {
+            root: true
+          });
+          commit("SELECT_STATION", null);
         }
+        commit;
       }
     },
-    [ADD_STATION_DATA]({ commit, state, rootState }, { info, data }) {
+    [ADD_STATION_DATA](
+      { commit, state, rootState },
+      { info, data, selectedStation }
+    ) {
       let newStation = new Station(info, data);
       state.loadedStations.push(newStation);
-      // Select newly added Station
-      commit("SELECT_STATION", info.StationID);
+      const loadedStationsStr = uniq(state.loadedStations)
+        .map(s => s.info.StationCode)
+        .join(",");
+      let current = router.history.current;
+      router.replace({
+        ...current,
+        query: { ...current.query, stations: loadedStationsStr }
+      });
+      // Select newly added Station or station based on query
+      if (selectedStation) {
+        commit("SELECT_STATION", selectedStation);
+      } else {
+        commit("SELECT_STATION", info.StationCode);
+      }
       // Get minYear and maxYear
       let years = [];
       state.loadedStations.map(s => {
@@ -138,7 +196,6 @@ const data = {
           }
         })
         .catch(() => {
-          console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXxx");
           commit(
             "ui/SET_ERROR_MSG",
             {

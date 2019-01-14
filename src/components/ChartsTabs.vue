@@ -1,7 +1,8 @@
 <template>
   <div id="chart-tabs">
 
-    <sui-tab @change="handleChange">
+    <sui-tab @change="handleChange"
+             :active-index.sync="activeIndex">
       <sui-tab-pane title="multi year line">
         <charts-line-chart class="chart chart-spacer"
                            :selection="selection"
@@ -39,6 +40,28 @@ export default {
     ChartsBoxChartPerMonth
   },
   props: { data: Object, selection: Object },
+  data() {
+    return {
+      activeIndex: 0
+    };
+  },
+  mounted() {
+    const chartType = this.$router.history.current.query.chartType;
+    switch (chartType) {
+      case "LINE_MULTI":
+        this.activeIndex = 0;
+        break;
+      case "LINE_SINGLE":
+        this.activeIndex = 1;
+        break;
+      case "BOX":
+        this.activeIndex = 2;
+        break;
+      case "BOX_MONTH":
+        this.activeIndex = 3;
+        break;
+    }
+  },
   methods: {
     handleChange: function(e, activePane, index) {
       if (index === 0) {

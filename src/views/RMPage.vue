@@ -175,9 +175,13 @@ export default {
       this.$tours["myTour"].start();
     },
     adjustToQuery: function() {
-      let { stations } = this.$route.query;
-      let { param } = this.$route.query;
-      let { yearRange } = this.$route.query;
+      let {
+        stations,
+        param,
+        yearRange,
+        chartType,
+        selectedStation
+      } = this.$route.query;
       if (stations) {
         // if ?stations=... fetch those
         stations.split(",").map(id => {
@@ -203,7 +207,8 @@ export default {
                 let station = find(this.stations, o => o.StationCode === id);
                 this.$store.dispatch("data/ADD_STATION_DATA", {
                   info: station,
-                  data: res.data
+                  data: res.data,
+                  selectedStation
                 });
                 // yearRange check needs to be after because ADD_STATION_DATA does it's own SET_YEAR_RANGE
                 if (yearRange) {
@@ -230,11 +235,12 @@ export default {
         // param query parser
         this.$store.commit("selection/SELECT_ACTIVE_PARAM", param);
       }
-    }
-  },
-  watch: {
-    $route: function() {
-      this.adjustToQuery();
+      if (chartType) {
+        this.$store.commit("selection/SET_CHART_TYPE", chartType);
+      }
+      if (selectedStation) {
+        this.$store.commit("data/SELECT_STATION", selectedStation);
+      }
     }
   },
   mounted() {
@@ -248,7 +254,6 @@ export default {
     stations: {
       query: GET_STATIONS, // Initial data fetch of all stations...
       variables() {
-        console.log("this.organization", this.organization);
         if (
           this.organization &&
           this.organization.activeOrganization &&

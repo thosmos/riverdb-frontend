@@ -1,5 +1,6 @@
 <template>
-  <div id="selection-stations">
+  <div id="selection-stations"
+       v-if="selectedStation">
     <div class="ui centered grid stackable ">
       <div v-for="station in loadedStations"
            :key="station.info.StationID">
@@ -7,7 +8,7 @@
         <div class="m-t-md">
           <div @click="onSegmentClick(station.info)"
                class="ui segment"
-               :class="{active: station.info.StationID === selectedStation.info.StationID}">
+               :class="{active: station.info.StationCode === selectedStation.info.StationCode}">
 
             <span>{{station.info.StationName}}</span>
             <sui-icon class="space-left"
@@ -40,11 +41,11 @@ export default {
     onCloseClick: function(station, event) {
       event.stopPropagation();
       // console.log("station.StationID", station.StationID);
-      this.$store.dispatch("data/REMOVE_STATION", station.StationID);
+      this.$store.dispatch("data/REMOVE_STATION", station.StationCode);
       this.$ga.event("Remove", "Station", station.StationName);
     },
     onSegmentClick(station) {
-      this.$store.commit("data/SELECT_STATION", station.StationID);
+      this.$store.commit("data/SELECT_STATION", station.StationCode);
       this.$ga.event("Select", "Station", station.StationName);
     }
   }

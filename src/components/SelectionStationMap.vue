@@ -137,7 +137,7 @@ export default {
       this.$store.dispatch("data/FETCH_STATION_DATA", station);
     },
     removeStation: function(station) {
-      this.$store.dispatch("data/REMOVE_STATION", station.StationID);
+      this.$store.dispatch("data/REMOVE_STATION", station.StationCode);
     },
     stationInfo: function(station) {
       this.$store.commit("ui/TOGGLE_STATION_INFO_MODAL", station);

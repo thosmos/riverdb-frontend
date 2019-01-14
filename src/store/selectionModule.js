@@ -18,6 +18,8 @@ import {
   getStationNames
 } from "../utils/selectionUtils";
 
+import router from "../router";
+
 const selection = {
   namespaced: true,
   state: {
@@ -50,6 +52,8 @@ const selection = {
       state.allStationNames = names;
     },
     [SELECT_ACTIVE_PARAM](state, param) {
+      let current = router.history.current;
+      router.replace({ ...current, query: { ...current.query, param: param } });
       state.activeParam = param;
     },
     [SELECT_SECONDARY_PARAM](state, param) {
@@ -57,11 +61,30 @@ const selection = {
     },
     [SET_YEAR_RANGE](state, range) {
       state.selectionRange = range;
+      let current = { ...router.history.current };
+      if (range[0] && range[1]) {
+        router.replace({
+          ...current,
+          query: { ...current.query, yearRange: `${range[0]},${range[1]}` }
+        });
+      } else {
+        // INFO: no stations selected, no yearRange, therefore remove yearRange query, setting undefined etc doesn't work so setting it to ''
+        router.replace({
+          ...current,
+          query: { ...current.query, yearRange: "" }
+        });
+      }
     },
     [SELECT_SINGLE_YEAR](state, value) {
       state.singleYearSelection = value;
     },
     [SET_CHART_TYPE](state, type) {
+      let current = router.history.current;
+      // TODO: maybe remove yearRange query for boxplots?
+      router.replace({
+        ...current,
+        query: { ...current.query, chartType: type }
+      });
       state.chartType = type;
     },
     [RESET_PARAMS](state) {

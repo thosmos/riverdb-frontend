@@ -1,12 +1,13 @@
 <template>
-  <div v-if="data.loadedStations.length > 0"
+  <div v-if="data.loadedStations.length > 0 && data.selectedStation"
        id="download"
        class="">
     <sui-grid>
       <sui-grid-row centered
                     stackable>
         <div class="m-t-md">
-          <sui-button @click="selectedStation">Download {{data.selectedStation.info.StationName}}</sui-button>
+          <sui-button @click="selectedStation">Download
+            {{data.selectedStation.info.StationName}}</sui-button>
         </div>
         <div class="m-t-md">
           <div v-if="!loadingAllStations">
