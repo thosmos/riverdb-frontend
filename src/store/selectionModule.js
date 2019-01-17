@@ -57,6 +57,14 @@ const selection = {
       state.activeParam = param;
     },
     [SELECT_SECONDARY_PARAM](state, param) {
+      let current = { ...router.history.current };
+      if (!param) {
+        param = "";
+      }
+      router.replace({
+        ...current,
+        query: { ...current.query, secondaryParam: param }
+      });
       state.secondaryParam = param;
     },
     [SET_YEAR_RANGE](state, range) {

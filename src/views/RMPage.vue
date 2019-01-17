@@ -180,7 +180,8 @@ export default {
         param,
         yearRange,
         chartType,
-        selectedStation
+        selectedStation,
+        secondaryParam
       } = this.$route.query;
       if (stations) {
         // if ?stations=... fetch those
@@ -240,6 +241,10 @@ export default {
       }
       if (selectedStation) {
         this.$store.commit("data/SELECT_STATION", selectedStation);
+      }
+      if (secondaryParam) {
+        console.log("GOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+        this.$store.commit("selection/SELECT_SECONDARY_PARAM", secondaryParam);
       }
     }
   },

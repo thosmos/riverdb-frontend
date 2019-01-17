@@ -113,12 +113,13 @@ const data = {
           state.selectedStation = null;
           state.startYear = null;
           state.endYear = null;
+
           commit("selection/SET_YEAR_RANGE", [state.startYear, state.endYear], {
             root: true
           });
           commit("SELECT_STATION", null);
+          commit("selection/SELECT_SECONDARY_PARAM", null, { root: true });
         }
-        commit;
       }
     },
     [ADD_STATION_DATA](
@@ -149,8 +150,10 @@ const data = {
       });
       state.startYear = Math.min(...years);
       state.endYear = Math.max(...years);
-      // Allways reset secondary param when adding station
-      commit("selection/SELECT_SECONDARY_PARAM", null, { root: true });
+      if (!current.query.secondaryParam || state.loadedStations.length > 1) {
+        // Allways reset secondary param when adding station
+        commit("selection/SELECT_SECONDARY_PARAM", null, { root: true });
+      }
       // set new year range with updated value in selection Vuex
       if (rootState.selection.singleYearSelection) {
         // if singleYearSelection, set year to last
