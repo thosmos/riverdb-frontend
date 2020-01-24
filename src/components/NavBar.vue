@@ -1,12 +1,12 @@
 <template>
   <div id="nav">
     <router-link to="/">
-      <h1>RiverDB</h1>
+      <span>RiverDB</span>
     </router-link>
-    <h1 v-if="navBarTitle">~</h1>
+    <span v-if="navBarTitle">~</span>
     <router-link v-if="navBarTitle"
                  :to="`/${navBarTitle}`">
-      <h1>{{navBarTitle}}</h1>
+      <span>{{navBarTitle}}</span>
     </router-link>
   </div>
 </template>
@@ -34,12 +34,12 @@ export default {
 @import "../style/style.scss";
 
 #nav {
-  height: 60px;
+  height: 40px;
   // background: $primaryColor;
   background: rgb(2, 0, 36);
   background: linear-gradient(
     40deg,
-    rgba(0, 132, 203, 1) 0%,
+    rgba(0, 132, 203, 1) 50%,
     $lightPrimaryColor 100%
   );
   border-bottom: 3px solid $secondaryColor;
@@ -50,7 +50,7 @@ export default {
   h1 {
     padding: 0 0.5rem;
   }
-  > a.router-link-active > h1 {
+  > a.router-link-active > span {
     color: $offWhite;
     &:hover {
       text-decoration: underline $offWhite;

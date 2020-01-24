@@ -2,19 +2,23 @@
   <!-- <div class="p-t-lg"> -->
   <sui-card class="fluid organization-card eq-card">
     <sui-card-content class="card-abbr">
-      <h3>
-        {{org.abbreviation}}
-      </h3>
+      <router-link :to="`/${org.abbreviation}`">
+        <h3>
+          {{org.abbreviation}}
+        </h3>
+      </router-link>
     </sui-card-content>
 
     <div class="img-wrapper">
       <sui-image :src="org.logoURL" />
     </div>
+    
     <sui-card-content>
       <h3>{{org.name}} </h3>
-      <h4>{{org.tagLine}}</h4>
+      <!-- <h4>{{org.tagLine}}</h4> -->
       <p>{{org.missionStatement}}</p>
     </sui-card-content>
+    
     <div class="spacer">
       <!-- <sui-card-content extra> -->
       <router-link :to="`/${org.abbreviation}`">
@@ -49,16 +53,19 @@ export default {
     color: $offWhite;
     border-bottom: 3px solid $secondaryColor;
     max-height: 3.5rem;
-    h3 {
-      font-weight: normal;
-      text-align: center;
+    a{
+      h3 {
+        color: $offWhite;
+        font-weight: normal;
+        text-align: center;
+      }
     }
   }
   div.img-wrapper {
     margin: 20px;
     img {
       margin: 0 auto;
-      max-height: 200px;
+      max-height: 100px;
     }
   }
   h3 {

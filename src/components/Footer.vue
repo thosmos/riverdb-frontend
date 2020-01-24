@@ -9,7 +9,7 @@
         <a href="mailto:info@riverdb.org">Contact: info@riverdb.org</a>
       </h4>
     </span>
-    <span><a href="mailto:support@riverdb.org">Support: support@riverdb.org</a></span>
+    <span><a href="mailto:support@riverdb.org">Get Support: support@riverdb.org</a></span>
   </div>
 </template>
 

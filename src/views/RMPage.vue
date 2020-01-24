@@ -3,10 +3,11 @@
     <sui-container fluid>
       <div class="page-spacer">
 
-        <sui-header size="huge"
+        <sui-header class="rm-data-header" 
+                    size="medium" 
                     textAlign="center">Water Quality Monitoring Data:</sui-header>
         <div v-if="showTakeTour"
-             class="m-t-lg m-b-lg">
+             class="m-t-md m-b-md">
           <div class="ui grid centered">
             <sui-button-group>
               <sui-button @click="takeTour"
@@ -289,6 +290,9 @@ export default {
     @media only screen and (min-width: 1024px) {
       margin-left: 2rem;
     }
+  }
+  .rm-data-header {
+    margin-bottom: 0;
   }
 }
 </style>

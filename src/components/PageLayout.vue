@@ -1,6 +1,6 @@
 <template>
   <div id="page"
-       class="m-t-lg">
+       class="m-t-md">
     <slot />
   </div>
 </template>
