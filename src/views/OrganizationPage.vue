@@ -29,7 +29,7 @@ export default {
   components: {
     OrgPageIntro,
     OrgPageFooter,
-    OrgPageProjectsList,
+    OrgPageProjectsList
     // OrgPageOverviewMap,
     // OrgPageInfo,
     // OrgPageFlowButton
