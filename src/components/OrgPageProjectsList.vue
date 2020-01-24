@@ -2,7 +2,7 @@
   <div id="org-page-projects-list">
     <h3 is="sui-header"
         class="ui center aligned"
-        s>Projects:</h3>
+        >Projects:</h3>
     <div class="ui centered grid stackable">
 
       <div v-for="project in info.projects"
@@ -20,7 +20,7 @@
               <p class="m-t-sm">From {{project.dataBegins}} up to
                 {{project.dataEnds}}</p>
               <sui-divider></sui-divider>
-              <p>{{description}}</p>
+              <p>{{project.description}}</p>
               <!-- <div class="inner">
                   <h1>Explore the Project</h1>
                 </div> -->

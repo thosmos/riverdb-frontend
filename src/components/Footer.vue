@@ -6,11 +6,10 @@
     </span>
     <span>
       <h4>
-        <!-- TODO: get real email address -->
-        <a href="mailto:XXXXXXXXXXXXXXXXXXXXX@example.com">Contact:
-          info@riverdb.org</a>
+        <a href="mailto:info@riverdb.org">Contact: info@riverdb.org</a>
       </h4>
     </span>
+    <span><a href="mailto:support@riverdb.org">Support: support@riverdb.org</a></span>
   </div>
 </template>
 

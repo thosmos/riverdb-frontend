@@ -4,20 +4,20 @@
       <sui-header size="huge"
                   textAlign="center">Participating Organizations:</sui-header>
       <organizations-list />
-      <organizations-map />
+      <!-- <organizations-map /> -->
     </sui-container>
   </div>
 </template>
 
 <script>
 import OrganizationsList from "../components/OrganizationList";
-import OrganizationsMap from "../components/OrganizationsMap.vue";
+// import OrganizationsMap from "../components/OrganizationsMap.vue";
 
 export default {
   name: "home",
   components: {
     OrganizationsList,
-    OrganizationsMap
+    // OrganizationsMap
   },
   data: function() {
     return {};

@@ -4,9 +4,9 @@
     <sui-container>
       <sui-card class="fluid">
         <org-page-intro :info="info"></org-page-intro>
-        <org-page-flow-button></org-page-flow-button>
+        <!-- <org-page-flow-button></org-page-flow-button> -->
         <org-page-projects-list :info="info"></org-page-projects-list>
-        <org-page-info></org-page-info>
+        <!-- <org-page-info></org-page-info> -->
         <org-page-footer :info="info"></org-page-footer>
       </sui-card>
     </sui-container>
@@ -17,9 +17,9 @@
 import OrgPageIntro from "../components/OrgPageIntro";
 import OrgPageFooter from "../components/OrgPageContact";
 import OrgPageProjectsList from "../components/OrgPageProjectsList";
-import OrgPageOverviewMap from "../components/OrgPageOverviewMap";
-import OrgPageInfo from "../components/OrgPageInfo";
-import OrgPageFlowButton from "../components/OrgPageFlowButton";
+// import OrgPageOverviewMap from "../components/OrgPageOverviewMap";
+// import OrgPageInfo from "../components/OrgPageInfo";
+// import OrgPageFlowButton from "../components/OrgPageFlowButton";
 
 import organizations from "../assets/organizations.js";
 import find from "lodash/find";
@@ -30,9 +30,9 @@ export default {
     OrgPageIntro,
     OrgPageFooter,
     OrgPageProjectsList,
-    OrgPageOverviewMap,
-    OrgPageInfo,
-    OrgPageFlowButton
+    // OrgPageOverviewMap,
+    // OrgPageInfo,
+    // OrgPageFlowButton
   },
   data() {
     return {
