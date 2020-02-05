@@ -8,8 +8,8 @@
       <sui-image :src="info.logoURL"
                  size="small"
                  floated="left" />
-      <h5>{{info.missionStatement}}</h5>
-      <sui-divider></sui-divider>
+      <!-- <h5>{{info.missionStatement}}</h5> -->
+      <!-- <sui-divider></sui-divider> -->
       <p>{{info.about}}</p>
     </div>
   </div>

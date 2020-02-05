@@ -10,7 +10,9 @@
            class="eight wide computer column">
         <sui-card class="fluid project-card eq-card project-segment">
           <sui-card-content class="m-b-sm project-title">
-            <h5>{{project.title}}</h5>
+            <router-link :to="{path: `${organization.activeOrganization}/RM`}">
+              <h5>{{project.title}}</h5>
+            </router-link>
           </sui-card-content>
           <sui-card-content>
             <div>
