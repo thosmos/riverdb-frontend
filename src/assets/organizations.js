@@ -46,19 +46,27 @@ Today, SYRCL is the central hub of community activism to protect, restore, and c
     abbreviation: "SSI",
     URL: "https://sierrastreamsinstitute.org/",
     river: "Deer Creek",
-    logoURL:
-      "https://sierrastreamsinstitute.org/wp-content/uploads/2018/01/Header-logo-2-1.png",
+    logoURL: "https://res.cloudinary.com/riverdb/image/upload/v1580932695/SSI/SSI-logo.jpg",
     location: {
       streetName: "13075 Woolman Lane",
       city: "Nevada City, CA",
       ZIP: "95959"
     },
-    phone: "(530) 477-7132",
-    contactPerson: "Contact",
-    email: "info@sierrastreamsinstitute.org",
-    about: `Sierra Streams Institute is a watershed monitoring, research, and restoration group based in Nevada City, California, in the Sierra Nevada foothills. Our mission is to link water, science and people for the benefit of human and environmental health. Founded in 1995 as Friends of Deer Creek, SSI has grown to become an important voice in the regional scientific community—but we are still proud to call Deer Creek our home watershed.`,
-    missionStatement: `Our mission is to link water, science and people for the benefit of human and environmental health.`,
-    tagLine: `Imagine... a healthy, vibrant watershed.`,
+    phone: "530-477-7132 ext. 205",
+    contactPerson: "Chloe Tremper",
+    email: "chloe@sierrastreamsinstitute.org",
+    about: `Sierra Streams Institute is a watershed monitoring, research, and restoration group based in Nevada City, 
+    California, in the Sierra Nevada foothills. Our mission is to link water, science and people for the benefit of 
+    human and environmental health. 
+    
+    Our volunteers are the backbone of our decades long and year
+    round water quality monitoring programs on Deer Creek and Bear River. We
+    provide the young and old within our community resources to become lifelong
+    environmental stewards.`,
+    missionStatement: `SSI's staff of scientists and dedicated community of citizen scientist
+    volunteers work to monitor, restore, and research watersheds throughout the
+    Sierra.`,
+    tagLine: ``,
     projects: [
       {
         title: "Deer Creek Monitoring",
