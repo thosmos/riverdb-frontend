@@ -39,7 +39,7 @@ export const unitsForParams = {
   Air_Temp: "℃",
   H2O_Cond: "µS/cm",
   H2O_DO: "mg/L",
-  H2O_Turbidity: "NTU",
+  H2O_Turb: "NTU",
   H2O_pH: ""
 };
 
@@ -50,7 +50,7 @@ export const parameterInfoObj = {
       color: "grey",
       width: 2,
       label: {
-        text: "too warm for salmonoids",
+        text: "too warm for salmonids",
         align: "right",
         style: {
           color: "red"

@@ -274,7 +274,7 @@ export default class Station {
  * @property {number} H2O_Temp           - water temp
  * @property {number} H2O_ph             - water pH
  * @property {number} H2O_DO             - water DO
- * @property {number} H2O_Turbidity      - water Turbidity
+ * @property {number} H2O_Turb           - water Turbidity
  * @property {number} H2O_Cond           - water Conductivity
  * @property {number} Air_Temp           - Air Temp
  */
