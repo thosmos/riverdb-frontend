@@ -21,6 +21,7 @@ function _flattenGeoJson(geoJson) {
 }
 
 export function calculateBoundsOfStations(stations) {
+  console.log("CALC BOUNDS");
   if (!stations || stations.length === 0) {
     let corner1 = L.latLng(39.14266, -120.34478);
     let corner2 = L.latLng(39.59836, -121.57581);

@@ -38,3 +38,40 @@ export const GET_STATION_DATA = gql`
     }
   }
 `;
+
+export const GET_SAFETOSWIM = gql`
+  query getSafeToSwim($agency: String) {
+    stations: safetoswim(agency: $agency) {
+      HydrologicUnit
+      StationName
+      RiverFork
+      StreamSubsystem
+      Active
+      LocalWaterbody
+      LocalWatershed
+      StationCode
+      StationID
+      TargetLat
+      TargetLong
+      County
+      ForkTribGroup
+      LocalWaterbody
+      Active
+      Agency {
+        AgencyCode
+      }
+      latest { 
+        date 
+        value
+        qual
+        avg 
+      }
+      values { 
+        date 
+        value
+        qual
+        avg
+      }
+    }
+  }
+`;

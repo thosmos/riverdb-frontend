@@ -1,7 +1,16 @@
 <template>
-  <div v-if="bounds && !ui.showInfoModal"
+  <div v-if="bounds"
        id='selection-map'
        class="m-b-lg">
+    <div v-if="safeOptions" id="safetoswim-legend">
+      <div class="div-icon unsafe" /> Recently Unsafe <br>
+      Last measured safe: <br>
+      <div class="div-icon under7" /> within 7 days <br>
+      <div class="div-icon under14" /> within 14 days <br>
+      <div class="div-icon under30" /> within 30 days <br>
+      <div class="div-icon under365" /> within 1 year <br>
+      <div class="div-icon over365" /> over 1 year ago<br>
+    </div>
     <l-map :bounds="bounds"
            class="map-height"
            :options="options">
@@ -17,25 +26,47 @@
                 :key="marker.value.StationCode"
                 :lat-lng="getPosition(marker.value)"
                 :options="markerOptions(marker)"
-                :icon="getIcon(marker.value.StationCode)">
+                :icon="getIcon(marker.value.StationCode, marker.value.latest)">
         <l-popup class="popup">
           <h6>
             <b>{{marker.value.StationName}}</b>
           </h6>
           <p>on {{marker.value.LocalWaterbody}}</p>
-          <sui-button color="blue"
+          <div v-if="safeOptions">
+            <p>
+              Agency: 
+              <router-link :to="`/${marker.value.Agency.AgencyCode}`">
+                {{marker.value.Agency.AgencyCode}}
+              </router-link>
+            </p>
+            <!-- <p>Analyte: {{safeOptions.analyte}}</p> -->
+            <p>Latest: {{format(Number(marker.value.latest.date), 'M/D/YYYY')}}</p>
+            <p>Value: {{marker.value.latest.value}} MPN/100mL </p>
+
+          </div>
+          <sui-button v-if="safeOptions" 
+                      color="blue"
+                      basic
+                      fluid
+                      @click="safetoswimChart(marker.value)">Historical Chart</sui-button>
+
+          <sui-button v-if="!safeOptions" 
+                      color="blue"
                       basic
                       fluid
                       @click="stationInfo(marker.value)">Station Info</sui-button>
-          <div v-if="isLoaded(marker)">
-            <sui-button color="red"
-                        fluid
-                        @click="removeStation(marker.value)">Remove Station</sui-button>
-          </div>
-          <div v-else>
-            <sui-button color="blue"
-                        fluid
-                        @click="addStation(marker.value)">Add Station</sui-button>
+
+          <div v-if="!safeOptions">
+            <div v-if="isLoaded(marker)">
+              <sui-button color="red"
+                          fluid
+                          @click="removeStation(marker.value)">Remove Station</sui-button>
+            </div>
+            <div v-else>
+              <sui-button color="blue"
+                          fluid
+                          @click="addStation(marker.value)">Add Station</sui-button>
+            </div>
           </div>
         </l-popup>
       </l-marker>
@@ -54,41 +85,46 @@ import {
 } from "vue2-leaflet";
 import { calculateBoundsOfStations } from "../utils/geo.js";
 import L from "leaflet";
-// import icon from "../assets/GIS/red-map-icon.png";
-import icon from "../assets/GIS/map-marker-2-64.png";
-import selectedIcon from "../assets/GIS/map-icon.png";
+import icon from "../assets/GIS/marker-icon-2x-blue.png";
+import selectedIcon from "../assets/GIS/marker-icon-2x-black.png";
+import redIcon from "../assets/GIS/marker-icon-2x-red.png";
+import greenIcon from "../assets/GIS/marker-icon-2x-green.png";
 import { tileProviders } from "../assets/tileProviders.js";
 import { mapState } from "vuex";
 import findIndex from "lodash/findIndex";
+import {subWeeks, format, formatDistance, formatRelative, subDays } from 'date-fns';
 
 export default {
   name: "SelectionStationMap",
   props: {
-    stations: Array
+    stations: Array,
+    safeOptions: Object
   },
   components: { LMap, LTileLayer, LControlLayers, LGeoJson, LMarker, LPopup },
   data() {
     return {
+
       icon: L.icon({
         iconUrl: icon,
-        iconSize: [36, 36],
-        iconAnchor: [18, 36],
-        popupAnchor: [0, -20]
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
       }),
       loadedStationIcon: L.icon({
         iconUrl: selectedIcon,
-        iconSize: [36, 36],
-        iconAnchor: [18, 36],
-        popupAnchor: [0, -20]
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
       }),
+
       tileProviders,
-      // map options, disables scrolling with mouse wheel
+      // map options
       options: {
-        scrollWheelZoom: false,
+        scrollWheelZoom: true,
         touchZoom: true,
-        dragging:
-          !(typeof window.orientation !== "undefined") ||
-          navigator.userAgent.indexOf("IEMobile") !== -1,
+        dragging: true,
+          // !(typeof window.orientation !== "undefined") ||
+          // navigator.userAgent.indexOf("IEMobile") !== -1,
         tap: false
       }
     };
@@ -106,9 +142,70 @@ export default {
     },
     bounds: function() {
       return calculateBoundsOfStations(this.stations);
+    },
+    chartOptions: function() {
+      let minMax = getMinMaxValue(this.plotData);
+      const options = {
+        chart: {
+          type: "spline",
+          zoomType: 'xy"'
+        },
+        ...graphConfig,
+        ...multiStation(this.data.loadedStations, this.selection.activeParam),
+        xAxis: [
+          {
+            type: "datetime",
+            title: {
+              text: "Date"
+            }
+          }
+        ],
+        yAxis: [
+          {
+            // endOnTick: false,
+            // startOnTick: false,
+            title: {
+              text:
+                getFullParamName(this.selection.activeParam) +
+                getUnit(this.selection.activeParam)
+            },
+            plotLines: getParamInfoLine(this.selection.activeParam),
+            min: minMax[0],
+            max: minMax[1]
+          },
+          { ...this.secondaryAxis() }
+        ],
+        tooltip: {
+          shared: true
+        },
+        plotOptions: {
+          spline: {
+            marker: {
+              enabled: true,
+              radius: 2.5,
+              symbol: "circle"
+            },
+            lineWidth: 1.5
+          },
+          series: {
+            animation: false
+          }
+        },
+
+        colors: palette1,
+        series: this.plotData,
+        exporting: {
+          filename: `line chart ${this.selection.activeParam} ${
+            this.getYearRange
+          }`
+        }
+      };
+      console.log("CHART OPTIONS", options);
+      return options;
     }
   },
   methods: {
+    format,
     markerOptions: function(station) {
       return {
         opacity: station.value.Active ? 1 : 0.5,
@@ -122,7 +219,7 @@ export default {
         return position;
       }
     },
-    getIcon: function(id) {
+    getIcon: function(id, safeValue) {
       let index = findIndex(
         this.data.loadedStations,
         o => o.info.StationCode === id
@@ -130,7 +227,41 @@ export default {
       if (index !== -1) {
         return this.loadedStationIcon;
       } else {
-        return this.icon;
+        if(safeValue )
+        {
+          let safety = 'over365';
+          if(safeValue.isHigh){
+            safety = 'unsafe';
+          }
+          else if(safeValue.date){
+            const dt = new Date(Number(safeValue.date))
+            const now = new Date();
+            const days7 = subDays(now, 7);
+            const days14 = subDays(now, 14);
+            const days30 = subDays(now, 30);
+            const days365 = subDays(now, 365);
+
+            if(dt > days7)
+              safety = 'under7'
+            else if (dt > days14)
+              safety = 'under14'
+            else if (dt > days30)
+              safety = 'under30'
+            else if (dt > days365)
+              safety = 'under365'
+
+          }
+          return L.divIcon({
+            className: '',
+            html: `<div class='div-icon ${safety}'/>`,
+            iconSize: [12, 12],
+            iconAnchor: [6, 6]
+          })          
+                // return this.safeIcon;
+
+        }
+        else
+          return this.icon;
       }
     },
     addStation: function(station) {
@@ -140,7 +271,18 @@ export default {
       this.$store.dispatch("data/REMOVE_STATION", station.StationCode);
     },
     stationInfo: function(station) {
+      this.$store.commit(
+        "organization/SET_ACTIVE_ORGANIZATION",
+        station.Agency.AgencyCode
+      );
       this.$store.commit("ui/TOGGLE_STATION_INFO_MODAL", station);
+    },
+    safetoswimChart: function(station) {
+      // this.$store.commit(
+      //   "organization/SET_ACTIVE_ORGANIZATION",
+      //   station.Agency.AgencyCode
+      // );
+      this.$store.commit("ui/TOGGLE_SAFETOSWIM_MODAL", station);
     },
     isLoaded: function(station) {
       let index = findIndex(this.data.loadedStations, o => {
@@ -152,12 +294,55 @@ export default {
 };
 </script>
 
+<style lang="scss">
+
+.div-icon {
+  width:12px; 
+  height:12px; 
+  border: 1px solid #666; 
+  border-radius:50%;
+  display: inline-block;
+}
+.under7 {
+  background-color: #224E99;
+}
+.under14 {
+  background-color: #198EBA;
+}
+.under30 {
+  background-color: #19BDC9;
+}
+.under365 {
+  background-color: #A1DCBD;
+}
+.over365 {
+  background-color: #FEFDE6;
+}
+.unsafe {
+  background: red;
+}
+</style>
+
 <style lang="scss" scoped>
+
+#safetoswim-legend {
+  position: absolute;
+  z-index: 999;
+  background-color: white;
+  bottom: 60px;
+  left: 30px;
+  padding: 10px;
+  font-size: small;
+}
+
 .map-height {
-  height: 500px;
+  height: 700px;
   border-radius: 6px;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
+
+
+
 
 #selection-map
   > div
@@ -166,6 +351,7 @@ export default {
   > div {
   z-index: 10;
 }
+
 .popup {
   p {
     font-size: 0.8rem;

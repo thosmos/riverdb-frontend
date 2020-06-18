@@ -47,3 +47,19 @@ export function getMinMaxValue(plotData) {
   let max = onlyValues.map(p => Math.max(...p));
   return [Math.min(...min), Math.max(...max)];
 }
+
+export function getSafetoSwimChartValues(values) {
+  const vs = values.map( v => {
+    return [Number(v.date), v.value];
+  })
+  //console.log("GET VALUES: ", vs);
+  return vs;
+}
+
+export function getSafetoSwimChartGeomeans(values) {
+  const vs = values.map( v => {
+    return [Number(v.date), v.avg];
+  })
+  //console.log("GET VALUES: ", vs);
+  return vs;
+}
