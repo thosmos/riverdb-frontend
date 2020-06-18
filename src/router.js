@@ -36,6 +36,15 @@ const appRouter = new Router({
       component: () =>
         import(/* webpackChunkName: "about" */ "./views/About.vue")
     },
+    {
+      path: "/safetoswim",
+      name: "safetoswim",
+      // route level code-splitting
+      // this generates a separate chunk (about.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () =>
+        import(/* webpackChunkName: "about" */ "./views/SafeSwim.vue")
+    },
     // TODO: 404 handling still needs to be better, i.e. .../SYRCLa gets redirect to 404 but .../SYRCLa/RM does not....
     { path: "/404", component: NotFound },
     {

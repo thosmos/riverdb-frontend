@@ -8,25 +8,29 @@
       <div class="ui two column centered grid"
            :class="[ui.showInfoModal ? 'hide-multiselect' : '']"
            id="selection-boxes">
-        <div class="column"
-             id="step-0">
+        
+        <div
+            v-if="!safeOptions" 
+            class="column"
+            id="step-0">
           <multiselect v-model="selectedFork"
-                       id="select-1"
-                       label="fullName"
-                       placeholder="Select a Fork"
-                       @input="forkUpdated"
-                       track-by="fullName"
-                       :options="forkOptions"></multiselect>
+                      id="select-1"
+                      label="fullName"
+                      placeholder="Select a Fork"
+                      @input="forkUpdated"
+                      track-by="fullName"
+                      :options="forkOptions"></multiselect>
         </div>
-        <div class="column"
-             id="step-2">
+        <div v-if="!safeOptions"
+            class="column"
+            id="step-2">
           <multiselect :options="sortedStationOptions"
-                       id="select-2"
-                       placeholder="select a station"
-                       label="label"
-                       @input="fetchStationData"
-                       track-by="label"
-                       v-model="selectedStation"></multiselect>
+                      id="select-2"
+                      placeholder="select a station"
+                      label="label"
+                      @input="fetchStationData"
+                      track-by="label"
+                      v-model="selectedStation"></multiselect>
         </div>
       </div>
       <div class="ui grid">
@@ -34,7 +38,8 @@
              id="step-3">
           <selection-station-map v-if="stationOptions"
                                  id='station-map'
-                                 :stations="stationOptions"></selection-station-map>
+                                 :stations="stationOptions"
+                                 :safeOptions="safeOptions"></selection-station-map>
         </div>
       </div>
       <div v-if="ui.isLoading">
@@ -86,7 +91,8 @@ import sortBy from "lodash/sortBy";
 export default {
   name: "SelectionWrapper",
   props: {
-    stations: Array
+    stations: Array,
+    safeOptions: Object
   },
   components: {
     Multiselect,

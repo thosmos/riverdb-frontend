@@ -1,14 +1,23 @@
 <template>
-  <modal name="station-info-modal"
+  <modal name="safetoswim-modal"
          scrollable
          height="auto"
          width="80%"
          @closed="modalClosed">
-    <div id="station-info-modal">
-      <h3 is="sui-header"
-          textAlign="center">{{ui.showInfoModalStation.StationName}}</h3>
+    <div id="safetoswim-modal">
+      <!-- <h3 is="sui-header"
+          textAlign="center">{{ui.showInfoModalStation.StationName}}</h3> -->
       <sui-grid>
-        <sui-grid-row :columns="2">
+        <sui-grid-row :columns="1">
+          <sui-grid-column>
+            <div>
+              <!-- STUFF {{ui.showInfoModalStation.values}} -->
+              <charts-safe-swim class="chart chart-spacer"
+              :swimstation="ui.showInfoModalStation"></charts-safe-swim>
+            </div>
+          </sui-grid-column>
+        </sui-grid-row>
+        <!-- <sui-grid-row :columns="2">
           <sui-grid-column>
             <b>Waterbody: </b>
             <span>{{ui.showInfoModalStation.LocalWaterbody}}</span>
@@ -33,14 +42,14 @@
             <b>Longitude: </b>
             <span>{{ui.showInfoModalStation.TargetLong}}</span>
           </sui-grid-column>
-        </sui-grid-row>
+        </sui-grid-row> -->
         <!-- <sui-grid-row> -->
         <!-- <sui-grid-column centered> -->
 
-        <img id="station-image" />
+        <!-- <img id="station-image" />
         <skeleton v-if="imgLoading"
-                  id="img-placeholder"></skeleton>
-        <sui-grid-row :columns="1">
+                  id="img-placeholder"></skeleton> -->
+        <!-- <sui-grid-row :columns="1">
           <sui-grid-column>
             <div v-if="stationWatershed">
               <station-info-map v-if="stationWatershed"
@@ -48,10 +57,8 @@
                                 :watershed="stationWatershed"></station-info-map>
             </div>
           </sui-grid-column>
-        </sui-grid-row>
+        </sui-grid-row> -->
       </sui-grid>
-      <div v-if="imgError"
-           class="img-error-msg"> <b>No image available for the site</b></div>
     </div>
   </modal>
 </template>
@@ -65,13 +72,15 @@ import { CLOUDINARY_URL } from "../assets/constants.js";
 import { mapState } from "vuex";
 import axios from "axios";
 import { WS_API_IP, WS_API_PORT } from "../assets/constants";
+import ChartsSafeSwim from "../components/ChartsSafeSwim";
 
 export default {
   name: "StationInfoModal",
   components: {
     Skeleton,
     StationInfoMap,
-    OrgPageOverviewMap
+    OrgPageOverviewMap,
+    ChartsSafeSwim
   },
   props: {
     station: Object
@@ -85,29 +94,29 @@ export default {
   },
   mounted() {
     this.showModal();
-    axios
-      .get(this.imageURL, { responseType: "blob" })
-      .then(res => {
-        let imageElement = document.getElementById("station-image");
-        let reader = new window.FileReader();
-        reader.readAsDataURL(res.data);
-        this.imgLoading = false;
-        reader.onload = function() {
-          let imageDataUrl = reader.result;
-          imageElement.setAttribute("src", imageDataUrl);
-          imageElement.style.height = "400px";
-          imageElement.style.width = "auto";
-          imageElement.style.maxWidth = "100%";
-          imageElement.style.padding = "0";
-          imageElement.style.boxShadow = "0px 7px 24px 3px rgba(0,0,0,0.25)";
-          imageElement.style.borderRadius = "5px";
-          imageElement.style.margin = "0 auto";
-        };
-      })
-      .catch(err => {
-        this.imgLoading = false;
-        this.imgError = true;
-      });
+    // axios
+    //   .get(this.imageURL, { responseType: "blob" })
+    //   .then(res => {
+    //     let imageElement = document.getElementById("station-image");
+    //     let reader = new window.FileReader();
+    //     reader.readAsDataURL(res.data);
+    //     this.imgLoading = false;
+    //     reader.onload = function() {
+    //       let imageDataUrl = reader.result;
+    //       imageElement.setAttribute("src", imageDataUrl);
+    //       imageElement.style.height = "400px";
+    //       imageElement.style.width = "auto";
+    //       imageElement.style.maxWidth = "100%";
+    //       imageElement.style.padding = "0";
+    //       imageElement.style.boxShadow = "0px 7px 24px 3px rgba(0,0,0,0.25)";
+    //       imageElement.style.borderRadius = "5px";
+    //       imageElement.style.margin = "0 auto";
+    //     };
+    //   })
+    //   .catch(err => {
+    //     this.imgLoading = false;
+    //     this.imgError = true;
+    //   });
     // axios
     //   .get(
     //     `http://${WS_API_IP}:${WS_API_PORT}?river=${
@@ -142,7 +151,7 @@ export default {
   watch: {
     ui: {
       handler: function(val, oldVal) {
-        if (val.showInfoModal) {
+        if (val.showSafetoswim) {
           this.showModal();
         } else {
           this.hideModal();
@@ -160,13 +169,13 @@ export default {
       }
     },
     modalClosed() {
-      this.$store.commit("ui/TOGGLE_STATION_INFO_MODAL", null);
+      this.$store.commit("ui/TOGGLE_SAFETOSWIM_MODAL", null);
     },
     showModal() {
-      this.$modal.show("station-info-modal");
+      this.$modal.show("safetoswim-modal");
     },
     hideModal() {
-      this.$modal.hide("station-info-modal");
+      this.$modal.hide("safetoswim-modal");
     }
   }
 };
@@ -175,7 +184,7 @@ export default {
 <style lang="scss" scoped>
 @import "../style/style.scss";
 
-#station-info-modal {
+#safetoswim-modal {
   margin: 2rem;
   z-index: 3000;
   .column {

@@ -6,7 +6,8 @@ import {
   SHOW_YEAR_SELECTION,
   CLEAR_COOKIE_MSG,
   TAKE_TOUR,
-  TOGGLE_STATION_INFO_MODAL
+  TOGGLE_STATION_INFO_MODAL,
+  TOGGLE_SAFETOSWIM_MODAL
 } from "./mutationTypes";
 
 const ui = {
@@ -19,7 +20,8 @@ const ui = {
     showCookieMsg: true,
     takeTour: false,
     showInfoModal: false,
-    showInfoModalStation: null
+    showInfoModalStation: null,
+    showSafetoswim: false
   },
   mutations: {
     [SET_ERROR_MSG](state, { section, msg }) {
@@ -47,6 +49,14 @@ const ui = {
     [TOGGLE_STATION_INFO_MODAL](state, station) {
       state.showInfoModal = !state.showInfoModal;
       if (!state.showInfoModal) {
+        state.showInfoModalStation = null;
+      } else {
+        state.showInfoModalStation = station;
+      }
+    },
+    [TOGGLE_SAFETOSWIM_MODAL](state, station) {
+      state.showSafetoswim = !state.showSafetoswim;
+      if (!state.showSafetoswim) {
         state.showInfoModalStation = null;
       } else {
         state.showInfoModalStation = station;
