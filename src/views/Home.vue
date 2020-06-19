@@ -2,8 +2,8 @@
   <div id="home">
     <sui-container>
       <sui-header size="huge" textAlign="center">Participating Organizations:</sui-header>
-      <organizations-list />
       <organizations-map />
+      <organizations-list />
     </sui-container>
   </div>
 </template>
