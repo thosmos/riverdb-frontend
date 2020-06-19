@@ -50,7 +50,7 @@ function onEachFeature(feature, layer) {
   let popupContent = Vue.extend(Popup);
   let popup = new popupContent({
     propsData: {
-      text: feature.properties.abbreviation,
+      route: feature.properties.route,
       river: feature.properties.organization
     }
   });
@@ -105,6 +105,9 @@ export default {
         [39.1, -121.6],
         [39.7, -120.4]
       ];
+      set: {
+        return null;
+      }
     }
   }
 };

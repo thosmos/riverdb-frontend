@@ -1,13 +1,8 @@
 <template>
   <div id="org-page-projects-list">
-    <h3 is="sui-header"
-        class="ui center aligned"
-        >Projects:</h3>
+    <h3 is="sui-header" class="ui center aligned">Projects:</h3>
     <div class="ui centered grid stackable">
-
-      <div v-for="project in info.projects"
-           :key="project.title"
-           class="eight wide computer column">
+      <div v-for="project in info.projects" :key="project.title" class="eight wide computer column">
         <sui-card class="fluid project-card eq-card project-segment">
           <sui-card-content class="m-b-sm project-title">
             <router-link :to="{path: `${organization.activeOrganization}/RM`}">
@@ -19,20 +14,18 @@
               <small>
                 <b>{{project.hasData | hasData}}</b>
               </small>
-              <p class="m-t-sm">From {{project.dataBegins}} up to
-                {{project.dataEnds}}</p>
+              <p class="m-t-sm">
+                From {{project.dataBegins}} up to
+                {{project.dataEnds}}
+              </p>
               <sui-divider></sui-divider>
               <p>{{project.description}}</p>
               <!-- <div class="inner">
                   <h1>Explore the Project</h1>
-                </div> -->
-              <div v-if="project.hasData"
-                   class="m-t-md center-button">
+              </div>-->
+              <div v-if="project.hasData" class="m-t-md center-button">
                 <router-link :to="{path: `${organization.activeOrganization}/RM`}">
-                  <sui-button basic
-                              color="blue"
-                              circular
-                              centered>Explore the data</sui-button>
+                  <sui-button basic color="blue" circular centered>Explore the data</sui-button>
                 </router-link>
               </div>
             </div>
@@ -40,6 +33,7 @@
         </sui-card>
       </div>
     </div>
+    <br />
   </div>
 </template>
 

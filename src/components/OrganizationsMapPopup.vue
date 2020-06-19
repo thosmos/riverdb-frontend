@@ -1,14 +1,20 @@
 <template>
   <div>
     <h4>{{ river }}</h4>
-    <p>{{text}}</p>
+    <sui-button fluid color="blue" @click="navigate(route)">View Data</sui-button>
   </div>
 </template>
 
 <script>
+import router from "../router";
 export default {
   name: "Popup",
-  props: ["text", "river"]
+  props: ["route", "river"],
+  methods: {
+    navigate: function(route) {
+      router.push(route);
+    }
+  }
 };
 </script>
 

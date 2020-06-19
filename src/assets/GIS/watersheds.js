@@ -9743,6 +9743,7 @@ export const yuba = {
     "FeatureID": null,
     "AreaSqKm": 3475.1949578669,
     "organization": "SYRCL",
+    "route": "SYRCL",
     "link": "https://yubariver.org"
   }
 }
@@ -11924,6 +11925,7 @@ export const wolf = {
     "FeatureID": null,
     "AreaSqKm": 200.466009392367,
     "organization": "Wolf Creek Community Alliance",
+    "route": "WCCA",
     "link": "http://www.wolfcreekalliance.org/"
   }
 }
@@ -15165,6 +15167,7 @@ export const deer = {
     "FeatureID": null,
     "AreaSqKm": 231.800328377681,
     "organization": "Sierra Streams Institute",
+    "route": "SSI",
     "link": "https://sierrastreamsinstitute.org/"
 
   }
