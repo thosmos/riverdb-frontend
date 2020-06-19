@@ -1,22 +1,19 @@
 <template>
-  <div v-if="bounds"
-       class="m-t-lg m-b-lg">
-    <l-map :bounds="bounds"
-           class="map-height"
-           :options="options">
+  <div v-if="bounds" class="m-t-lg m-b-lg">
+    <l-map :bounds="bounds" class="map-height" :options="options">
       <l-control-layers position="topright" />
-      <l-tile-layer v-for="tileProvider in tileProviders"
-                    layerType="base"
-                    :name="tileProvider.name"
-                    :url="tileProvider.url"
-                    :attribution="tileProvider.attribution"
-                    :visible="tileProvider.visible"
-                    :key="tileProvider.name" />
+      <l-tile-layer
+        v-for="tileProvider in tileProviders"
+        layerType="base"
+        :name="tileProvider.name"
+        :url="tileProvider.url"
+        :attribution="tileProvider.attribution"
+        :visible="tileProvider.visible"
+        :key="tileProvider.name"
+      />
       <!-- <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></l-tile-layer> -->
-      <div v-for="org in organizations"
-           :key="org.river">
-        <l-geo-json :geojson="org.outline"
-                    :options="wsOptions(org)"></l-geo-json>
+      <div v-for="org in organizations" :key="org.river">
+        <l-geo-json :geojson="org.outline" :options="wsOptions(org)"></l-geo-json>
       </div>
     </l-map>
     <organization-map-color-index :organizations="organizations" />
@@ -29,6 +26,7 @@
 <script>
 import organizations from "../assets/organizations.js";
 import agencyAreas from "../assets/GIS/agencyAreas.js";
+import { yuba, deer, wolf } from "../assets/GIS/watersheds";
 import Vue from "vue";
 import OrganizationMapColorIndex from "./organizationMapColorIndex";
 import Skeleton from "./Skeleton";
@@ -53,7 +51,7 @@ function onEachFeature(feature, layer) {
   let popup = new popupContent({
     propsData: {
       text: feature.properties.abbreviation,
-      river: feature.properties.river
+      river: feature.properties.organization
     }
   });
   layer.bindPopup(popup.$mount().$el);
@@ -72,8 +70,11 @@ export default {
   },
   data: function() {
     return {
-      organizations: [],
-      bounds: null,
+      organizations: [
+        { name: "SYRCL", outline: yuba, options: agencyAreas[0] },
+        { name: "WCCA", outline: wolf, options: agencyAreas[1] },
+        { name: "SSI", outline: deer, options: agencyAreas[2] }
+      ],
       url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
       attribution:
         '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
@@ -89,44 +90,21 @@ export default {
     };
   },
   mounted() {
-    let url =
-      process.env.NODE_ENV === "development"
-        ? `http://localhost:${WS_API_PORT}`
-        : `http://${WS_API_IP}:${WS_API_PORT}`;
-    let orgs = organizations.map(o => {
-      return axios.get(`${url}/outline?river=${o.abbreviation}`);
-    });
-    axios
-      .all(orgs)
-      .then(res => {
-        let combinedLocations = [];
-        this.organizations = res.map(r => {
-          let options = find(agencyAreas, o => r.data.info.river === o.agency);
-          let info = find(
-            organizations,
-            o => r.data.info.river === o.abbreviation
-          );
-          // Adding info like organization name to outline goeJSON
-          r.data.info.outline.properties = info;
-          // Adding to combined locations
-          combinedLocations = combinedLocations.concat(
-            r.data.info.outline.geometry.coordinates[0]
-          );
-          return { ...r.data.info, options };
-        });
-        let nb = geolib.getBounds(combinedLocations);
-        this.bounds = L.latLngBounds(
-          L.latLng(nb.maxLat, nb.maxLng),
-          L.latLng(nb.minLat, nb.minLng)
-        );
-      })
-      .catch(err => {
-        console.log("err", err);
-      });
+    // let nb = geolib.getBounds(
+    //   this.organizations[0].outline.geometry.coordinates[0]
+    // );
   },
   methods: {
     wsOptions: function(org) {
       return { ...org.options, onEachFeature };
+    }
+  },
+  computed: {
+    bounds() {
+      return [
+        [39.1, -121.6],
+        [39.7, -120.4]
+      ];
     }
   }
 };

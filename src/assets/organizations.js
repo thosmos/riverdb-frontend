@@ -42,7 +42,7 @@ Today, SYRCL is the central hub of community activism to protect, restore, and c
     ]
   },
   {
-    name: "Sierra Streams Insitute",
+    name: "Sierra Streams Institute",
     abbreviation: "SSI",
     URL: "https://sierrastreamsinstitute.org/",
     river: "Deer Creek",
