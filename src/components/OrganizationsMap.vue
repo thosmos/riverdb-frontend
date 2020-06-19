@@ -72,8 +72,8 @@ export default {
     return {
       organizations: [
         { name: "SYRCL", outline: yuba, options: agencyAreas[0] },
-        { name: "WCCA", outline: wolf, options: agencyAreas[1] },
-        { name: "SSI", outline: deer, options: agencyAreas[2] }
+        { name: "SSI", outline: deer, options: agencyAreas[2] },
+        { name: "WCCA", outline: wolf, options: agencyAreas[1] }
       ],
       url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
       attribution:

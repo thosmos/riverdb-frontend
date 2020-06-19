@@ -9,7 +9,7 @@
         <a href="mailto:info@riverdb.org">Contact: info@riverdb.org</a>
       </h4>
     </span>
-    <span><a href="mailto:support@riverdb.org">Get Support: support@riverdb.org</a></span>
+    <!-- <span><a href="mailto:support@riverdb.org">Get Support: support@riverdb.org</a></span> -->
   </div>
 </template>
 
@@ -33,6 +33,7 @@ export default {
   padding: 0.75rem 1rem;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   /* align-items: center; */
   h4 {
     font-size: 1rem;
@@ -42,8 +43,5 @@ export default {
   }
 }
 
-.flex-row {
-  display: flex;
-  justify-content: space-between;
-}
+
 </style>
