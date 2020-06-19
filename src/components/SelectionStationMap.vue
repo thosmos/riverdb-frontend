@@ -1,7 +1,8 @@
 <template>
   <div v-if="bounds"
        id='selection-map'
-       class="m-b-lg">
+       >
+       <!-- class="m-b-lg" -->
     <div v-if="safeOptions" id="safetoswim-legend">
       <div class="div-icon unsafe" /> Recently Unsafe <br>
       Last measured safe: <br>
@@ -299,7 +300,7 @@ export default {
 .div-icon {
   width:12px; 
   height:12px; 
-  border: 1px solid #666; 
+  border: 1px solid #444; 
   border-radius:50%;
   display: inline-block;
 }
@@ -329,14 +330,18 @@ export default {
   position: absolute;
   z-index: 999;
   background-color: white;
-  bottom: 60px;
+  bottom: 30px;
   left: 30px;
   padding: 10px;
   font-size: small;
 }
 
-.map-height {
+.safe-height {
   height: 700px;
+}
+
+.map-height {
+  height: 600px;
   border-radius: 6px;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }

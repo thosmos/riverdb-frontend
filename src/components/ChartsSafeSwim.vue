@@ -84,10 +84,6 @@ export default {
     //   }
     // },
     chartOptions: function() {
-      if(this.swimstation){
-        console.log("SWIM STATION!", this.swimstation);
-      }
-      // return;
 
       // let minMax = getMinMaxValue(this.plotData);
       const options = {
@@ -119,8 +115,8 @@ export default {
             },
             type: 'logarithmic',
             plotLines: [
-              {value: 300, color: "red", width: 2, label: {align: 'right', style: {color: 'red'}, text: 'Sample'}},
-              {value: 100, color: "grey", width: 2, label: {align: 'right', style: {color: 'grey'}, text: 'GeoMean'}}],  
+              {value: 300, color: palette1[0], width: 2, label: {align: 'right', style: {color: palette1[0]}, text: 'Sample'}},
+              {value: 100, color: palette1[1], width: 2, label: {align: 'right', style: {color: palette1[1]}, text: 'GeoMean'}}],  
             //getParamInfoLine(this.selection.activeParam),
             // min: 0,
             max: 420
