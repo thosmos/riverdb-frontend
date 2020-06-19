@@ -45,13 +45,14 @@
       <div v-if="ui.isLoading">
         <Loader />
       </div>
-      <div id="step-4"
+      <div v-if="!safeOptions" 
+           id="step-4"
            class="m-b-lg">
         <selection-stations :loadedStations="data.loadedStations"
                             :selectedStation="data.selectedStation"></selection-stations>
       </div>
-      <div id="step-6"
-           v-if="ui.showYearSelection">
+      <div id="step-6" 
+           v-if="ui.showYearSelection && !safeOptions">
         <!-- only show year selection for line graphs etc not for boxplots -->
         <div v-if="!selection.singleYearSelection">
           <selection-years-range v-if="selection.selectionRange"
@@ -64,7 +65,7 @@
         </div>
       </div>
       <div id="step-5"
-           v-if="data.loadedStations.length > 0">
+           v-if="data.loadedStations.length > 0 && !safeOptions">
         <selection-params></selection-params>
       </div>
     </div>
@@ -167,7 +168,5 @@ export default {
 }
 .ui.two.column.centered.grid {
   transition: all 0.3s ease;
-}
-#station-map {
 }
 </style>
