@@ -1,7 +1,7 @@
 <template>
   <div id="home">
     <sui-container>
-      <sui-header size="huge" textAlign="center">Participating Organizations:</sui-header>
+      <sui-header size="large" textAlign="center">Participating Organizations:</sui-header>
       <organizations-map />
       <organizations-list />
     </sui-container>
@@ -27,6 +27,6 @@ export default {
 
 <style>
 #home {
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 </style>

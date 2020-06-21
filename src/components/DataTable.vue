@@ -94,6 +94,6 @@ export default {
   td {
     padding: 2px 5px;
   }
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 </style>

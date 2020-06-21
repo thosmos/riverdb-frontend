@@ -71,9 +71,13 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+
 #about {
   width: 100%;
+}
+tr {
+  vertical-align:top;
 }
 .bio-img {
   margin-right: 1rem;
