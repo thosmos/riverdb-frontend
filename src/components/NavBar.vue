@@ -4,9 +4,9 @@
       <span>RiverDB</span>
     </router-link>
     <span>
-      <router-link to="/features">
+      <!-- <router-link to="/features">
         <span>Features</span>
-      </router-link>
+      </router-link> -->
       <router-link to="/about">
         <span>About Us</span>
       </router-link>

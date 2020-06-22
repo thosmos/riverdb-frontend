@@ -1,14 +1,8 @@
 <template>
   <div id="about">
     <sui-container>
-      <sui-header size="large" textAlign="center">About RiverDB</sui-header>
-      <p>
-        RiverDB is a new website helping NGOs and river organizations to display and
-        store scientific data from river monitoring programs.
-        It draws inspiration from and seeks to improve upon the Surface Water Ambient Monitoring Program's
-        water quality database tools. In addition to providing public maps, charts, and tables of our member's data,
-        RiverDB aims to optimize the experience of repetitive data entry, report generation, and data quality checking.
-      </p>
+      
+
       <sui-header size="medium">The Team</sui-header>
 
       <table>
@@ -48,7 +42,7 @@
         </tr>
         <tr>
           <td>
-            <img class="bio-img" src="img/andreas.jpg" />
+            <img class="bio-img bio-border" src="img/andreas.jpg" />
           </td>
           <td>
             <b>Andreas Groos</b>
@@ -82,5 +76,9 @@ tr {
 .bio-img {
   margin-right: 1rem;
   width: 180px;
+}
+.bio-border {
+  border-radius: .2em;
+  border: #666 solid 2px;
 }
 </style>

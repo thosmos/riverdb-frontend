@@ -1,5 +1,5 @@
 <template>
-  <div v-if="bounds" class="m-t-lg m-b-lg">
+  <div v-if="bounds" class="m-t-md m-b-lg">
     <l-map :bounds="bounds" class="map-height" :options="options">
       <l-control-layers position="topright" />
       <l-tile-layer
@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import organizations from "../assets/organizations.js";
+//import organizations from "../assets/organizations.js";
 import agencyAreas from "../assets/GIS/agencyAreas.js";
 import { yuba, deer, wolf } from "../assets/GIS/watersheds";
 import Vue from "vue";
@@ -71,7 +71,7 @@ export default {
   data: function() {
     return {
       organizations: [
-        { name: "SYRCL", outline: yuba, options: agencyAreas[0] },
+        { name: "SYRCL", long:"South Yuba River Citizen's League", outline: yuba, options: agencyAreas[0] },
         { name: "SSI", outline: deer, options: agencyAreas[2] },
         { name: "WCCA", outline: wolf, options: agencyAreas[1] }
       ],

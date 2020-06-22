@@ -5,9 +5,7 @@
 
         <sui-header class="rm-data-header" 
                     size="medium" 
-                    textAlign="center">Safe to Swim
-                    
-                    </sui-header>
+                    textAlign="center">Safe to Swim</sui-header>
                     <p style="textAlign:center;">E. coli bacteria levels across our watersheds, simplified into red or green for safety</p>
 
         <!-- <div v-if="showTakeTour"
@@ -24,10 +22,10 @@
         </div> -->
         
 
-        <sui-grid>
+        <sui-grid v-if="ui.errorMsg.RM_Datafetch">
           <sui-grid-row>
             <sui-grid-column>
-              <sui-message v-if="ui.errorMsg.RM_Datafetch"
+              <sui-message 
                            color="red">
                 <p>{{ui.errorMsg.RM_Datafetch}}</p>
               </sui-message>

@@ -1,14 +1,15 @@
 <template>
   <div id="app">
     <div id="aaaa">
-      <nav-bar></nav-bar>
+      <img v-if="$route.path === '/'" width="100%" src="img/Hwy49-YUBA-2.jpg" padding="0" margin="0"/>
+      <nav-bar/>
       <page-layout>
         <transition name="fade">
-          <router-view />
+          <router-view/>
         </transition>
       </page-layout>
     </div>
-    <Footer></Footer>
+    <Footer/>
     <cookie-msg v-if="ui.showCookieMsg"></cookie-msg>
   </div>
 </template>
@@ -18,6 +19,7 @@ import NavBar from "./components/NavBar.vue";
 import PageLayout from "./components/PageLayout";
 import CookieMsg from "./components/CookieMsg";
 import Footer from "./components/Footer";
+import router from "./router";
 
 import { mapState } from "vuex";
 

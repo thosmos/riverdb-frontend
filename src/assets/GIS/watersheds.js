@@ -9742,7 +9742,7 @@ export const yuba = {
   "properties": {
     "FeatureID": null,
     "AreaSqKm": 3475.1949578669,
-    "organization": "SYRCL",
+    "organization": "South Yuba River Citizen's League (SYRCL)",
     "route": "SYRCL",
     "link": "https://yubariver.org"
   }
@@ -11924,7 +11924,7 @@ export const wolf = {
   "properties": {
     "FeatureID": null,
     "AreaSqKm": 200.466009392367,
-    "organization": "Wolf Creek Community Alliance",
+    "organization": "Wolf Creek Community Alliance (WCCA)",
     "route": "WCCA",
     "link": "http://www.wolfcreekalliance.org/"
   }
@@ -15165,8 +15165,8 @@ export const deer = {
   },
   "properties": {
     "FeatureID": null,
-    "AreaSqKm": 231.800328377681,
-    "organization": "Sierra Streams Institute",
+    "AreaSqKm": 231.800328377681, 
+    "organization": "Sierra Streams Institute (SSI)",
     "route": "SSI",
     "link": "https://sierrastreamsinstitute.org/"
 
