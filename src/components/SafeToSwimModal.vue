@@ -94,6 +94,7 @@ export default {
   },
   mounted() {
     this.showModal();
+    // FIXME only load historical data for inidividual clicked-on sites
     // axios
     //   .get(this.imageURL, { responseType: "blob" })
     //   .then(res => {
