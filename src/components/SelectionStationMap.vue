@@ -95,6 +95,15 @@ import { mapState } from "vuex";
 import findIndex from "lodash/findIndex";
 import {subWeeks, format, formatDistance, formatRelative, subDays } from 'date-fns';
 
+const genIcon = (color) => {
+  return L.divIcon({
+            className: '',
+            html: `<div class='div-icon ${color}'/>`,
+            iconSize: [12, 12],
+            iconAnchor: [6, 6]
+          })  
+}
+
 export default {
   name: "SelectionStationMap",
   props: {
@@ -226,7 +235,7 @@ export default {
         o => o.info.StationCode === id
       );
       if (index !== -1) {
-        return this.loadedStationIcon;
+        return genIcon('icon-loaded');
       } else {
         if(safeValue )
         {
@@ -252,17 +261,11 @@ export default {
               safety = 'under365'
 
           }
-          return L.divIcon({
-            className: '',
-            html: `<div class='div-icon ${safety}'/>`,
-            iconSize: [12, 12],
-            iconAnchor: [6, 6]
-          })          
-                // return this.safeIcon;
+          return genIcon(safety);
 
         }
         else
-          return this.icon;
+          return genIcon('icon-normal');
       }
     },
     addStation: function(station) {
@@ -320,7 +323,13 @@ export default {
   background-color: #FEFDE6;
 }
 .unsafe {
-  background: red;
+  background-color: red;
+}
+.icon-normal {
+  background-color: #2A7EC7;
+}
+.icon-loaded {
+  background-color: #333;
 }
 </style>
 
