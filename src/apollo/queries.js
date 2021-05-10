@@ -75,3 +75,47 @@ export const GET_SAFETOSWIM = gql`
     }
   }
 `;
+
+export const GET_AGENCIES = gql`
+  query getAgencies {
+    allagencylookups (filter:{Active:true}) {
+      AgencyCode
+      AgencyDescr
+      City
+      Email
+      Logo
+      Mission
+      PrimaryContact
+      Projects {
+        Active
+        Description
+        Name
+        ProjectID
+        Public
+        Parameters {
+          id
+          Name
+          NameShort
+          Active
+          Constituent{
+            AnalyteCode {
+              AnalyteShort
+            }
+            MatrixCode {
+              MatrixShort
+            }
+            UnitCode {
+              Unit
+            }
+          }
+          High
+          Low
+          Replicates
+          SampleType {
+            SampleTypeCode
+          }
+        }
+      }
+    }
+  }
+`;

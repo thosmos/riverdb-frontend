@@ -21,6 +21,8 @@ import CookieMsg from "./components/CookieMsg";
 import Footer from "./components/Footer";
 import router from "./router";
 
+import { GET_AGENCIES } from "./apollo/queries";
+
 import { mapState } from "vuex";
 
 export default {
@@ -40,7 +42,7 @@ export default {
         vmid: "description",
         name: "description",
         content:
-          "RiverDB lets organizations save their data into a database compliant with CEDEN regulations and view the data in multiple ways, including charts & tables."
+          "RiverDB lets organizations save their data into a database compliant with CEDEN and view the data in multiple ways, including charts & tables."
       }
     ]
   },
@@ -62,6 +64,17 @@ export default {
         "organization/SET_ACTIVE_ORGANIZATION",
         this.$route.params.org
       );
+    }
+  },
+  apollo: {
+    agencies: {
+      query: GET_AGENCIES, 
+      error() {
+        this.$store.commit("ui/SET_ERROR_MSG", {
+          section: "RM_Datafetch",
+          msg: `Couldn't fetch initial orgs`
+        });
+      }
     }
   }
 };

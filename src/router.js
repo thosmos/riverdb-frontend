@@ -75,7 +75,7 @@ const appRouter = new Router({
         },
 
         {
-          path: "RM",
+          path: ":proj",
           name: "RMPageWrapper",
           component: RMPageWrapper,
           children: [
