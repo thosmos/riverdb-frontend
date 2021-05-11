@@ -2,11 +2,11 @@
   <div id="org-page-projects-list">
     <h3 is="sui-header" class="ui center aligned">Projects:</h3>
     <div class="ui centered grid stackable">
-      <div v-for="project in info.projects" :key="project.title" class="eight wide computer column">
+      <div v-for="project in info.Projects" :key="project.ProjectID" class="eight wide computer column">
         <sui-card class="fluid project-card eq-card project-segment">
           <sui-card-content class="m-b-sm project-title">
-            <router-link :to="{path: `${organization.activeOrganization}/RM`}">
-              <h5>{{project.title}}</h5>
+            <router-link :to="{path: `${organization.activeOrganization}/${project.ProjectID}`}">
+              <h5>{{project.Name}}</h5>
             </router-link>
           </sui-card-content>
           <sui-card-content>

@@ -1,16 +1,16 @@
 <template>
   <div id="org-page-intro">
     <sui-card-content class="card-header">
-      <h2 class="ui center aligned icon header">{{info.name}}</h2>
+      <h2 class="ui center aligned icon header">{{info.Name}}</h2>
       <!-- <h2 class="ui center aligned icon header">{{info.tagLine}}</h2> -->
     </sui-card-content>
     <div class="spacer">
-      <sui-image :src="info.logoURL"
+      <sui-image :src="info.Logo"
                  size="small"
                  floated="left" />
       <!-- <h5>{{info.missionStatement}}</h5> -->
       <!-- <sui-divider></sui-divider> -->
-      <p>{{info.about}}</p>
+      <p>{{info.AgencyDescr}}</p>
     </div>
   </div>
 </template>
@@ -19,6 +19,9 @@
 export default {
   props: {
     info: Object
+  },
+  mounted() {
+    console.log("OrgIntro", this.info)
   }
 };
 </script>

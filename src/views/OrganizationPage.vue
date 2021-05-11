@@ -2,6 +2,7 @@
   <div id="organization-page"
        v-if="info">
     <sui-container>
+      
       <sui-card class="fluid">
         <org-page-intro :info="info"></org-page-intro>
         <!-- <org-page-flow-button></org-page-flow-button> -->
@@ -17,11 +18,12 @@
 import OrgPageIntro from "../components/OrgPageIntro";
 import OrgPageFooter from "../components/OrgPageContact";
 import OrgPageProjectsList from "../components/OrgPageProjectsList";
+import { mapState } from "vuex";
 // import OrgPageOverviewMap from "../components/OrgPageOverviewMap";
 // import OrgPageInfo from "../components/OrgPageInfo";
 // import OrgPageFlowButton from "../components/OrgPageFlowButton";
 
-import organizations from "../assets/organizations.js";
+//import organizations from "../assets/organizations.js";
 import find from "lodash/find";
 
 export default {
@@ -36,19 +38,42 @@ export default {
   },
   data() {
     return {
-      info: null
     };
   },
-  mounted() {
-    // TODO: replace with some backend data source
-    this.info = find(
-      organizations,
-      o => o.abbreviation === this.$route.params.org
-    );
-    // NOTE: in case of invalid organzition redirect to 404, i.e. riverdb.org/SYRCLa
-    if (!this.info) {
-      this.$router.push("/404");
+  computed: {
+    ...mapState({
+      ui: state => state.ui,
+      data: state => state.data,
+      organization: state => state.organization
+    }),
+    info: function() {
+      if(this.organization && this.organization.orgs && this.$route.params.org){
+        const orgs = this.organization.orgs
+        const org = orgs[this.$route.params.org]
+        if(org){
+          return org;
+        }
+      }
     }
+  },
+  mounted() {
+    console.log("MOUNTED OrgPage", this.$route.params)
+    // TODO: replace with some backend data source
+    // if(this.organizations){
+    //   this.info = find(
+    //     organizations,
+    //     o => o.abbreviation === this.$route.params.org
+    //   );
+    //   // NOTE: in case of invalid organzition redirect to 404, i.e. riverdb.org/SYRCLa
+    //   if (!this.info) {
+    //     this.$router.push("/404");
+    //   }
+    // }
+  },
+  watch: {
+    // organization: function() {
+    //   console.log("OrgPage ORGS", this.organization.orgs)
+    // }
   }
 };
 </script>

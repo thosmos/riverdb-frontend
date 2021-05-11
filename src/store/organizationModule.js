@@ -3,7 +3,9 @@ import { WS_API_IP, WS_API_PORT } from "../assets/constants";
 import {
   LOADING_WATERSHED,
   SET_WATERSHED,
-  SET_ACTIVE_ORGANIZATION
+  SET_ACTIVE_ORGANIZATION,
+  SET_ORGS,
+  SET_PROJECT
 } from "./mutationTypes";
 import { FETCH_ORGANIZATION_WATERSHED } from "./actionTypes";
 
@@ -12,7 +14,9 @@ const organization = {
   state: {
     watershed: {},
     watershedIsLoading: false,
-    activeOrganization: null
+    activeOrganization: null,
+    activeProject: null,
+    orgs: null
   },
   /**
    * Mutations
@@ -26,6 +30,35 @@ const organization = {
      */
     [LOADING_WATERSHED](state, value) {
       state.watershedIsLoading = value;
+    },
+    /**
+     * Sets list of organizations
+     *
+     * @param {Object} state
+     * @param {Array} orgs is list of all orgs
+     */
+    [SET_ORGS](state, orgs) {
+      const _orgs = {}
+      orgs.forEach(org => {
+        // const projs = {}
+        // org.Projects.forEach(proj => {
+        //   projs[proj.ProjectID] = proj
+        // })
+        //_orgs[org.AgencyCode] = {...org, Projects: projs}
+        _orgs[org.AgencyCode] = org
+      })
+      state.orgs = _orgs;
+      console.log("SET_ORGS", _orgs)
+      state.watershed = {};
+    },
+    /**
+     * Sets active project ID
+     *
+     * @param {Object} state
+     * @param {String} proj is ProjectID of active project
+     */
+    [SET_PROJECT](state,proj) {
+      state.activeProject = proj;
     },
     /**
      * Sets active organization

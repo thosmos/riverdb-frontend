@@ -78,14 +78,21 @@ export const GET_SAFETOSWIM = gql`
 
 export const GET_AGENCIES = gql`
   query getAgencies {
-    allagencylookups (filter:{Active:true}) {
+    agencies: allagencylookups (filter:{Active:true}) {
       AgencyCode
       AgencyDescr
-      City
-      Email
+      Name
+      NameShort
       Logo
       Mission
       PrimaryContact
+      Email
+      Telephone
+      StreetAddress
+      City
+      State
+      Zip
+      WebAddress
       Projects {
         Active
         Description

@@ -8,7 +8,7 @@
       <sui-grid-column>
         <p>
           <b>
-            <sui-icon name="user" /> {{info.contactPerson}}
+            <sui-icon name="user" /> {{info.PrimaryContact}}
           </b>
         </p>
       </sui-grid-column>
@@ -16,22 +16,22 @@
         <p>
           <b>
             <sui-icon name="phone
-           " /> {{info.phone}}
+           " /> {{info.Telephone}}
           </b>
         </p>
       </sui-grid-column>
       <sui-grid-column>
         <sui-icon name="envelope
            " />
-        <b><a :href="`mailto:${info.email}`">{{info.email}} </a></b>
+        <b><a :href="`mailto:${info.Email}`">{{info.Email}} </a></b>
       </sui-grid-column>
       <sui-grid-column>
         <p>
           <b>
             <sui-icon name="home
            " />
-            <a :href="info.URL"
-               target="_blank">{{info.URL}}</a>
+            <a :href="info.WebAddress"
+               target="_blank">{{info.WebAddress}}</a>
           </b>
         </p>
       </sui-grid-column>
