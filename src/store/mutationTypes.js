@@ -6,6 +6,7 @@ export const LOADING_WATERSHED = "LOADING_WATERSHED";
 export const SET_ACTIVE_ORGANIZATION = `SET_ACTIVE_ORGANIZATION`;
 export const SET_WATERSHED = `SET_WATERSHED`;
 export const SET_PROJECT = `SET_PROJECT`;
+export const SET_PROJECTS = `SET_PROJECTS`;
 export const SET_ORGS = `SET_ORGS`;
 
 /**

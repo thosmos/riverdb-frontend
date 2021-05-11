@@ -64,6 +64,13 @@ export default {
         "organization/SET_ACTIVE_ORGANIZATION",
         this.$route.params.org
       );
+    },
+    agencies: function () {
+      console.log ("GOT AGENCIES")
+      this.$store.commit(
+        "organization/SET_ORGS",
+        this.agencies
+      );
     }
   },
   apollo: {

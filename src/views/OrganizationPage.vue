@@ -19,6 +19,7 @@ import OrgPageIntro from "../components/OrgPageIntro";
 import OrgPageFooter from "../components/OrgPageContact";
 import OrgPageProjectsList from "../components/OrgPageProjectsList";
 import { mapState } from "vuex";
+import {GET_PROJECTS} from "../apollo/queries";
 // import OrgPageOverviewMap from "../components/OrgPageOverviewMap";
 // import OrgPageInfo from "../components/OrgPageInfo";
 // import OrgPageFlowButton from "../components/OrgPageFlowButton";
@@ -49,8 +50,9 @@ export default {
     info: function() {
       if(this.organization && this.organization.orgs && this.$route.params.org){
         const orgs = this.organization.orgs
-        const org = orgs[this.$route.params.org]
+        const org = {...orgs[this.$route.params.org]}
         if(org){
+          org.Projects = this.projects
           return org;
         }
       }
@@ -73,7 +75,35 @@ export default {
   watch: {
     // organization: function() {
     //   console.log("OrgPage ORGS", this.organization.orgs)
-    // }
+    // },
+    projects: function() {
+      console.log ("GOT PROJECTS")
+      this.$store.commit(
+        "organization/SET_PROJECTS",
+        this.projects
+      );
+    }
+  },
+  apollo: {
+    projects: {
+      query: GET_PROJECTS, // Initial data fetch of all stations...
+      variables() {
+        if (
+          this.organization &&
+          this.organization.activeOrganization &&
+          this.organization.activeOrganization !== "all"
+        ) {
+          return { agency: this.organization.activeOrganization };
+        }
+        return {};
+      },
+      error() {
+        this.$store.commit("ui/SET_ERROR_MSG", {
+          section: "RM_Datafetch",
+          msg: `Couldn't fetch intial stations`
+        });
+      }
+    }
   }
 };
 </script>

@@ -5,7 +5,8 @@ import {
   SET_WATERSHED,
   SET_ACTIVE_ORGANIZATION,
   SET_ORGS,
-  SET_PROJECT
+  SET_PROJECT,
+  SET_PROJECTS
 } from "./mutationTypes";
 import { FETCH_ORGANIZATION_WATERSHED } from "./actionTypes";
 
@@ -16,7 +17,8 @@ const organization = {
     watershedIsLoading: false,
     activeOrganization: null,
     activeProject: null,
-    orgs: null
+    orgs: null,
+    projects: null
   },
   /**
    * Mutations
@@ -52,12 +54,24 @@ const organization = {
       state.watershed = {};
     },
     /**
+     * Sets list of projects
+     *
+     * @param {Object} state
+     * @param {Array} projects is list of all projects
+     */
+    [SET_PROJECTS](state, projects) {
+      state.projects = projects;
+      console.log("SET_PROJECTS", projects);
+      state.activeProject = (projects.length > 0) ? projects[0]: null;
+    },
+    /**
      * Sets active project ID
      *
      * @param {Object} state
-     * @param {String} proj is ProjectID of active project
+     * @param {Object} proj is active project
      */
     [SET_PROJECT](state,proj) {
+      console.log("SET_PROJECT", proj)
       state.activeProject = proj;
     },
     /**

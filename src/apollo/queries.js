@@ -76,6 +76,40 @@ export const GET_SAFETOSWIM = gql`
   }
 `;
 
+export const GET_PROJECTS = gql`
+  query getProjects ($agency: String) {
+    projects: allprojectslookups (filter: {Public:true, AgencyCode:$agency}) {
+      Active
+      Description
+      Name
+      ProjectID
+      Public
+      Parameters {
+        id
+        Name
+        NameShort
+        Active
+        Constituent{
+          AnalyteCode {
+            AnalyteShort
+          }
+          MatrixCode {
+            MatrixShort
+          }
+          UnitCode {
+            Unit
+          }
+        }
+        High
+        Low
+        Replicates
+        SampleType {
+          SampleTypeCode
+        }
+      }
+    }
+  }`
+
 export const GET_AGENCIES = gql`
   query getAgencies {
     agencies: allagencylookups (filter:{Active:true}) {
