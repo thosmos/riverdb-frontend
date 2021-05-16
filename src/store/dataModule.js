@@ -5,9 +5,11 @@ import {
   PROVIDE_APOLLO,
   GENERATE_KEY,
   RESET_STATIONS,
-  RESET_PARAMS
+  RESET_PARAMS,
+  SET_PROJECT,
+  SET_PROJECTS
 } from "./mutationTypes";
-import { GET_STATION_DATA } from "../apollo/queries.js";
+import { GET_STATION_DATA, GET_PROJECT } from "../apollo/queries.js";
 
 import Station from "../utils/Station";
 import findIndex from "lodash/findIndex";
@@ -25,7 +27,9 @@ const data = {
     startYear: null,
     endYear: null,
     apollo: null,
-    uniqueKey: "abc"
+    uniqueKey: "abc",
+    activeProject: null,
+    projects: null
   },
   mutations: {
     [SELECT_STATION](state, StationCode) {
@@ -67,7 +71,16 @@ const data = {
       state.startYear = null;
       state.selectedStation = null;
       state.loadedStations = [];
-    }
+    },
+    [SET_PROJECTS](state, projects) {
+      state.projects = projects;
+      console.log("SET_PROJECTS", projects);
+      state.activeProject = (projects.length > 0) ? projects[0]: null;
+    },
+    [SET_PROJECT](state,proj) {
+      console.log("SET_PROJECT", proj)
+      state.activeProject = proj;
+    },
   },
   actions: {
     [REMOVE_STATION]({ commit, state }, StationCode) {
@@ -127,10 +140,13 @@ const data = {
       { info, data, selectedStation }
     ) {
       let newStation = new Station(info, data);
-      state.loadedStations.push(newStation);
-      const loadedStationsStr = uniq(state.loadedStations)
-        .map(s => s.info.StationCode)
-        .join(",");
+      console.log("ADD STATION DATA  ", newStation)
+      let ids = state.loadedStations.map(s => s.info.StationCode);
+      if(!ids.includes(newStation.info.StationCode)){
+        state.loadedStations.push(newStation);
+        ids.push(newStation.info.StationCode);
+      }
+      const loadedStationsStr = ids.join(",");
       let current = router.history.current;
       router.replace({
         ...current,

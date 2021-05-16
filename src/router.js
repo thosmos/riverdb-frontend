@@ -57,25 +57,41 @@ const appRouter = new Router({
     // TODO: 404 handling still needs to be better, i.e. .../SYRCLa gets redirect to 404 but .../SYRCLa/RM does not....
     { path: "/404", component: NotFound },
     {
-      // FIXME: bad to have toplevel param as it's hard to catch 404.
-      path: "/:org",
+      path: "/org",
       // name: "OrganiziationPage",
       component: OrgPageWrapper,
       children: [
         {
-          path: "",
+          path: "", redirect: "/"
+        },
+        {
+          path: ":org",
           component: () =>
             import(/* webpackChunkName: "org-page" */ "./views/OrganizationPage.vue")
         },
+        // {
+        //   path: "Flows",
+        //   name: "FlowsPageWrapper",
+        //   component: () =>
+        //     import(/* webpackChunkName: 'flow-page' */ "./views/FlowPageWrapper.vue")
+        // },
+        // {
+        //   path: "blog/:slug",
+        //   name: "RMPage",
+        //   component: () =>
+        //     import(/* webpackChunkName: "blog-post" */ "./views/Blog.vue")
+        // }
+      ]
+    },
+    { 
+      path: "/data",
+      component: OrgPageWrapper,
+      children: [
         {
-          path: "projects",
-          name: "ProjectsPage",
-          component: () =>
-            import(/* webpackChunkName: "project-page" */ "./views/ProjectsPage.vue")
+          path: "", redirect: "/"
         },
-
         {
-          path: ":proj",
+          path: ":org",
           name: "RMPageWrapper",
           component: RMPageWrapper,
           children: [
@@ -84,28 +100,11 @@ const appRouter = new Router({
               component: () =>
                 import(/* webpackChunkName: "rm-page" */ "./views/RMPage.vue")
             },
-            {
-              path: "stations",
-              component: () =>
-                import(/* webpackChunkName: "rm-stations" */ "./views/RMStationsPage.vue")
-            }
           ]
         },
-        {
-          path: "Flows",
-          name: "FlowsPageWrapper",
-          component: () =>
-            import(/* webpackChunkName: 'flow-page' */ "./views/FlowPageWrapper.vue")
-        },
-        {
-          path: "blog/:slug",
-          name: "RMPage",
-          component: () =>
-            import(/* webpackChunkName: "blog-post" */ "./views/Blog.vue")
-        }
       ]
     },
-    { path: "*", edirect: "/404" }
+    { path: "*", redirect: "/404" },
   ]
 });
 

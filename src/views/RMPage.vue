@@ -35,7 +35,7 @@
           <sui-grid>
             <sui-grid-row>
               <sui-grid-column>
-                <selection-wrapper :stations="stations">
+                <selection-wrapper :stations="stations" :projects="data.projects">
                 </selection-wrapper>
               </sui-grid-column>
             </sui-grid-row>
@@ -77,7 +77,7 @@ import Loader from "../components/Loader";
 import DataTable from "../components/DataTable";
 import StationInfoModal from "../components/StationInfoModal";
 
-import { GET_STATIONS, GET_STATION_DATA } from "../apollo/queries";
+import { GET_PROJECT, GET_PROJECTS, GET_STATIONS, GET_STATION_DATA } from "../apollo/queries";
 import { mapState } from "vuex";
 import find from "lodash/find";
 
@@ -91,18 +91,14 @@ export default {
     DownloadWrapper,
     StationInfoModal
   },
-  computed: {
-    ...mapState({
-      ui: state => state.ui,
-      data: state => state.data,
-      organization: state => state.organization
-    })
-  },
+  computed: mapState(['ui', 'data', 'organization']),
   data() {
     return {
       showTakeTour: true,
       name: "my-tour",
       SYRCL: "SYRCL",
+      stations: [],
+      projects: [],
       steps: [
         {
           target: "#step-0",
@@ -170,7 +166,8 @@ export default {
         query: {
           stations: "999SY19,999SY35",
           param: "H2O_pH",
-          yearRange: "2014,2017"
+          yearRange: "2014,2017",
+          proj: "SYRCL_1"
         }
       });
       this.$tours["myTour"].start();
@@ -182,20 +179,30 @@ export default {
         yearRange,
         chartType,
         selectedStation,
-        secondaryParam
+        secondaryParam,
+        sampleType,
+        project
       } = this.$route.query;
+      // if(proj) {
+      //   this.$store.dispatch("data/GET_PROJECT", proj)
+      // }
       if (stations) {
+        console.log("adjust to query w/ stations ")
         // if ?stations=... fetch those
+
         stations.split(",").map(id => {
           //  could use this.$store.dispatch("data/FETCH_STATION_DATA", station) but tricky with if (yearRange....)       this.$store.commit("ui/IS_LOADING", true);
+          const variables = {stationCode: id}
+          // if(sampleType)
+          //   variables.sampleType = sampleType;
+
           this.$apollo
             .query({
               query: GET_STATION_DATA,
-              variables: {
-                stationCode: id
-              }
+              variables
             })
             .then(res => {
+              //console.log("GOT STATION DATA", res.data);
               this.$store.commit("ui/CLEAR_ERROR_MSG", "selection");
               this.$store.commit("ui/IS_LOADING", false);
               if (
@@ -250,29 +257,68 @@ export default {
     }
   },
   mounted() {
+    console.log("MOUNTED DataPage", this.$route, "ORGS", this.organization.orgs)
     // Check for tour
     if (localStorage.getItem("noTour")) {
       this.showTakeTour = false;
     }
     this.adjustToQuery();
   },
+  watch: {
+    stations: function(){
+      console.log("GOT stations", this.stations)
+    },
+    projects: function (){
+      console.log("GOT PROJECTS", this.projects)
+      this.$store.commit("data/SET_PROJECTS", this.projects)
+      // find selected project
+      const proj = this.$route.query && this.$route.query.project
+      if(proj){
+        let project
+        this.projects.forEach(p => {
+          if(p.ProjectID === proj)
+            project = p
+        }) 
+        if(project)
+          this.$store.commit("data/SET_PROJECT", project)
+      }
+        
+    }
+  },
   apollo: {
+    projects: {
+      query: GET_PROJECTS,
+      variables() {
+        //const proj = this.$route.query && this.$route.query.project
+        const agency = this.$route.params && this.$route.params.org
+        const params = {}
+        if(agency)
+          params.agency = agency
+        // if(proj)
+        //   params.project = proj
+
+        //console.log("getProject variables  ", this.$route.params, params) 
+        return params;
+      }
+    },
     stations: {
       query: GET_STATIONS, // Initial data fetch of all stations...
       variables() {
-        if (
-          this.organization &&
-          this.organization.activeOrganization &&
-          this.organization.activeOrganization !== "all"
-        ) {
-          return { agency: this.organization.activeOrganization };
-        }
-        return {};
+        const proj = this.$route.query && this.$route.query.project
+        const agency = this.$route.params && this.$route.params.org
+        const params = {}
+        if(agency)
+          params.agency = agency
+        if(proj)
+          params.project = proj
+
+        //console.log("getStations variables  ", this.$route.params, params)
+        return params;
       },
       error() {
         this.$store.commit("ui/SET_ERROR_MSG", {
           section: "RM_Datafetch",
-          msg: `Couldn't fetch intial stations`
+          msg: `Couldn't fetch initial stations`
         });
       }
     }

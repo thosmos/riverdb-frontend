@@ -5,8 +5,6 @@
 export const LOADING_WATERSHED = "LOADING_WATERSHED";
 export const SET_ACTIVE_ORGANIZATION = `SET_ACTIVE_ORGANIZATION`;
 export const SET_WATERSHED = `SET_WATERSHED`;
-export const SET_PROJECT = `SET_PROJECT`;
-export const SET_PROJECTS = `SET_PROJECTS`;
 export const SET_ORGS = `SET_ORGS`;
 
 /**
@@ -47,3 +45,6 @@ export const SELECT_STATION = "SELECT_STATION";
 export const PROVIDE_APOLLO = "PROVIDE_APOLLO";
 export const GENERATE_KEY = "GENERATE_KEY";
 export const RESET_STATIONS = "RESET_STATIONS";
+export const SET_PROJECT = 'SET_PROJECT';
+export const SET_PROJECTS = 'SET_PROJECTS';
+export const SET_SAMPLE_TYPE = 'SET_SAMPLE_TYPE';

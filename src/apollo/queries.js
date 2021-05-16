@@ -1,8 +1,8 @@
 import gql from "graphql-tag";
 
 export const GET_STATIONS = gql`
-  query getStations($agency: String) {
-    stations(agency: $agency) {
+  query getStations($agency: String, $project: String) {
+    stations(agency: $agency, project: $project) {
       HydrologicUnit
       StationName
       RiverFork
@@ -23,8 +23,8 @@ export const GET_STATIONS = gql`
 `;
 
 export const GET_STATION_DATA = gql`
-  query getStationData($stationCode: String) {
-    sitevisits(stationCode: $stationCode) {
+  query getStationData($stationCode: String, $sampleType: String) {
+    sitevisits(stationCode: $stationCode, sampleType: $sampleType) {
       id
       date
       notes
@@ -34,6 +34,10 @@ export const GET_STATION_DATA = gql`
         matrix
         mean
         unit
+        type
+        param {
+          name
+        }
       }
     }
   }
@@ -79,6 +83,41 @@ export const GET_SAFETOSWIM = gql`
 export const GET_PROJECTS = gql`
   query getProjects ($agency: String) {
     projects: allprojectslookups (filter: {Public:true, AgencyCode:$agency}) {
+      Active
+      Description
+      Name
+      ProjectID
+      Public
+      Parameters {
+        id
+        Name
+        NameShort
+        Active
+        Constituent{
+          AnalyteCode {
+            AnalyteShort
+          }
+          MatrixCode {
+            MatrixShort
+          }
+          UnitCode {
+            Unit
+          }
+        }
+        High
+        Low
+        Replicates
+        SampleType {
+          SampleTypeCode
+          Name
+        }
+      }
+    }
+  }`
+
+export const GET_PROJECT = gql`
+  query getProject($agency: String, $project:String){
+    project: projectslookup(AgencyCode:$agency, ProjectID:$project){
       Active
       Description
       Name
@@ -157,6 +196,27 @@ export const GET_AGENCIES = gql`
           }
         }
       }
+    }
+  }
+`;
+
+export const GET_AGENCY = gql`
+  query getAgency ($agency:String) {
+    agency: agencylookup (AgencyCode:$agency) {
+      AgencyCode
+      AgencyDescr
+      Name
+      NameShort
+      Logo
+      Mission
+      PrimaryContact
+      Email
+      Telephone
+      StreetAddress
+      City
+      State
+      Zip
+      WebAddress
     }
   }
 `;

@@ -1,24 +1,45 @@
 <template>
-  <div id="org-page-projects-list">
-    <h3 is="sui-header" class="ui center aligned">Projects:</h3>
-    <div class="ui centered grid stackable">
-      <div v-for="project in info.Projects" :key="project.ProjectID" class="eight wide computer column">
-        <org-page-project-info :project="project" :AgencyCode="organization.activeOrganization.AgencyCode" />
+  <sui-card class="fluid project-card eq-card project-segment">
+    <sui-card-content class="m-b-sm project-title">
+      <router-link :to="{path: `/data/${AgencyCode}?proj=${project.ProjectID}`}">
+        <h5>{{project.Name}}</h5>
+      </router-link>
+    </sui-card-content>
+    <sui-card-content>
+      <div>
+        <!-- <small>
+          <b>{{project.hasData | hasData}}</b>
+        </small>
+        <p class="m-t-sm">
+          From {{project.dataBegins}} up to
+          {{project.dataEnds}}
+        </p>
+        <sui-divider></sui-divider>  -->
+        <p>{{project.Description}}</p>
+        <!-- <p class="m-t-sm">
+          Parameters: {{project.Parameters | measureCount}}
+        </p> -->
+        <!-- <div class="inner">
+            <h1>Explore the Project</h1>
+        </div>-->
+        <div v-if="project.Parameters && project.Parameters.length > 0" class="m-t-md center-button">
+          <router-link :to="{path: `/data/${AgencyCode}?proj=${project.ProjectID}`}">
+            <sui-button basic color="blue" circular centered>Explore the data</sui-button>
+          </router-link>
+        </div>
       </div>
-    </div>
-    <br />
-  </div>
+    </sui-card-content>
+  </sui-card>
 </template>
 
 <script>
 import loremIpsum from "lorem-ipsum";
 import { mapState } from "vuex";
-import OrgPageProjectInfo from './OrgPageProjectInfo.vue';
 
 export default {
-  components: { OrgPageProjectInfo },
   props: {
-    info: Object
+    project: Object,
+    AgencyCode: String
   },
   filters: {
     hasData: function(value) {
@@ -43,17 +64,6 @@ export default {
         })
       return c;
     }
-  },
-  computed: {
-    ...mapState({
-      organization: state => state.organization
-    }),
-    description() {
-      return loremIpsum({
-        count: 5,
-        unit: "sentences"
-      });
-    },    
   }
 };
 </script>

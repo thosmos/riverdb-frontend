@@ -9,7 +9,9 @@ import {
   SET_YEAR_RANGE,
   SELECT_SINGLE_YEAR,
   SET_CHART_TYPE,
-  RESET_PARAMS
+  RESET_PARAMS,
+  SET_PROJECT,
+  SET_SAMPLE_TYPE
 } from "./mutationTypes";
 
 import {
@@ -33,7 +35,9 @@ const selection = {
     secondaryParam: null,
     selectionRange: null,
     singleYearSelection: false,
-    chartType: "LINE_MULTI"
+    chartType: "LINE_MULTI",
+    project: null,
+    sampleType: "FieldMeasure"
   },
   /**
    * Mutations
@@ -95,9 +99,26 @@ const selection = {
       });
       state.chartType = type;
     },
+    [SET_PROJECT](state, project) {
+      state.project = project;
+      let current = router.history.current;
+      router.replace({
+        ...current,
+        query: { ...current.query, project: project.ProjectID }
+      });
+    },
+    [SET_SAMPLE_TYPE](state, sampleType) {
+      state.sampleType = sampleType;
+      let current = router.history.current;
+      router.replace({
+        ...current,
+        query: { ...current.query, sampleType: sampleType.value }
+      });
+    },
     [RESET_PARAMS](state) {
       state.activeParam = "H2O_Temp";
-    }
+    },
+    
   },
   actions: {
     /**
@@ -107,16 +128,16 @@ const selection = {
      * @param {Object} state
      * @param {Object} { stations, onlyActive }
      */
-    [SET_ALL_STATIONS]({ commit, state }, stations) {
+     [SET_ALL_STATIONS]({state, commit}, stations) {
       if (state.onlyActiveStations) {
         state.allStations = stations.filter(s => s.Active);
       } else {
         state.allStations = stations;
       }
-      commit("ALL_RIVER_FORKS", getRiverForks(stations));
+      //commit("ALL_RIVER_FORKS", getRiverForks(stations));
       // commit("ALL_LOCAL_WATERSHEDS", getLocalWatersheds(stations));
-      commit("ALL_LOCAL_WATERBODIES", getLocalWaterbodies(stations));
-      commit("ALL_STATION_NAMES", getStationNames(stations));
+      //commit("ALL_LOCAL_WATERBODIES", getLocalWaterbodies(stations));
+      commit(ALL_STATION_NAMES, getStationNames(stations));
     }
   }
 };

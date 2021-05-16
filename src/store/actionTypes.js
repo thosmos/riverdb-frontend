@@ -14,5 +14,6 @@ export const SET_ALL_STATIONS = "SET_ALL_STATIONS";
  * DATA VUEX
  */
 
+export const GET_PROJECT = "GET_PROJECT";
 export const ADD_STATION_DATA = "ADD_STATION_DATA";
 export const FETCH_STATION_DATA = "FETCH_STATION_DATA";

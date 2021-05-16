@@ -5,8 +5,6 @@ import {
   SET_WATERSHED,
   SET_ACTIVE_ORGANIZATION,
   SET_ORGS,
-  SET_PROJECT,
-  SET_PROJECTS
 } from "./mutationTypes";
 import { FETCH_ORGANIZATION_WATERSHED } from "./actionTypes";
 
@@ -16,9 +14,7 @@ const organization = {
     watershed: {},
     watershedIsLoading: false,
     activeOrganization: null,
-    activeProject: null,
     orgs: null,
-    projects: null
   },
   /**
    * Mutations
@@ -42,37 +38,11 @@ const organization = {
     [SET_ORGS](state, orgs) {
       const _orgs = {}
       orgs.forEach(org => {
-        // const projs = {}
-        // org.Projects.forEach(proj => {
-        //   projs[proj.ProjectID] = proj
-        // })
-        //_orgs[org.AgencyCode] = {...org, Projects: projs}
         _orgs[org.AgencyCode] = org
       })
       state.orgs = _orgs;
       console.log("SET_ORGS", _orgs)
       state.watershed = {};
-    },
-    /**
-     * Sets list of projects
-     *
-     * @param {Object} state
-     * @param {Array} projects is list of all projects
-     */
-    [SET_PROJECTS](state, projects) {
-      state.projects = projects;
-      console.log("SET_PROJECTS", projects);
-      state.activeProject = (projects.length > 0) ? projects[0]: null;
-    },
-    /**
-     * Sets active project ID
-     *
-     * @param {Object} state
-     * @param {Object} proj is active project
-     */
-    [SET_PROJECT](state,proj) {
-      console.log("SET_PROJECT", proj)
-      state.activeProject = proj;
     },
     /**
      * Sets active organization
@@ -81,6 +51,7 @@ const organization = {
      * @param {String} org
      */
     [SET_ACTIVE_ORGANIZATION](state, org) {
+      console.log("SET_ACTIVE_ORGANIZATION", org)
       state.activeOrganization = org;
       // Resets watershed data so there is no remnant of old watershed on hew organization page
       if (state.activeOrganization !== org) {

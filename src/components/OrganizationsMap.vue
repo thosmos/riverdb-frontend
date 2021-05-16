@@ -51,7 +51,7 @@ function onEachFeature(feature, layer) {
   let popup = new popupContent({
     propsData: {
       route: feature.properties.route,
-      river: feature.properties.organization
+      org: feature.properties.organization
     }
   });
   layer.bindPopup(popup.$mount().$el);

@@ -59,31 +59,34 @@ export default {
     })
   },
   watch: {
-    $route: function() {
-      this.$store.commit(
-        "organization/SET_ACTIVE_ORGANIZATION",
-        this.$route.params.org
-      );
-    },
-    agencies: function () {
-      console.log ("GOT AGENCIES")
-      this.$store.commit(
-        "organization/SET_ORGS",
-        this.agencies
-      );
-    }
+    // $route: function() {
+    //   if(this.$route.params.org){
+    //     console.log("SET ACTIVE ORG", this.$route.params.org)
+    //     this.$store.commit(
+    //       "organization/SET_ACTIVE_ORGANIZATION",
+    //       this.$route.params.org
+    //     );
+    //   }
+    // },
+    // agencies: function () {
+    //   console.log ("GOT AGENCIES")
+    //   this.$store.commit(
+    //     "organization/SET_ORGS",
+    //     this.agencies
+    //   );
+    // }
   },
-  apollo: {
-    agencies: {
-      query: GET_AGENCIES, 
-      error() {
-        this.$store.commit("ui/SET_ERROR_MSG", {
-          section: "RM_Datafetch",
-          msg: `Couldn't fetch initial orgs`
-        });
-      }
-    }
-  }
+  // apollo: {
+  //   agencies: {
+  //     query: GET_AGENCIES, 
+  //     error() {
+  //       this.$store.commit("ui/SET_ERROR_MSG", {
+  //         section: "RM_Datafetch",
+  //         msg: `Couldn't fetch initial orgs`
+  //       });
+  //     }
+  //   }
+  // }
 };
 </script>
 

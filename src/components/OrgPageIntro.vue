@@ -21,7 +21,7 @@ export default {
     info: Object
   },
   mounted() {
-    console.log("OrgIntro", this.info)
+    //console.log("OrgIntro", this.info)
   }
 };
 </script>

@@ -266,7 +266,18 @@ export default class Station {
 * @property {string} date             - date in 'YYYY-MM-DD'
 * @property {string} notes            - notes of the sitevisit
 * @property {Results}  results        - actual data gathered
+* @property {Result[]}  resultsv        - actual data gathered
 */
+
+/**
+ * @global
+ * @typedef {Object} Result              - datapoints DO, Temp etc, but no date
+ * @property {string} matrix           -
+ * @property {string} analyte             - 
+ * @property {number[]} vals             - 
+ * @property {number} mean           - 
+ * @property {boolean} is_valid           - 
+ */
 
 /**
  * @global

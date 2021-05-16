@@ -15,6 +15,7 @@ import "./style/semantic/semantic.min.css";
 import "./style/style.scss";
 import "../node_modules/leaflet/dist/leaflet.css";
 import "../node_modules/vue-multiselect/dist/vue-multiselect.min.css";
+//import 'vue-select/dist/vue-select.css';
 
 Vue.use(SuiVue);
 

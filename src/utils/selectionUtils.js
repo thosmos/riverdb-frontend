@@ -91,3 +91,9 @@ export function calculateStationsForSelection(allStations, forkSelection) {
   }
   return tempStations;
 }
+
+// export function calcProjectOptions(projects) {
+//   return projects.map(p => {
+//     {label: }
+//   })
+// }

@@ -19,7 +19,7 @@ import OrgPageIntro from "../components/OrgPageIntro";
 import OrgPageFooter from "../components/OrgPageContact";
 import OrgPageProjectsList from "../components/OrgPageProjectsList";
 import { mapState } from "vuex";
-import {GET_PROJECTS} from "../apollo/queries";
+import { GET_PROJECTS, GET_AGENCIES, GET_AGENCY } from "../apollo/queries";
 // import OrgPageOverviewMap from "../components/OrgPageOverviewMap";
 // import OrgPageInfo from "../components/OrgPageInfo";
 // import OrgPageFlowButton from "../components/OrgPageFlowButton";
@@ -48,9 +48,8 @@ export default {
       organization: state => state.organization
     }),
     info: function() {
-      if(this.organization && this.organization.orgs && this.$route.params.org){
-        const orgs = this.organization.orgs
-        const org = {...orgs[this.$route.params.org]}
+      if(this.organization && this.organization.activeOrganization){
+        const org = {...this.organization.activeOrganization}
         if(org){
           org.Projects = this.projects
           return org;
@@ -77,30 +76,66 @@ export default {
     //   console.log("OrgPage ORGS", this.organization.orgs)
     // },
     projects: function() {
-      console.log ("GOT PROJECTS")
+      //console.log ("GOT PROJECTS")
       this.$store.commit(
-        "organization/SET_PROJECTS",
+        "data/SET_PROJECTS",
         this.projects
+      );
+    },
+    // agencies: function () {
+    //   console.log ("GOT AGENCIES")
+    //   this.$store.commit(
+    //     "organization/SET_ORGS",
+    //     this.agencies
+    //   );
+    // },
+    agency: function () {
+      //console.log ("GOT AGENCY", this.agency)
+      this.$store.commit(
+        "organization/SET_ACTIVE_ORGANIZATION",
+        this.agency
       );
     }
   },
   apollo: {
-    projects: {
-      query: GET_PROJECTS, // Initial data fetch of all stations...
+    agency: {
+      query: GET_AGENCY,
       variables() {
-        if (
-          this.organization &&
-          this.organization.activeOrganization &&
-          this.organization.activeOrganization !== "all"
-        ) {
-          return { agency: this.organization.activeOrganization };
-        }
-        return {};
+        const params = {}
+        const agency = this.$route.params && this.$route.params.org
+        if(agency)
+          params.agency = agency
+        return params;
       },
       error() {
         this.$store.commit("ui/SET_ERROR_MSG", {
           section: "RM_Datafetch",
-          msg: `Couldn't fetch intial stations`
+          msg: `Couldn't fetch org`
+        });
+      }
+    },
+    // agencies: {
+    //   query: GET_AGENCIES, 
+    //   error() {
+    //     this.$store.commit("ui/SET_ERROR_MSG", {
+    //       section: "RM_Datafetch",
+    //       msg: `Couldn't fetch orgs`
+    //     });
+    //   }
+    // },
+    projects: {
+      query: GET_PROJECTS, // Initial data fetch of all stations...
+      variables() {
+        const params = {}
+        const agency = this.$route.params && this.$route.params.org
+        if(agency)
+          params.agency = agency
+        return params;
+      },
+      error() {
+        this.$store.commit("ui/SET_ERROR_MSG", {
+          section: "RM_Datafetch",
+          msg: `Couldn't fetch projects`
         });
       }
     }
