@@ -18,6 +18,7 @@
 import uniq from "lodash/uniq";
 import { mapState } from "vuex";
 import remove from "lodash/remove";
+import flatten from "lodash/flatten";
 
 export default {
   name: "DataTable",
@@ -33,13 +34,24 @@ export default {
           this.data.selectedStation.meta &&
           this.data.selectedStation.meta.params) ||
         [];
-      if (!Object.keys(temp).includes("date)")) {
+
+      temp = uniq(temp);
+      
+      if (!temp.includes("date")) {
         temp.unshift("date");
       }
+
       if (temp.includes("null_null")) {
         remove(temp, o => o === "null_null");
       }
-      return uniq(temp);
+      const obsRegex = RegExp("FieldObs_");
+      temp = temp.filter(t => !obsRegex.test(t));
+      const fieldRegex = RegExp("field_");
+      temp = temp.filter(t => !fieldRegex.test(t));
+
+      //temp = temp.sort();
+
+      return temp;
     },
     tableData: function() {
       let rawData =

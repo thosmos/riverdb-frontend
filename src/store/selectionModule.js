@@ -117,11 +117,11 @@ const selection = {
     },
     [RESET_PARAMS](state) {
       state.activeParam = null;
-      let current = router.history.current;
-      router.replace({
-        ...current,
-        query: { ...current.query, param: null }
-      });
+      // let current = router.history.current;
+      // router.replace({
+      //   ...current,
+      //   query: { ...current.query, param: null }
+      // });
     },
     
   },

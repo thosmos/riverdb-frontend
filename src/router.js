@@ -2,6 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
 import OrgPageWrapper from "./views/OrgPageWrapper.vue";
+import DataPageWrapper from "./views/DataPageWrapper.vue";
 import RMPageWrapper from "./views/RMPageWrapper.vue";
 import FlowPageWrapper from "./views/FlowPageWrapper";
 import NotFound from "./views/NotFound";
@@ -54,21 +55,21 @@ const appRouter = new Router({
       component: () =>
         import(/* webpackChunkName: "safetoswim" */ "./views/SafeSwim.vue")
     },
-    // TODO: 404 handling still needs to be better, i.e. .../SYRCLa gets redirect to 404 but .../SYRCLa/RM does not....
-    { path: "/404", component: NotFound },
+    
     {
       path: "/org",
       // name: "OrganiziationPage",
       component: OrgPageWrapper,
       children: [
         {
-          path: "", redirect: "/"
-        },
-        {
           path: ":org",
           component: () =>
             import(/* webpackChunkName: "org-page" */ "./views/OrganizationPage.vue")
+        },       
+        {
+          path: "", redirect: "/"
         },
+
         // {
         //   path: "Flows",
         //   name: "FlowsPageWrapper",
@@ -85,14 +86,11 @@ const appRouter = new Router({
     },
     { 
       path: "/data",
-      component: OrgPageWrapper,
+      component: DataPageWrapper,
       children: [
         {
-          path: "", redirect: "/"
-        },
-        {
           path: ":org",
-          name: "RMPageWrapper",
+          //name: "RMPageWrapper",
           component: RMPageWrapper,
           children: [
             {
@@ -102,8 +100,14 @@ const appRouter = new Router({
             },
           ]
         },
+        {
+          path: "", redirect: "/"
+        },
+        
       ]
     },
+    // TODO: 404 handling still needs to be better, i.e. .../SYRCLa gets redirect to 404 but .../SYRCLa/RM does not....
+    { path: "/404", component: NotFound },
     { path: "*", redirect: "/404" },
   ]
 });
@@ -112,7 +116,7 @@ appRouter.beforeEach((to, from, next) => {
   // Reset stations if changing from one organization to another....
   if (to.params.org !== from.params.org) {
     store.commit("data/RESET_STATIONS");
-    store.commit("selection/RESET_PARAMS");
+    //store.commit("selection/RESET_PARAMS");
   }
   next();
   // ...

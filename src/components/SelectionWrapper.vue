@@ -169,7 +169,7 @@ export default {
     },
     selectedStation: function(newStation, oldStation){
       console.log("selectedStation changed", newStation, oldStation)
-      this.$store.commit("selection/RESET_PARAMS");
+      //this.$store.commit("selection/RESET_PARAMS");
     }
   },
   computed: {
@@ -262,7 +262,7 @@ export default {
       //console.log("projectUpdated", this.selectedProject);
       this.$store.commit("data/SET_PROJECT", this.selectedProject)
       this.$store.commit("selection/SET_PROJECT", this.selectedProject)
-      this.$store.commit("selection/RESET_PARAMS");
+      //this.$store.commit("selection/RESET_PARAMS");
 
     }
   }

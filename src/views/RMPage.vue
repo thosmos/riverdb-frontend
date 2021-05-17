@@ -263,6 +263,10 @@ export default {
     if (localStorage.getItem("noTour")) {
       this.showTakeTour = false;
     }
+    let org = this.$route.params && this.$route.params.org
+    if(org)
+      this.$store.commit("organization/SET_ACTIVE_ORGANIZATION",this.$route.params.org )
+
     this.adjustToQuery();
   },
   watch: {
