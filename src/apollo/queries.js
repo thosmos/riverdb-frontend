@@ -94,11 +94,14 @@ export const GET_PROJECTS = gql`
         NameShort
         Active
         Constituent{
+          id
           AnalyteCode {
             AnalyteShort
+            AnalyteName
           }
           MatrixCode {
             MatrixShort
+            MatrixName
           }
           UnitCode {
             Unit

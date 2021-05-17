@@ -6,18 +6,7 @@
         <sui-header class="rm-data-header" 
                     size="medium" 
                     textAlign="center">Water Quality Monitoring Data:</sui-header>
-        <div v-if="showTakeTour"
-             class="m-t-md m-b-md">
-          <div class="ui grid centered">
-            <sui-button-group>
-              <sui-button @click="takeTour"
-                          color="blue">Take the Tour</sui-button>
-              <sui-button-or />
-              <sui-button @click="removeTour"
-                          color="red">Never show this again</sui-button>
-            </sui-button-group>
-          </div>
-        </div>
+
         <sui-grid>
           <sui-grid-row>
             <sui-grid-column>
@@ -31,7 +20,19 @@
         <div v-if="$apollo.loading">
           <Loader />
         </div>
-        <div v-else>
+        <div v-if="showTakeTour"
+             class="m-t-md m-b-md">
+          <div class="ui grid centered">
+            <sui-button-group>
+              <sui-button @click="takeTour"
+                          color="blue">Take the Tour</sui-button>
+              <sui-button-or />
+              <sui-button @click="removeTour"
+                          color="red">Never show this again</sui-button>
+            </sui-button-group>
+          </div>
+        </div>
+        <div v-else-if="data.projects && stations">
           <sui-grid>
             <sui-grid-row>
               <sui-grid-column>

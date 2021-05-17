@@ -94,7 +94,7 @@
         </div>
       </div>
       <div id="step-5"
-           v-if="data.loadedStations.length > 0 && !safeOptions">
+           v-if="data.loadedStations && data.loadedStations.length > 0 && !safeOptions">
         <selection-params></selection-params>
       </div>
     </div>
@@ -143,7 +143,8 @@ export default {
       forkOptions: [],
       sampleTypeOptions: [],
       selectedSampleType: null,
-      selectedProject: null
+      selectedProject: null,
+      loadedStations: [],
     };
   },
   watch: {
@@ -159,10 +160,16 @@ export default {
     },
     selectedProject: function(){
       let types = this.calcSampleTypes(this.selectedProject)
-      console.log("WATCH selectedProject", types)
+      
       this.sampleTypeOptions = types
-      this.selectedSampleType = (types.length > 0) ? types[0] : null
+      this.selectedSampleType = (types && types.length > 0) ? types[0] : null
 
+      //let params = this.calcParams(this.selectedProject)
+      console.log("WATCH selectedProject", this.selectedProject, types)
+    },
+    selectedStation: function(newStation, oldStation){
+      console.log("selectedStation changed", newStation, oldStation)
+      this.$store.commit("selection/RESET_PARAMS");
     }
   },
   computed: {
@@ -180,6 +187,7 @@ export default {
     // }
   },
   mounted() {
+    //console.log("Selection Mounted", "Projects", this.projects, "Stations", this.stations)
     // Sets allStations in selection vuex but also parses allForks, allWaterbodies etc
     this.$store.dispatch("selection/SET_ALL_STATIONS", this.stations);
     // Initialize forks, streams and stations
@@ -207,7 +215,23 @@ export default {
     //   }
     //   this.selectedStation = null;
     // },
-
+    calcParams: function(project){
+      const params = {}
+      if(project.Parameters){
+        const ps = []
+        project.Parameters.map(p => {
+          if(p.Constituent && p.Constituent.MatrixCode && p.Constituent.AnalyteCode){
+            const name = p.Name || [p.Constituent.MatrixCode.MatrixShort, p.Constituent.AnalyteCode.AnalyteShort, p.Constituent.UnitCode.Unit].join("_");
+            const code = [p.Constituent.MatrixCode.MatrixShort, p.Constituent.AnalyteCode.AnalyteShort].join("_");
+            if(!ps.includes(code)){
+              params[code] = name;
+              ps.push(code)
+            }
+          }
+        })
+      }
+      return params;
+    },
     calcSampleTypes: function(project){
       const types = []
       if(project.Parameters){
@@ -223,7 +247,12 @@ export default {
       return types;
     },
     fetchStationData: function(station) {
-      this.$store.dispatch("data/FETCH_STATION_DATA", station.value);
+      //console.log("fetchStationData", station)
+      if(station)
+        this.$store.dispatch("data/FETCH_STATION_DATA", station.value);
+      else {
+        //this.$store.dispatch("data/REMOVE_STATION", station.StationCode);
+      }
     },
     sampleTypeUpdated: function() {
       console.log("sampleTypeUpdated", this.selectedSampleType)
@@ -233,6 +262,7 @@ export default {
       //console.log("projectUpdated", this.selectedProject);
       this.$store.commit("data/SET_PROJECT", this.selectedProject)
       this.$store.commit("selection/SET_PROJECT", this.selectedProject)
+      this.$store.commit("selection/RESET_PARAMS");
 
     }
   }

@@ -81,7 +81,7 @@ export const singleStation = (stationName, param) => {
 export const multiStation = (loadedStations, param) => {
   return {
     title: {
-      text: names[param].text + getUnit(param)
+      text: names[param] ? names[param].text : param + getUnit(param)
     }
   };
 };

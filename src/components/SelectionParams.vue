@@ -4,6 +4,9 @@
     <small v-if="canHaveSecondaryParam()">
       <b>Primary Parameter: </b>
     </small>
+    <small v-else>
+      <b>Parameter: </b>
+    </small>
     <br />
     <div class="flex-row">
       <div v-for="p in allParams"
@@ -51,13 +54,19 @@ export default {
       let temp = this.data.loadedStations.map(s => s.meta.params);
       temp = uniq(flatten(temp));
       // Remove stupid null_null value
-      const nullRegex = RegExp("null");
+      const nullRegex = RegExp("null" );
       temp = temp.filter(t => !nullRegex.test(t));
       // remove date
       const dateRegex = RegExp("date");
       temp = temp.filter(t => !dateRegex.test(t));
+      const obsRegex = RegExp("FieldObs_");
+      temp = temp.filter(t => !obsRegex.test(t));
+      const fieldRegex = RegExp("field_");
+      temp = temp.filter(t => !fieldRegex.test(t));
       // return alphabetically sorted
-      return temp.sort();
+      temp = temp.sort();
+      console.log("allParams", temp)
+      return temp;
     },
     allSecondaryParams: function() {
       return this.allParams.filter(p => p !== this.selection.activeParam);
@@ -68,7 +77,8 @@ export default {
       try {
         return names[p].text;
       } catch (err) {
-        return "";
+        return p.replace("H2O_","")
+        
       }
     },
     canHaveSecondaryParam: function() {
@@ -85,6 +95,7 @@ export default {
       return false;
     },
     selectParam: function(param, $event) {
+      console.log("SELECT PARAM", param)
       this.$store.commit("data/GENERATE_KEY");
       if (!$event.shiftKey) {
         this.$store.commit("selection/SELECT_ACTIVE_PARAM", param);

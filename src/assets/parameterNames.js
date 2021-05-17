@@ -1,13 +1,13 @@
 const names = {
-  Air_Temp: { text: "Air temp" },
-  H2O_Cond: { text: "H2O cond" },
-  H2O_DO: { text: "H2O DO" },
-  H2O_Temp: { text: "H2O Temp" },
-  H2O_Turb: { text: "H2O Turb" },
-  H2O_pH: { text: "H2O pH" },
-  H2O_Velocity: { text: "H2O Velocity" },
-  H2O_PO4: { text: "H2O PO4" },
-  H2O_NO3: { text: "H2O NO3" }
+  Air_Temp: { text: "Air Temp" },
+  H2O_Cond: { text: "Cond" },
+  H2O_DO: { text: "DO" },
+  H2O_Temp: { text: "Water Temp" },
+  H2O_Turb: { text: "Turb" },
+  H2O_pH: { text: "pH" },
+  H2O_Velocity: { text: "Velocity" },
+  H2O_PO4: { text: "PO4" },
+  H2O_NO3: { text: "NO3" }
 };
 
 export default names;

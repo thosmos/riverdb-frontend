@@ -58,6 +58,7 @@ export default {
 #selection-stations {
   .space-left {
     margin-left: 0.5rem;
+    cursor: pointer;
   }
   .active {
     font-weight: bold;

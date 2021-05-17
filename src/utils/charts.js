@@ -2,6 +2,7 @@ import { unitsForParams, parameterInfoObj } from "../assets/constants";
 import names from "../assets/parameterNames";
 
 export function getUnit(param) {
+  console.log("getUnit", param)
   let unit = unitsForParams[param];
   return unit ? ` in  ${unit}:` : ":";
 }

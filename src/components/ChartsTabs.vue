@@ -2,7 +2,8 @@
   <div id="chart-tabs">
 
     <sui-tab @change="handleChange"
-             :active-index.sync="activeIndex">
+             :active-index.sync="activeIndex"
+             v-if="selection.activeParam">
       <sui-tab-pane title="multi year line">
         <charts-line-chart class="chart chart-spacer"
                            :selection="selection"

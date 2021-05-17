@@ -31,7 +31,7 @@ const selection = {
     allWaterbodies: null,
     // allWatersheds: null,
     allStationNames: null,
-    activeParam: "H2O_Temp",
+    activeParam: null,
     secondaryParam: null,
     selectionRange: null,
     singleYearSelection: false,
@@ -116,7 +116,12 @@ const selection = {
       });
     },
     [RESET_PARAMS](state) {
-      state.activeParam = "H2O_Temp";
+      state.activeParam = null;
+      let current = router.history.current;
+      router.replace({
+        ...current,
+        query: { ...current.query, param: null }
+      });
     },
     
   },
