@@ -78,10 +78,15 @@ export function calculateForksForSelection(allForks) {
     tempForks
   );
 }
+
+export function calcStationOption(s) {
+  return { label: `${s.StationName} #${s.StationID} `, value: s };
+}
+
 export function calculateStationsForSelection(allStations, forkSelection) {
   let tempStations = allStations
     ? allStations.map(s => {
-        return { label: `${s.StationName} #${s.StationID} `, value: s };
+        return calcStationOption(s);
       })
     : [];
   if (forkSelection) {

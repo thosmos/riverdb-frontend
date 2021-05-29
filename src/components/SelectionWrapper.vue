@@ -112,7 +112,8 @@ import Loader from "./Loader";
 
 import {
   calculateForksForSelection,
-  calculateStationsForSelection
+  calculateStationsForSelection,
+  calcStationOption
 } from "../utils/selectionUtils.js";
 
 import { mapState } from "vuex";
@@ -137,7 +138,6 @@ export default {
   },
   data() {
     return {
-      selectedStation: null,
       selectedFork: null,
       stationOptions: [],
       forkOptions: [],
@@ -145,18 +145,20 @@ export default {
       selectedSampleType: null,
       selectedProject: null,
       loadedStations: [],
+      selectedStationObject: null
     };
   },
   watch: {
-    selectedSampleType: function(){
-      console.log("selectedSampleType", this.selectedSampleType)
-      this.$store.commit("selection/SET_SAMPLE_TYPE", this.selectedSampleType);
-    },
+    // selectedSampleType: function(){
+    //   console.log("selectedSampleType", this.selectedSampleType)
+    //   this.$store.commit("selection/SET_SAMPLE_TYPE", this.selectedSampleType);
+    // },
     stations: function(){
       console.log("WATCH stations", this.stations)
       this.$store.dispatch("selection/SET_ALL_STATIONS", this.stations);
       this.stationOptions = calculateStationsForSelection(
         this.stations);
+      // this.$store.commit("data/SET_")
     },
     selectedProject: function(){
       let types = this.calcSampleTypes(this.selectedProject)
@@ -179,6 +181,22 @@ export default {
       'data',
       'organization'
     ]),
+    selectedStation: {
+      get: function() {
+        console.log("COMPUTED GETTER selectedStation", this.data.selectedStation)
+//        return calcStationOption(this.data.selectedStation)
+        if(this.data.selectedStation && this.data.selectedStation.info && this.data.selectedStation.info.StationCode)
+          return calcStationOption(this.data.selectedStation.info)
+        return this.data.selectedStation;
+      },
+      set: function(station) {
+        if(station){
+          console.log("COMPUTED SETTER selectedStation", station.value)
+          this.selectedStationObject = station.value;
+          this.$store.commit("data/SELECT_STATION", station.value.StationCode)
+        }
+      }
+    },
     sortedStationOptions: function() {
       return sortBy(this.stationOptions, o => o.label);
     },
@@ -259,9 +277,11 @@ export default {
       //this.$store.commit()
     },
     projectUpdated: function () {
-      //console.log("projectUpdated", this.selectedProject);
+      console.log("projectUpdated", this.selectedProject);
       this.$store.commit("data/SET_PROJECT", this.selectedProject)
       this.$store.commit("selection/SET_PROJECT", this.selectedProject)
+      this.$store.commit("data/SELECT_STATION", null)
+      this.$store.commit("data/RESET_STATIONS")
       //this.$store.commit("selection/RESET_PARAMS");
 
     }

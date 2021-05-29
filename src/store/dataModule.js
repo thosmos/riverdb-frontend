@@ -71,6 +71,11 @@ const data = {
       state.startYear = null;
       state.selectedStation = null;
       state.loadedStations = [];
+      let current = router.history.current;
+      router.replace({
+        ...current,
+        query: { ...current.query, stations: "" }
+      });
     },
     [SET_PROJECTS](state, projects) {
       state.projects = projects;

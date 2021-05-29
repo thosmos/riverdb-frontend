@@ -317,7 +317,7 @@ export default {
         if(proj)
           params.project = proj
 
-        //console.log("getStations variables  ", this.$route.params, params)
+        console.log("getStations variables  ", this.$route.params, params)
         return params;
       },
       error() {
