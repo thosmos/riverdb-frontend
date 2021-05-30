@@ -1,4 +1,4 @@
-import { ADD_STATION_DATA, FETCH_STATION_DATA } from "./actionTypes";
+import { ADD_STATION_DATA, FETCH_STATION_DATA, ADD_LOGGER_DATA } from "./actionTypes";
 import {
   REMOVE_STATION,
   SELECT_STATION,
@@ -9,7 +9,7 @@ import {
   SET_PROJECT,
   SET_PROJECTS
 } from "./mutationTypes";
-import { GET_STATION_DATA, GET_PROJECT } from "../apollo/queries.js";
+import { GET_STATION_DATA, GET_PROJECT, GET_LOGGER_DATA } from "../apollo/queries.js";
 
 import Station from "../utils/Station";
 import findIndex from "lodash/findIndex";
@@ -140,6 +140,12 @@ const data = {
         }
       }
     },
+    [ADD_LOGGER_DATA](
+      { commit, state, rootState },
+      { info, data, selectedStation }
+    ){
+      console.log("ADD_LOGGER_DATA")
+    },
     [ADD_STATION_DATA](
       { commit, state, rootState },
       { info, data, selectedStation }
@@ -189,11 +195,51 @@ const data = {
       }
     },
     [FETCH_STATION_DATA]({ commit, dispatch, state }, station) {
-      const id = station.StationCode;
-      console.log("id", id);
+      const stationCode = station.StationCode;
+      console.log("stationCode", stationCode);
       commit("ui/IS_LOADING", true, { root: true });
-      // if (!this.loadedStations[id]) {
-      state.apollo
+
+      const projType = state.activeProject && state.activeProject.ProjectType && state.activeProject.ProjectType.ident;
+      if(projType === "logger"){
+        console.log("GET_LOGGER_DATA")
+        state.apollo
+        .query({
+          query: GET_LOGGER_DATA,
+          variables: {
+            stationCode
+          }
+        })
+        .then(res => {
+          commit("ui/CLEAR_ERROR_MSG", "selection", { root: true });
+          commit("ui/IS_LOADING", false, { root: true });
+          if (find(state.loadedStations, o => id === o.info.StationID)) {
+            commit(
+              "ui/SET_ERROR_MSG",
+              {
+                section: "selection",
+                msg: `Station is already selected`
+              },
+              { root: true }
+            );
+          } else {
+            dispatch("ADD_LOGGER_DATA", {
+              info: station,
+              data: res.data
+            });
+          }
+        })
+        .catch(() => {
+          commit(
+            "ui/SET_ERROR_MSG",
+            {
+              section: "selection",
+              msg: `Couldn't fetch logger data`
+            },
+            { root: true }
+          );
+        });
+      } else {
+        state.apollo
         .query({
           query: GET_STATION_DATA,
           variables: {
@@ -229,6 +275,7 @@ const data = {
             { root: true }
           );
         });
+      }
     }
   }
 };

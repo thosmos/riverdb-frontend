@@ -43,6 +43,16 @@ export const GET_STATION_DATA = gql`
   }
 `;
 
+export const GET_LOGGER_DATA = gql`
+  query getLoggerData($stationCode: String) {
+    logsamples (stationCode: $stationCode)  {
+      date
+      value
+    }
+  }
+`;
+
+
 export const GET_SAFETOSWIM = gql`
   query getSafeToSwim($agency: String) {
     stations: safetoswim(agency: $agency) {
@@ -87,6 +97,10 @@ export const GET_PROJECTS = gql`
       Description
       Name
       ProjectID
+      ProjectType {
+        ident
+        name
+      }
       Public
       Parameters {
         id

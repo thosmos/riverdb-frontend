@@ -191,6 +191,8 @@ export default {
         console.log("adjust to query w/ stations ")
         // if ?stations=... fetch those
 
+        console.log("ACTIVE PROJECT", this.data.activeProject);
+
         stations.split(",").map(id => {
           //  could use this.$store.dispatch("data/FETCH_STATION_DATA", station) but tricky with if (yearRange....)       this.$store.commit("ui/IS_LOADING", true);
           const variables = {stationCode: id}
