@@ -154,6 +154,7 @@ export default {
       return calculateBoundsOfStations(this.stations);
     },
     chartOptions: function() {
+      console.log("SelectionStationMap.chartOptions")
       let minMax = getMinMaxValue(this.plotData);
       const options = {
         chart: {

@@ -33,6 +33,7 @@ export default {
     plotData: function() {
       if (this.data.loadedStations) {
         let data = [];
+        console.log("ChartsLineChart.plotData")
         this.data.loadedStations.map(s => {
           // activeParam
           let temp = s

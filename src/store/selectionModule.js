@@ -11,7 +11,8 @@ import {
   SET_CHART_TYPE,
   RESET_PARAMS,
   SET_PROJECT,
-  SET_SAMPLE_TYPE
+  SET_SAMPLE_TYPE,
+  CLEAR_PARAM
 } from "./mutationTypes";
 
 import {
@@ -123,6 +124,15 @@ const selection = {
       //   query: { ...current.query, param: null }
       // });
     },
+    [CLEAR_PARAM](state) {
+      state.activeParam = null;
+      state.secondaryParam = null;
+      let current = router.history.current;
+      router.replace({
+        ...current,
+        query: { ...current.query, param: "", secondaryParam: "" }
+      });      
+    }
     
   },
   actions: {

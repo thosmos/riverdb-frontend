@@ -23,10 +23,7 @@ import flatten from "lodash/flatten";
 export default {
   name: "DataTable",
   computed: {
-    ...mapState({
-      data: state => state.data,
-      selection: state => state.selection
-    }),
+    ...mapState(["data","selection"]),
     columns: function() {
       let temp =
         (this.data &&
@@ -54,12 +51,16 @@ export default {
       return temp;
     },
     tableData: function() {
-      let rawData =
-        (this.data &&
-          this.data.selectedStation &&
-          this.data.selectedStation.data) ||
-        [];
-      let data = [];
+      const station = this.data && this.data.selectedStation
+      const rawData = (station && station.data) || []
+      // const proj = this.data && this.data.activeProject 
+      // const projType = proj && proj.ProjectType && proj.ProjectType.ident
+      // const param = station && station.param
+
+      const data = []
+
+      // console.log("tableData", projType, param, rawData)
+
       // Build up all years data
       rawData.map(d => {
         let fields = {};
@@ -85,6 +86,7 @@ export default {
     }
   },
   data: function() {
+    //console.log("DataTable.data")
     return {
       options: {
         filterable: false,

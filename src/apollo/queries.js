@@ -1,8 +1,8 @@
 import gql from "graphql-tag";
 
 export const GET_STATIONS = gql`
-  query getStations($agency: String, $project: String) {
-    stations(agency: $agency, project: $project) {
+  query getStations($agency: String, $project: String, $params: [String]) {
+    stations(agency: $agency, project: $project, params: $params) {
       HydrologicUnit
       StationName
       RiverFork

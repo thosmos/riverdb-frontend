@@ -21,6 +21,7 @@ export const SET_YEAR_RANGE = "SET_YEAR_RANGE";
 export const SELECT_SINGLE_YEAR = "SELECT_SINGLE_YEAR";
 export const SET_CHART_TYPE = "SET_CHART_TYPE";
 export const RESET_PARAMS = "RESET_PARAMS";
+export const CLEAR_PARAM = "CLEAR_PARAM";
 
 /**
  * UI VUEX

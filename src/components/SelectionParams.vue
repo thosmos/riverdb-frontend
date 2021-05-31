@@ -72,6 +72,13 @@ export default {
       return this.allParams.filter(p => p !== this.selection.activeParam);
     }
   },
+  mounted() {
+    console.log("SelectionParams MOUNTED", this.selection.activeParam, this.allParams)
+    if(!this.selection.activeParam && this.allParams.length > 0){
+      let p = this.allParams.includes("H2O_Temp") ? "H2O_Temp" : this.allParams[0]
+      this.$store.commit("selection/SELECT_ACTIVE_PARAM", p)
+    }
+  },
   methods: {
     parameterName: function(p) {
       try {
@@ -87,7 +94,7 @@ export default {
         this.selection.chartType === "LINE_MULTI" ||
         this.selection.chartType === "LINE_SINGLE"
       ) {
-        if (this.data.loadedStations.length === 1) {
+        if (this.data.loadedStations.length === 1 && this.allParams.length > 1) {
           // only allows secondaryParam if only one station is selected
           return true;
         }

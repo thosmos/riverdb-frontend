@@ -25,6 +25,7 @@ export function getFullParamName(param) {
 }
 
 export function getMinMaxValue(plotData) {
+  console.log("charts.getMinMax", plotData)
   const onlyValues = plotData.map(p => {
     let temp = [];
     p.data.forEach(d => {

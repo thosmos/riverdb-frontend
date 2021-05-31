@@ -9,7 +9,7 @@
           <sui-button @click="selectedStation">Download
             {{data.selectedStation.info.StationName}}</sui-button>
         </div>
-        <div class="m-t-md">
+        <div class="m-t-md" v-if="enableAll">
           <div v-if="!loadingAllStations">
             <sui-button @click="allStations">Download all stations</sui-button>
           </div>
@@ -43,7 +43,12 @@ export default {
       data: state => state.data,
       selection: state => state.selection,
       ui: state => state.ui
-    })
+    }),
+    enableAll: function() {
+      const sitevisit = this.data.activeProject && this.data.activeProject.ProjectType && this.data.activeProject.ProjectType.ident === "sitevisit"
+      console.log("ENABLE DOWNLOAD ALL", this.data.activeProject)
+      return sitevisit;
+    }
   },
   methods: {
     selectedStation: function() {

@@ -142,16 +142,68 @@ const data = {
     },
     [ADD_LOGGER_DATA](
       { commit, state, rootState },
-      { info, data, selectedStation }
+      { info, data, selectedStation, param }
     ){
-      console.log("ADD_LOGGER_DATA")
+      
+      console.log("ADD_LOGGER_DATA", info, data, param)
+      const opts = {
+        type: "logger",
+        param
+      }
+      let newStation = new Station(info, data, opts);
+
+      console.log("NEW STATION", newStation)
+      let ids = state.loadedStations.map(s => s.info.StationCode);
+      if(!ids.includes(newStation.info.StationCode)){
+        state.loadedStations.push(newStation);
+        ids.push(newStation.info.StationCode);
+      }
+      const loadedStationsStr = ids.join(",");
+      let current = router.history.current;
+      router.replace({
+        ...current,
+        query: { ...current.query, stations: loadedStationsStr }
+      });
+      // Select newly added Station or station based on query
+      if (selectedStation) {
+        commit("SELECT_STATION", selectedStation);
+      } else {
+        commit("SELECT_STATION", info.StationCode);
+      }
+      // Get minYear and maxYear
+      let years = [];
+      state.loadedStations.map(s => {
+        years.push(s.meta.totalYearRange.startYear);
+        years.push(s.meta.totalYearRange.endYear);
+      });
+      state.startYear = Math.min(...years);
+      state.endYear = Math.max(...years);
+      if (!current.query.secondaryParam || state.loadedStations.length > 1) {
+        // Allways reset secondary param when adding station
+        commit("selection/SELECT_SECONDARY_PARAM", null, { root: true });
+      }
+      // set new year range with updated value in selection Vuex
+      if (rootState.selection.singleYearSelection) {
+        // if singleYearSelection, set year to last
+        commit("selection/SET_YEAR_RANGE", [state.endYear, state.endYear], {
+          root: true
+        });
+      } else {
+        // otherwise set setRange
+        commit("selection/SET_YEAR_RANGE", [state.startYear, state.endYear], {
+          root: true
+        });
+      }
     },
     [ADD_STATION_DATA](
       { commit, state, rootState },
       { info, data, selectedStation }
     ) {
-      let newStation = new Station(info, data);
-      console.log("ADD STATION DATA  ", newStation)
+      console.log("ADD_STATION_DATA", info, data, selectedStation)
+
+      let newStation = new Station(info, data, {});
+
+      console.log("NEW STATION", newStation)
       let ids = state.loadedStations.map(s => s.info.StationCode);
       if(!ids.includes(newStation.info.StationCode)){
         state.loadedStations.push(newStation);
@@ -199,7 +251,10 @@ const data = {
       console.log("stationCode", stationCode);
       commit("ui/IS_LOADING", true, { root: true });
 
-      const projType = state.activeProject && state.activeProject.ProjectType && state.activeProject.ProjectType.ident;
+      const activeProject = state.activeProject;
+      const projType = activeProject && activeProject.ProjectType && activeProject.ProjectType.ident;
+      const loggerParam = activeProject && activeProject.Parameters[0];
+
       if(projType === "logger"){
         console.log("GET_LOGGER_DATA")
         state.apollo
@@ -212,7 +267,7 @@ const data = {
         .then(res => {
           commit("ui/CLEAR_ERROR_MSG", "selection", { root: true });
           commit("ui/IS_LOADING", false, { root: true });
-          if (find(state.loadedStations, o => id === o.info.StationID)) {
+          if (find(state.loadedStations, o => stationCode === o.info.StationID)) {
             commit(
               "ui/SET_ERROR_MSG",
               {
@@ -224,7 +279,8 @@ const data = {
           } else {
             dispatch("ADD_LOGGER_DATA", {
               info: station,
-              data: res.data
+              data: res.data,
+              param: loggerParam
             });
           }
         })
@@ -243,13 +299,15 @@ const data = {
         .query({
           query: GET_STATION_DATA,
           variables: {
-            stationCode: id
+            stationCode
           }
         })
         .then(res => {
+          console.log("GOT STATION DATA", res);
+
           commit("ui/CLEAR_ERROR_MSG", "selection", { root: true });
           commit("ui/IS_LOADING", false, { root: true });
-          if (find(state.loadedStations, o => id === o.info.StationID)) {
+          if (find(state.loadedStations, o => stationCode === o.info.StationID)) {
             commit(
               "ui/SET_ERROR_MSG",
               {

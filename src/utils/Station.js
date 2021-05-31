@@ -12,9 +12,15 @@ export default class Station {
    * @exports Station
    * @param {StationInfo} info basic info like StationName, StationID
    * @param {StationVisit[]} data Array of measurments of station visits
+   * @param {Object} opts options object
    * @memberof Station
    */
-  constructor(info, data) {
+  constructor(info, data, opts) {
+    const {type, param} = opts;
+    if(type)
+      this.type = type;
+    if(param)
+      this.param = param;
     this.info = info;
     this.data = this.initData(data);
     this.meta = this.initMeta();
@@ -28,20 +34,30 @@ export default class Station {
    * @memberof Station
    */
   initData(data) {
-    let processedData = [];
-    data.sitevisits.map(d => {
-      const r = d.resultsv;
-      let temp = {};
-      r.map(p => {
-        temp[`${p.matrix}_${p.analyte}`] = {
-          isValid: p.is_valid,
-          mean: p.mean,
-          unit: p.unit
-        };
+    if(this.type === "logger"){
+      console.log("initData Logger")
+      const processedData = [];
+      let i = 0;
+      data.logsamples.map(d => {
+        processedData.push({date: d.date, id: i++, results: {Temp: {mean: d.value}}})
+      })
+      return processedData;
+    } else {
+      let processedData = [];
+      data.sitevisits.map(d => {
+        const r = d.resultsv;
+        let temp = {};
+        r.map(p => {
+          temp[`${p.matrix}_${p.analyte}`] = {
+            isValid: p.is_valid,
+            mean: p.mean,
+            unit: p.unit
+          };
+        });
+        processedData.push({ date: d.date, id: d.id, results: temp });
       });
-      processedData.push({ date: d.date, id: d.id, results: temp });
-    });
-    return processedData;
+      return processedData;
+    }
   }
   /**
    * sets meta data like totalYearRange, params etc
@@ -51,7 +67,14 @@ export default class Station {
    */
   initMeta() {
     let totalYearRange = utils.totalYearRange(this.data);
-    let params = utils.getParams(this.data);
+    let params;
+
+    if(this.type === "logger") {
+      params = ["Temp"]
+    } else {
+      params = utils.getParams(this.data);
+    }
+    console.log("initMeta", totalYearRange, params)
 
     return {
       totalYearRange,
@@ -91,18 +114,24 @@ export default class Station {
    */
   getCSV(notes = false) {
     let data = [];
-    console.log("this", this);
+    console.log("getCSV", this.type, this.param, this);
     this.data.map(d => {
-      console.log("d", d);
+      //console.log("d", d);
       let temp = { date: d.date };
-      Object.keys(d.results).map(k => {
-        console.log("k", k);
-        temp[k] = d.results[k].mean;
-      });
-      console.log("temp", temp);
-      if (notes) {
-        temp.notes = d.notes ? d.notes : "";
-      }
+      // if(this.type === "logger"){
+      //   // const name = this.param && this.param.Name
+      //   temp["Temp"] = d.value
+      //   //console.log("temp", temp)
+      // } else {
+        Object.keys(d.results).map(k => {
+          //console.log("k", k);
+          temp[k] = d.results[k].mean;
+        });
+        //console.log("temp", temp);
+        if (notes) {
+          temp.notes = d.notes ? d.notes : "";
+        }
+      //}
       data.push(temp);
     });
     let fields = [...this.meta.params];
@@ -114,15 +143,17 @@ export default class Station {
     return json2csv.parse(data, fields);
   }
   /**
-   * Only returns data from the **param** paramater |
+   * Only returns data from the **param** parameter |
    * ** data property is now in [dateStr, mean value] format** |
    *
    * @param {string} param - i.e H2O_Temp, H2O_Cond
    * @memberof Station
    */
   setParam(param) {
+    console.log("Station.setParam", param)
+
     let byParam = this.processed.data.map(d => {
-      // console.log("d", d);
+      //console.log("d", d);
       let mean =
         (d.results && d.results[param] && d.results[param].mean) || null;
       return [d.date, mean];

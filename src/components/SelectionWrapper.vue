@@ -282,6 +282,7 @@ export default {
       this.$store.commit("selection/SET_PROJECT", this.selectedProject)
       this.$store.commit("data/SELECT_STATION", null)
       this.$store.commit("data/RESET_STATIONS")
+      this.$store.commit("selection/CLEAR_PARAM")
       //this.$store.commit("selection/RESET_PARAMS");
 
     }

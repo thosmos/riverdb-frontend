@@ -307,20 +307,25 @@ export default {
         //console.log("getProject variables  ", this.$route.params, params) 
         return params;
       }
-    },
+      },
     stations: {
       query: GET_STATIONS, // Initial data fetch of all stations...
       variables() {
         const proj = this.$route.query && this.$route.query.project
         const agency = this.$route.params && this.$route.params.org
-        const params = {}
+        const params = this.data.activeProject && this.data.activeProject.Parameters && this.data.activeProject.Parameters.map( p => {
+          return p.NameShort
+        })
+        const args = {}
         if(agency)
-          params.agency = agency
+          args.agency = agency
         if(proj)
-          params.project = proj
+          args.project = proj
+        // if(params)
+        //   args.params = params
 
-        console.log("getStations variables  ", this.$route.params, params)
-        return params;
+        console.log("GET_STATIONS", this.$route.params, args)
+        return args;
       },
       error() {
         this.$store.commit("ui/SET_ERROR_MSG", {
