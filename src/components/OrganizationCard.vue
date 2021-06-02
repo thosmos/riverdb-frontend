@@ -2,7 +2,7 @@
   <!-- <div class="p-t-lg"> -->
   <sui-card class="fluid organization-card eq-card">
     <sui-card-content class="card-abbr">
-      <router-link :to="`/${org.abbreviation}`">
+      <router-link :to="`/org/${org.abbreviation}`">
         <h3>
           {{org.abbreviation}}
         </h3>
@@ -21,7 +21,7 @@
     
     <div class="spacer">
       <!-- <sui-card-content extra> -->
-      <router-link :to="`/${org.abbreviation}`">
+      <router-link :to="`/data/${org.abbreviation}`">
         <sui-button fluid
                     size="big"
                     primary>View Data</sui-button>

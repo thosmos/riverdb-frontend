@@ -32,7 +32,7 @@
           <h6>
             <b>{{marker.value.StationName}}</b>
           </h6>
-          <p>on {{marker.value.LocalWaterbody}}</p>
+          <p v-if="marker.value.LocalWaterbody">on {{marker.value.LocalWaterbody}}</p>
           <div v-if="safeOptions">
             <p>
               Agency: 

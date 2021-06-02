@@ -81,10 +81,22 @@ const data = {
       state.projects = projects;
       console.log("SET_PROJECTS", projects);
       state.activeProject = (projects.length > 0) ? projects[0]: null;
+      if(state.activeProject){
+        let current = router.history.current;
+        router.replace({
+          ...current,
+          query: { ...current.query, project: state.activeProject.ProjectID }
+        });
+      }
     },
     [SET_PROJECT](state,proj) {
       console.log("SET_PROJECT", proj)
       state.activeProject = proj;
+      let current = router.history.current;
+      router.replace({
+        ...current,
+        query: { ...current.query, project: state.activeProject.ProjectID }
+      });
     },
   },
   actions: {

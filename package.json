@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "export VUE_APP_USE_REMOTE_SERVER=false; vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "surge": "vue-cli-service build && cd dist && mv index.html 200.html && surge -d riverdb.surge.sh"
