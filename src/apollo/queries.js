@@ -77,13 +77,11 @@ export const GET_SAFETOSWIM = gql`
       latest { 
         date 
         value
-        qual
         avg 
       }
       values { 
         date 
         value
-        qual
         avg
       }
     }

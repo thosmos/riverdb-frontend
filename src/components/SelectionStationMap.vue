@@ -238,11 +238,18 @@ export default {
       if (index !== -1) {
         return genIcon('icon-loaded');
       } else {
-        if(safeValue )
+        if(safeValue)
         {
           let safety = 'over365';
-          if(safeValue.isHigh){
-            safety = 'unsafe';
+          if( safeValue.isHigh ||
+              safeValue.avg && safeValue.avg > 100 || 
+              safeValue.value && safeValue.value > 300){
+            // const dt = new Date(Number(safeValue.date))
+            // const now = new Date();
+            // const days90 = subDays(now, 90);
+            // const days365 = subDays(now, 365);
+            // if(dt > days90)
+              safety = 'unsafe';
           }
           else if(safeValue.date){
             const dt = new Date(Number(safeValue.date))
