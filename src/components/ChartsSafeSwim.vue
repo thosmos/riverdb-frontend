@@ -1,28 +1,30 @@
 <template>
-  <div id="container" >
-    <highcharts :options="chartOptions"
-                
-                ></highcharts>
+  <div id="container">
+    <highcharts :options="chartOptions"></highcharts>
   </div>
 </template>
 
 <script>
 import { palette1 } from "../assets/chart/palettes.js";
-import { multiStation, graphConfig, singleStation } from "../assets/chart/graphConfig.js";
+import {
+  multiStation,
+  graphConfig,
+  singleStation,
+} from "../assets/chart/graphConfig.js";
 import {
   getUnit,
   getParamInfoLine,
   getFullParamName,
   getMinMaxValue,
   getSafetoSwimChartValues,
-  getSafetoSwimChartGeomeans
+  getSafetoSwimChartGeomeans,
 } from "../utils/charts.js";
 
 import cloneDeep from "lodash/cloneDeep";
 export default {
   name: "ChartsLineChart",
   props: {
-    swimstation: Object
+    swimstation: Object,
   },
   computed: {
     // getYearRange: function() {
@@ -83,16 +85,19 @@ export default {
     //     return {};
     //   }
     // },
-    chartOptions: function() {
-
+    chartOptions: function () {
       // let minMax = getMinMaxValue(this.plotData);
       const options = {
         chart: {
-          type: 'line', //"scatter",
-          zoomType: 'x'
+          type: "line", //"scatter",
+          zoomType: "x",
         },
         title: {
-          text: "ecoli MPN/100mL at " + this.swimstation.StationName + ", " + this.swimstation.Agency.AgencyCode
+          text:
+            "ecoli MPN/100mL at " +
+            this.swimstation.StationName +
+            ", " +
+            this.swimstation.Agency.AgencyCode,
         },
         // ...graphConfig,
         // ...multiStation(this.data.loadedStations, this.selection.activeParam),
@@ -100,72 +105,91 @@ export default {
           {
             type: "datetime",
             title: {
-              text: "Date"
-            }
-          }
+              text: "Date",
+            },
+          },
         ],
         yAxis: [
           {
             // endOnTick: false,
             // startOnTick: false,
             title: {
-              text: "ecoli MPN/100mL"
-                // getFullParamName(this.selection.activeParam) +
-                // getUnit(this.selection.activeParam)
+              text: "ecoli MPN/100mL",
+              // getFullParamName(this.selection.activeParam) +
+              // getUnit(this.selection.activeParam)
             },
-            type: 'logarithmic',
+            type: "logarithmic",
             plotLines: [
-              {value: 300, color: palette1[0], width: 2, label: {align: 'right', style: {color: palette1[0]}, text: 'Sample'}},
-              {value: 100, color: palette1[1], width: 2, label: {align: 'right', style: {color: palette1[1]}, text: 'GeoMean'}}],  
+              {
+                value: 320,
+                color: palette1[0],
+                width: 2,
+                label: {
+                  align: "left",
+                  style: { color: palette1[0] },
+                  text: "Statistical Threshold Value (STV): 320 MPN/100 mL",
+                },
+              },
+              {
+                value: 100,
+                color: palette1[1],
+                width: 2,
+                label: {
+                  align: "left",
+                  style: { color: palette1[1] },
+                  text: "Geometric Mean Threshold: 100 MPN/100 mL",
+                },
+              },
+            ],
             //getParamInfoLine(this.selection.activeParam),
             // min: 0,
-            max: 420
+            max: 420,
           },
           // { ...this.secondaryAxis() }
         ],
         tooltip: {
           shared: true,
-
         },
         plotOptions: {
           line: {
             marker: {
               enabled: true,
               radius: 2.5,
-              symbol: "circle"
+              symbol: "circle",
             },
 
             lineWidth: 0,
             states: {
               hover: {
-                lineWidthPlus: 0
-              }
-            }
+                lineWidthPlus: 0,
+              },
+            },
           },
           series: {
-            animation: false
-          }
+            animation: false,
+          },
         },
 
         colors: palette1,
-        series: [{
-            name: 'sample', 
-            type: 'line',
-            data: getSafetoSwimChartValues(this.swimstation.values)
-           },
-           {
-            name: 'geomean', 
-            type: 'line', 
-            data: getSafetoSwimChartGeomeans(this.swimstation.values)
-           }
-          ],
+        series: [
+          {
+            name: "sample",
+            type: "line",
+            data: getSafetoSwimChartValues(this.swimstation.values),
+          },
+          {
+            name: "geomean",
+            type: "line",
+            data: getSafetoSwimChartGeomeans(this.swimstation.values),
+          },
+        ],
         exporting: {
-          filename: `chart ecoli`
-        }
+          filename: `chart ecoli`,
+        },
       };
       console.log("CHART OPTIONS", options);
       return options;
-    }
+    },
   },
   methods: {
     secondaryAxis() {
@@ -174,21 +198,20 @@ export default {
           title: {
             text:
               getFullParamName(this.selection.secondaryParam) +
-              getUnit(this.selection.secondaryParam)
+              getUnit(this.selection.secondaryParam),
           },
-          opposite: true
+          opposite: true,
         };
       } else
         return {
           // needs to be empty string, otherwise dummy 'values' will be rendered
           title: {
-            text: ""
+            text: "",
           },
-          opposite: true
+          opposite: true,
         };
-    }
-  }
-
+    },
+  },
 };
 </script>
 
