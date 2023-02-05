@@ -12,9 +12,9 @@ const organizations = [
       ZIP: "95959"
     },
     phone: "(530) 265-5961",
-    contactPerson: "Karl Ronning",
-    email: "karl@yubariver.org",
-    about: `The South Yuba River Citizens League (SYRCL – pronounced circle) was founded in 1983 by grassroots activists determined to protect the South Yuba River from dams. Ultimately, SYRCL won permanent protections for 39 miles of the South Yuba River under California’s Wild and Scenic Rivers Act.
+    contactPerson: "Kyle McNeil",
+    email: "kyle@yubariver.org",
+    about: `The South Yuba River Citizens League (SYRCL - pronounced circle) was founded in 1983 by grassroots activists determined to protect the South Yuba River from dams. Ultimately, SYRCL won permanent protections for 39 miles of the South Yuba River under California' s Wild and Scenic Rivers Act.
 Today, SYRCL is the central hub of community activism to protect, restore, and celebrate the Yuba River watershed. With over 34 years of achievements, 3,500 members and 1,300 active volunteers, SYRCL is doing great things for the Yuba watershed. We are working to restore wild salmon to their native waters. We are replanting the banks of the Goldfields with trees. We are inspiring activism across the globe with our environmental film festival. Together, we are extending our powerful coalition from the Sierra to the sea.`,
     missionStatement: `SYRCL unites the community to protect and restore the Yuba River. Motivated by our love for this watershed, we advocate powerfully, engage in active stewardship, educate the public, and inspire activism from the Sierra to the sea.`,
     tagLine: `United for the Yuba`,
