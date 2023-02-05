@@ -248,7 +248,7 @@ const data = {
     },
     [FETCH_STATION_DATA]({ commit, dispatch, state }, station) {
       const stationRef = station.id;
-      console.log("loggerRef", stationRef);
+      console.log("stationRef", stationRef);
       commit("ui/IS_LOADING", true, { root: true });
 
       const activeProject = state.activeProject;

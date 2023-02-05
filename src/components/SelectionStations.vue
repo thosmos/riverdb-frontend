@@ -42,7 +42,7 @@ export default {
       event.stopPropagation();
       // console.log("station.StationID", station.StationID);
       this.$store.dispatch("data/REMOVE_STATION", station.id);
-      this.$ga.event("Remove", "Station", station.id);
+      this.$ga.event("Remove", "Station", station.StationName);
     },
     onSegmentClick(station) {
       this.$store.commit("data/SELECT_STATION", station.id);
