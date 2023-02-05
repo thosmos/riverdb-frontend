@@ -32,8 +32,8 @@ const data = {
     projects: null
   },
   mutations: {
-    [SELECT_STATION](state, StationCode) {
-      if (StationCode === null) {
+    [SELECT_STATION](state, stationRef) {
+      if (stationRef === null) {
         // No stations loaded
         state.selectedStation = null;
         let current = { ...router.history.current };
@@ -46,17 +46,14 @@ const data = {
         });
         return;
       }
-      let index = findIndex(
-        state.loadedStations,
-        o => o.info.StationCode === StationCode
-      );
+      let index = findIndex(state.loadedStations, o => o.info.id === stationRef);
       state.selectedStation = state.loadedStations[index];
       let current = { ...router.history.current };
       router.replace({
         ...current,
         query: {
           ...current.query,
-          selectedStation: StationCode
+          selectedStation: stationRef
         }
       });
     },
@@ -80,8 +77,8 @@ const data = {
     [SET_PROJECTS](state, projects) {
       state.projects = projects;
       console.log("SET_PROJECTS", projects);
-      state.activeProject = (projects.length > 0) ? projects[0]: null;
-      if(state.activeProject){
+      state.activeProject = projects.length > 0 ? projects[0] : null;
+      if (state.activeProject) {
         let current = router.history.current;
         router.replace({
           ...current,
@@ -89,39 +86,34 @@ const data = {
         });
       }
     },
-    [SET_PROJECT](state,proj) {
-      console.log("SET_PROJECT", proj)
+    [SET_PROJECT](state, proj) {
+      console.log("SET_PROJECT", proj);
       state.activeProject = proj;
       let current = router.history.current;
       router.replace({
         ...current,
-        query: { ...current.query, project: state.activeProject.ProjectID }
+        query: {
+          ...current.query,
+          project: state.activeProject.ProjectID
+        }
       });
-    },
+    }
   },
   actions: {
-    [REMOVE_STATION]({ commit, state }, StationCode) {
-      console.log("StationCode", StationCode);
-      let index = findIndex(
-        state.loadedStations,
-        o => o.info.StationCode === StationCode
-      );
-      let toBeRemovedStation = find(
-        state.loadedStations,
-        o => o.info.StationCode === StationCode
-      );
+    [REMOVE_STATION]({ commit, state }, stationRef) {
+      console.log("Remove Station ID", stationRef);
+      let index = findIndex(state.loadedStations, o => o.info.id === stationRef);
+      let toBeRemovedStation = find(state.loadedStations, o => o.info.id === stationRef);
       // Check if to be removed station is also selectedStation
-      let selectedStationCode = state.selectedStation.info.StationCode;
+      let selectedStationCode = state.selectedStation.info.id;
       state.loadedStations.splice(index, 1);
-      const loadedStationsStr = state.loadedStations
-        .map(s => s.info.StationCode)
-        .join(",");
+      const loadedStationsStr = state.loadedStations.map(s => s.info.id).join(",");
       let current = router.history.current;
       router.replace({
         ...current,
         query: { ...current.query, stations: loadedStationsStr }
       });
-      if (toBeRemovedStation.info.StationCode === selectedStationCode) {
+      if (toBeRemovedStation.info.id === selectedStationCode) {
         if (state.loadedStations.length !== 0) {
           // Not the last loadedStation
           state.selectedStation = state.loadedStations[0];
@@ -137,7 +129,7 @@ const data = {
           commit("selection/SET_YEAR_RANGE", [state.startYear, state.endYear], {
             root: true
           });
-          commit("SELECT_STATION", state.selectedStation.info.StationCode);
+          commit("SELECT_STATION", state.selectedStation.info.id);
         } else {
           //  no more station loaded, set yearRange && selectedStation to null,
           state.selectedStation = null;
@@ -155,20 +147,19 @@ const data = {
     [ADD_LOGGER_DATA](
       { commit, state, rootState },
       { info, data, selectedStation, param }
-    ){
-      
-      console.log("ADD_LOGGER_DATA", info, data, param)
+    ) {
+      console.log("ADD_LOGGER_DATA", info, data, param);
       const opts = {
         type: "logger",
         param
-      }
+      };
       let newStation = new Station(info, data, opts);
 
-      console.log("NEW STATION", newStation)
-      let ids = state.loadedStations.map(s => s.info.StationCode);
-      if(!ids.includes(newStation.info.StationCode)){
+      console.log("NEW STATION", newStation);
+      let ids = state.loadedStations.map(s => s.info.id);
+      if (!ids.includes(newStation.info.id)) {
         state.loadedStations.push(newStation);
-        ids.push(newStation.info.StationCode);
+        ids.push(newStation.info.id);
       }
       const loadedStationsStr = ids.join(",");
       let current = router.history.current;
@@ -180,7 +171,7 @@ const data = {
       if (selectedStation) {
         commit("SELECT_STATION", selectedStation);
       } else {
-        commit("SELECT_STATION", info.StationCode);
+        commit("SELECT_STATION", info.id);
       }
       // Get minYear and maxYear
       let years = [];
@@ -207,19 +198,16 @@ const data = {
         });
       }
     },
-    [ADD_STATION_DATA](
-      { commit, state, rootState },
-      { info, data, selectedStation }
-    ) {
-      console.log("ADD_STATION_DATA", info, data, selectedStation)
+    [ADD_STATION_DATA]({ commit, state, rootState }, { info, data, selectedStation }) {
+      console.log("ADD_STATION_DATA", info, data, selectedStation);
 
       let newStation = new Station(info, data, {});
 
-      console.log("NEW STATION", newStation)
-      let ids = state.loadedStations.map(s => s.info.StationCode);
-      if(!ids.includes(newStation.info.StationCode)){
+      console.log("NEW STATION", newStation);
+      let ids = state.loadedStations.map(s => s.info.id);
+      if (!ids.includes(newStation.info.id)) {
         state.loadedStations.push(newStation);
-        ids.push(newStation.info.StationCode);
+        ids.push(newStation.info.id);
       }
       const loadedStationsStr = ids.join(",");
       let current = router.history.current;
@@ -231,7 +219,7 @@ const data = {
       if (selectedStation) {
         commit("SELECT_STATION", selectedStation);
       } else {
-        commit("SELECT_STATION", info.StationCode);
+        commit("SELECT_STATION", info.id);
       }
       // Get minYear and maxYear
       let years = [];
@@ -259,92 +247,93 @@ const data = {
       }
     },
     [FETCH_STATION_DATA]({ commit, dispatch, state }, station) {
-      const stationCode = station.StationCode;
-      console.log("stationCode", stationCode);
+      const stationRef = station.id;
+      console.log("loggerRef", stationRef);
       commit("ui/IS_LOADING", true, { root: true });
 
       const activeProject = state.activeProject;
-      const projType = activeProject && activeProject.ProjectType && activeProject.ProjectType.ident;
+      const projType =
+        activeProject && activeProject.ProjectType && activeProject.ProjectType.ident;
       const loggerParam = activeProject && activeProject.Parameters[0];
 
-      if(projType === "logger"){
-        console.log("GET_LOGGER_DATA")
+      if (projType === "logger") {
+        console.log("GET_LOGGER_DATA");
         state.apollo
-        .query({
-          query: GET_LOGGER_DATA,
-          variables: {
-            stationCode
-          }
-        })
-        .then(res => {
-          commit("ui/CLEAR_ERROR_MSG", "selection", { root: true });
-          commit("ui/IS_LOADING", false, { root: true });
-          if (find(state.loadedStations, o => stationCode === o.info.StationID)) {
+          .query({
+            query: GET_LOGGER_DATA,
+            variables: {
+              stationRef
+            }
+          })
+          .then(res => {
+            commit("ui/CLEAR_ERROR_MSG", "selection", { root: true });
+            commit("ui/IS_LOADING", false, { root: true });
+            if (find(state.loadedStations, o => stationRef === o.info.id)) {
+              commit(
+                "ui/SET_ERROR_MSG",
+                {
+                  section: "selection",
+                  msg: `Station is already selected`
+                },
+                { root: true }
+              );
+            } else {
+              dispatch("ADD_LOGGER_DATA", {
+                info: station,
+                data: res.data,
+                param: loggerParam
+              });
+            }
+          })
+          .catch(() => {
             commit(
               "ui/SET_ERROR_MSG",
               {
                 section: "selection",
-                msg: `Station is already selected`
+                msg: `Couldn't fetch logger data`
               },
               { root: true }
             );
-          } else {
-            dispatch("ADD_LOGGER_DATA", {
-              info: station,
-              data: res.data,
-              param: loggerParam
-            });
-          }
-        })
-        .catch(() => {
-          commit(
-            "ui/SET_ERROR_MSG",
-            {
-              section: "selection",
-              msg: `Couldn't fetch logger data`
-            },
-            { root: true }
-          );
-        });
+          });
       } else {
         state.apollo
-        .query({
-          query: GET_STATION_DATA,
-          variables: {
-            stationCode
-          }
-        })
-        .then(res => {
-          console.log("GOT STATION DATA", res);
+          .query({
+            query: GET_STATION_DATA,
+            variables: {
+              stationRef
+            }
+          })
+          .then(res => {
+            console.log("GOT STATION DATA", res);
 
-          commit("ui/CLEAR_ERROR_MSG", "selection", { root: true });
-          commit("ui/IS_LOADING", false, { root: true });
-          if (find(state.loadedStations, o => stationCode === o.info.StationID)) {
+            commit("ui/CLEAR_ERROR_MSG", "selection", { root: true });
+            commit("ui/IS_LOADING", false, { root: true });
+            if (find(state.loadedStations, o => stationRef === o.info.id)) {
+              commit(
+                "ui/SET_ERROR_MSG",
+                {
+                  section: "selection",
+                  msg: `Station is already selected`
+                },
+                { root: true }
+              );
+            } else {
+              dispatch("ADD_STATION_DATA", {
+                info: station,
+                data: res.data
+              });
+            }
+          })
+          .catch(() => {
             commit(
               "ui/SET_ERROR_MSG",
               {
                 section: "selection",
-                msg: `Station is already selected`
+                msg: `Couldn't fetch station data`
               },
               { root: true }
             );
-          } else {
-            dispatch("ADD_STATION_DATA", {
-              info: station,
-              data: res.data
-            });
-          }
-        })
-        .catch(() => {
-          commit(
-            "ui/SET_ERROR_MSG",
-            {
-              section: "selection",
-              msg: `Couldn't fetch station data`
-            },
-            { root: true }
-          );
-        });
+          });
       }
     }
   }

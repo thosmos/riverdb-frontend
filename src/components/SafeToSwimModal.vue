@@ -121,7 +121,7 @@ export default {
     // axios
     //   .get(
     //     `http://${WS_API_IP}:${WS_API_PORT}?river=${
-    //       this.ui.showInfoModalStation.StationCode
+    //       this.ui.showInfoModalStation.id
     //     }`
     //   )
     //   .then(res => {

@@ -195,7 +195,7 @@ export default {
 
         stations.split(",").map(id => {
           //  could use this.$store.dispatch("data/FETCH_STATION_DATA", station) but tricky with if (yearRange....)       this.$store.commit("ui/IS_LOADING", true);
-          const variables = {stationCode: id}
+          const variables = {stationRef: id}
           // if(sampleType)
           //   variables.sampleType = sampleType;
 
@@ -216,7 +216,7 @@ export default {
                   msg: `Station is already selected`
                 });
               } else {
-                let station = find(this.stations, o => o.StationCode === id);
+                let station = find(this.stations, o => o.id === id);
                 this.$store.dispatch("data/ADD_STATION_DATA", {
                   info: station,
                   data: res.data,

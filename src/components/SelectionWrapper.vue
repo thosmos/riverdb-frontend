@@ -185,7 +185,7 @@ export default {
       get: function() {
         console.log("COMPUTED GETTER selectedStation", this.data.selectedStation)
 //        return calcStationOption(this.data.selectedStation)
-        if(this.data.selectedStation && this.data.selectedStation.info && this.data.selectedStation.info.StationCode)
+        if(this.data.selectedStation && this.data.selectedStation.info && this.data.selectedStation.info.id)
           return calcStationOption(this.data.selectedStation.info)
         return this.data.selectedStation;
       },
@@ -193,7 +193,7 @@ export default {
         if(station){
           console.log("COMPUTED SETTER selectedStation", station.value)
           this.selectedStationObject = station.value;
-          this.$store.commit("data/SELECT_STATION", station.value.StationCode)
+          this.$store.commit("data/SELECT_STATION", station.value.id)
         }
       }
     },
@@ -269,7 +269,7 @@ export default {
       if(station)
         this.$store.dispatch("data/FETCH_STATION_DATA", station.value);
       else {
-        //this.$store.dispatch("data/REMOVE_STATION", station.StationCode);
+        //this.$store.dispatch("data/REMOVE_STATION", station.id);
       }
     },
     sampleTypeUpdated: function() {

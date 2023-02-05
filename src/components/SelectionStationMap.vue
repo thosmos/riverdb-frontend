@@ -29,10 +29,10 @@
       />
       <l-marker
         v-for="marker in cleanedStations"
-        :key="marker.value.StationCode"
+        :key="marker.value.id"
         :lat-lng="getPosition(marker.value)"
         :options="markerOptions(marker)"
-        :icon="getIcon(marker.value.StationCode, marker.value.latest)"
+        :icon="getIcon(marker.value.id, marker.value.latest)"
       >
         <l-popup class="popup">
           <h6>
@@ -254,7 +254,7 @@ export default {
     getIcon: function (id, safeValue) {
       let index = findIndex(
         this.data.loadedStations,
-        (o) => o.info.StationCode === id
+        (o) => o.info.id === id
       );
       if (index !== -1) {
         return genIcon("icon-loaded");
@@ -292,7 +292,7 @@ export default {
       this.$store.dispatch("data/FETCH_STATION_DATA", station);
     },
     removeStation: function (station) {
-      this.$store.dispatch("data/REMOVE_STATION", station.StationCode);
+      this.$store.dispatch("data/REMOVE_STATION", station.id);
     },
     stationInfo: function (station) {
       // this.$store.commit(

@@ -281,6 +281,7 @@ export default class Station {
 /**
  * @global
  * @typedef {Object} StationInfo          - general info like **StationName** etc
+ * @property {string} id                  - alphanumeric Code
  * @property {boolean} Active             - still being sampled?
  * @property {string} County              - US county
  * @property {string} ForkTribGroup       - i.e 'SYT' South Yuba Tributary

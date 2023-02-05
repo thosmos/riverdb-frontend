@@ -135,7 +135,7 @@ export default {
             .query({
               query: GET_STATION_DATA,
               variables: {
-                stationCode: id
+                stationRef: id
               }
             })
             .then(res => {

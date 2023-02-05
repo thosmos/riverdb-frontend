@@ -3,6 +3,9 @@ import gql from "graphql-tag";
 export const GET_STATIONS = gql`
   query getStations($agency: String, $project: String, $params: [String]) {
     stations(agency: $agency, project: $project, params: $params) {
+      id
+      StationID
+      StationCode
       HydrologicUnit
       StationName
       RiverFork
@@ -10,8 +13,6 @@ export const GET_STATIONS = gql`
       Active
       LocalWaterbody
       LocalWatershed
-      StationCode
-      StationID
       TargetLat
       TargetLong
       County
@@ -23,8 +24,8 @@ export const GET_STATIONS = gql`
 `;
 
 export const GET_STATION_DATA = gql`
-  query getStationData($stationCode: String, $sampleType: String) {
-    sitevisits(stationCode: $stationCode, sampleType: $sampleType) {
+  query getStationData($stationRef: ID, $sampleType: String) {
+    sitevisits(stationRef: $stationRef, sampleType: $sampleType) {
       id
       date
       notes
@@ -44,18 +45,18 @@ export const GET_STATION_DATA = gql`
 `;
 
 export const GET_LOGGER_DATA = gql`
-  query getLoggerData($stationCode: String) {
-    logsamples (stationCode: $stationCode)  {
+  query getLoggerData($stationRef: ID) {
+    logsamples(stationRef: $stationRef) {
       date
       value
     }
   }
 `;
 
-
 export const GET_SAFETOSWIM = gql`
   query getSafeToSwim($agency: String) {
     stations: safetoswim(agency: $agency) {
+      id
       HydrologicUnit
       StationName
       RiverFork
@@ -74,13 +75,13 @@ export const GET_SAFETOSWIM = gql`
       Agency {
         AgencyCode
       }
-      latest { 
-        date 
+      latest {
+        date
         value
-        avg 
+        avg
       }
-      values { 
-        date 
+      values {
+        date
         value
         avg
       }

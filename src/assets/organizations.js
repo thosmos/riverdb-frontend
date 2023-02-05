@@ -46,7 +46,8 @@ Today, SYRCL is the central hub of community activism to protect, restore, and c
     abbreviation: "SSI",
     URL: "https://sierrastreamsinstitute.org/",
     river: "Deer Creek",
-    logoURL: "https://res.cloudinary.com/riverdb/image/upload/v1580932695/SSI/SSI-logo.jpg",
+    logoURL:
+      "https://res.cloudinary.com/riverdb/image/upload/v1580932695/SSI/SSI-logo.jpg",
     location: {
       streetName: "13075 Woolman Lane",
       city: "Nevada City, CA",
@@ -88,8 +89,7 @@ Today, SYRCL is the central hub of community activism to protect, restore, and c
     abbreviation: "WCCA",
     URL: "http://www.wolfcreekalliance.org/",
     river: "Wolf Creek",
-    logoURL:
-      "http://www.wolfcreekalliance.org/image/wolf_banner_gray_670x250.png",
+    logoURL: "http://www.wolfcreekalliance.org/image/wolf_banner_gray_670x250.png",
     location: {
       streetName: "P.O. Box 477",
       city: "Grass Valley, CA",
@@ -117,6 +117,6 @@ Today, SYRCL is the central hub of community activism to protect, restore, and c
       // }
     ]
   }
-];
+]
 
 export default organizations;

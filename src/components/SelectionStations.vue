@@ -8,7 +8,7 @@
         <div class="m-t-md">
           <div @click="onSegmentClick(station.info)"
                class="ui segment"
-               :class="{active: station.info.StationCode === selectedStation.info.StationCode}">
+               :class="{active: station.info.id === selectedStation.info.id}">
 
             <span>{{station.info.StationName}}</span>
             <sui-icon class="space-left"
@@ -41,11 +41,11 @@ export default {
     onCloseClick: function(station, event) {
       event.stopPropagation();
       // console.log("station.StationID", station.StationID);
-      this.$store.dispatch("data/REMOVE_STATION", station.StationCode);
-      this.$ga.event("Remove", "Station", station.StationName);
+      this.$store.dispatch("data/REMOVE_STATION", station.id);
+      this.$ga.event("Remove", "Station", station.id);
     },
     onSegmentClick(station) {
-      this.$store.commit("data/SELECT_STATION", station.StationCode);
+      this.$store.commit("data/SELECT_STATION", station.id);
       this.$ga.event("Select", "Station", station.StationName);
     }
   }
