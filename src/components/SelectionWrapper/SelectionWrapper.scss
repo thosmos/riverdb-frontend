@@ -1,0 +1,9 @@
+#selection-boxes > div {
+  z-index: 2000;
+}
+.hide-multiselect {
+  opacity: 0;
+}
+.ui.two.column.centered.grid {
+  transition: all 0.3s ease;
+}

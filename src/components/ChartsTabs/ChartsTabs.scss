@@ -1,0 +1,10 @@
+@import "../../style/style.scss";
+
+#chart-tabs > div > div.ui.tab.segment.attached.active {
+  background: $darkWhite;
+}
+#chart-tabs {
+  a.item {
+    font-size: 0.75rem;
+  }
+}

@@ -1,0 +1,17 @@
+@import "../../style/style.scss";
+
+#selection-stations {
+  .space-left {
+    margin-left: 0.5rem;
+    cursor: pointer;
+  }
+  .active {
+    font-weight: bold;
+    color: $offWhite !important;
+    background: $primaryColor !important;
+  }
+  div.ui.segment {
+    padding: 0.5rem;
+    cursor: pointer;
+  }
+}

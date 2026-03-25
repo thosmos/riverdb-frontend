@@ -1,0 +1,42 @@
+@import "../../style/style.scss";
+
+.organization-card {
+  height: 100%;
+
+  .card-abbr {
+    background: $primaryColor !important;
+    color: $offWhite;
+    border-bottom: 3px solid $secondaryColor;
+    max-height: 3.5rem;
+
+    a {
+      h3 {
+        color: $offWhite;
+        font-weight: normal;
+        text-align: center;
+      }
+    }
+  }
+
+  .img-wrapper {
+    margin: 20px;
+    img {
+      margin: 0 auto;
+      max-height: 100px;
+    }
+  }
+
+  h3 {
+    font-weight: normal;
+    text-align: center;
+  }
+
+  &.eq-card.ui.card {
+    flex: 1;
+    flex-basis: 0;
+  }
+
+  .spacer {
+    padding: 10px 15px;
+  }
+}

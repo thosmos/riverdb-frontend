@@ -1,0 +1,29 @@
+@import "../../style/style.scss";
+
+#map, #map-skeleton {
+  height: 500px;
+  border-radius: 6px;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
+}
+
+#map-skeleton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0f0f0;
+}
+
+#inside-map > a {
+  color: $primaryColor;
+}
+
+.wsm-info {
+  margin: 1.5rem 1rem;
+  display: flex;
+  justify-content: center;
+  p {
+    font-size: 1.1rem;
+    text-decoration: underline;
+    text-align: center;
+  }
+}

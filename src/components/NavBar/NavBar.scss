@@ -1,0 +1,31 @@
+@import "../../style/style.scss";
+
+#nav {
+  height: 40px;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    40deg,
+    rgba(0, 132, 203, 1) 50%,
+    $lightPrimaryColor 100%
+  );
+  border-bottom: 3px solid $secondaryColor;
+  color: $offWhite;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.25rem;
+
+  h1 {
+    padding: 0 0.5rem;
+  }
+  a > span {
+    color: $offWhite;
+    padding: 0.75rem;
+    &:hover {
+      text-decoration: underline $offWhite;
+      color: $offWhite;
+    }
+  }
+}
