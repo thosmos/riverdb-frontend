@@ -1,0 +1,49 @@
+.div-icon {
+  width: 12px;
+  height: 12px;
+  border: 1px solid #444;
+  border-radius: 50%;
+  display: inline-block;
+}
+.under7 { background-color: #224e99; }
+.under14 { background-color: #198eba; }
+.under30 { background-color: #19bdc9; }
+.under365 { background-color: #a1dcbd; }
+.over365 { background-color: #fefde6; }
+.unsafe { background-color: red; }
+.icon-normal { background-color: #2a7ec7; }
+.icon-loaded { background-color: #333; }
+
+#safetoswim-legend {
+  position: absolute;
+  z-index: 999;
+  background-color: white;
+  bottom: 30px;
+  left: 30px;
+  padding: 10px;
+  font-size: small;
+  border: 1px solid #ccc;
+}
+
+.map-height {
+  height: 600px;
+  border-radius: 6px;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.popup {
+  p {
+    font-size: 0.8rem;
+    margin: 5px 0;
+  }
+  h6 {
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    font-size: 1rem;
+  }
+  button {
+    font-size: 0.8rem;
+    display: block;
+    margin: 10px auto;
+  }
+}

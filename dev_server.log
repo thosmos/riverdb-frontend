@@ -1,0 +1,1812 @@
+
+> riverdb-frontend@0.1.0 dev
+> vite
+
+Port 5173 is in use, trying another one...
+
+  VITE v6.4.1  ready in 488 ms
+
+  ➜  Local:   http://localhost:5174/
+  ➜  Network: use --host to expose
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+1 │ @import "./_variables.scss";
+  │         ^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+2 │ @import "./colorScheme.scss";
+  │         ^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 2:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+3 │ @import "./_spacing.scss";
+  │         ^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 3:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+4 │ @import "./_buttons.scss";
+  │         ^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 4:9  root stylesheet
+
+DEPRECATION WARNING [if-function]: The Sass if() syntax is deprecated in favor of the modern CSS syntax.
+
+Suggestion: if(sass($key == "none"): 0; else: $value + $sizeUnit)
+
+More info: https://sass-lang.com/d/if-function
+
+   ╷
+19 │   @return if($key== "none", 0, $value + $sizeUnit);
+   │           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 19:11  @import
+    src/style/style.scss 3:9       root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+23 │   $sizeKey: nth($size, 1);
+   │             ^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 23:13  @import
+    src/style/style.scss 3:9       root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+24 │   $sizeValue: nth($size, 2);
+   │               ^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 24:15  @import
+    src/style/style.scss 3:9       root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+32 │     $posKey: nth($position, 1);
+   │              ^^^^^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 32:14  @import
+    src/style/style.scss 3:9       root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+33 │     $posValue: nth($position, 2);
+   │                ^^^^^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 33:16  @import
+    src/style/style.scss 3:9       root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use color.adjust instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+4 │     background: darken($primaryColor, 5%);
+  │                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/_buttons.scss 4:17  @import
+    src/style/style.scss 4:9      root stylesheet
+
+DEPRECATION WARNING [color-functions]: darken() is deprecated. Suggestions:
+
+color.scale($color, $lightness: -12.5615763547%)
+color.adjust($color, $lightness: -5%)
+
+More info: https://sass-lang.com/d/color-functions
+
+  ╷
+4 │     background: darken($primaryColor, 5%);
+  │                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/_buttons.scss 4:17  @import
+    src/style/style.scss 4:9      root stylesheet
+
+DEPRECATION WARNING [color-functions]: darken() is deprecated. Suggestions:
+
+color.scale($color, $lightness: -3.06%)
+color.adjust($color, $lightness: -3%)
+
+More info: https://sass-lang.com/d/color-functions
+
+  ╷
+9 │   background: darken($offWhite, 3%) !important;
+  │               ^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/_buttons.scss 9:15  @import
+    src/style/style.scss 4:9      root stylesheet
+
+WARNING: 1 repetitive deprecation warnings omitted.
+Run in verbose mode to see all warnings.
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+1 │ @import "../../style/style.scss";
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/components/NavBar/NavBar.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+1 │ @import "../../style/style.scss";
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/components/Footer/Footer.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+1 │ @import "../../style/style.scss";
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/views/FlowPage/FlowPage.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+1 │ @import "./_variables.scss";
+  │         ^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 1:9               @import
+    src/components/NavBar/NavBar.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+2 │ @import "./colorScheme.scss";
+  │         ^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 2:9               @import
+    src/components/NavBar/NavBar.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+3 │ @import "./_spacing.scss";
+  │         ^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 3:9               @import
+    src/components/NavBar/NavBar.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+4 │ @import "./_buttons.scss";
+  │         ^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 4:9               @import
+    src/components/NavBar/NavBar.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+1 │ @import "./_variables.scss";
+  │         ^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 1:9               @import
+    src/components/Footer/Footer.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+2 │ @import "./colorScheme.scss";
+  │         ^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 2:9               @import
+    src/components/Footer/Footer.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+3 │ @import "./_spacing.scss";
+  │         ^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 3:9               @import
+    src/components/Footer/Footer.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+4 │ @import "./_buttons.scss";
+  │         ^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 4:9               @import
+    src/components/Footer/Footer.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+1 │ @import "./_variables.scss";
+  │         ^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 1:9              @import
+    src/views/FlowPage/FlowPage.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+2 │ @import "./colorScheme.scss";
+  │         ^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 2:9              @import
+    src/views/FlowPage/FlowPage.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+3 │ @import "./_spacing.scss";
+  │         ^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 3:9              @import
+    src/views/FlowPage/FlowPage.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+4 │ @import "./_buttons.scss";
+  │         ^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 4:9              @import
+    src/views/FlowPage/FlowPage.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [if-function]: The Sass if() syntax is deprecated in favor of the modern CSS syntax.
+
+Suggestion: if(sass($key == "none"): 0; else: $value + $sizeUnit)
+
+More info: https://sass-lang.com/d/if-function
+
+   ╷
+19 │   @return if($key== "none", 0, $value + $sizeUnit);
+   │           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 19:11          @import
+    src/style/style.scss 3:9               @import
+    src/components/NavBar/NavBar.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [if-function]: The Sass if() syntax is deprecated in favor of the modern CSS syntax.
+
+Suggestion: if(sass($key == "none"): 0; else: $value + $sizeUnit)
+
+More info: https://sass-lang.com/d/if-function
+
+   ╷
+19 │   @return if($key== "none", 0, $value + $sizeUnit);
+   │           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 19:11          @import
+    src/style/style.scss 3:9               @import
+    src/components/Footer/Footer.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [if-function]: The Sass if() syntax is deprecated in favor of the modern CSS syntax.
+
+Suggestion: if(sass($key == "none"): 0; else: $value + $sizeUnit)
+
+More info: https://sass-lang.com/d/if-function
+
+   ╷
+19 │   @return if($key== "none", 0, $value + $sizeUnit);
+   │           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 19:11         @import
+    src/style/style.scss 3:9              @import
+    src/views/FlowPage/FlowPage.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+23 │   $sizeKey: nth($size, 1);
+   │             ^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 23:13          @import
+    src/style/style.scss 3:9               @import
+    src/components/NavBar/NavBar.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+23 │   $sizeKey: nth($size, 1);
+   │             ^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 23:13          @import
+    src/style/style.scss 3:9               @import
+    src/components/Footer/Footer.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+23 │   $sizeKey: nth($size, 1);
+   │             ^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 23:13         @import
+    src/style/style.scss 3:9              @import
+    src/views/FlowPage/FlowPage.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+24 │   $sizeValue: nth($size, 2);
+   │               ^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 24:15          @import
+    src/style/style.scss 3:9               @import
+    src/components/NavBar/NavBar.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+24 │   $sizeValue: nth($size, 2);
+   │               ^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 24:15          @import
+    src/style/style.scss 3:9               @import
+    src/components/Footer/Footer.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+24 │   $sizeValue: nth($size, 2);
+   │               ^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 24:15         @import
+    src/style/style.scss 3:9              @import
+    src/views/FlowPage/FlowPage.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+32 │     $posKey: nth($position, 1);
+   │              ^^^^^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 32:14          @import
+    src/style/style.scss 3:9               @import
+    src/components/NavBar/NavBar.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+32 │     $posKey: nth($position, 1);
+   │              ^^^^^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 32:14          @import
+    src/style/style.scss 3:9               @import
+    src/components/Footer/Footer.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+32 │     $posKey: nth($position, 1);
+   │              ^^^^^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 32:14         @import
+    src/style/style.scss 3:9              @import
+    src/views/FlowPage/FlowPage.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+33 │     $posValue: nth($position, 2);
+   │                ^^^^^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 33:16          @import
+    src/style/style.scss 3:9               @import
+    src/components/NavBar/NavBar.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+33 │     $posValue: nth($position, 2);
+   │                ^^^^^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 33:16          @import
+    src/style/style.scss 3:9               @import
+    src/components/Footer/Footer.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+33 │     $posValue: nth($position, 2);
+   │                ^^^^^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 33:16         @import
+    src/style/style.scss 3:9              @import
+    src/views/FlowPage/FlowPage.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use color.adjust instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+4 │     background: darken($primaryColor, 5%);
+  │                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/_buttons.scss 4:17           @import
+    src/style/style.scss 4:9               @import
+    src/components/NavBar/NavBar.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [color-functions]: darken() is deprecated. Suggestions:
+
+color.scale($color, $lightness: -12.5615763547%)
+color.adjust($color, $lightness: -5%)
+
+More info: https://sass-lang.com/d/color-functions
+
+  ╷
+4 │     background: darken($primaryColor, 5%);
+  │                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/_buttons.scss 4:17           @import
+    src/style/style.scss 4:9               @import
+    src/components/NavBar/NavBar.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use color.adjust instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+4 │     background: darken($primaryColor, 5%);
+  │                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/_buttons.scss 4:17           @import
+    src/style/style.scss 4:9               @import
+    src/components/Footer/Footer.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [color-functions]: darken() is deprecated. Suggestions:
+
+color.scale($color, $lightness: -12.5615763547%)
+color.adjust($color, $lightness: -5%)
+
+More info: https://sass-lang.com/d/color-functions
+
+  ╷
+4 │     background: darken($primaryColor, 5%);
+  │                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/_buttons.scss 4:17           @import
+    src/style/style.scss 4:9               @import
+    src/components/Footer/Footer.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use color.adjust instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+4 │     background: darken($primaryColor, 5%);
+  │                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/_buttons.scss 4:17          @import
+    src/style/style.scss 4:9              @import
+    src/views/FlowPage/FlowPage.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [color-functions]: darken() is deprecated. Suggestions:
+
+color.scale($color, $lightness: -12.5615763547%)
+color.adjust($color, $lightness: -5%)
+
+More info: https://sass-lang.com/d/color-functions
+
+  ╷
+4 │     background: darken($primaryColor, 5%);
+  │                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/_buttons.scss 4:17          @import
+    src/style/style.scss 4:9              @import
+    src/views/FlowPage/FlowPage.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [color-functions]: darken() is deprecated. Suggestions:
+
+color.scale($color, $lightness: -3.06%)
+color.adjust($color, $lightness: -3%)
+
+More info: https://sass-lang.com/d/color-functions
+
+  ╷
+9 │   background: darken($offWhite, 3%) !important;
+  │               ^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/_buttons.scss 9:15           @import
+    src/style/style.scss 4:9               @import
+    src/components/NavBar/NavBar.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [color-functions]: darken() is deprecated. Suggestions:
+
+color.scale($color, $lightness: -3.06%)
+color.adjust($color, $lightness: -3%)
+
+More info: https://sass-lang.com/d/color-functions
+
+  ╷
+9 │   background: darken($offWhite, 3%) !important;
+  │               ^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/_buttons.scss 9:15           @import
+    src/style/style.scss 4:9               @import
+    src/components/Footer/Footer.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [color-functions]: darken() is deprecated. Suggestions:
+
+color.scale($color, $lightness: -3.06%)
+color.adjust($color, $lightness: -3%)
+
+More info: https://sass-lang.com/d/color-functions
+
+  ╷
+9 │   background: darken($offWhite, 3%) !important;
+  │               ^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/_buttons.scss 9:15          @import
+    src/style/style.scss 4:9              @import
+    src/views/FlowPage/FlowPage.scss 1:9  root stylesheet
+
+WARNING: 1 repetitive deprecation warnings omitted.
+Run in verbose mode to see all warnings.
+
+WARNING: 1 repetitive deprecation warnings omitted.
+Run in verbose mode to see all warnings.
+
+WARNING: 1 repetitive deprecation warnings omitted.
+Run in verbose mode to see all warnings.
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+1 │ @import "../../style/style.scss";
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/components/OrgPageIntro/OrgPageIntro.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+1 │ @import "./_variables.scss";
+  │         ^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 1:9                           @import
+    src/components/OrgPageIntro/OrgPageIntro.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+2 │ @import "./colorScheme.scss";
+  │         ^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 2:9                           @import
+    src/components/OrgPageIntro/OrgPageIntro.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+3 │ @import "./_spacing.scss";
+  │         ^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 3:9                           @import
+    src/components/OrgPageIntro/OrgPageIntro.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+4 │ @import "./_buttons.scss";
+  │         ^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 4:9                           @import
+    src/components/OrgPageIntro/OrgPageIntro.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [if-function]: The Sass if() syntax is deprecated in favor of the modern CSS syntax.
+
+Suggestion: if(sass($key == "none"): 0; else: $value + $sizeUnit)
+
+More info: https://sass-lang.com/d/if-function
+
+   ╷
+19 │   @return if($key== "none", 0, $value + $sizeUnit);
+   │           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 19:11                      @import
+    src/style/style.scss 3:9                           @import
+    src/components/OrgPageIntro/OrgPageIntro.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+23 │   $sizeKey: nth($size, 1);
+   │             ^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 23:13                      @import
+    src/style/style.scss 3:9                           @import
+    src/components/OrgPageIntro/OrgPageIntro.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+24 │   $sizeValue: nth($size, 2);
+   │               ^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 24:15                      @import
+    src/style/style.scss 3:9                           @import
+    src/components/OrgPageIntro/OrgPageIntro.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+32 │     $posKey: nth($position, 1);
+   │              ^^^^^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 32:14                      @import
+    src/style/style.scss 3:9                           @import
+    src/components/OrgPageIntro/OrgPageIntro.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+33 │     $posValue: nth($position, 2);
+   │                ^^^^^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 33:16                      @import
+    src/style/style.scss 3:9                           @import
+    src/components/OrgPageIntro/OrgPageIntro.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use color.adjust instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+4 │     background: darken($primaryColor, 5%);
+  │                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/_buttons.scss 4:17                       @import
+    src/style/style.scss 4:9                           @import
+    src/components/OrgPageIntro/OrgPageIntro.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [color-functions]: darken() is deprecated. Suggestions:
+
+color.scale($color, $lightness: -12.5615763547%)
+color.adjust($color, $lightness: -5%)
+
+More info: https://sass-lang.com/d/color-functions
+
+  ╷
+4 │     background: darken($primaryColor, 5%);
+  │                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/_buttons.scss 4:17                       @import
+    src/style/style.scss 4:9                           @import
+    src/components/OrgPageIntro/OrgPageIntro.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [color-functions]: darken() is deprecated. Suggestions:
+
+color.scale($color, $lightness: -3.06%)
+color.adjust($color, $lightness: -3%)
+
+More info: https://sass-lang.com/d/color-functions
+
+  ╷
+9 │   background: darken($offWhite, 3%) !important;
+  │               ^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/_buttons.scss 9:15                       @import
+    src/style/style.scss 4:9                           @import
+    src/components/OrgPageIntro/OrgPageIntro.scss 1:9  root stylesheet
+
+WARNING: 1 repetitive deprecation warnings omitted.
+Run in verbose mode to see all warnings.
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+1 │ @import "../../style/style.scss";
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/components/OrgPageContact/OrgPageContact.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+1 │ @import "../../style/style.scss";
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/components/OrgPageOverviewMap/OrgPageOverviewMap.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+1 │ @import "./_variables.scss";
+  │         ^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 1:9                               @import
+    src/components/OrgPageContact/OrgPageContact.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+2 │ @import "./colorScheme.scss";
+  │         ^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 2:9                               @import
+    src/components/OrgPageContact/OrgPageContact.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+3 │ @import "./_spacing.scss";
+  │         ^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 3:9                               @import
+    src/components/OrgPageContact/OrgPageContact.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+4 │ @import "./_buttons.scss";
+  │         ^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 4:9                               @import
+    src/components/OrgPageContact/OrgPageContact.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+1 │ @import "./_variables.scss";
+  │         ^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 1:9                                       @import
+    src/components/OrgPageOverviewMap/OrgPageOverviewMap.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+2 │ @import "./colorScheme.scss";
+  │         ^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 2:9                                       @import
+    src/components/OrgPageOverviewMap/OrgPageOverviewMap.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+3 │ @import "./_spacing.scss";
+  │         ^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 3:9                                       @import
+    src/components/OrgPageOverviewMap/OrgPageOverviewMap.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+4 │ @import "./_buttons.scss";
+  │         ^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 4:9                                       @import
+    src/components/OrgPageOverviewMap/OrgPageOverviewMap.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [if-function]: The Sass if() syntax is deprecated in favor of the modern CSS syntax.
+
+Suggestion: if(sass($key == "none"): 0; else: $value + $sizeUnit)
+
+More info: https://sass-lang.com/d/if-function
+
+   ╷
+19 │   @return if($key== "none", 0, $value + $sizeUnit);
+   │           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 19:11                          @import
+    src/style/style.scss 3:9                               @import
+    src/components/OrgPageContact/OrgPageContact.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [if-function]: The Sass if() syntax is deprecated in favor of the modern CSS syntax.
+
+Suggestion: if(sass($key == "none"): 0; else: $value + $sizeUnit)
+
+More info: https://sass-lang.com/d/if-function
+
+   ╷
+19 │   @return if($key== "none", 0, $value + $sizeUnit);
+   │           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 19:11                                  @import
+    src/style/style.scss 3:9                                       @import
+    src/components/OrgPageOverviewMap/OrgPageOverviewMap.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+23 │   $sizeKey: nth($size, 1);
+   │             ^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 23:13                          @import
+    src/style/style.scss 3:9                               @import
+    src/components/OrgPageContact/OrgPageContact.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+23 │   $sizeKey: nth($size, 1);
+   │             ^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 23:13                                  @import
+    src/style/style.scss 3:9                                       @import
+    src/components/OrgPageOverviewMap/OrgPageOverviewMap.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+24 │   $sizeValue: nth($size, 2);
+   │               ^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 24:15                          @import
+    src/style/style.scss 3:9                               @import
+    src/components/OrgPageContact/OrgPageContact.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+24 │   $sizeValue: nth($size, 2);
+   │               ^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 24:15                                  @import
+    src/style/style.scss 3:9                                       @import
+    src/components/OrgPageOverviewMap/OrgPageOverviewMap.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+32 │     $posKey: nth($position, 1);
+   │              ^^^^^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 32:14                          @import
+    src/style/style.scss 3:9                               @import
+    src/components/OrgPageContact/OrgPageContact.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+32 │     $posKey: nth($position, 1);
+   │              ^^^^^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 32:14                                  @import
+    src/style/style.scss 3:9                                       @import
+    src/components/OrgPageOverviewMap/OrgPageOverviewMap.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+33 │     $posValue: nth($position, 2);
+   │                ^^^^^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 33:16                          @import
+    src/style/style.scss 3:9                               @import
+    src/components/OrgPageContact/OrgPageContact.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+33 │     $posValue: nth($position, 2);
+   │                ^^^^^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 33:16                                  @import
+    src/style/style.scss 3:9                                       @import
+    src/components/OrgPageOverviewMap/OrgPageOverviewMap.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use color.adjust instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+4 │     background: darken($primaryColor, 5%);
+  │                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/_buttons.scss 4:17                           @import
+    src/style/style.scss 4:9                               @import
+    src/components/OrgPageContact/OrgPageContact.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [color-functions]: darken() is deprecated. Suggestions:
+
+color.scale($color, $lightness: -12.5615763547%)
+color.adjust($color, $lightness: -5%)
+
+More info: https://sass-lang.com/d/color-functions
+
+  ╷
+4 │     background: darken($primaryColor, 5%);
+  │                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/_buttons.scss 4:17                           @import
+    src/style/style.scss 4:9                               @import
+    src/components/OrgPageContact/OrgPageContact.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use color.adjust instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+4 │     background: darken($primaryColor, 5%);
+  │                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/_buttons.scss 4:17                                   @import
+    src/style/style.scss 4:9                                       @import
+    src/components/OrgPageOverviewMap/OrgPageOverviewMap.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [color-functions]: darken() is deprecated. Suggestions:
+
+color.scale($color, $lightness: -12.5615763547%)
+color.adjust($color, $lightness: -5%)
+
+More info: https://sass-lang.com/d/color-functions
+
+  ╷
+4 │     background: darken($primaryColor, 5%);
+  │                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/_buttons.scss 4:17                                   @import
+    src/style/style.scss 4:9                                       @import
+    src/components/OrgPageOverviewMap/OrgPageOverviewMap.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [color-functions]: darken() is deprecated. Suggestions:
+
+color.scale($color, $lightness: -3.06%)
+color.adjust($color, $lightness: -3%)
+
+More info: https://sass-lang.com/d/color-functions
+
+  ╷
+9 │   background: darken($offWhite, 3%) !important;
+  │               ^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/_buttons.scss 9:15                           @import
+    src/style/style.scss 4:9                               @import
+    src/components/OrgPageContact/OrgPageContact.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [color-functions]: darken() is deprecated. Suggestions:
+
+color.scale($color, $lightness: -3.06%)
+color.adjust($color, $lightness: -3%)
+
+More info: https://sass-lang.com/d/color-functions
+
+  ╷
+9 │   background: darken($offWhite, 3%) !important;
+  │               ^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/_buttons.scss 9:15                                   @import
+    src/style/style.scss 4:9                                       @import
+    src/components/OrgPageOverviewMap/OrgPageOverviewMap.scss 1:9  root stylesheet
+
+WARNING: 1 repetitive deprecation warnings omitted.
+Run in verbose mode to see all warnings.
+
+WARNING: 1 repetitive deprecation warnings omitted.
+Run in verbose mode to see all warnings.
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+1 │ @import "../../style/style.scss";
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/components/OrganizationCard/OrganizationCard.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+1 │ @import "../../style/style.scss";
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/components/SelectionStations/SelectionStations.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+1 │ @import "../../style/_variables.scss";
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/components/SelectionParams/SelectionParams.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+2 │ @import "../../style/style.scss";
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/components/SelectionParams/SelectionParams.scss 2:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+1 │ @import "../../style/style.scss";
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/components/OrgPageProjectInfo/OrgPageProjectInfo.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+1 │ @import "./_variables.scss";
+  │         ^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 1:9                                   @import
+    src/components/OrganizationCard/OrganizationCard.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+2 │ @import "./colorScheme.scss";
+  │         ^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 2:9                                   @import
+    src/components/OrganizationCard/OrganizationCard.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+3 │ @import "./_spacing.scss";
+  │         ^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 3:9                                   @import
+    src/components/OrganizationCard/OrganizationCard.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+4 │ @import "./_buttons.scss";
+  │         ^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 4:9                                   @import
+    src/components/OrganizationCard/OrganizationCard.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+1 │ @import "./_variables.scss";
+  │         ^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 1:9                                     @import
+    src/components/SelectionStations/SelectionStations.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+2 │ @import "./colorScheme.scss";
+  │         ^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 2:9                                     @import
+    src/components/SelectionStations/SelectionStations.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+3 │ @import "./_spacing.scss";
+  │         ^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 3:9                                     @import
+    src/components/SelectionStations/SelectionStations.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+4 │ @import "./_buttons.scss";
+  │         ^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 4:9                                     @import
+    src/components/SelectionStations/SelectionStations.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+1 │ @import "./_variables.scss";
+  │         ^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 1:9                                       @import
+    src/components/OrgPageProjectInfo/OrgPageProjectInfo.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+2 │ @import "./colorScheme.scss";
+  │         ^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 2:9                                       @import
+    src/components/OrgPageProjectInfo/OrgPageProjectInfo.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+3 │ @import "./_spacing.scss";
+  │         ^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 3:9                                       @import
+    src/components/OrgPageProjectInfo/OrgPageProjectInfo.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+4 │ @import "./_buttons.scss";
+  │         ^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 4:9                                       @import
+    src/components/OrgPageProjectInfo/OrgPageProjectInfo.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+1 │ @import "./_variables.scss";
+  │         ^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 1:9                                 @import
+    src/components/SelectionParams/SelectionParams.scss 2:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+2 │ @import "./colorScheme.scss";
+  │         ^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 2:9                                 @import
+    src/components/SelectionParams/SelectionParams.scss 2:9  root stylesheet
+
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+3 │ @import "./_spacing.scss";
+  │         ^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/style.scss 3:9                                 @import
+    src/components/SelectionParams/SelectionParams.scss 2:9  root stylesheet
+
+DEPRECATION WARNING [if-function]: The Sass if() syntax is deprecated in favor of the modern CSS syntax.
+
+Suggestion: if(sass($key == "none"): 0; else: $value + $sizeUnit)
+
+More info: https://sass-lang.com/d/if-function
+
+   ╷
+19 │   @return if($key== "none", 0, $value + $sizeUnit);
+   │           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 19:11                              @import
+    src/style/style.scss 3:9                                   @import
+    src/components/OrganizationCard/OrganizationCard.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [if-function]: The Sass if() syntax is deprecated in favor of the modern CSS syntax.
+
+Suggestion: if(sass($key == "none"): 0; else: $value + $sizeUnit)
+
+More info: https://sass-lang.com/d/if-function
+
+   ╷
+19 │   @return if($key== "none", 0, $value + $sizeUnit);
+   │           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 19:11                                @import
+    src/style/style.scss 3:9                                     @import
+    src/components/SelectionStations/SelectionStations.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [if-function]: The Sass if() syntax is deprecated in favor of the modern CSS syntax.
+
+Suggestion: if(sass($key == "none"): 0; else: $value + $sizeUnit)
+
+More info: https://sass-lang.com/d/if-function
+
+   ╷
+19 │   @return if($key== "none", 0, $value + $sizeUnit);
+   │           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 19:11                                  @import
+    src/style/style.scss 3:9                                       @import
+    src/components/OrgPageProjectInfo/OrgPageProjectInfo.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+23 │   $sizeKey: nth($size, 1);
+   │             ^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 23:13                              @import
+    src/style/style.scss 3:9                                   @import
+    src/components/OrganizationCard/OrganizationCard.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+23 │   $sizeKey: nth($size, 1);
+   │             ^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 23:13                                @import
+    src/style/style.scss 3:9                                     @import
+    src/components/SelectionStations/SelectionStations.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+23 │   $sizeKey: nth($size, 1);
+   │             ^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 23:13                                  @import
+    src/style/style.scss 3:9                                       @import
+    src/components/OrgPageProjectInfo/OrgPageProjectInfo.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+24 │   $sizeValue: nth($size, 2);
+   │               ^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 24:15                              @import
+    src/style/style.scss 3:9                                   @import
+    src/components/OrganizationCard/OrganizationCard.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+24 │   $sizeValue: nth($size, 2);
+   │               ^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 24:15                                @import
+    src/style/style.scss 3:9                                     @import
+    src/components/SelectionStations/SelectionStations.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+24 │   $sizeValue: nth($size, 2);
+   │               ^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 24:15                                  @import
+    src/style/style.scss 3:9                                       @import
+    src/components/OrgPageProjectInfo/OrgPageProjectInfo.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+32 │     $posKey: nth($position, 1);
+   │              ^^^^^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 32:14                              @import
+    src/style/style.scss 3:9                                   @import
+    src/components/OrganizationCard/OrganizationCard.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+32 │     $posKey: nth($position, 1);
+   │              ^^^^^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 32:14                                @import
+    src/style/style.scss 3:9                                     @import
+    src/components/SelectionStations/SelectionStations.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+32 │     $posKey: nth($position, 1);
+   │              ^^^^^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 32:14                                  @import
+    src/style/style.scss 3:9                                       @import
+    src/components/OrgPageProjectInfo/OrgPageProjectInfo.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+33 │     $posValue: nth($position, 2);
+   │                ^^^^^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 33:16                              @import
+    src/style/style.scss 3:9                                   @import
+    src/components/OrganizationCard/OrganizationCard.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+33 │     $posValue: nth($position, 2);
+   │                ^^^^^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 33:16                                @import
+    src/style/style.scss 3:9                                     @import
+    src/components/SelectionStations/SelectionStations.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+33 │     $posValue: nth($position, 2);
+   │                ^^^^^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 33:16                                  @import
+    src/style/style.scss 3:9                                       @import
+    src/components/OrgPageProjectInfo/OrgPageProjectInfo.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [if-function]: The Sass if() syntax is deprecated in favor of the modern CSS syntax.
+
+Suggestion: if(sass($key == "none"): 0; else: $value + $sizeUnit)
+
+More info: https://sass-lang.com/d/if-function
+
+   ╷
+19 │   @return if($key== "none", 0, $value + $sizeUnit);
+   │           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 19:11                            @import
+    src/style/style.scss 3:9                                 @import
+    src/components/SelectionParams/SelectionParams.scss 2:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+23 │   $sizeKey: nth($size, 1);
+   │             ^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 23:13                            @import
+    src/style/style.scss 3:9                                 @import
+    src/components/SelectionParams/SelectionParams.scss 2:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+24 │   $sizeValue: nth($size, 2);
+   │               ^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 24:15                            @import
+    src/style/style.scss 3:9                                 @import
+    src/components/SelectionParams/SelectionParams.scss 2:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+32 │     $posKey: nth($position, 1);
+   │              ^^^^^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 32:14                            @import
+    src/style/style.scss 3:9                                 @import
+    src/components/SelectionParams/SelectionParams.scss 2:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use list.nth instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+33 │     $posValue: nth($position, 2);
+   │                ^^^^^^^^^^^^^^^^^
+   ╵
+    src/style/_spacing.scss 33:16                            @import
+    src/style/style.scss 3:9                                 @import
+    src/components/SelectionParams/SelectionParams.scss 2:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use color.adjust instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+4 │     background: darken($primaryColor, 5%);
+  │                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/_buttons.scss 4:17                               @import
+    src/style/style.scss 4:9                                   @import
+    src/components/OrganizationCard/OrganizationCard.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [color-functions]: darken() is deprecated. Suggestions:
+
+color.scale($color, $lightness: -12.5615763547%)
+color.adjust($color, $lightness: -5%)
+
+More info: https://sass-lang.com/d/color-functions
+
+  ╷
+4 │     background: darken($primaryColor, 5%);
+  │                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/_buttons.scss 4:17                               @import
+    src/style/style.scss 4:9                                   @import
+    src/components/OrganizationCard/OrganizationCard.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use color.adjust instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+4 │     background: darken($primaryColor, 5%);
+  │                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/_buttons.scss 4:17                                 @import
+    src/style/style.scss 4:9                                     @import
+    src/components/SelectionStations/SelectionStations.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [color-functions]: darken() is deprecated. Suggestions:
+
+color.scale($color, $lightness: -12.5615763547%)
+color.adjust($color, $lightness: -5%)
+
+More info: https://sass-lang.com/d/color-functions
+
+  ╷
+4 │     background: darken($primaryColor, 5%);
+  │                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/_buttons.scss 4:17                                 @import
+    src/style/style.scss 4:9                                     @import
+    src/components/SelectionStations/SelectionStations.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use color.adjust instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+4 │     background: darken($primaryColor, 5%);
+  │                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/_buttons.scss 4:17                                   @import
+    src/style/style.scss 4:9                                       @import
+    src/components/OrgPageProjectInfo/OrgPageProjectInfo.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [color-functions]: darken() is deprecated. Suggestions:
+
+color.scale($color, $lightness: -12.5615763547%)
+color.adjust($color, $lightness: -5%)
+
+More info: https://sass-lang.com/d/color-functions
+
+  ╷
+4 │     background: darken($primaryColor, 5%);
+  │                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/_buttons.scss 4:17                                   @import
+    src/style/style.scss 4:9                                       @import
+    src/components/OrgPageProjectInfo/OrgPageProjectInfo.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [color-functions]: darken() is deprecated. Suggestions:
+
+color.scale($color, $lightness: -3.06%)
+color.adjust($color, $lightness: -3%)
+
+More info: https://sass-lang.com/d/color-functions
+
+  ╷
+9 │   background: darken($offWhite, 3%) !important;
+  │               ^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/_buttons.scss 9:15                               @import
+    src/style/style.scss 4:9                                   @import
+    src/components/OrganizationCard/OrganizationCard.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [color-functions]: darken() is deprecated. Suggestions:
+
+color.scale($color, $lightness: -3.06%)
+color.adjust($color, $lightness: -3%)
+
+More info: https://sass-lang.com/d/color-functions
+
+  ╷
+9 │   background: darken($offWhite, 3%) !important;
+  │               ^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/_buttons.scss 9:15                                 @import
+    src/style/style.scss 4:9                                     @import
+    src/components/SelectionStations/SelectionStations.scss 1:9  root stylesheet
+
+DEPRECATION WARNING [color-functions]: darken() is deprecated. Suggestions:
+
+color.scale($color, $lightness: -3.06%)
+color.adjust($color, $lightness: -3%)
+
+More info: https://sass-lang.com/d/color-functions
+
+  ╷
+9 │   background: darken($offWhite, 3%) !important;
+  │               ^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/_buttons.scss 9:15                                   @import
+    src/style/style.scss 4:9                                       @import
+    src/components/OrgPageProjectInfo/OrgPageProjectInfo.scss 1:9  root stylesheet
+
+WARNING: 1 repetitive deprecation warnings omitted.
+Run in verbose mode to see all warnings.
+
+WARNING: 1 repetitive deprecation warnings omitted.
+Run in verbose mode to see all warnings.
+
+WARNING: 1 repetitive deprecation warnings omitted.
+Run in verbose mode to see all warnings.
+
+DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use color.adjust instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+4 │     background: darken($primaryColor, 5%);
+  │                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/_buttons.scss 4:17                             @import
+    src/style/style.scss 4:9                                 @import
+    src/components/SelectionParams/SelectionParams.scss 2:9  root stylesheet
+
+DEPRECATION WARNING [color-functions]: darken() is deprecated. Suggestions:
+
+color.scale($color, $lightness: -12.5615763547%)
+color.adjust($color, $lightness: -5%)
+
+More info: https://sass-lang.com/d/color-functions
+
+  ╷
+4 │     background: darken($primaryColor, 5%);
+  │                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/_buttons.scss 4:17                             @import
+    src/style/style.scss 4:9                                 @import
+    src/components/SelectionParams/SelectionParams.scss 2:9  root stylesheet
+
+DEPRECATION WARNING [color-functions]: darken() is deprecated. Suggestions:
+
+color.scale($color, $lightness: -3.06%)
+color.adjust($color, $lightness: -3%)
+
+More info: https://sass-lang.com/d/color-functions
+
+  ╷
+9 │   background: darken($offWhite, 3%) !important;
+  │               ^^^^^^^^^^^^^^^^^^^^^
+  ╵
+    src/style/_buttons.scss 9:15                             @import
+    src/style/style.scss 4:9                                 @import
+    src/components/SelectionParams/SelectionParams.scss 2:9  root stylesheet
+
+WARNING: 2 repetitive deprecation warnings omitted.
+Run in verbose mode to see all warnings.

@@ -1,0 +1,18 @@
+@import "../../style/style.scss";
+
+#flow-page {
+  .centered-buttons {
+    display: flex;
+    flex-direction: row;
+    > div {
+      flex-grow: 1;
+      padding: 0.5rem;
+    }
+  }
+  .active {
+    font-weight: bold;
+    color: $offWhite !important;
+    background: $primaryColor !important;
+  }
+  margin-bottom: 50px;
+}

@@ -1,0 +1,18 @@
+#cookie-msg {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 3000;
+  font-size: 0.8rem;
+
+  @media screen and (min-width: 992px) {
+    width: 50%;
+  }
+  @media screen and (max-width: 992px) {
+    width: 100%;
+  }
+
+  button {
+    font-size: 0.8rem;
+  }
+}
